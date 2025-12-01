@@ -86,13 +86,14 @@ function getNewUserInformation() {
   }
   checkMailRedundancy(userCredential);
 }
-
+  
 /**
  * This function validates, if the mail during sign-up-process is already used in the database
  *
  * @param {object} credentials the sign-up credentials
  */
 async function checkMailRedundancy(credentials) {
+
   let response = await fetch(database + "/user" + ".json");
   let responseRef = await response.json();
   let mails = getUsedMails(responseRef);

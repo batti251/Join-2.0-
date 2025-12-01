@@ -1,6 +1,3 @@
-const database =
-  "https://join-461-default-rtdb.europe-west1.firebasedatabase.app/";
-
 let contactsArray = [];
 let tasksArray = [];
 let overlayTransitionMiliSeconds = 300;
