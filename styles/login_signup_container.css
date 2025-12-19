@@ -185,7 +185,7 @@ input[type="checkbox"]:checked:hover {
   height: 48px;
   border-radius: 8px;
   border-width: 1px;
-  padding: 15px 24px;
+  padding: 8px 16px;
 }
 
 .guest-login-btn {

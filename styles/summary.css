@@ -160,7 +160,7 @@ main {
   }
   .greet-animation {
     animation: fadeGreeting 2s ease-out;
-    height: 139dvh;
+    height: calc(100% + 320px);
     width: 100%;
     display: flex;
     top: 50%;
