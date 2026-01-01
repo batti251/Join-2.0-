@@ -109,19 +109,11 @@ li {
     color: #ffffff;
   }
 }
-/* 
-@media (max-height: 650px) {
-  .site-container {
-    right: 16px;
-    top: 8px;
-  }
-} */
 
-@media (max-width: 400px) {
+
+@media (max-width: 480px) {
   .not-a-join-user {
     display: none;
   }
-/*   .site-container {
-    right: 16px;
-  } */
+
 }

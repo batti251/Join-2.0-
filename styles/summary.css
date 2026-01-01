@@ -61,7 +61,6 @@ main {
 .small-card {
   flex: 1;
   text-align: center;
-  /*   min-height: 120px; */
   gap: 18px;
 }
 
@@ -102,7 +101,6 @@ main {
 
 .large-card {
   display: flex;
-  /*   min-height: 120px; */
   max-width: 560px;
   text-align: center;
 }
@@ -126,10 +124,6 @@ main {
   margin: 0 20px;
 }
 
-.greeting {
-  /*   width: 100%; */
-  /*   max-width: 385px; */
-}
 
 .greeting h2 {
   font-size: 48px;
@@ -236,11 +230,9 @@ main {
   .urgent-left,
   .urgent-right {
     padding: 20px 0;
-    /*         max-width: 108px; */
   }
 
   .large-card {
-    /*   max-width: 276px; */
     height: 110px;
     padding: 28px 0;
   }

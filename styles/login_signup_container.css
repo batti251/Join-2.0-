@@ -47,10 +47,6 @@ main {
 }
 
 .signup-container {
-  /*  max-height: 49px;
-  position: sticky;
-  top: 67px;
-  left: 1439px; */
   gap: 35px;
   animation: hide 2s forwards;
 }
@@ -92,7 +88,6 @@ main {
 
 form {
   max-width: 422px;
-  /*  max-height: 152px; */
   gap: 20px;
 }
 
@@ -171,7 +166,7 @@ input[type="checkbox"]:checked:hover {
 }
 
 .header-index {
-  /*   padding: 48px 48px; */
+    padding: 48px 48px;
   z-index: 1;
 }
 
@@ -247,7 +242,6 @@ input[type="checkbox"]:checked:hover {
 }
 
 .form-signup {
-  /*   height: 326px; */
   max-width: 422px;
   gap: 8px;
 }
@@ -373,9 +367,6 @@ input[type="checkbox"]:checked:hover {
     position: unset;
   }
 
-  /*   .signup-container {
-    position: unset;
-  } */
 
   .signup {
     max-height: unset;
@@ -456,7 +447,6 @@ input[type="checkbox"]:checked:hover {
 
   .login-btn-container {
     gap: 8px;
-    /* flex-wrap: wrap; */
   }
 
   button {
