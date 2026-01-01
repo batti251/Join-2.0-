@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Join</title>
+    <link rel="stylesheet" href="./../style.css" />
+    <link rel="stylesheet" href="./../styles/assets.css" />
+    <link rel="stylesheet" href="./../styles/login.css" />
+    <link rel="stylesheet" href="./../styles/login_signup_container.css" />
+    <link rel="stylesheet" href="./../styles/colors.css" />
+    <link rel="stylesheet" href="./../styles/keyframes.css" />
+    <link rel="icon" href="./../assets/img/faviconLogo.svg" />
+  <script src="./../script.js"></script>
+  <script src="./../scripts/db.js"></script>
+  <script src="./../scripts/add_task_operations.js"></script>
+  <script src="./../scripts/board_operations.js"></script>
+  <script src="./../scripts/add_task.js"></script>
+  <script src="./../scripts/contact_operations.js"></script>
+  <script src="./../modules/tasks-object.class.js"></script>
+  <script src="./../modules/class.initialContact.js"></script>
+  <script src="./../scripts/reset_join_content.js"></script>
+  <script src="./../scripts/authentication.js"></script>
+  <script src="./../scripts/desktop_template.js"></script>
+  <script src="./../scripts/w3_include.js"></script>
+  </head>
+  <body>
+
+     <div class="landscape-orientation d-none">This screen size isn't supported in this view. <br>Please adjust your screen width.
+        </div>
+
+        
+        <div class="background-fade">
+        </div>
+
+    <div id="login-view">
+
+
+        
+
+        <header class="header-index">
+          <div class="site-container d-flex-row-c-fe">
+          <div class="signup-container d-flex-row-c-fe ">
+            <span class="font-Inter-400-20px not-a-join-user">Not a Join user?</span>
+            <button class="font-Inter-700-16px text-color-white btn-signup" onclick="signupPage()">Sign Up</button>
+          </div>
+</div>
+</header>
+
+<aside>
+        <div class="join-logo-index">
+          <img src="./../assets/img/faviconLogo.svg" alt="join-logo" />
+        </div>
+</aside>
+
+        <div>
+
+        <main class="login-container d-flex-column-c text-center">
+
+          <div class="login-headline-container d-flex-column-c-c">
+            <div class="login-headline d-flex-row-c-c font-Inter-700-61px text-color-black">Log In</div>
+            <div class="login-headline-underline text-color-29ABE2"></div>
+          </div>
+          <form class="d-flex-column-c-c">s
+            <div class="input-container d-flex-column-c">
+              <div class="input-content d-flex-c-sb">
+                <input placeholder="Email" type="email" name="" id="email" oninput="resetErrorMessage()"/><img src="./assets/icons/mail_icon.svg" alt="" />
+              </div> <div class="d-none" class="login-error"></div>
+            </div>
+          <div
+                id="user-existance-error"
+                class="d-none validation email-login font-Inter-400-13px text-color-FF8190"
+              >
+                User does not exist. Please sign up before login.
+          </div>
+            
+            <div class="input-container d-flex-column">
+              <div class="input-content d-flex-c-sb">
+                <input placeholder="Password" type="password" name="" id="password" oninput="resetErrorMessage()"/><div class="pw-icon" onclick="showPassword(this)"></div>
+                </div>
+                <div id="password-error" class="d-none validation email font-Inter-400-13px login-error text-color-FF8190">Check your email and password. Please try again.</div>
+            </div>
+
+          </form>
+
+          <div class="login-btn-container d-flex-row-c-c">
+            <button onclick="userLogin()" class="login-btn font-Inter-700-21px text-color-white" type="button">
+              Log in
+            </button>
+            <button onclick="guestLogin()" id="guest-login" class="guest-login-btn font-Inter-700-21px text-color-2A3647" type="button">
+              Guest Log In
+            </button>  
+          <!--   <button class="font-Inter-700-16px text-color-white btn-signup btn-responsive" onclick="signupPage()">
+              Sign Up
+            </button>  -->        
+          </div>
+          <div class="reset-join d-flex-column-c-c gap-8px font-Inter-400-13px">
+              <div>For resetting and pulling fresh join content data: <span class="reset-join-btn text-color-29ABE2" onclick="resetJoinContent()">click here</span>.</div>
+              <div class="col-red">Caution: this will reset all sign up data.</div>
+          </div> 
+        </main>
+      </div>
+
+
+
+           <footer class="policy-notice">
+            <ul class="d-flex-row-c-c policy-notice-list nav-links font-Inter-400-16px text-color-A8A8A8">
+              <li class=""><a href="./privacy_policy.html">Privacy Policy</a></li>
+              <li class=""><a href="./legal_notice.html">Legal Notice</a></li>
+            </ul>
+          </footer>
+
+
+
+        <div class="toast-msg font-Inter-400-20px" id="reset-join-msg">
+          <div class="d-flex-c-sb gap-32px">
+            Join content resetted successfully
+          </div>
+        </div>
+        </div>
+
+
+
+    </div>
+  </body>
+</html>
