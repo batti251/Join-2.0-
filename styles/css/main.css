@@ -23,6 +23,7 @@ button:disabled:hover {
   font-family: "Inter";
   font-size: 21px;
   font-weight: 700;
+  line-height: 120%;
 }
 .btn-primary:hover {
   background-color: #29abe2;
@@ -37,6 +38,7 @@ button:disabled:hover {
   font-family: "Inter";
   font-size: 21px;
   font-weight: 700;
+  line-height: 120%;
   background-color: transparent;
   border-color: #2a3647;
   border-style: solid;
@@ -50,6 +52,22 @@ button:disabled:hover {
 .btn-transparent > span {
   width: 129px;
   height: 25px;
+}
+
+.btn-highlight {
+  background-color: #29abe2;
+  height: 48px;
+  width: 100%;
+  max-width: 100%;
+  color: #ffffff;
+  font-family: "Inter";
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 120%;
+}
+.btn-highlight:hover {
+  background-color: #29abe2;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
 
 form {
@@ -119,6 +137,7 @@ form > .input-container > .login-error {
   font-family: "Inter";
   font-size: 12px;
   font-weight: 400;
+  line-height: 120%;
   height: 16px;
   width: 100%;
   margin: 2px 0;
@@ -195,15 +214,17 @@ input[type=checkbox]:checked:hover {
     height: 12px;
   }
 }
-@keyframes easein {
-  100% {
-    top: 37px;
-    left: 38px;
-    transform: translate(0, 0);
-  }
-}
+/*  @keyframes easein {
+   100% {
+     top: 37px;
+     left: 38px;
+     transform: translate(0, 0);
+   }
+ } */
 body {
   overflow: hidden;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .page {
@@ -239,6 +260,8 @@ body {
   align-items: center;
   flex-direction: unset;
   gap: 0;
+  height: auto;
+  width: 100%;
   max-height: 72%;
   gap: 35px;
   animation: hide 2s forwards;
@@ -247,11 +270,17 @@ body {
   font-family: "Inter";
   font-size: 1.25rem;
   font-weight: 400;
+  line-height: 120%;
+  height: auto;
+  width: 150px;
 }
 .page > header > .site-container > .signup-container > .btn-primary {
   height: 49px;
-  width: 91px;
-  font-size: 16px;
+  width: 100%;
+  font-family: "Inter";
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 120%;
 }
 .page > header > aside > .join-logo > img {
   position: relative;
@@ -286,7 +315,21 @@ body {
   z-index: -1;
   transition: ease-in-out 0.5s;
 }
-.page > main > .headline-container {
+.page > .login-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0;
+  width: 100%;
+  gap: 35px;
+}
+.page > .reset-join .reset-join-btn:hover {
+  cursor: pointer;
+  color: #007cee;
+}
+
+.headline-container {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -296,15 +339,16 @@ body {
   max-height: 89px;
   gap: 16px;
 }
-.page > main > .headline-container > h1 {
+.headline-container > h1 {
   font-family: "Inter";
   font-size: 61px;
   font-weight: 700;
+  line-height: 120%;
   color: black;
   margin-block-start: 0;
   margin-block-end: 0;
 }
-.page > main > .headline-container > .headline-underline {
+.headline-container > .headline-underline {
   width: 150px;
   border-style: solid;
   border-top: unset;
@@ -312,19 +356,6 @@ body {
   border-left: unset;
   border-right: unset;
   border-width: 3px;
-}
-.page > main > .login-btn-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  gap: 0;
-  width: 100%;
-  gap: 35px;
-}
-.page > main > .reset-join .reset-join-btn:hover {
-  cursor: pointer;
-  color: #007cee;
 }
 
 footer {
@@ -341,10 +372,13 @@ footer > .policy-notice-list {
   font-family: "Inter";
   font-size: 1rem;
   font-weight: 400;
-  color: #a8a8a8;
+  line-height: 120%;
 }
 footer > .policy-notice-list > li {
   min-width: 109px;
+}
+footer > .policy-notice-list > li > a {
+  color: #a8a8a8;
 }
 footer > .policy-notice-list > li > a:hover {
   color: #29abe2;
@@ -374,9 +408,9 @@ footer > .policy-notice-list > li > a:visited {
   }
 }
 @media (max-width: 480px) {
-  .text-to-signup {
-    display: none;
-  }
+  /*   .text-to-signup {
+      display: none;
+    } */
   main {
     gap: 24px !important;
   }
@@ -431,6 +465,7 @@ footer > .policy-notice-list > li > a:visited {
   font-family: "Inter";
   font-size: 61px;
   font-weight: 700;
+  line-height: 120%;
   color: black;
   margin-block-start: 0;
   margin-block-end: 0;
@@ -452,6 +487,119 @@ footer > .policy-notice-list > li > a:visited {
     font-size: 11px !important;
     height: 6px !important;
     margin: unset !important;
+  }
+}
+.triage-wrap > .triage-container > .container-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 48px;
+}
+.triage-wrap > .triage-container > .container-wrap > .triage-headline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  max-width: unset;
+  max-height: unset;
+}
+.triage-wrap > .triage-container > .container-wrap > .triage-headline > h1 {
+  font-size: 40px;
+}
+.triage-wrap > .triage-container > .container-wrap > .triage-headline > span {
+  font-family: "Inter";
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 120%;
+}
+.triage-wrap > .triage-container > .container-wrap > .choice-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 64px;
+}
+.triage-wrap > .triage-container > .container-wrap > .choice-wrap > .choice-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 24px;
+  height: auto;
+  width: 277px;
+}
+.triage-wrap > .triage-container > .container-wrap > .choice-wrap > .choice-container > .role-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+}
+.triage-wrap > .header-index > .site-container > .signup-container > .text-to-signup {
+  color: white;
+}
+.triage-wrap > .header-index > .site-container > .signup-container > a {
+  color: white;
+}
+
+@media screen and (max-width: 992px) {
+  .choice-wrap {
+    padding: 20px !important;
+    width: 80% !important;
+  }
+  .choice-container {
+    width: 204px !important;
+  }
+  .triage-headline {
+    max-width: 72% !important;
+  }
+  .triage-headline > span {
+    font-size: 1.25rem !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .triage-wrap {
+    grid-template-rows: 35% calc(100dvh - 45%) 10% !important;
+    max-height: 560px !important;
+  }
+  .header-index {
+    flex-direction: column-reverse !important;
+  }
+  .header-index > aside {
+    width: 100% !important;
+  }
+  .choice-wrap {
+    flex-direction: column !important;
+  }
+  .triage-headline > h1 {
+    font-size: 32px !important;
+  }
+  .triage-headline > span {
+    font-size: 1rem !important;
+  }
+  .role-check > span {
+    font-size: 14px !important;
+  }
+  .container-wrap {
+    gap: 16px !important;
+  }
+  .choice-container {
+    align-items: center !important;
+    width: 100% !important;
+  }
+  .btn-highlight {
+    background-color: #2a3647 !important;
+  }
+  .btn-triage {
+    width: 172px !important;
+    padding: 15px 24px !important;
+  }
+}
+@media screen and (max-width: 380px) {
+  .triage-container {
+    max-height: 560px !important;
   }
 }
 

@@ -1,0 +1,115 @@
+@use "../index" as *;
+
+.triage-wrap {
+  > .triage-container {
+    > .container-wrap {
+      @include dFlex($g: 48px);
+      > .triage-headline {
+        @include dFlex($g: 24px);
+        max-width: unset;
+        max-height: unset;
+        > h1 {
+          font-size: 40px;
+        }
+        > span {
+          @include font($fs: 23px);
+        }
+      }
+      > .choice-wrap {
+        @include dFlex($g: 64px, $fd: row);
+        > .choice-container {
+          @include dFlex($ai: flex-start, $g: 24px);
+          @include size($w: 277px);
+          > .role-check {
+            @include dFlex($fd: row, $g: 8px);
+          }
+        }
+      }
+    }
+  }
+  > .header-index {
+    > .site-container {
+      > .signup-container {
+        > .text-to-signup {
+          @include text($c: white);
+        }
+        > a {
+          @include text($c: white);
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .choice-wrap {
+    padding: 20px !important;
+    width: 80% !important;
+  }
+  .choice-container {
+    width: 204px !important;
+  }
+
+  .triage-headline {
+    max-width: 72% !important;
+    > span {
+      font-size: 1.25rem !important;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .triage-wrap {
+    grid-template-rows: 35% calc(100dvh - 45%) 10% !important;
+    max-height: 560px !important;
+  }
+
+  .header-index{
+    flex-direction: column-reverse !important;
+     > aside {
+      width: 100% !important;
+     }
+  }
+  .choice-wrap {
+    flex-direction: column !important;
+  }
+
+  .triage-headline {
+    > h1 {
+      font-size: 32px !important;
+    }
+    > span {
+      font-size: 1rem !important;
+    }
+  }
+
+  .role-check {
+    > span {
+      font-size: 14px !important;
+    }
+  }
+
+  .container-wrap {
+    gap: 16px !important;
+  }
+
+  .choice-container {
+    align-items: center !important;
+    width: 100% !important;
+  }
+
+  .btn-highlight {
+    background-color: $color-primary !important;
+  }
+
+  .btn-triage {
+    width: 172px !important;
+    padding: 15px 24px !important;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .triage-container {
+    max-height: 560px !important;
+  }
+}

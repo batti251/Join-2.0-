@@ -2,6 +2,8 @@
 
 body {
   overflow: hidden;
+  margin: 0;
+  box-sizing: border-box;
 }
 
 .page {
@@ -25,15 +27,17 @@ body {
       z-index: 2;
       > .signup-container {
         @include dFlex($fd: unset);
+        @include size($w: 100%);
         max-height: 72%;
         gap: 35px;
         animation: hide 2s forwards;
         > .text-to-signup {
           @include font($fs: 1.25rem);
+          @include size($w: 150px);
         }
         > .btn-primary {
-          @include size($h: 49px, $w: 91px);
-          font-size: 16px;
+          @include size($h: 49px, $w: 100%);
+          @include font($fs: 19px, $fw: 400);
         }
       }
     }
@@ -64,37 +68,38 @@ body {
     animation: hide 2s forwards;
     z-index: -1;
     transition: ease-in-out 0.5s;
-    > .headline-container {
-      @include dFlex();
-      max-width: 280px;
-      max-height: 89px;
-      gap: 16px;
-      > h1 {
-        @include font($fs: 61px, $fw: 700);
-        @include text();
-        margin-block-start: 0;
-        margin-block-end: 0;
-      }
-      > .headline-underline {
-        width: 150px;
-        @include underline();
-      }
-    }
+  }
 
-    > .login-btn-container {
-      @include dFlex($fd: row);
-      width: 100%;
-      gap: 35px;
-    }
+  > .login-btn-container {
+    @include dFlex($fd: row);
+    width: 100%;
+    gap: 35px;
+  }
 
-    > .reset-join {
-      .reset-join-btn {
-        &:hover {
-          cursor: pointer;
-          color: #007cee;
-        }
+  > .reset-join {
+    .reset-join-btn {
+      &:hover {
+        cursor: pointer;
+        color: #007cee;
       }
     }
+  }
+}
+
+.headline-container {
+  @include dFlex();
+  max-width: 280px;
+  max-height: 89px;
+  gap: 16px;
+  > h1 {
+    @include font($fs: 61px, $fw: 700);
+    @include text();
+    margin-block-start: 0;
+    margin-block-end: 0;
+  }
+  > .headline-underline {
+    width: 150px;
+    @include underline();
   }
 }
 
@@ -106,11 +111,12 @@ footer {
   > .policy-notice-list {
     @include dFlex($fd: row, $g: 8px);
     @include font();
-    @include text($c: #a8a8a8);
+
     > li {
       min-width: 109px;
 
       > a {
+        @include text($c: #a8a8a8);
         &:hover {
           color: #29abe2;
           font-weight: 600;
@@ -145,9 +151,9 @@ footer {
 }
 
 @media (max-width: 480px) {
-  .text-to-signup {
+/*   .text-to-signup {
     display: none;
-  }
+  } */
 
   main {
     gap: 24px !important;
@@ -158,11 +164,9 @@ footer {
   .site-container {
     padding: 0 30px 0 0;
   }
-
 }
 
 @media screen and (max-width: 380px) {
-  
   header {
     padding: 12px !important;
   }
@@ -173,11 +177,10 @@ footer {
       max-height: 48px !important;
     }
   }
-  
+
   main {
     max-height: 400px !important;
   }
-
 }
 
 @media screen and (max-height: 439px) {

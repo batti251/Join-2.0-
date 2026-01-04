@@ -9,18 +9,19 @@
   width: $w;
 }
 
-@mixin dFlex($jc: center, $ai: center, $fd: column, $g: 0) {
-  display: flex;
+@mixin dFlex($d: flex, $jc: center, $ai: center, $fd: column, $g: 0) {
+  display: $d;
   justify-content: $jc;
   align-items: $ai;
   flex-direction: $fd;
   gap: $g;
 }
 
-@mixin font($ff: "Inter", $fs: 1rem, $fw: 400) {
+@mixin font($ff: "Inter", $fs: 1rem, $fw: 400, $lh: 120%) {
   font-family: $ff;
   font-size: $fs;
   font-weight: $fw;
+  line-height: $lh;
 }
 
 @mixin text($c: black) {
