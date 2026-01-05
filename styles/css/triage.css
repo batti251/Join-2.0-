@@ -221,5 +221,118 @@ input[type=checkbox]:checked:hover {
     height: 12px;
   }
 }
+.triage-wrap > .triage-container > .container-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 48px;
+}
+.triage-wrap > .triage-container > .container-wrap > .triage-headline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 24px;
+  max-width: unset;
+  max-height: unset;
+}
+.triage-wrap > .triage-container > .container-wrap > .triage-headline > h1 {
+  font-size: 40px;
+}
+.triage-wrap > .triage-container > .container-wrap > .triage-headline > span {
+  font-family: "Inter";
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 120%;
+}
+.triage-wrap > .triage-container > .container-wrap > .choice-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 64px;
+}
+.triage-wrap > .triage-container > .container-wrap > .choice-wrap > .choice-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 24px;
+  height: auto;
+  width: 277px;
+}
+.triage-wrap > .triage-container > .container-wrap > .choice-wrap > .choice-container > .role-check {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+}
+.triage-wrap > .header-index > .site-container > .signup-container > .text-to-signup {
+  color: white;
+}
+.triage-wrap > .header-index > .site-container > .signup-container > a {
+  color: white;
+}
 
-/*# sourceMappingURL=index.css.map */
+@media screen and (max-width: 992px) {
+  .choice-wrap {
+    padding: 20px !important;
+    width: 80% !important;
+  }
+  .choice-container {
+    width: 204px !important;
+  }
+  .triage-headline {
+    max-width: 72% !important;
+  }
+  .triage-headline > span {
+    font-size: 1.25rem !important;
+  }
+}
+@media screen and (max-width: 600px) {
+  .triage-wrap {
+    grid-template-rows: 35% calc(100dvh - 45%) 10% !important;
+    max-height: 560px !important;
+  }
+  .header-index {
+    flex-direction: column-reverse !important;
+  }
+  .header-index > aside {
+    width: 100% !important;
+  }
+  .choice-wrap {
+    flex-direction: column !important;
+  }
+  .triage-headline > h1 {
+    font-size: 32px !important;
+  }
+  .triage-headline > span {
+    font-size: 1rem !important;
+  }
+  .role-check > span {
+    font-size: 14px !important;
+  }
+  .container-wrap {
+    gap: 16px !important;
+  }
+  .choice-container {
+    align-items: center !important;
+    width: 100% !important;
+  }
+  .btn-highlight {
+    background-color: #2a3647 !important;
+  }
+  .btn-triage {
+    width: 172px !important;
+    padding: 15px 24px !important;
+  }
+}
+@media screen and (max-width: 380px) {
+  .triage-container {
+    max-height: 560px !important;
+  }
+}
+
+/*# sourceMappingURL=triage.css.map */
