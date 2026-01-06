@@ -9,7 +9,41 @@
     "header"
     "main"
     "footer";
-  height: 100vh;
+  height: 100dvh;
   max-width: 1920px;
   margin-inline: auto;
+
+  > header {
+    grid-area: header;
+    z-index: 0;
+  }
+
+  > main {
+    grid-area: main;
+    
+  }
+
+  > footer {
+    grid-area: footer;
+    z-index: 0;
+  }
+}
+
+
+
+@media screen and (max-height: 439px) {
+  .landscape-orientation {
+    display: flex ;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: -0%;
+    background: rgb(0, 0, 0, 0.9);
+    left: -0%;
+    overflow: initial;
+    z-index: 9999;
+    color: #ffffff;
+  }
 }

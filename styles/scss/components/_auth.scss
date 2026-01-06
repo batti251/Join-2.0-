@@ -1,0 +1,21 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixin" as *;
+
+
+
+.auth-container{ /* login-container */
+    grid-area: main;
+    @include dFlex($g: 8px);
+    @include size($h: 100%, $w: 100%);
+    @include position($t: 50%, $l: 50%);
+    @include padding($p: 48px 115px);
+    max-width: 652px;
+    max-height: 480px;
+    border-radius: 30px;
+    background-color: #ffffff;
+    animation: hide 2s forwards;
+    z-index: -1;
+    transition: ease-in-out 0.5s;
+}
+
+

@@ -5,239 +5,27 @@
      transform: translate(0, 0);
    }
  } */
-button {
-  border-radius: 8px;
-  border-style: unset;
-}
-button:hover {
-  cursor: pointer;
-}
-button:disabled {
-  background-color: gray;
-}
-button:disabled:hover {
-  background-color: gray;
-  box-shadow: none;
-  cursor: default;
-}
-
-.btn-primary {
-  background-color: #2a3647;
-  height: 48px;
-  width: 100%;
-  max-width: 110px;
-  color: #ffffff;
-  font-family: "Inter";
-  font-size: 21px;
-  font-weight: 700;
-  line-height: 120%;
-}
-.btn-primary:hover {
-  background-color: #29abe2;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-}
-
-.btn-transparent {
-  height: 48px;
-  width: 100%;
-  max-width: 177px;
-  color: #2a3647;
-  font-family: "Inter";
-  font-size: 21px;
-  font-weight: 700;
-  line-height: 120%;
-  background-color: transparent;
-  border-color: #2a3647;
-  border-style: solid;
-}
-.btn-transparent:hover {
-  color: #29abe2;
-  border-color: #29abe2;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  border-width: 2px;
-}
-.btn-transparent > span {
-  width: 129px;
-  height: 25px;
-}
-
-.btn-highlight {
-  background-color: #29abe2;
-  height: 48px;
-  width: 100%;
-  max-width: 100%;
-  color: #ffffff;
-  font-family: "Inter";
-  font-size: 23px;
-  font-weight: 400;
-  line-height: 120%;
-}
-.btn-highlight:hover {
-  background-color: #29abe2;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-}
-
-form {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
-}
-form > .input-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: column;
-  gap: 8px;
-  height: auto;
-  width: 100%;
-  height: auto;
-  width: 100%;
-  min-height: 78.19px;
-  max-width: 90%;
-}
-form > .input-container:nth-of-type(5) {
-  min-height: 0;
-}
-form > .input-container:focus-visible {
-  outline: none;
-}
-form > .input-container > .input-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  gap: 10px;
-  height: 24px;
-  width: 100%;
-  border-radius: 10px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #d1d1d1;
-  padding: 12px 21px;
-  max-width: 100%;
-}
-form > .input-container > .input-content > input {
-  width: 100%;
-  border: 0;
-  font-size: 20px;
-}
-form > .input-container > .input-checkbox {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  gap: 8px;
-  height: auto;
-  width: 100%;
-}
-form > .input-container > .input-checkbox > span {
-  gap: 10px;
-}
-form > .input-container > .input-checkbox > .accept-policy:hover {
-  text-decoration: underline;
-  text-decoration-style: solid;
-}
-form > .input-container > .login-error {
-  color: #ff8190;
-  font-family: "Inter";
-  font-size: 12px;
-  font-weight: 400;
-  line-height: 120%;
-  height: 16px;
-  width: 100%;
-  margin: 2px 0;
-  position: relative;
-}
-
-input[type=checkbox] {
-  background: url("./../../../assets/icons/checkbox.svg") no-repeat;
-  background-position: center;
-  width: 24px;
-  height: 24px;
-  padding: 0 0 0 0px;
-  -webkit-appearance: none;
-  appearance: none;
-  margin: 0;
-  cursor: pointer;
-}
-input[type=checkbox]:hover {
-  background-color: #edf2fa;
-  border-radius: 43px;
-}
-input[type=checkbox]:checked {
-  background: url("./../../../assets/icons/checkbox_checked.svg") no-repeat;
-  background-position: center;
-  width: 24px;
-  height: 24px;
-  border: unset;
-  border-width: 2px;
-  padding: 0 0 0 0px;
-}
-input[type=checkbox]:checked:hover {
-  background-color: #edf2fa;
-  border-radius: 51px;
-}
-
-@media screen and (max-width: 992px) {
-  .input-container {
-    max-height: 77.19px;
-    min-height: 10.19px;
-  }
-  .reset-join {
-    display: none;
-  }
-}
-@media (max-width: 480px) {
-  form {
-    gap: 14px !important;
-  }
-  h1 {
-    font-size: 52px !important;
-  }
-  input {
-    font-size: 1rem !important;
-  }
-  .login-btn-container {
-    flex-direction: column !important;
-    gap: 16px !important;
-  }
-  .login-btn-container > .btn-primary,
-  .login-btn-container .btn-transparent {
-    max-width: 180px !important;
-  }
-  .input-checkbox {
-    font-size: 1rem;
-  }
-}
-@media screen and (max-width: 400px) {
-  .input-content {
-    height: 16px;
-  }
-}
-@media screen and (max-height: 700px) {
-  .input-content {
-    height: 12px;
-  }
-}
 body {
   overflow: hidden;
   margin: 0;
   box-sizing: border-box;
 }
 
-.page {
-  display: grid;
-  grid-template-columns: 100%;
-  grid-template-rows: 10% calc(100dvh - 20%) 10%;
-  grid-template-areas: "header" "main" "footer";
-  height: 100vh;
-  max-width: 1920px;
-  margin-inline: auto;
+.join-logo > img {
+  position: absolute;
+  top: 5%;
+  right: unset;
+  bottom: unset;
+  left: 10%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 100%;
+  z-index: 2;
+  max-width: 80px;
+  max-height: 80px;
 }
-.page > header {
-  grid-area: header;
+
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -245,88 +33,6 @@ body {
   gap: 0;
   padding: 24px;
   height: 100%;
-}
-.page > header > .site-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-direction: unset;
-  gap: 0;
-  z-index: 2;
-}
-.page > header > .site-container > .signup-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: unset;
-  gap: 0;
-  height: auto;
-  width: 100%;
-  max-height: 72%;
-  gap: 35px;
-  animation: hide 2s forwards;
-}
-.page > header > .site-container > .signup-container > .text-to-signup {
-  font-family: "Inter";
-  font-size: 1.25rem;
-  font-weight: 400;
-  line-height: 120%;
-  height: auto;
-  width: 150px;
-}
-.page > header > .site-container > .signup-container > .btn-primary {
-  height: 49px;
-  width: 100%;
-  font-family: "Inter";
-  font-size: 19px;
-  font-weight: 400;
-  line-height: 120%;
-}
-.page > header > aside > .join-logo > img {
-  position: relative;
-  animation: easein 2s ease-in;
-  height: 100%;
-  width: 100%;
-  z-index: 2;
-  max-width: 80px;
-  max-height: 80px;
-}
-.page > main {
-  grid-area: main;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 32px;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  top: 50%;
-  right: unset;
-  bottom: unset;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 48px 115px;
-  max-width: 652px;
-  max-height: 480px;
-  border-radius: 30px;
-  background-color: #ffffff;
-  animation: hide 2s forwards;
-  z-index: -1;
-  transition: ease-in-out 0.5s;
-}
-.page > .login-btn-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: row;
-  gap: 0;
-  width: 100%;
-  gap: 35px;
-}
-.page > .reset-join .reset-join-btn:hover {
-  cursor: pointer;
-  color: #007cee;
 }
 
 .headline-container {
@@ -339,7 +45,8 @@ body {
   max-height: 89px;
   gap: 16px;
 }
-.headline-container > h1 {
+
+h1 {
   font-family: "Inter";
   font-size: 61px;
   font-weight: 700;
@@ -348,7 +55,8 @@ body {
   margin-block-start: 0;
   margin-block-end: 0;
 }
-.headline-container > .headline-underline {
+
+.headline-underline {
   width: 150px;
   border-style: solid;
   border-top: unset;
@@ -358,12 +66,82 @@ body {
   border-width: 3px;
 }
 
-footer {
-  grid-area: footer;
-  animation: hide 2s forwards;
-  z-index: 1 !important;
+.site-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: unset;
+  gap: 0;
 }
-footer > .policy-notice-list {
+
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: unset;
+  gap: 0;
+  height: auto;
+  width: 100%;
+  max-height: 72%;
+  gap: 35px;
+}
+
+.text-to-signup {
+  font-family: "Inter";
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 120%;
+  height: auto;
+  width: 180px;
+}
+
+.btn-primary {
+  height: 49px;
+  width: 100%;
+  font-family: "Inter";
+  font-size: 19px;
+  font-weight: 400;
+  line-height: 120%;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 32px;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  top: 55%;
+  right: unset;
+  bottom: unset;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 48px 115px;
+  max-width: 652px;
+  max-height: 480px;
+  border-radius: 30px;
+  background-color: #ffffff;
+  transition: ease-in-out 0.5s;
+}
+
+.login-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0;
+  width: 100%;
+  gap: 35px;
+}
+
+.reset-join-btn:hover {
+  cursor: pointer;
+  color: #007cee;
+}
+
+.policy-notice-list {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -373,19 +151,20 @@ footer > .policy-notice-list {
   font-size: 1rem;
   font-weight: 400;
   line-height: 120%;
+  margin-block-start: 0.5rem;
 }
-footer > .policy-notice-list > li {
+.policy-notice-list > li {
   min-width: 109px;
 }
-footer > .policy-notice-list > li > a {
+.policy-notice-list > li > a {
   color: #a8a8a8;
 }
-footer > .policy-notice-list > li > a:hover {
+.policy-notice-list > li > a:hover {
   color: #29abe2;
   font-weight: 600;
   font-style: bold;
 }
-footer > .policy-notice-list > li > a:visited {
+.policy-notice-list > li > a:visited {
   color: #a8a8a8;
 }
 
@@ -394,58 +173,56 @@ footer > .policy-notice-list > li > a:visited {
   width: 100%;
   background-color: #f6f7f8;
   position: absolute;
-  animation: backgroundFade 2s ease-in-out;
 }
 
 @media screen and (max-width: 992px) {
   main {
     width: 80% !important;
-    padding: 20px !important;
+    padding: 24px 20px !important;
   }
   .join-logo > img {
     height: 64px;
     width: 78px;
   }
 }
+@media (max-width: 600px) {
+  .grid {
+    grid-template-areas: "main" "header" "footer";
+    grid-template-rows: calc(100dvh - 15%) 9% 6%;
+  }
+  header {
+    padding: 0 24px;
+    justify-content: center;
+  }
+  .signup-container {
+    gap: 24px;
+  }
+  .signup-container > .text-to-signup {
+    width: 160px;
+  }
+  .signup-container > .btn-primary {
+    max-width: 104px;
+    font-size: 16px;
+  }
+  .btn-transparent {
+    font-size: 16px;
+  }
+}
 @media (max-width: 480px) {
-  /*   .text-to-signup {
-      display: none;
-    } */
   main {
     gap: 24px !important;
   }
 }
-@media screen and (max-width: 400px) {
-  .site-container {
-    padding: 0 30px 0 0;
-  }
-}
 @media screen and (max-width: 380px) {
-  header {
-    padding: 12px !important;
+  .signup-container {
+    gap: 8px;
   }
   .join-logo > img {
-    max-width: 48px !important;
-    max-height: 48px !important;
+    max-width: 48px;
+    max-height: 48px;
   }
   main {
-    max-height: 400px !important;
-  }
-}
-@media screen and (max-height: 439px) {
-  .landscape-orientation {
-    display: flex !important;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: 0%;
-    background: rgba(0, 0, 0, 0.9);
-    left: 0%;
-    overflow: initial;
-    z-index: 9999;
-    color: #ffffff;
+    max-height: 400px;
   }
 }
 

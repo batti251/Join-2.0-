@@ -221,5 +221,42 @@ input[type=checkbox]:checked:hover {
     height: 12px;
   }
 }
+.grid {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 10% calc(100dvh - 20%) 10%;
+  grid-template-areas: "header" "main" "footer";
+  height: 100dvh;
+  max-width: 1920px;
+  margin-inline: auto;
+}
+.grid > header {
+  grid-area: header;
+  z-index: 0;
+}
+.grid > main {
+  grid-area: main;
+}
+.grid > footer {
+  grid-area: footer;
+  z-index: 0;
+}
+
+@media screen and (max-height: 439px) {
+  .landscape-orientation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0%;
+    background: rgba(0, 0, 0, 0.9);
+    left: 0%;
+    overflow: initial;
+    z-index: 9999;
+    color: #ffffff;
+  }
+}
 
 /*# sourceMappingURL=index.css.map */

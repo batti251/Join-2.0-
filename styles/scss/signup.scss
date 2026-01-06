@@ -1,46 +1,47 @@
-@use "index" as *;
+@use "abstracts" as *;
 
-.page {
-  > .signup-container {
-    max-height: 580px;
-  }
-  > .login-container {
-    > .headline-signup-container {
-      @include dFlex($fd: row, $jc: space-between);
-      max-width: 680px;
-      @include size($w: 100%);
-      > .title {
-        > h1 {
-          @include font($fs: 61px, $fw: 700);
-          @include text();
-          margin-block-start: 0;
-          margin-block-end: 0;
-        }
-      }
-    }
+main {
+  max-height: 580px;
+}
+
+.signup-container {
+  max-height: 580px;
+}
+.headline-container {
+  @include dFlex($fd: row, $jc: space-between);
+  max-width: 680px;
+  @include size($w: 100%);
+}
+
+.title {
+  @include dFlex($g: 8px);
+}
+
+@media screen and (max-width: 600px) {
+  .grid {
+    grid-template-rows: calc(100dvh - 5%) 0% 5%;
   }
 }
 
 @media screen and (max-width: 380px) {
-  .signup-container {
-    max-height: 480px !important;
+  main {
+    max-height: 460px;
   }
-
-  h1 {
-    font-size: 42px !important;
+  .signup-container {
+    max-height: 480px;
   }
 
   .form-signup {
     > .input-container {
-      min-height: 64.19px !important;
-      gap: unset !important;
-        justify-content: unset !important;
-    
-        > .login-error {
-          font-size: 11px !important;
-          height: 6px !important;
-          margin: unset !important;
-        }
+      min-height: 64.19px;
+      gap: unset;
+      justify-content: unset;
+
+      > .login-error {
+        font-size: 11px;
+        height: 6px;
+        margin: unset;
+      }
     }
   }
 }
