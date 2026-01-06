@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
-    <link rel="stylesheet" href="./styles/css/main.css">
     <link rel="stylesheet" href="./style.css" />
     <link rel="stylesheet" href="./styles/assets.css" />
-    <link rel="stylesheet" href="./styles/login_signup_container.css" />
-    <link rel="stylesheet" href="./styles/colors.css" />
+    <link rel="stylesheet" href="./styles/css/main.css">
+    <link rel="stylesheet" href="./styles/css/login.css">
+    <link rel="stylesheet" href="./styles/css/triage.css">
+<!--     <link rel="stylesheet" href="./styles/login_signup_container.css" />
+ -->    <link rel="stylesheet" href="./styles/colors.css" />
     <link rel="stylesheet" href="./styles/keyframes.css" />
     <link rel="icon" href="./assets/img/faviconLogo.svg" />
   <script src="./script.js"></script>
@@ -26,31 +28,32 @@
   </head>
   <body>
 
-     <div class="landscape-orientation d-none">This screen size isn't supported in this view. <br>Please adjust your screen width.
-        </div>
+   <div class="landscape-orientation d-none">
+      This screen size isn't supported in this view. <br />Please adjust your
+      screen width.
+    </div>
+
+      <div class="background-fade bg-dark"></div>
 
         
-        <div class="background-fade bg-dark">
-        </div>
 
-    <div class="page triage-wrap">
-              <header class="header-index">
-          <div class="site-container">
-          <div class="signup-container">
+    <div class="grid triage-wrap" id="login-view">
+        <header class="header-index">
+          <div class="site-container"></div>
+          <div class="signup-container d-none">
             <span class="text-to-signup">Not a Join user?</span>
-            <a href="./html/signup.html">Sign Up</a>
+            <a href="signup.html"><button class="btn-primary">Sign Up</button></a>
           </div>
-      </div>
-      <aside>
-        <div class="join-logo">
-          <img src="./assets/icons/join_icon_white.svg" alt="join-logo" />
-        </div>
-</aside>
+           <aside>
+             <div class="join-logo">
+            <img src="./assets/icons/join_icon_white.svg" alt="join-logo" />
+           </div>
+          </aside>
       </header>
 
 
-          <main class="triage-container">
 
+          <main class="triage-container">
 
 <div class="container-wrap">
 <div class="headline-container triage-headline">
@@ -73,10 +76,14 @@
 </div>
 </div>
 
-
 </main>
 
 
+ <div class="signup-message d-none">
+          <div class="signup-message-text">
+            You Signed Up successfully
+          </div>
+        </div>
 
            <footer class="policy-notice">
             <ul class="policy-notice-list nav-links">
@@ -85,9 +92,10 @@
             </ul>
           </footer>
 
+        </div>
 
-</div>
 
+      </div>
 
 
   </body>

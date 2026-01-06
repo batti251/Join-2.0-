@@ -212,7 +212,7 @@ input[type=checkbox]:checked:hover {
     gap: 14px !important;
   }
   h1 {
-    font-size: 52px !important;
+    font-size: 52px;
   }
   input {
     font-size: 1rem !important;
