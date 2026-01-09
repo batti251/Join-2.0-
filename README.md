@@ -90,6 +90,17 @@ Guests can explore the application without creating an account.
 
 ---
 
+## 🤖 Planned Feature: AI Task Assistant
+
+As a next step, Join will be extended with an AI-powered assistant.
+
+The goal is to allow stakeholders to submit feature requests and technical tasks via email.
+Incoming emails will be automatically analyzed, categorized, prioritized, and converted into tasks on the Kanban board.
+
+This feature is designed to demonstrate a practical use of AI-driven automation with a clear, user-friendly workflow for portfolio and demo purposes.
+
+---
+
 ## 🔗 Live Demo
 
 🎯 Join here:  
