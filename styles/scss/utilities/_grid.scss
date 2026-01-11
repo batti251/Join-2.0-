@@ -40,8 +40,8 @@ header {
   grid-area: nav;
   @include dFlex($fd: row, $jc: space-between);
   @include size($h: 96px);
-  background-color: #ffffff;
-  box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.1);
+/*   background-color: #ffffff;
+  box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.1); */
   z-index: 0;
 }
 

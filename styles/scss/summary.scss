@@ -42,6 +42,7 @@ h1 {
 
 .summary-content {
   @include dFlex($fd: row, $g: 40px);
+  max-width: -webkit-fill-available;
 }
 
 .cards-wrapper {
@@ -77,7 +78,8 @@ h1 {
 
 .large-card {
   @include dFlex($fd: row);
-  max-width: 560px;
+  max-width: 316px;
+  width: 100%;
   text-align: center;
 }
 
@@ -86,6 +88,8 @@ h1 {
   flex: 1;
   text-align: center;
   gap: 18px;
+ /*  max-width: 218px;*/
+  width: 100%; 
 }
 
 .card-icon {
@@ -116,9 +120,14 @@ h1 {
 
 .urgent-left,
 .urgent-right {
-  @include dFlex($fd: row);
+  @include dFlex($fd: row, $g: 8px);
   flex: 1;
-  padding: 0 20px;
+  /* padding: 0 20px; */
+  >.figure-wrap{
+    > .card-title{
+      @include font($fs: 1rem)
+    }
+  }
 }
 
 .divider-vertical {
@@ -169,8 +178,7 @@ h1 {
 }
 
 @media screen and (max-width: 1440px) {
-
-  .summary{
+  .summary {
     padding: 16px 96px;
   }
 
@@ -184,7 +192,7 @@ h1 {
   }
   .greet-animation {
     animation: fadeGreeting 2s ease-out;
-    @include size($h: calc(100% + 320px), $w:100%);
+    @include size($h: calc(100% + 320px), $w: 100%);
     @include position($t: 50%, $l: 50%);
     margin-top: -160px;
     align-items: center;
@@ -194,6 +202,14 @@ h1 {
     font-size: 47px;
   }
 }
+/* 
+
+@media screen and (max-width: 992px) {
+  .large-card{
+    max-width: 200px;
+  }
+}
+ */
 
 @media screen and (max-width: 820px) {
   .summary {
@@ -245,18 +261,11 @@ h1 {
     font-size: 47px;
   }
 
-  .card-title {
-    font-size: 16px;
-  }
-
-  .divider-vertical {
-    height: unset;
-  }
-
+/* 
   .urgent-left,
   .urgent-right {
     padding: 20px 0;
-  }
+  } */
 
   .large-card {
     height: 110px;
@@ -275,4 +284,33 @@ h1 {
   .text-center {
     font-size: 16px;
   }
+}
+
+
+@media screen and (max-width: 820px) {
+.urgent-left,
+.urgent-right {
+  gap: unset;
+  >.figure-wrap{
+    > .card-title{
+       font-size: 14px;
+    }
+  }
+}
+
+.card-icon-large{
+  margin: 0 5px;
+}
+
+.divider-vertical{
+  margin: 0 2px;
+}
+
+.small-card{
+  gap: 8px;
+}
+
+#urgent-count{
+  font-size: 40px;
+}
 }
