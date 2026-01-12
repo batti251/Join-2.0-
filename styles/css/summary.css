@@ -97,12 +97,13 @@ h1 {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 24px;
   flex-shrink: 0;
+  box-sizing: border-box;
 }
 .card:hover {
   background-color: #2a3647;
   color: white !important;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-  transform: scale(1.1);
+  transform: scale(1.05);
   transition: transform 0.1s ease-in-out;
 }
 .card:hover > .edit {
@@ -118,9 +119,23 @@ h1 {
   align-items: center;
   flex-direction: row;
   gap: 0;
-  max-width: 316px;
+  flex: 2;
+  /* max-width: 316px; */
   width: 100%;
   text-align: center;
+}
+
+.medium-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0;
+  flex: 1;
+  text-align: center;
+  gap: 18px;
+  max-width: 266px;
+  width: 100%;
 }
 
 .small-card {
@@ -132,8 +147,8 @@ h1 {
   flex: 1;
   text-align: center;
   gap: 18px;
-  /*  max-width: 218px;*/
-  width: 100%;
+  max-width: 168px;
+  width: 168px;
 }
 
 .card-icon {
@@ -192,7 +207,7 @@ h1 {
 }
 
 .divider-vertical {
-  height: 100px;
+  height: 60px;
   width: 2px;
   background-color: #e0e0e0;
   margin: 0 20px;
@@ -318,7 +333,7 @@ h1 {
   .metrics-header {
     align-items: flex-start;
     flex-direction: column;
-    margin: 16px 8px 0 8px;
+    margin: 16px 8px 40px 8px;
   }
   .metrics-header h1 {
     font-size: 47px;
@@ -330,9 +345,11 @@ h1 {
     flex-direction: column-reverse;
     align-items: start;
   }
-  .header-divider {
-    rotate: 90deg;
-    margin: -16px 32px;
+  .divider > .header-divider {
+    height: 4px;
+    width: 70px;
+    margin: 8px 0px;
+    rotate: unset;
   }
   .cards-wrapper {
     width: 100%;
@@ -345,18 +362,21 @@ h1 {
   .count-figure {
     font-size: 47px;
   }
-  /* 
-    .urgent-left,
-    .urgent-right {
-      padding: 20px 0;
-    } */
   .large-card {
     height: 110px;
     padding: 28px 0;
   }
   .small-card {
     height: 110px;
+    width: 116px;
     padding: 25px 0;
+  }
+  .medium-card {
+    gap: 8px;
+    padding: 16px;
+  }
+  .card {
+    height: 130px;
   }
   #deadline-date {
     font-size: 16px;
@@ -365,7 +385,10 @@ h1 {
     font-size: 16px;
   }
 }
-@media screen and (max-width: 820px) {
+@media screen and (max-width: 620px) {
+  .summary {
+    padding: 8px;
+  }
   .urgent-left,
   .urgent-right {
     gap: unset;
@@ -378,13 +401,58 @@ h1 {
     margin: 0 5px;
   }
   .divider-vertical {
-    margin: 0 2px;
+    margin: 0 10px;
   }
   .small-card {
     gap: 8px;
   }
   #urgent-count {
     font-size: 40px;
+  }
+  .card-row {
+    gap: 8px;
+  }
+  .card-title {
+    font-size: 18px;
+  }
+}
+@media screen and (max-height: 768px) {
+  .summary {
+    gap: 20px;
+  }
+}
+@media screen and (max-height: 740px) {
+  .metrics-header {
+    margin: unset;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  .card {
+    height: 100px;
+  }
+  .metrics-header {
+    margin: 16px 8px 20px 8px;
+  }
+}
+@media screen and (max-height: 668px) {
+  .metrics-header {
+    margin: unset;
+  }
+  h1 {
+    font-size: 40px;
+  }
+  .card {
+    height: 90px;
+  }
+  .metrics-header {
+    margin: 16px 8px 0 8px;
+  }
+  .count-figure {
+    font-size: 42px;
+  }
+  .card-title {
+    font-size: 17px;
   }
 }
 

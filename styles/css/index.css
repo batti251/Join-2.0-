@@ -318,7 +318,7 @@ header {
 .dropdown-menu-container {
   position: relative;
   top: 150px;
-  right: 150px;
+  right: 160px;
   height: 204px;
   width: 150px;
   border-radius: 20px 0 20px 20px;
@@ -443,7 +443,7 @@ main {
   }
   header {
     height: 80px;
-    width: 100vw;
+    width: auto;
     /*     width: 100vw;
        height: 80px;
     */
@@ -477,9 +477,10 @@ main {
   /*   .summary-content {
     gap: 0;
   } */
-  .join-logo {
-    display: none;
-  }
+  /* 
+    .join-logo {
+      display: none;
+    } */
   .policy-legal {
     display: none;
   }
