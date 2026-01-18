@@ -205,6 +205,28 @@ button:disabled:hover {
   line-height: 120%;
 }
 
+.btn-edit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: unset;
+  gap: 12px;
+  border: 1px solid #2a3647;
+  background-color: #2a3647;
+  padding: 8px;
+  border-radius: 10px;
+  color: white;
+}
+.btn-edit:hover {
+  background-color: #29abe2;
+}
+.btn-edit > span {
+  font-family: "Inter";
+  font-size: 21px;
+  font-weight: 400;
+  line-height: 120%;
+}
+
 .btn-submit-icon {
   height: 11px;
   width: 16px;

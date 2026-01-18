@@ -33,9 +33,9 @@ form {
   @include size($h: 96px);
 }
 
-.task-category {
+/* .task-category {
   @include size($h: 86px);
-}
+} */
 
 .task-meta {
   @include dFlex($ai: unset, $jc: unset, $g: 32px);
@@ -72,6 +72,7 @@ form {
 .task-button-mobile {
   @include dFlex($ai: flex-end, $jc: space-between, $fd: unset);
   @include size($w: 100%);
+  @include padding($p: 4px);
 }
 
 .text-required {

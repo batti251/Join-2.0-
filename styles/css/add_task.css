@@ -128,7 +128,7 @@ h1 {
   justify-content: unset;
   align-items: unset;
   flex-direction: unset;
-  gap: 0;
+  gap: 8px;
   top: 56px;
   right: 16px;
   transform: translateY(-50%);

@@ -4,18 +4,36 @@
 
 .profile-wrap{
     position: relative;
-    @include dFlex($ai: unset, $fd: unset, $jc: unset, $g: 8px)
+    @include dFlex($ai: unset, $fd: unset, $jc: unset, $g: 8px);
 }
 
 .profile-badge {
-  height: 42px;
+  @include font($fs: 12px);
+  @include dFlex($fd: unset);
+  @include size($h: 42px);
   min-width: 42px;
   border-radius: 45px;
   color: white;
   border: 2px solid white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 12px;
-  font-weight: 400;
+}
+
+.task-card-contact-badge {
+  @include dFlex($fd: unset);
+  @include size($w: 42px, $h: 42px);
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  margin-left: -8px;
+}
+
+.task-badge {
+  max-width: 190px;
+}
+
+.badge-text{
+  @include font($fs: 12px);
+  color: white;
+}
+
+.assigned-user{
+  @include font($ff: "OpenSans" , $fs: 1rem);
 }

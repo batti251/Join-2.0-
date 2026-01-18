@@ -67,56 +67,56 @@ function getTaskCardContactsTemplate(indexTaskContact, indexTask) {
 
 function getTaskOverlay(indexTask, currentTask, overlay) {
   overlay.innerHTML = `
-    <div class="task-overlay d-flex-column">
-    <div class="d-flex-c-sb">
-      <div class="task-category font-Inter-400-16px ${getTaskCategoryClass(
+    <div class="task-overlay">
+    <div class=" task-overlay-category">
+      <div class="task-category ${getTaskCategoryClass(
         currentTask.category
       )} ">${getCategoryNameTemplate(currentTask.category)}</div>
-        <div class="close-icon-overlay-wrap d-flex-row-c-c">
-          <div class="close-icon-overlay d-flex-row-c-c" onclick="closeTaskOverlays()">
-            <img src="../assets/icons/close.svg" alt="close" class="close-icon"/>
+        <div class="close-icon-overlay-wrap">
+          <div class="close-icon-overlay" onclick="closeTaskOverlays()">
+            <img src="../assets/icons/close.svg" aslt="close" class="close-icon"/>
           </div>
         </div>
       </div>
 
-    <h2 class="font-Inter-700-47px text-color-black  task-overlay-title">${
+    <h2 class="task-overlay-title">${
       currentTask.title
     }</h2>
 
-    <div class="font-Inter-400-20px text-color-black task-overlay-desc">${
+    <div class="task-overlay-desc">${
       currentTask?.description || ""
     }</div>
 
-    <div class="task-overlay-meta-wrap d-flex">
-      <div class="font-Inter-400-20px text-color-2A3647">Due date:</div>
-      <div class="font-Inter-400-20px text-color-black">${
+    <div class="task-overlay-meta-wrap">
+      <div class="due-date-primary">Due date:</div>
+      <div class="">${
         currentTask.dueDate
       }</div>
     </div>
 
-    <div class="task-overlay-meta-wrap d-flex">
-      <div class="font-Inter-400-20px text-color-2A3647">Priority: </div>
-      <div class="font-Inter-400-20px text-color-black">${currentTask.priority} 
+    <div class="task-overlay-meta-wrap">
+      <div class="priority-primary">Priority: </div>
+      <div class="">${currentTask.priority} 
       <img src=${getTaskPriorityIconSrc(currentTask.priority)} ></div>
     </div>
 
-    <div class="task-overlay-assignment-wrap d-flex-column">
-      <div class="font-Inter-400-20px text-color-2A3647">Assigned To:</div>
-      <article class="d-flex-column">${
+    <div class="task-overlay-assignment-wrap">
+      <div class="assigned-primary">Assigned To:</div>
+      <article class="">${
         currentTask.assignedTo
           ?.map(
             (p) => `
-        <div class=" d-flex-c-sb">
-          <div class="task-overlay-contact d-flex-align-item-c">
-            <div class="task-card-contact-badge d-flex-row-c-c ${getContactColorClassNameByFirebaseId(
+        <div class="task-overlay-contact-wrap">
+          <div class="task-overlay-contact">
+            <div class="task-card-contact-badge ${getContactColorClassNameByFirebaseId(
               p[1].Id
             )}">
-              <div class="font-Inter-400-12px text-color-white">${getFirstTwoStringInitialsByFirebaseId(
+              <div class="badge-text">${getFirstTwoStringInitialsByFirebaseId(
                 p[1].Id
               )}
               </div>
             </div>
-          <div class="font-OpenSans-400-19px">${p[1].name}</div>
+          <div class="assigned-user">${p[1].name}</div>
           </div>
         </div>`
           )
@@ -125,13 +125,13 @@ function getTaskOverlay(indexTask, currentTask, overlay) {
       </article>
     </div>
 
-    <div class="task-overlay-assignment-wrap d-flex-column">
-      <div class="font-Inter-400-20px text-color-2A3647">Subtasks</div>
+    <div class="task-overlay-assignment-wrap">
+      <div class="">Subtasks</div>
       <article class="d-flex-column">${
         currentTask.subtasks
           ?.map(
             (s) =>
-              ` <div class="input-container d-flex"><div class="input-checkbox task-overlay-checkbox-wrap d-flex-align-item-c font-Inter-400-16px text-color-black"><input type="checkbox" name="checkbox-subtask" ${
+              ` <div class="input-container d-flex"><div class="input-checkbox task-overlay-checkbox-wrap"><input type="checkbox" name="checkbox-subtask" ${
                 s[1].done ? "checked" : ""
               } onclick="setSubtaskStatus(this, ${indexTask}, '${
                 s[0]
@@ -141,7 +141,7 @@ function getTaskOverlay(indexTask, currentTask, overlay) {
       }</article>
     </div>
 
-    <div class="edit-delete-wrap d-flex">
+    <div class="edit-delete-wrap">
                 <button
                 class="contact-details-edit-contact"
                 onclick="editTask(${indexTask})"
@@ -169,41 +169,54 @@ function getTaskOverlay(indexTask, currentTask, overlay) {
 function editTaskTemplate(indexTask, currentTask) {
   return `
   <div class="scroll-overlay">
-<form class="max-width-976px" onsubmit="requiredInputValidation(undefined, ${indexTask}); event.preventDefault()">
+
+     <div class=" task-overlay-category">
+      <div class="task-category ${getTaskCategoryClass(
+        currentTask.category
+      )} ">${getCategoryNameTemplate(currentTask.category)}</div>
+        <div class="close-icon-overlay-wrap">
+          <div class="close-icon-overlay" onclick="closeTaskOverlays()">
+            <img src="../assets/icons/close.svg" aslt="close" class="close-icon"/>
+          </div>
+        </div>
+      </div>
+
+
+<form class="" onsubmit="requiredInputValidation(undefined, ${indexTask}); event.preventDefault()">
             <div class="d-flex-column gap-8px pd-b-64px">
-              <div class="d-flex-column gap-32px">
-                <div class="d-flex-column gap-8px height-96px">
+              <div class="task-main">
+                <div class="task-area task-title">
                   <label
                     for="task-title"
-                    class="font-Inter-400-20px text-color-2A3647"
+                    class=""
                     >Title<span class="col-red">*</span></label
                   >
                   <input
-                    class="task-input-border task-input-text-field font-Inter-400-12px editable required"
+                    class="task-input-border task-input-text-field editable required"
                     type="text"
                     id="task-title"
                     value="${currentTask.title}"
                     
                   />
-                  <div class="d-none validation font-Inter-400-13px text-color-FF8190">This field is required!</div>
+                  <div class="d-none validation">This field is required!</div>
                 </div>
-                <div class="d-flex-column gap-8px">
+                <div class="task-area">
                   <label
                     for="task-description"
-                    class="font-Inter-400-20px text-color-2A3647"
+                    class=""
                     >Description</label
                   >
                   <textarea
-                    class="task-input-border task-input-text-area font-Inter-400-12px editable"
+                    class="task-input-border task-input-text-area editable"
                     id="task-description"
                   >${currentTask?.description || ""}</textarea>
                 </div>
-                <div class="d-flex-column gap-8px height-96px">
+                <div class="task-area task-title">
                   <label for="task-due-date" class="input-label"
                     >Due date<span class="col-red">*</span></label
                   >
                   <input
-                    class="task-input-border task-input-date font-Inter-400-20px editable required"
+                    class="task-input-border task-input-date editable required"
                     type="date"
                     min="${currentDate}"
                     id="task-due-date"
@@ -211,21 +224,21 @@ function editTaskTemplate(indexTask, currentTask) {
                     onclick="this.showPicker()"
                     
                   />
-                  <div class="d-none validation font-Inter-400-13px text-color-FF8190">This field is required!</div>
+                  <div class="d-none validation">This field is required!</div>
                 </div>
               </div>
 
               <div class="separator"></div>
 
-              <div class="d-flex-column gap-32px">
-                <div class="d-flex-column gap-8px">
-                  <label class="font-Inter-400-20px text-color-2A3647"
+              <div class="task-meta">
+                <div class="task-area">
+                  <label class=""
                     >Priority</label
                   >
-                  <div class="d-flex gap-16px overlay-priority">
+                  <div class="overlay-priority">
                     <button
                       type="button"
-                      class="task-priority-btn d-flex-row-c-c gap-8px font-Inter-400-20px ${
+                      class="btn-priority ${
                         currentTask.priority == "urgent"
                           ? `active-${currentTask.priority}`
                           : ""
@@ -235,11 +248,11 @@ function editTaskTemplate(indexTask, currentTask) {
                       
                     >
                       <span>Urgent</span>
-                      <span class="task-priority-btn-icon urgent-icon"></span>
+                      <span class="btn-priority-icon urgent-icon"></span>
                     </button>
                     <button
                       type="button"
-                      class="task-priority-btn d-flex-row-c-c gap-8px font-Inter-400-20px  ${
+                      class="btn-priority  ${
                         currentTask.priority == "medium"
                           ? `active-${currentTask.priority}`
                           : ""
@@ -248,11 +261,11 @@ function editTaskTemplate(indexTask, currentTask) {
                       onclick="setTaskPriority('task-priority-medium')"
                     >
                       <span>Medium</span>
-                      <span class="task-priority-btn-icon medium-icon"></span>
+                      <span class="btn-priority-icon medium-icon"></span>
                     </button>
                     <button
                       type="button"
-                      class="task-priority-btn d-flex-row-c-c gap-8px font-Inter-400-20px  ${
+                      class="btn-priority  ${
                         currentTask.priority == "low"
                           ? `active-${currentTask.priority}`
                           : ""
@@ -261,19 +274,19 @@ function editTaskTemplate(indexTask, currentTask) {
                       onclick="setTaskPriority('task-priority-low')"
                     >
                       <span>Low</span>
-                      <span class="task-priority-btn-icon low-icon"></span>
+                      <span class="btn-priority-icon low-icon"></span>
                     </button>
                   </div>
                 </div>
 
-                <div class="d-flex-column gap-8px p-relative" onclick="event.stopPropagation()">
+                <div class="task-area" onclick="event.stopPropagation()">
                   <label
                     for="task-assigned-contacts"
-                    class="font-Inter-400-20px text-color-2A3647"
+                    class=""
                     >Assigned To</label
                   >
                   <input
-                    class="p-relative task-input-border task-input-category font-Inter-400-20px"
+                    class="task-input-border task-input-category"
                     type="text"
                     id="task-assigned-contacts"
                     placeholder="Select contacts to assign"
@@ -290,23 +303,23 @@ function editTaskTemplate(indexTask, currentTask) {
                     id="task-assigned-contacts-dropdown"
                   ></div>
                   <div
-                    class="d-flex gap-8px p-relative"
+                    class="profile-wrap"
                     id="task-assigned-contacts-badges"
                   >
                 
                   </div>
                 </div>
 
-                <div class="d-flex-column gap-8px p-relative">
+                <div class="task-area">
                   <label
                     for="task-subtasks"
-                    class="font-Inter-400-20px text-color-2A3647"
+                    class=""
                     >Subtasks</label
                   >
                   <input
                     oninput="showSubtaskControlButtons()"
                     onkeypress="addSubtaskOnEnterPress(event)"
-                    class="p-relative task-input-border task-input-category font-Inter-400-20px"
+                    class="p-relative task-input-border task-input-category"
                     type="text"
                     id="task-subtasks"
                     value="${currentTask?.subtask || ""}"
@@ -316,18 +329,18 @@ function editTaskTemplate(indexTask, currentTask) {
                     id="task-add-subtask-icon"
                   ></span>
                   <div
-                    class="d-none p-absolute d-flex gap-8px task-subtask-icon"
+                    class="d-none p-absolute task-subtask-icon"
                     id="task-clear-submit-subtask-icon-wrap"
                   >
                     <div
-                      class="d-flex-row-c-c task-subtask-icon-wrap"
+                      class="task-subtask-icon-wrap d-flex-row-c-c"
                       onclick="clearInputTagValue('task-subtasks')"
                     >
                       <span class="task-clear-subtask-icon"></span>
                     </div>
                     <span class="separator"></span>
                     <div
-                      class="d-flex-row-c-c task-subtask-icon-wrap"
+                      class="task-subtask-icon-wrap d-flex-row-c-c"
                       onclick="addSubtask()"
                     >
                       <span class="task-submit-subtask-icon"></span>
@@ -356,17 +369,17 @@ function editTaskTemplate(indexTask, currentTask) {
               </div>
             </div>
 
-            <div class="d-flex-c-sb">
-              <div class="font-Inter-400-16px">
-                <span class="col-red">*</span>This field is required
+            <div class="task-button-mobile">
+              <div class="text-required">
+                <span class="text-red">*</span>This field is required
               </div>
 
-              <div class="task-form-btn-wrap d-flex">
+              <div class="task-form-btn-wrap">
                 <button
-                  class="task-form-btn d-flex-row-c-c text-color-white submit-task-btn"
+                  class="task-form-btn btn-submit btn-edit"
                   type="submit"
                 >
-                  <span class="font-Inter-700-21px">Ok</span>
+                  <span class="">Ok</span>
                   <span class="submit-task-btn-icon"></span>
                 </button>
               </div>

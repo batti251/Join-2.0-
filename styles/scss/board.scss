@@ -1,0 +1,372 @@
+@use "abstracts/variables" as *;
+@use "abstracts/mixin" as *;
+
+
+main {
+  overflow: clip;
+}
+
+.board-headline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 64px;
+  padding-right: 64px;
+  padding-top: 76px;
+  padding-bottom: 40px;
+}
+
+.board-search-add-task-wrap {
+  display: flex;
+  gap: 32px;
+  height: 50px;
+}
+
+.search-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+  border: 1px solid #a8a8a8a8;
+  gap: 10px;
+  background-color: white;
+  padding: 8px 16px;
+}
+
+.search-wrap:focus-within {
+  border-color: #29abe2;
+}
+
+.search-input {
+  border: 1px;
+  border-radius: 10px;
+  color: #a8a8a8;
+  font-weight: 400;
+  font-size: 18px;
+  width: 100%;
+}
+
+.search-input:focus {
+  outline: none;
+}
+
+.search-icon {
+  background-image: url("../assets/icons/search.svg");
+  background-color: unset;
+  background-size: cover;
+  width: 18px;
+  height: 18px;
+}
+
+.search-icon:active {
+  background-image: url("../assets/icons/search_click.svg");
+  width: 32px;
+  height: 32px;
+}
+
+.search-icon-div {
+  height: 32px;
+  width: 32px;
+}
+
+.search-icon-wrap {
+  display: flex;
+  gap: 16px;
+}
+
+.board-vline {
+  border-left: 1px solid #d1d1d1;
+  height: 31px;
+}
+
+.board-headline-text {
+  font-size: 61px;
+  font-weight: 700;
+}
+
+.board-col-wrap {
+  display: flex;
+  padding: 0 12px 0 48px;
+  gap: 26px;
+  scrollbar-width: none;
+  height: 100%;
+}
+
+.col-title-wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.col-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #42526e;
+}
+
+.add-btn {
+  background-image: url("../assets/icons/add.svg");
+  background-color: unset;
+  background-size: cover;
+  height: 24px;
+  width: 24px;
+}
+
+.add-btn:hover {
+  background-image: url("../assets/icons/add_press.svg");
+  border-color: #29abe2;
+}
+
+.col-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  height: calc(100vh - 326px);
+}
+
+.col-content-wrap {
+  max-width: 246px;
+  width: 100%;
+  height: 100%;
+}
+
+.add-task-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background-color: #2a3647;
+}
+
+.add-task-btn-text {
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.add-task-btn:hover {
+  background-color: #354355;
+}
+
+.add-taks-btn-icon {
+  width: 19px;
+  height: 19px;
+}
+
+.board-col {
+  height: 100%;
+  width: 252px;
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.no-task-feedback {
+  height: 48px;
+  border-radius: 10px;
+  background-color: #e7e7e7;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.16);
+  color: #a8a8a8;
+  border: 1px dashed #a8a8a8;
+  padding: 8px 24px;
+}
+
+.task-card-wrap {
+  border-radius: 24px;
+  flex-direction: column;
+  gap: 10px;
+  color: #ffffff;
+  width: 100%;
+  cursor: pointer;
+}
+
+.task-card-wrap:active {
+  rotate: 5deg;
+}
+
+.col-empty-wrap:last-of-type {
+  width: 246px;
+  scrollbar-width: none;
+  height: 244px;
+  border: 1px;
+  border-style: dashed;
+  border-color: #a8a8a8;
+  border-radius: 30px;
+}
+
+.task-card {
+  gap: 24px;
+  flex-direction: column;
+  padding: 16px;
+  min-width: 210px;
+  height: 240px;
+}
+
+.task-category {
+  @include padding($p: 4px 16px);
+  @include dFlex($d: inline-flex, $fd: unset);
+  @include font($fs: 1rem);
+  border-radius: 8px;
+  color: #ffffff;
+}
+
+.task-description-wrap {
+  border-radius: 10px;
+  gap: 8px;
+  flex-direction: column;
+  overflow-x: clip;
+}
+
+.task-headline {
+  color: #2a3647;
+}
+
+.task-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #a8a8a8;
+}
+
+.progress-bar-wrap {
+  gap: 10px;
+}
+
+.progress-bar {
+  width: 128px;
+  height: 8px;
+  border-radius: 8px;
+  background-color: #f4f4f4;
+}
+
+.progress-bar-status {
+  border-radius: 16px;
+  height: 8px;
+  background-color: #4589ff;
+}
+
+
+
+.no-task-found {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.title-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+}
+
+@media screen and (max-width: 1360px) {
+  main {
+    overflow-y: scroll;
+  }
+
+  .board-col-wrap {
+    flex-direction: column;
+  }
+
+  .col-content-wrap {
+    max-width: 100%;
+    max-height: 348px;
+  }
+
+  .col-content {
+    flex-direction: row;
+    height: 100%;
+  }
+
+  .task-card-wrap {
+    max-height: 268px;
+    width: 204px;
+  }
+
+  .no-task-feedback {
+    height: 272px;
+    width: 100px;
+  }
+
+  .task-card {
+    width: 100%;
+  }
+
+  [id^="subtasks-progress-"] {
+    flex-direction: column;
+    align-items: baseline;
+  }
+
+  .board-headline {
+    flex-direction: column;
+    gap: 24px;
+    align-items: start;
+  }
+
+  .board-col-wrap {
+    scrollbar-width: auto;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .add-task-btn-mobile {
+    display: flex;
+    background-image: url("../assets/icons/add_task_button_mobile.svg");
+    background-color: unset;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 40px;
+  }
+
+  .add-task-btn-mobile:hover {
+    background-image: url("../assets/icons/add_task_button_mobile_hover.svg");
+  }
+  .add-task-btn-mobile:active {
+    background-image: url("../assets/icons/add_task_button_mobile_clicked.svg");
+  }
+
+  .board-headline-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .board-headline {
+    padding: 76px 24px 40px 24px;
+  }
+
+  .board-col-wrap {
+    padding: 0 32px;
+    gap: 40px;
+  }
+  .add-task-btn {
+    display: none;
+  }
+
+  .task-card {
+    gap: 8px;
+  }
+
+  .task-card-wrap {
+    max-height: 280px;
+  }
+
+  .board-search-add-task-wrap {
+    width: 100%;
+  }
+
+  .search-wrap {
+    width: 100%;
+  }
+
+  .font-Inter-700-61px {
+    font-size: 34px;
+  }
+}

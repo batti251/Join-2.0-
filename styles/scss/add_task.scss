@@ -88,7 +88,7 @@ h1 {
 }
 
 .task-subtask-icon {
-  @include dFlex($fd: unset, $ai: unset, $jc: unset,);
+  @include dFlex($fd: unset, $ai: unset, $jc: unset,$g: 8px);
   top: 56px;
   right: 16px;
   transform: translateY(-50%);
