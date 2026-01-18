@@ -4,6 +4,23 @@ main {
   max-height: 580px;
 }
 
+aside {
+  grid-area: header;
+  background-color: unset;
+  box-shadow: unset;
+}
+
+form{
+  align-items: center;
+}
+
+
+.join-logo{
+  > img {
+    position: absolute;
+  }
+}
+
 .signup-container {
   max-height: 580px;
 }
@@ -16,6 +33,14 @@ main {
 .title {
   @include dFlex($g: 8px);
 }
+
+@media screen and (max-width: 820px) {
+  aside{
+    width: 232px;
+    padding: 64px 0;
+  }
+}
+
 
 @media screen and (max-width: 600px) {
   .grid {

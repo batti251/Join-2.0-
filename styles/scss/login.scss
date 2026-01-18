@@ -8,7 +8,7 @@ body {
 
 .join-logo {
   > img {
-    @include position($p: absolute, $t: 5%, $l: 10%);
+    /* @include position($p: absolute, $t: 5%, $l: 10%); */
     @include size($h: 100%, $w: 100%);
     z-index: 2;
     max-width: 80px;
@@ -17,7 +17,7 @@ body {
 }
 
 header {
-  @include dFlex($fd: row-reverse, $jc: space-between);
+  @include dFlex($fd: row, $jc: space-between);
   @include padding($p: 24px);
   height: 100%;
 }
@@ -29,13 +29,13 @@ header {
   gap: 16px;
 }
 
- h1 {
+h1 {
   @include font($fs: 61px, $fw: 700);
   @include text();
   margin-block-start: 0;
   margin-block-end: 0;
 }
- .headline-underline {
+.headline-underline {
   width: 150px;
   @include underline();
 }
@@ -63,6 +63,7 @@ main {
   @include dFlex($g: 32px);
   @include size($h: 100%, $w: 100%);
   @include position($p: relative, $t: 55%, $l: 50%);
+  transform: translate(-50%, -50%);
   @include padding($p: 48px 115px);
   max-width: 652px;
   max-height: 480px;
@@ -88,7 +89,7 @@ main {
   @include dFlex($fd: row, $g: 8px);
   @include font();
   margin-block-start: 0.5rem;
-  @include size($h:100%);
+  @include size($h: 100%);
   > li {
     min-width: 109px;
 
@@ -153,6 +154,10 @@ main {
   .btn-transparent {
     font-size: 16px;
   }
+
+  .join-logo > img {
+    @include position($p: absolute, $t: 5%, $l: 10%);
+  }
 }
 
 @media (max-width: 480px) {
@@ -167,12 +172,12 @@ main {
   }
   .join-logo {
     > img {
-      max-width: 48px ;
-      max-height: 48px ;
+      max-width: 48px;
+      max-height: 48px;
     }
   }
 
   main {
-    max-height: 400px ;
+    max-height: 400px;
   }
 }

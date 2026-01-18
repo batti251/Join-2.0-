@@ -12,12 +12,7 @@ body {
 }
 
 .join-logo > img {
-  position: absolute;
-  top: 5%;
-  right: unset;
-  bottom: unset;
-  left: 10%;
-  /* transform: translate(-50%, -50%); */
+  /* @include position($p: absolute, $t: 5%, $l: 10%); */
   height: 100%;
   width: 100%;
   z-index: 2;
@@ -29,7 +24,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-direction: row-reverse;
+  flex-direction: row;
   gap: 0;
   padding: 24px;
   height: 100%;
@@ -118,6 +113,7 @@ main {
   bottom: unset;
   left: 50%;
   /* transform: translate(-50%, -50%); */
+  transform: translate(-50%, -50%);
   padding: 48px 115px;
   max-width: 652px;
   max-height: 480px;
@@ -208,6 +204,14 @@ main {
   }
   .btn-transparent {
     font-size: 16px;
+  }
+  .join-logo > img {
+    position: absolute;
+    top: 5%;
+    right: unset;
+    bottom: unset;
+    left: 10%;
+    /* transform: translate(-50%, -50%); */
   }
 }
 @media (max-width: 480px) {

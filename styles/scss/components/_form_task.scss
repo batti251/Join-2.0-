@@ -22,6 +22,7 @@ form {
 
 .task-area {
   position: relative;
+  z-index: 0;
   @include dFlex($ai: unset, $jc: unset, $g: 8px);
   > label {
     color: $color-primary;

@@ -12,6 +12,12 @@ body {
 main {
   top: 50%;
   width: 70%;
+  transform: translate(-50%, -50%);
+}
+
+aside {
+  align-items: flex-start;
+  width: 100%;
 }
 
 .join-logo > img {
@@ -275,7 +281,7 @@ h2 {
 }
 @media screen and (max-height: 766px) {
   .grid {
-    grid-template-rows: 10% 120dvh 0%;
+    grid-template-rows: 10% 86dvh 0%;
   }
 }
 

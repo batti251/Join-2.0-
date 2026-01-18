@@ -211,6 +211,7 @@ h1 {
     animation: fadeGreeting 2s ease-out;
     @include size($h: calc(100% + 320px), $w: 100%);
     @include position($t: 50%, $l: 50%);
+    transform: translate(-50%, -50%);
     margin-top: -160px;
     align-items: center;
   }

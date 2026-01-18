@@ -172,7 +172,7 @@ function getAddTaskFormTemplate(taskStatusId) {
           </div>
         </div>
 
-        <div class="task-area" onclick="event.stopPropagation()">
+        <div class="task-area" onclick="event.stopPropagation(), setZIndex(this)">
           <label
             for="task-assigned-contacts"
             class=""
@@ -201,7 +201,7 @@ function getAddTaskFormTemplate(taskStatusId) {
           ></div>
         </div>
 
-        <div class="task-area task-category" onclick="event.stopPropagation()">
+        <div class="task-area task-category" onclick="event.stopPropagation() , setZIndex(this)">
           <label
             for="task-category"
             class=""

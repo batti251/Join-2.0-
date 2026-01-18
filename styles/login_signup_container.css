@@ -318,21 +318,7 @@ input[type="checkbox"]:checked:hover {
   cursor: pointer;
 }
 
-.signup-message {
-  background-color: #2a3647;
-  width: 312px;
-  height: 74px;
-  border-radius: 20px;
-  box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.15);
-  animation: slide-up 1s forwards;
-}
 
-.signup-message-text {
-  padding: 0 25px;
-  height: 24px;
-  width: 262px;
-  background-color: rgb(56, 56, 56, 0.1);
-}
 
 @media screen and (max-width: 992px) {
 /*   main {

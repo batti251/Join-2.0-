@@ -8,9 +8,8 @@ form {
   > .input-container {
     @include dFlex($jc: space-between, $g: 8px);
     @include size($w: 100%);
-    @include size($w: 100%);
     min-height: 78.19px;
-    max-width: 90%;
+    /* max-width: 90%; */
     &:nth-of-type(5) {
       min-height: 0;
     }
@@ -22,7 +21,7 @@ form {
       @include size($h: 24px, $w: 100%);
       @include inputBorder();
       @include padding($p: 12px 21px);
-      max-width: 100%;
+      max-width: 80%;
       > input {
         width: 100%;
         border: 0;
@@ -45,7 +44,7 @@ form {
     > .login-error {
       @include text($c: #ff8190);
       @include font($fs: 12px, $fw: 400);
-      @include size($h: 16px, $w:100%);
+      @include size($h: 16px);
       margin: 2px 0;
       position: relative;
     }

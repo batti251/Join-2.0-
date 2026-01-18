@@ -249,13 +249,13 @@ function requiredInputValidation(
   indexTask,
   newContact,
   indexContact,
-  subtask
+  subtask,
 ) {
   let requiredFields = document.getElementsByClassName("required");
   let validationMessageRef = document.getElementsByClassName("validation");
   let whitespacePattern = /^[ \t]*$/;
   let validationTrue = [...requiredFields].every(
-    (element) => element.value != "" && !whitespacePattern.test(element.value)
+    (element) => element.value != "" && !whitespacePattern.test(element.value),
   );
   if (validationTrue) {
     setAddOrEditSubmit(taskStatusId, indexTask, newContact, indexContact);
@@ -352,4 +352,19 @@ function resetErrorMessage() {
   [...message].forEach((message) => {
     message.classList.add("d-none");
   });
+}
+
+/**
+ * This Function adds z-index-1 - class to current clicked element
+ * It removes all current set z-index-1. classes
+ * 
+ * @param {ThisType} dropdown - the clicked element
+ */
+function setZIndex(dropdown) {
+  hasIndex = dropdown.classList.value.includes("z-index-1");
+  hasIndizes = document.querySelectorAll(".z-index-1");
+  hasIndizes.forEach((i) => {
+    i.classList.remove("z-index-1");
+  });
+  dropdown.classList.add("z-index-1");
 }

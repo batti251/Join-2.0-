@@ -269,10 +269,8 @@ form > .input-container {
   gap: 8px;
   height: auto;
   width: 100%;
-  height: auto;
-  width: 100%;
   min-height: 78.19px;
-  max-width: 90%;
+  /* max-width: 90%; */
 }
 form > .input-container:nth-of-type(5) {
   min-height: 0;
@@ -293,7 +291,7 @@ form > .input-container > .input-content {
   border-width: 1px;
   border-color: #d1d1d1;
   padding: 12px 21px;
-  max-width: 100%;
+  max-width: 80%;
 }
 form > .input-container > .input-content > input {
   width: 100%;
@@ -323,7 +321,7 @@ form > .input-container > .login-error {
   font-weight: 400;
   line-height: 120%;
   height: 16px;
-  width: 100%;
+  width: auto;
   margin: 2px 0;
   position: relative;
 }
@@ -431,6 +429,7 @@ form {
 
 .task-area {
   position: relative;
+  z-index: 0;
   display: flex;
   justify-content: unset;
   align-items: unset;
@@ -573,6 +572,10 @@ form {
   border-bottom-right-radius: 10px;
   max-height: 320px;
   overflow-y: auto;
+}
+
+.z-index-1 {
+  z-index: 1 !important;
 }
 
 .profile-wrap {
@@ -913,6 +916,23 @@ input[type=checkbox] {
     height: unset;
   }
 }
+.signup-message {
+  background-color: #2a3647;
+  width: 312px;
+  height: 74px;
+  border-radius: 20px;
+  box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
+  animation: slide-up 1s forwards;
+}
+
+.signup-message-text {
+  padding: 0 25px;
+  height: 24px;
+  width: 262px;
+  background-color: rgba(56, 56, 56, 0.1);
+  color: #f6f7f8;
+}
+
 /*  @keyframes easein {
    100% {
      top: 37px;
@@ -959,7 +979,7 @@ header {
   width: auto;
   /*   background-color: #ffffff;
     box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.1); */
-  z-index: 0;
+  z-index: 1;
 }
 
 .header-container {

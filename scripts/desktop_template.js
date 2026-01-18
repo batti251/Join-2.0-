@@ -77,6 +77,7 @@ function deleteSessionStorage() {
 function toggleDropdown() {
   let dropdown = document.querySelector(".dropdown-menu-container");
   dropdown.classList.toggle("d-none");
+  dropdown.classList.toggle('z-index-1');
 }
 
 /**
