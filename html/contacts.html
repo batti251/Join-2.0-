@@ -1,18 +1,19 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contacts</title>
+    <link rel="icon" href="../assets/img/faviconLogo.svg" />
     <link rel="stylesheet" href="../style.css" />
     <link rel="stylesheet" href="../styles/colors.css" />
     <link rel="stylesheet" href="../styles/desktop_template.css" />
     <link rel="stylesheet" href="../styles/assets.css" />
-    <link rel="icon" href="../assets/img/faviconLogo.svg" />
-    <link rel="stylesheet" href="../styles/contacts.css" />
-    <link rel="stylesheet" href="../styles/contacts_mobile.css" />
-    <link rel="stylesheet" href="../styles/contacts_details.css" />
-    <link rel="stylesheet" href="../styles/contacts_overlay.css" />
+    <link rel="stylesheet" href="../styles/colors.css" />
+    <link rel="stylesheet" href="../styles/css/main.css" />
+    <link rel="stylesheet" href="../styles/css/contacts.css" />
+<!--     <link rel="stylesheet" href="../styles/contacts_mobile.css" /> -->
+<!--     <link rel="stylesheet" href="../styles/contacts_overlay.css" /> -->
     <link rel="stylesheet" href="../styles/keyframes.css" />
     <script src="../scripts/board.js"></script>
     <script src="../scripts/db.js"></script>
@@ -24,18 +25,20 @@
     <script src="../scripts/desktop_template.js"></script>
     <script src="../scripts/w3_include.js"></script>
   </head>
-  <body onload="init(); renderContactsList()" id="">
+  <body
+    onload="
+      init();
+      renderContactsList();
+    "
+    id=""
+  >
     <div class="page">
       <div
         class="d-contents"
         w3-include-html="../templates/desktop_template.html"
       ></div>
       <main id="main" onclick="closeContactDetailsMobileMenu()">
-        <div
-          class="bg-dimmed d-flex-row-c-c"
-          id="bg-dimmed"
-          onclick="closeContactOverlays()"
-        >
+        <div class="bg-dimmed" id="bg-dimmed" onclick="closeContactOverlays()">
           <div
             class="contact-screen"
             onclick="stopEventPropagation(event)"
@@ -43,7 +46,7 @@
           ></div>
         </div>
 
-        <div class="d-flex">
+        <div class="contact-container">
           <div class="contacts-list-wrap" id="contacts-list-wrap">
             <button
               class="add-new-contact-btn"
@@ -103,7 +106,10 @@
         <div
           id="edit-contact-btn-mobile"
           class="edit-contact-btn-mobile"
-          onclick="showContactDetailsMobileMenu();stopEventPropagation(event) "
+          onclick="
+            showContactDetailsMobileMenu();
+            stopEventPropagation(event);
+          "
         >
           <span class="edit-contact-mobile-icon"></span>
         </div>
@@ -113,22 +119,13 @@
           id="contact-details-mobile-menu"
         ></div>
 
-        <div
-          class="d-none toast-msg font-Inter-400-20px"
-          id="contact-created-toast-msg"
-        >
+        <div class="d-none toast-msg" id="contact-created-toast-msg">
           Contact successfully created
         </div>
-        <div
-          class="d-none toast-msg font-Inter-400-20px"
-          id="delete-contact-toast-msg"
-        >
+        <div class="d-none toast-msg" id="delete-contact-toast-msg">
           Contact successfully deleted
         </div>
-        <div
-          class="d-none toast-msg font-Inter-400-20px"
-          id="contact-updated-toast-msg"
-        >
+        <div class="d-none toast-msg" id="contact-updated-toast-msg">
           Contact successfully updated
         </div>
       </main>

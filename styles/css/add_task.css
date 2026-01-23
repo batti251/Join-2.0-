@@ -26,39 +26,6 @@ h1 {
   gap: 48px;
 }
 
-.toast-msg {
-  position: fixed;
-  top: 75%;
-  right: unset;
-  bottom: unset;
-  left: 50%;
-  /* transform: translate(-50%, -50%); */
-  padding: 20px;
-  font-family: "Inter";
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 120%;
-  transform: translate(300%, -50%);
-  color: white;
-  background-color: #2a3647;
-  opacity: 0;
-  border-radius: 20px;
-  pointer-events: none;
-  z-index: 100;
-}
-.toast-msg > .toast-msg-spans {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-direction: unset;
-  gap: 32px;
-}
-
-.toast-msg.show {
-  animation: toast-fly-in-out 3s linear;
-  opacity: 1 !important;
-}
-
 .add-task-toast-icon {
   height: 30px;
   width: 25px;

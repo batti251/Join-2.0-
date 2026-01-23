@@ -35,7 +35,7 @@ function openContactOverlay(mode, indexContact = null) {
   setTimeout(() => {
     document.body.style.overflow = "auto";
   }, 500);
-  document.getElementById("back-to-contacts-list-btn").style.display = "none";
+  /* document.getElementById("back-to-contacts-list-btn").classList.add("d-none"); */
 }
 
 /**
@@ -70,7 +70,7 @@ function closeContactOverlays() {
   setTimeout(() => {
     contactScreenRef.style.display = "none";
     document.body.style.overflow = "auto";
-    document.getElementById("back-to-contacts-list-btn").style.display = "";
+   /*  document.getElementById("back-to-contacts-list-btn").style.display = ""; */
   }, 500);
 }
 
@@ -198,7 +198,7 @@ function addFocusToContact(indexContact) {
  */
 function renderContactDetailsMobileWindow(indexContact) {
   let contactDetailsRef = document.getElementById("contact-details-mobile");
-  document.getElementById("contacts-list-wrap").style.display = "none";
+  document.getElementById("contacts-list-wrap").classList.add('d-none');
   contactDetailsRef.innerHTML = getContactDetailsTemplate(indexContact);
   document.getElementById("back-to-contacts-list-btn").style.display = "block";
   document.getElementById("contact-details-mobile-wrap").style.display =
@@ -223,7 +223,7 @@ function renderContactDetailsMobileMenu(indexContact) {
  *
  */
 function backToContactsList() {
-  document.getElementById("contacts-list-wrap").style.display = "flex";
+  document.getElementById("contacts-list-wrap").classList.remove('d-none');
   document.getElementById("back-to-contacts-list-btn").style.display = "none";
   document.getElementById("contact-details-mobile-wrap").style.display = "none";
   document.getElementById("edit-contact-btn-mobile").style.display = "none";

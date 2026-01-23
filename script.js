@@ -215,7 +215,7 @@ function setInputTagValue(htmlId, valueToSet) {
  */
 function showToastMessage(htmlId) {
   document.body.style.overflow = "hidden";
-  document.getElementById(htmlId).style.display = "block";
+  document.getElementById(htmlId).classList.add("d-block");
   setTimeout(() => {
     msgRef = document.getElementById(htmlId);
     msgRef.classList.remove("show");
@@ -224,8 +224,8 @@ function showToastMessage(htmlId) {
   }, 10);
   setTimeout(() => {
     document.body.style.overflow = "auto";
-    document.getElementById(htmlId).style.display = "none";
-  }, 3000);
+    document.getElementById(htmlId).classList.remove("d-none");
+  }, 500);
 }
 
 /**

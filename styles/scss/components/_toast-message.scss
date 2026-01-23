@@ -18,3 +18,26 @@
   background-color: rgb(56, 56, 56, 0.1);
   color: $color-secondary;
 }
+
+
+.toast-msg {
+  @include position($p: fixed, $t: 75%, $l: 50%);
+  @include padding($p: 20px);
+  @include font($fs: 20px);
+  transform: translate(300%, -50%);
+  color: white;
+  background-color: #2a3647;
+  opacity: 1;
+  border-radius: 20px;
+  pointer-events: none;
+  z-index: 100;
+
+  > .toast-msg-spans {
+    @include dFlex($fd: unset, $jc: space-between, $g: 32px);
+  }
+}
+
+.toast-msg.show {
+  animation: toast-fly-in-out 3s linear;
+  opacity: 1 !important;
+}

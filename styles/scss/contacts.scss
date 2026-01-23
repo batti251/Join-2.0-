@@ -1,0 +1,311 @@
+@use "abstracts/variables" as *;
+@use "abstracts/mixin" as *;
+
+.contact-container{
+   @include dFlex($ai: unset, $jc: unset, $fd: unset);
+}
+
+.contacts-list-wrap {
+  @include dFlex($jc: unset);
+  @include size($h: calc(100vh - 96px), $w: 456px);
+  @include padding($p: 32px 24px);
+  background-color: #ffffff;
+  overflow-y: scroll;
+  scrollbar-width: 24px;
+  box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.08);
+}
+
+.add-new-contact-btn {
+  @include dFlex($fd: unset, $g: 16px);
+  @include padding($p: 12px 0);
+  @include size($w: 352px);
+  border-radius: 10px;
+  background-color: $color-primary;
+}
+
+.add-new-contact-btn:hover {
+  background-color: #354355;
+}
+
+.add-new-contact-text {
+  color: white;
+  @include font($fs: 21px, $fw: 700);
+}
+
+.add-new-contact-img {
+  @include size($w: 32px, $h: 32px);
+}
+
+.bookmark-wrap {
+  @include size($w: 352px, $h: 24px);
+  @include padding($p: 17px 0);
+  @include dFlex($fd: unset, $jc: unset);
+}
+
+.bookmark-letter {
+  @include font($fs: 20px);
+  @include padding($p: 0 36px);
+}
+
+.bookmark-separator {
+  @include size($w: 352px);
+  border: 1px solid #d1d1d1;
+  border-radius: 3px;
+  margin: 8px 0;
+}
+
+.contacts-list {
+  padding-top: 12px;
+}
+
+.contact-name-wrap {
+  @include dFlex($ai: unset, $jc: unset, $g: 5px);
+}
+
+.contact-name {
+  @include font($fs: 20px);
+  word-break: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
+}
+
+.contact-list-item-wrap {
+  @include dFlex($ai: unset, $jc: unset, $fd: unset, $g: 35px);
+  @include padding($p: 15px 24px);
+  border-radius: 10px;
+}
+
+.contact-list-item-wrap:hover {
+  cursor: pointer;
+  background-color: #f6f7f8;
+  color: black;
+}
+
+.focus {
+  background-color: $color-primary;
+  color: white;
+}
+
+.bg-dimmed {
+  @include dFlex($fd: unset);
+  @include position($p: absolute, $t: 0, $l: 0, $r: 0, $b: 0);
+  @include size($h: 100vh);
+  background-color: rgba(0, 0, 0, 0);
+  visibility: hidden;
+  transition:
+    background-color 300ms linear,
+    visibility 300ms linear;
+  z-index: 99;
+}
+
+.bg-dimmed.dim-active {
+  background-color: rgba(0, 0, 0, 0.25);
+  visibility: visible;
+}
+
+
+
+
+.add-new-contact-btn-mobile {
+  @include dFlex($d: none, $fd: unset);
+  @include position($p:absolute, $b: 40px, $r: 40px);
+  background-color: #2a3647;
+  border-radius: 46px;
+  padding: 12px;
+  box-shadow: 0 4px 4px 0 #00000040;
+}
+
+.add-new-contact-btn-mobile:hover {
+  background-color: #29abe2;
+  cursor: pointer;
+}
+
+.edit-contact-btn-mobile {
+  @include dFlex($d: none, $fd: unset);
+  @include position($p:absolute, $b: 40px, $r: 40px);
+  @include size($w: 56px, $h: 56px);
+  background-color: #2a3647;
+  border-radius: 46px;
+  padding: 12px;
+  box-shadow: 0 4px 4px 0 #00000040;
+}
+
+.edit-contact-btn-mobile:hover {
+  background-color: #29abe2;
+  cursor: pointer;
+}
+
+.add-contact-icon {
+  @include size($w: 32px, $h: 32px);
+  background-image: url("./../../assets/icons/person_add.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.edit-contact-mobile-icon {
+   @include size($w: 5px, $h: 21px);
+  background-image: url("./../../assets/icons/mobile-menu.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.back-to-contacts-list-btn {
+  @include position($p:absolute, $t: 128px, $r: 48px);
+  @include size($w: 24px, $h: 24px);
+  display: none;
+  background-image: url("./../../assets/icons/arrow-left.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-color: #f6f7f8;
+}
+
+.back-to-contacts-list-btn:hover {
+  transform: scale(1.1);
+}
+
+.contact-details-headline-mobile-order {
+  @include dFlex($fd: unset, $jc: unset, $g:30px);
+}
+
+.contact-details-mobile {
+  display: none;
+  @include size($w: 100%, $h: 100%);
+}
+
+.contact-details-mobile {
+  display: none;
+}
+
+.contact-details-mobile-wrap {
+  display: none;
+  padding: 96px 24px 0 62px;
+}
+
+.contact-details-mobile-menu {
+  @include position($p:absolute, $b: 96px, $r: 16px);
+  display: none;
+  box-shadow: 0 4px 4px 0 #00000040;
+  background-color: white;
+  z-index: 10;
+  padding: 24px;
+  border-top-left-radius: 24px;
+  border-top-right-radius: 24px;
+  border-bottom-left-radius: 24px;
+}
+
+
+
+
+
+@media screen and (min-width: 1261px) {
+  .contacts-list-wrap{
+    display: flex !important;
+  }
+
+  .contact-details-mobile-wrap{
+    display: none !important;
+  }
+}
+
+
+
+@media screen and (max-width: 1260px) {
+
+
+  .contact-details-mobile {
+    display: flex;
+  }
+
+  .add-new-contact-btn-mobile {
+    display: flex;
+  }
+
+  .contact-details-mobile {
+    display: block;
+  }
+  .back-to-contacts-list-btn {
+    display: block;
+  }
+
+
+
+
+
+
+
+
+
+
+
+  .contacts-list-wrap {
+    @include size($h: calc(100vh - 96px), $w: calc(100vw - 232px));
+    padding: 0 24px;
+  }
+
+  .contacts-list {
+    width: 100%;
+  }
+
+  .bookmark-separator {
+    width: 100%;
+  }
+
+  .add-new-contact-btn {
+    display: none;
+  }
+}
+
+
+
+@media (max-width: 820px) {
+
+
+  .add-new-contact-btn-mobile {
+    bottom: 96px;
+  }
+
+  .edit-contact-btn-mobile {
+    bottom: 96px;
+  }
+
+
+
+
+
+
+
+
+  .join-logo{
+    display: none;
+  }
+
+  .contacts-list-wrap {
+    height: calc(100vh - 160px);
+  }
+
+  .contacts-list-wrap {
+    width: 100%;
+  }
+}
+
+@media (max-width: 440px) {
+
+
+
+  .contact-details-mobile-wrap {
+    padding: 40px 16px;
+  }
+
+
+
+
+
+
+
+  .bookmark-wrap {
+    width: 100%;
+  }
+}

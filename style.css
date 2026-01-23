@@ -71,7 +71,7 @@ textarea {
 }
 
 .d-block {
-  display: block;
+  display: block !important;
 }
 
 .d-contents {

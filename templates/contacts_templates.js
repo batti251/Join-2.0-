@@ -8,10 +8,10 @@ function getContactsListContactTemplate(indexContact) {
   return `
     <div class="contact-list-item-wrap" onclick="showContactDetails(${indexContact})" id="contacts-list-${indexContact}">
         <div class="profile-badge font-Inter-400-12px d-flex-row-c-c text-color-white ${getContactColorClassName(
-          indexContact
+          indexContact,
         )}">${getFirstTwoStringInitialsByFirebaseId(
-    contactsArray[indexContact][0]
-  )}</div>
+          contactsArray[indexContact][0],
+        )}</div>
         <div class="contact-name-wrap d-flex-column">
             <div class="contact-name">${
               contactsArray[indexContact][1].name
@@ -51,10 +51,10 @@ function getContactDetailsTemplate(indexContact) {
   return `
     <div class="contact-details-icon-edit-name-wrap">
         <div class="${getContactColorClassName(
-          indexContact
+          indexContact,
         )} contact-details-name-icon">${getFirstTwoStringInitialsByFirebaseId(
-    contactsArray[indexContact][0]
-  )}
+          contactsArray[indexContact][0],
+        )}
     </div>
     <div class="contact-details-name-wrap">
             <div class="contact-details-name">${
@@ -109,7 +109,7 @@ function getContactDetailsTemplate(indexContact) {
 
 function getContactDetailsMobileMenuTemplate(indexContact) {
   return `
-    <div class="d-flex-column gap-24px">
+    <div class="contact-details-btn-wrap">
     <button class="contact-details-edit-contact" onclick="showEditContactScreen(${indexContact})">
       <img
         src="../assets/icons/edit.svg"
@@ -165,7 +165,7 @@ function getAddContactsScreenTemplate() {
         </div>
         <div class="add-contact-input-check d-flex-column-c-c">
           <form novalidate class="add-contacts-form-wrap" onsubmit="requiredInputValidation(undefined, undefined, newContact, undefined); event.preventDefault()">
-          <div class="height-52px"> 
+          <div class=" input-container"> 
           <div class="add-contact-input-wrap">           
             <input
                 type="text"
@@ -180,11 +180,11 @@ function getAddContactsScreenTemplate() {
                 class="add-contact-input-icon"
               />
               </div>
-               <div class="d-none validation font-Inter-400-13px text-color-FF8190">This field is required!</div>
+               <div class="d-none validation">This field is required!</div>
 
                </div>
-            <div class="input-container d-flex-column">
-            <div class="height-52px"> 
+            <div class="input-container ">
+            <div class=""> 
             <div class="add-contact-input-wrap">
               <input
                 type="email"
@@ -199,11 +199,11 @@ function getAddContactsScreenTemplate() {
                 class="add-contact-input-icon"
               /> 
              </div>  
-              <div class="d-none validation font-Inter-400-13px text-color-FF8190">This field is required!</div>
-              <div id="email-error" class="d-none validation email font-Inter-400-13px text-color-FF8190">Please enter a valid e-mail address</div>
+              <div class="d-none validation">This field is required!</div>
+              <div id="email-error" class="d-none validation email">Please enter a valid e-mail address</div>
             </div>  
  </div>
-            <div class="input-container d-flex-column height-52px">
+            <div class="input-container ">
             <div class="add-contact-input-wrap">
               <input
                 type="tel"
@@ -218,7 +218,7 @@ function getAddContactsScreenTemplate() {
                 class="add-contact-input-icon"
               />
             </div>
-              <div id="phone-error" class="d-none validation email font-Inter-400-13px text-color-FF8190">Please enter a valid phone number</div>
+              <div id="phone-error" class="d-none validation email">Please enter a valid phone number</div>
             </div>
 
             <div class="add-contact-btns-wrap">
@@ -279,10 +279,10 @@ function getEditContactScreenTemplate(indexContact) {
           </div>
           <div class="d-flex-row-c-c p-relative">
             <div class="${getContactColorClassName(
-              indexContact
+              indexContact,
             )} contact-badge-wrap d-flex-row-c-c">
               <div class="font-sz-47px">${getFirstTwoStringInitialsByFirebaseId(
-                contactsArray[indexContact][0]
+                contactsArray[indexContact][0],
               )}</div>
             </div>
           </div>
