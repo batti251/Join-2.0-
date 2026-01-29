@@ -123,7 +123,7 @@ main {
 }
 
 .col-content-wrap {
-  max-width: 246px;
+  max-width: 192px;
   height: 100%;
   width: 100%;
 }
@@ -197,13 +197,23 @@ main {
   cursor: pointer;
 }
 
+.task-card-wrap {
+  touch-action: none;
+}
+
+.task-card-wrap.dragging {
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.85;
+}
+
 .task-card-wrap:active {
   rotate: 5deg;
 }
 
 .col-empty-wrap:last-of-type {
   height: 244px;
-  width: 246px;
+  width: 192px;
   scrollbar-width: none;
   border: 1px;
   border-style: dashed;
@@ -225,8 +235,16 @@ main {
   flex: 1;
 }
 
+.task-info-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 8px;
+}
+
 .task-category {
-  padding: 4px 16px;
+  padding: 4px 10px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -278,6 +296,8 @@ main {
   align-items: unset;
   flex-direction: column;
   gap: 8px;
+  max-height: 30px;
+  height: 100%;
 }
 
 .task-priority-wrap {

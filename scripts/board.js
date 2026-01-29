@@ -1,5 +1,5 @@
 let currentTask = "";
-
+let suppressClick = false;
 /**
  * Initializes board page. Initializes contacts and task arrays and renders board columns.
  */
@@ -178,6 +178,18 @@ function resetrequiredFields() {
   let requiredFields = document.getElementsByClassName("required");
   [...requiredFields].forEach((element) => element.className = "") 
 }
+
+
+function handleTaskClick(indexTask) {
+  
+  if (suppressClick) {
+    suppressClick = false;
+    return;
+  }
+  showTaskOverlay(indexTask);
+}
+
+
 
 /**
  * This function sets the overlay from the current clicked task-element

@@ -122,7 +122,7 @@ main {
 }
 
 .col-content-wrap {
-  max-width: 246px;
+  max-width: 192px;
   @include size($w: 100%, $h: 100%);
 }
 
@@ -177,12 +177,22 @@ main {
   cursor: pointer;
 }
 
+.task-card-wrap {
+  touch-action: none;
+}
+
+.task-card-wrap.dragging {
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.85;
+}
+
 .task-card-wrap:active {
   rotate: 5deg;
 }
 
 .col-empty-wrap:last-of-type {
-  @include size($h: 244px, $w: 246px);
+  @include size($h: 244px, $w: 192px);
   scrollbar-width: none;
   border: 1px;
   border-style: dashed;
@@ -199,8 +209,12 @@ main {
   flex: 1;
 }
 
+.task-info-wrap {
+  @include dFlex($fd: row, $g: 8px);
+}
+
 .task-category {
-  @include padding($p: 4px 16px);
+  @include padding($p: 4px 10px);
   @include dFlex($d: inline-flex, $fd: unset);
   @include font($fs: 1rem);
   border-radius: 8px;
@@ -231,6 +245,8 @@ main {
 
 [id^="subtasks-progress-"] {
   @include dFlex($g: 8px, $ai: unset, $jc: space-between);
+  max-height: 30px;
+  height: 100%;
 }
 
 .task-priority-wrap {

@@ -248,7 +248,7 @@ form {
 }
 
 .add-contact-input-check {
-  @include dFlex($ai: unset, $jc: unset, $g: 40px);
+  @include dFlex($ai: unset, $g: 40px);
 }
 
 .add-contact-btns-wrap {

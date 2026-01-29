@@ -15,18 +15,17 @@
     <!-- <link rel="stylesheet" href="../styles/board.css" /> -->
     <!-- <link rel="stylesheet" href="../styles/add_task.css" /> -->
     <!-- <link rel="stylesheet" href="../styles/contacts.css" /> -->
-    <link rel="stylesheet" href="../styles/contacts_details.css" />
+<!--     <link rel="stylesheet" href="../styles/contacts_details.css" /> -->
     <link rel="stylesheet" href="../styles/keyframes.css" />
     <link rel="icon" href="../assets/img/faviconLogo.svg" />
     <script src="../script.js"></script>
     <script src="../scripts/db.js"></script>
     <script src="../scripts/board.js"></script>
-    <script src="../scripts/board_operations.js"></script>
     <script src="../scripts/add_task.js"></script>
     <script src="../scripts/add_task_operations.js"></script>
     <script src="../templates/board_templates.js"></script>
     <script src="../templates/add_task_templates.js"></script>
-
+    
     <script src="../scripts/desktop_template.js"></script>
     <script src="../scripts/w3_include.js"></script>
     <script src="../scripts/contacts.js"></script>
@@ -35,33 +34,33 @@
   <body onload="init(); initBoard()">
     <div class="page">
       <div
-        class="d-contents"
-        w3-include-html="../templates/desktop_template.html"
+      class="d-contents"
+      w3-include-html="../templates/desktop_template.html"
       ></div>
       <main id="main">
         <div id="task-overlay" class="bg-dimmed" onclick="closeTaskOverlays()">
           <div
-            class="d-none task-overlay-wrap"
-            id="task-overlay-wrap"
-            onclick="event.stopPropagation();closeTaskAssignedContactsDropdown()"
+          class="d-none task-overlay-wrap"
+          id="task-overlay-wrap"
+          onclick="event.stopPropagation();closeTaskAssignedContactsDropdown()"
           ></div>
         </div>
-
+        
         <div class="board-headline">
           <div class="board-headline-mobile">
             <div class="board-headline-text">Board</div>
             <button
-              class="d-none add-task-btn-mobile"
-              onclick="openAddTaskOverlay('triage')"
+            class="d-none add-task-btn-mobile"
+            onclick="openAddTaskOverlay('triage')"
             ></button>
           </div>
           <div class="board-search-add-task-wrap">
             <div class="search-wrap">
               <input
-                type="text"
-                placeholder="Find Task"
-                class="search-input"
-                oninput="searchTask()"
+              type="text"
+              placeholder="Find Task"
+              class="search-input"
+              oninput="searchTask()"
               />
               <div class="search-icon-wrap">
                 <div class="board-vline"></div>
@@ -74,149 +73,140 @@
               <span class="add-task-btn-text">Add task</span>
               <div class="d-flex-row-c-c">
                 <img
-                  src="../assets/icons/add_white.svg"
-                  alt="add task"
-                  class="add-taks-btn-icon"
+                src="../assets/icons/add_white.svg"
+                alt="add task"
+                class="add-taks-btn-icon"
                 />
               </div>
             </button>
           </div>
         </div>
-
+        
         <div class="board-col-wrap">
-
-         <div class="col-content-wrap">
+          
+          <div class="col-content-wrap">
             <div class="col-title-wrap mg-b-16px">
               <div class="col-title">Triage</div>
             </div>
             <div
-              class="col-content"
-              ondrop="moveTask(event)"
-              ondragover="allowDrop(event)"
-              id="triage"
+            class="col-content"
+            id="triage"
             >
-              <div
-                class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
-              >
-                No tasks To do
-              </div>
-            </div>
-          </div>
-
-
-          <div class="col-content-wrap">
-            <div class="col-title-wrap mg-b-16px">
-              <div class="col-title">To do</div>
-            </div>
             <div
-              class="col-content"
-              ondrop="moveTask(event)"
-              ondragover="allowDrop(event)"
-              id="to-do"
+            class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
             >
-              <div
-                class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
-              >
-                No tasks To do
-              </div>
-            </div>
-          </div>
-
-          <div class="col-content-wrap">
-            <div class="col-title-wrap mg-b-16px">
-              <div class="col-title">In progress</div>
-            </div>
-            <div
-              class="col-content"
-              ondrop="moveTask(event)"
-              ondragover="allowDrop(event)"
-              id="in-progress"
-            >
-              <div
-                class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
-              >
-                No tasks in progress
-              </div>
-            </div>
-          </div>
-
-          <div class="col-content-wrap">
-            <div class="col-title-wrap mg-b-16px">
-              <div class="col-title">Await feedback</div>
-            </div>
-            <div
-              class="col-content"
-              ondrop="moveTask(event)"
-              ondragover="allowDrop(event)"
-              id="await-feedback"
-            >
-              <div
-                class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
-              >
-                No tasks awaiting feedback
-              </div>
-            </div>
-          </div>
-
-          <div class="col-content-wrap">
-            <div class="col-title-wrap mg-b-16px">
-              <div class="col-title">Done</div>
-            </div>
-            <div
-              class="col-content"
-              ondrop="moveTask(event)"
-              ondragover="allowDrop(event)"
-              id="done"
-            >
-              <div
-                class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
-              >
-                No tasks done
-              </div>
-            </div>
-          </div>
-          <div id="no-task-found" class="d-none no-task-found">
-            No Task found
+            No tasks To do
           </div>
         </div>
-
+      </div>
+      
+      
+      <div class="col-content-wrap">
+        <div class="col-title-wrap mg-b-16px">
+          <div class="col-title">To do</div>
+        </div>
         <div
-          class="bg-dimmed"
-          id="add-task-overlay-bg-wrap"
-          onclick="closeAddTaskOverlay();closeTaskAssignedContactsDropdown()"
-        >
-          <div class="d-flex-row-c-c h-100vh">
-            <div
+              class="col-content"
+              id="to-do"
+              >
+              <div
+              class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
+              >
+              No tasks To do
+            </div>
+          </div>
+        </div>
+        
+        <div class="col-content-wrap">
+          <div class="col-title-wrap mg-b-16px">
+            <div class="col-title">In progress</div>
+          </div>
+          <div
+          class="col-content"
+          id="in-progress"
+          >
+          <div
+          class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
+          >
+          No tasks in progress
+        </div>
+      </div>
+    </div>
+    
+    <div class="col-content-wrap">
+      <div class="col-title-wrap mg-b-16px">
+        <div class="col-title">Await feedback</div>
+      </div>
+      <div
+      class="col-content"
+      id="await-feedback"
+      >
+      <div
+      class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
+      >
+      No tasks awaiting feedback
+    </div>
+  </div>
+</div>
+
+<div class="col-content-wrap">
+  <div class="col-title-wrap mg-b-16px">
+    <div class="col-title">Done</div>
+  </div>
+  <div
+  class="col-content"
+  id="done"
+  >
+  <div
+  class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
+  >
+  No tasks done
+</div>
+</div>
+</div>
+<div id="no-task-found" class="d-none no-task-found">
+  No Task found
+</div>
+</div>
+
+<div
+class="bg-dimmed"
+id="add-task-overlay-bg-wrap"
+onclick="closeAddTaskOverlay();closeTaskAssignedContactsDropdown()"
+>
+<div class="d-flex-row-c-c h-100vh">
+  <div
               class="add-task-overlay-wrap bg-white pd-64px p-relative d-none"
               id="add-task-overlay-wrap"
               onclick="event.stopPropagation(); closeTaskAssignedContactsDropdown()"
-            >
+              >
               <div class="scroll-overlay">
                 <div class="title-wrap mg-b-40px">
                   <div
-                    class="close-icon-add-task-overlay-wrap d-flex-row-c-c"
-                    onclick="closeAddTaskOverlay()"
+                  class="close-icon-add-task-overlay-wrap d-flex-row-c-c"
+                  onclick="closeAddTaskOverlay()"
                   >
-                    <img
-                      src="../assets/icons/close.svg"
-                      alt="close"
-                      class="close-icon"
-                    />
-                  </div>
-                  <p class="font-Inter-700-61px">Add Task</p>
+                  <img
+                  src="../assets/icons/close.svg"
+                  alt="close"
+                  class="close-icon"
+                  />
                 </div>
-                <div class=" " id="add-task-overlay"></div>
+                <p class="font-Inter-700-61px">Add Task</p>
               </div>
+              <div class=" " id="add-task-overlay"></div>
             </div>
           </div>
         </div>
-        <div class="toast-msg font-Inter-400-20px" id="add-task-toast-msg">
-          <div class="d-flex-c-sb gap-32px">
-            <span>Task added to board</span>
-            <span class="add-task-toast-icon"></span>
-          </div>
+      </div>
+      <div class="toast-msg font-Inter-400-20px" id="add-task-toast-msg">
+        <div class="d-flex-c-sb gap-32px">
+          <span>Task added to board</span>
+          <span class="add-task-toast-icon"></span>
         </div>
-      </main>
-    </div>
-  </body>
+      </div>
+    </main>
+  </div>
+  <script src="../scripts/board_operations.js"></script>
+</body>
 </html>

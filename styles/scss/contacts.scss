@@ -86,23 +86,6 @@
   color: white;
 }
 
-.bg-dimmed {
-  @include dFlex($fd: unset);
-  @include position($p: absolute, $t: 0, $l: 0, $r: 0, $b: 0);
-  @include size($h: 100vh);
-  background-color: rgba(0, 0, 0, 0);
-  visibility: hidden;
-  transition:
-    background-color 300ms linear,
-    visibility 300ms linear;
-  z-index: 99;
-}
-
-.bg-dimmed.dim-active {
-  background-color: rgba(0, 0, 0, 0.25);
-  visibility: visible;
-}
-
 
 
 
