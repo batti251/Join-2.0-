@@ -224,6 +224,7 @@ function showToastMessage(htmlId) {
   }, 10);
   setTimeout(() => {
     document.body.style.overflow = "auto";
+    
     document.getElementById(htmlId).classList.remove("d-none");
   }, 500);
 }

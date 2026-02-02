@@ -456,6 +456,3 @@ async function submitEditTask(indexTask) {
   }, 500);
 }
 
-function switchPosition(params) {
-  console.log("hallo");
-}

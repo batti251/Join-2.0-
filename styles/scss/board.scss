@@ -214,11 +214,9 @@ main {
 }
 
 .task-category {
-  @include padding($p: 4px 10px);
-  @include dFlex($d: inline-flex, $fd: unset);
-  @include font($fs: 1rem);
+  @include dFlex($d: inline-flex, $fd: column, $ai: unset, $jc: unset, $g: 8px);
+  @include font($fs: 20px);
   border-radius: 8px;
-  color: #ffffff;
 }
 
 .task-description-wrap {

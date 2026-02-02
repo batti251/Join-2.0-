@@ -12,7 +12,7 @@ async function addNewTask(newTaskStatusId) {
   showToastMessage("add-task-toast-msg");
   setTimeout(() => {
     directToBoardPage();
-  }, 1000);
+  }, 2000);
 }
 
 /**

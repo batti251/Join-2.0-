@@ -34,9 +34,11 @@ form {
   @include size($h: 96px);
 }
 
-/* .task-category {
-  @include size($h: 86px);
-} */
+.focus {
+  background-color: $color-primary;
+  color: white;
+  border-radius: 10px;
+}
 
 .task-meta {
   @include dFlex($ai: unset, $jc: unset, $g: 32px);
@@ -60,7 +62,7 @@ form {
 .task-input-category {
   position: relative;
   @include font($fs: 20px);
-  @include padding($p: 12px 16px);
+  @include padding($p: 12px 18px);
   min-height: 52px;
   cursor: pointer;
 }

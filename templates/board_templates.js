@@ -279,7 +279,7 @@ function editTaskTemplate(indexTask, currentTask) {
                   </div>
                 </div>
 
-                <div class="task-area" onclick="event.stopPropagation()">
+                <div class="task-area z-index-1" onclick="event.stopPropagation()">
                   <label
                     for="task-assigned-contacts"
                     class=""
