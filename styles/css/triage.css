@@ -131,6 +131,18 @@
   color: #cdcdcd;
 }
 
+.ai {
+  background: linear-gradient(to top, #8933fc, #29abe2);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ai.right {
+  background: linear-gradient(to right, #8933fc, #29abe2);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 body {
   overflow: unset;
 }

@@ -140,27 +140,8 @@ async function submitInitialTasks() {
  * @param {string} title task title
  * @param {array} assignedTo task assigned contacts
  * @param {array} subtasks task subtasks
+ * @param {array} source task subtasks
  */
-function taskNew(
-  category,
-  description,
-  dueDate,
-  priority,
-  status,
-  title,
-  assignedTo,
-  subtasks,
-  source
-) {
-  new Task(
-    category,
-    description,
-    dueDate,
-    priority,
-    status,
-    title,
-    assignedTo,
-    subtasks,
-    source
-  );
+function taskNew(category,description,dueDate,priority,status,title,assignedTo,subtasks,source) {
+  new Task(category,description,dueDate,priority,status,title,assignedTo,subtasks,source);
 }

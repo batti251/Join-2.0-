@@ -9,16 +9,18 @@ class Task{
     title;
     assignedTo;
     subtasks;
+    source;
 
-    constructor(category, description, dueDate, priority, status, title,assignedTo, subtasks){
-        this.category = category,
-        this.description = description,
-        this.dueDate = dueDate,
-        this.priority = priority,
-        this.status = status,
-        this.title = title
-        this.assignedTo = assignedTo
-        this.subtasks = subtasks
+    constructor(category, description, dueDate, priority, status, title,assignedTo, subtasks, source){
+        this.category = category;
+        this.description = description;
+        this.dueDate = dueDate;
+        this.priority = priority;
+        this.status = status;
+        this.title = title;
+        this.assignedTo = assignedTo;
+        this.subtasks = subtasks;
+        this.source = source;
         this.loadNewTask();
     }
 
@@ -31,7 +33,8 @@ class Task{
         status: this.status,
         title: this.title,
         assignedTo: this.assignedTo,
-        subtasks: this.subtasks
+        subtasks: this.subtasks,
+        source: this.source
         };
         await submitObjectToDatabase("tasks", newTaskObj);
     }

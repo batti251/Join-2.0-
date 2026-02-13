@@ -74,7 +74,11 @@ function getTaskOverlay(indexTask, currentTask, overlay) {
     <div class=" task-overlay-category">
       <div class="task-category ${getTaskCategoryClass(
         currentTask.category
-      )} ">${getCategoryNameTemplate(currentTask.category)}</div>
+      )} ">${getCategoryNameTemplate(currentTask.category)}
+      </div>
+      <div class="ai right">
+      ${currentTask.source == "human" ? "" : `<img src="../assets/icons/wand-stars.svg" >Ai-generated ticket` }
+      </div>
         <div class="close-icon-overlay-wrap">
           <div class="close-icon-overlay" onclick="closeTaskOverlays()">
             <img src="../assets/icons/close.svg" aslt="close" class="close-icon"/>
