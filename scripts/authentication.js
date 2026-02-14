@@ -179,23 +179,49 @@ async function userLogin(path = "contacts") {
   checkLogInCredentials(responseRef);
 }
 
+
+
+/**
+ * Validates if the user has a proper login-account
+ * @param {*} usersObj 
+ * @param {*} loginMail 
+ * @returns - true: when user has an active account
+ *            false: when user has not an active account
+ */
+function userHasCredential(loginMail, validMails) {
+  let valid = validMails.filter(i => i.email == loginMail)
+  let isValid = valid.length > 0 
+  return isValid
+}
+
+
+
+
 /**
  * This function checks, if login-credentials are valid to credentials from database
  *
  * @param {object} responseRef all user credentials from the database
  */
 async function checkLogInCredentials(responseRef) {
-  if (responseRef == null) {
+  let usersObj = Object.values(responseRef); // alle User
+  let userID = Object.keys(responseRef)[0] // user ID für session Storage
+  let loginInput = document.getElementsByTagName("input"); 
+  let loginMail = loginInput[0].value //die eingegebene Mail
+  let validMails = usersObj.filter(i => i.canLogin == true) //Liste, dürfen sich anmelden
+  let name = "";
+  let credentialsMerge = []
+  
+  // prüfen, darf die Mail sich überhaupt anmelden? 
+  let userCanLogin = userHasCredential(loginMail, validMails) //boolean
+  if (responseRef == null || !userCanLogin) {
     showErrorMessage("user-existance", []);
     return;
+  } else {
+    name = filterUserName(usersObj, loginInput);  // Name des accounts
+    credentialsMerge = validMails.map((i) => { return i.email + i.password;}); // Liste, anmeldung & pw
   }
-  let usersObj = Object.values(responseRef);
-  let userID = Object.keys(responseRef)[0]
-  let loginInput = document.getElementsByTagName("input");
-  let name = filterUserName(usersObj, loginInput);
-  let credentialsMerge = usersObj.map((i) => {
-    return i.email + i.password;
-  });
+
+  // validierung der mail & pw, wenn user valid ist
   if (credentialsMerge.includes(loginInput[0].value + loginInput[1].value)) {
     location.href = "/html/summary.html";
     saveSession(name, userID);
