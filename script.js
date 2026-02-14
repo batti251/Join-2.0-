@@ -5,6 +5,7 @@ let newContact = "newContact";
 let emptyJSON = {};
 let userArray;
 
+
 let contactColorClasses = [
   "bg-orange",
   "bg-purple",

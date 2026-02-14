@@ -10,8 +10,12 @@
     <link rel="stylesheet" href="../styles/css/main.css" />
     <link rel="stylesheet" href="../styles/css/login.css" />
     <link rel="stylesheet" href="../styles/css/triage.css" />
+
+    <script src="./../scripts/db.js"></script>
+    <script src="./../scripts/init.js"></script>
+    <script src="./../script.js"></script>
   </head>
-  <body>
+  <body onload="inits()">
     <div class="landscape-orientation d-none">
       This screen size isn't supported in this view. <br />Please adjust your
       screen width.
@@ -42,7 +46,7 @@
   <a href="./../index.html" class="arrow-left">
               <img src="../assets/icons/arrow-left.svg" alt=""/>
             </a>
-  <span>0 / 10 requests used today</span>
+  <span><span id="ai-requests"></span> / 10 requests used today</span>
 </div>
  <h1>Welcome</h1>
 </div>
