@@ -145,6 +145,24 @@ async function updateDatabaseObject(path = "", object = {}) {
 }
 
 /**
+ * This function updates an entry from the firebase
+ *
+ * @param {*} path the path of the firebase
+ * @param {*} object the object according to the path
+ */
+async function patchDatabaseObject(path = "", object = {}) {
+  let response = await fetch(database + path + ".json", {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(object),
+    
+  });
+}
+
+
+/**
  * This function delets an element form firebase server and collects the response as JSON
  *
  * @param {string} path

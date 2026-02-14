@@ -43,13 +43,31 @@ async function updateContact(indexContact) {
     return;
   }
   let htmlIdPrefix = "input-" + String(indexContact) + "-";
-  let editedContactData = getContactInformation(htmlIdPrefix);
+  let editedContactData = getToEditContactInformation(htmlIdPrefix);
   let contactPath = "contacts/" + contactsArray[indexContact][0];
-  await updateDatabaseObject(contactPath, editedContactData);
+  await patchDatabaseObject(contactPath, editedContactData);
   await renderContactsList();
   renderContactDetails(indexContact);
   closeContactOverlays();
   showToastMessage("contact-updated-toast-msg");
+}
+
+/**
+ * creates the contact Object for PUT Request from {@link updateContact}
+ * @param {*} htmlIdPrefix 
+ * @returns 
+ */
+function getToEditContactInformation(htmlIdPrefix) {
+  let nameRef = document.getElementById(htmlIdPrefix + "name");
+  let emailRef = document.getElementById(htmlIdPrefix + "email");
+  let phoneRef = document.getElementById(htmlIdPrefix + "phone");
+  let contactData = {
+    name: nameRef.value,
+    email: emailRef.value,
+    phone: phoneRef.value,
+  };
+  clearAddContactForm(htmlIdPrefix);
+  return contactData;
 }
 
 /**

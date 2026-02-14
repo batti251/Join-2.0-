@@ -228,8 +228,12 @@ async function checkLogInCredentials(responseRef) {
   let name = "";
   let credentialsMerge = []
   let userIDRef = userEntry.filter(u => u[1].email == loginMail)
-  let userID = userIDRef[0][0]
+  let userID = ""
+ if (userIDRef.length > 0) {
+    userID = userIDRef[0][0]
+ }
   
+
   // prüfen, darf die Mail sich überhaupt anmelden? 
   let userCanLogin = userHasCredential(loginMail, validMails) //boolean
   if (responseRef == null || !userCanLogin) {
