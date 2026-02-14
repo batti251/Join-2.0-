@@ -80,9 +80,20 @@ function getNewUserInformation() {
   let key = "";
   let value = "";
   for (let index = 0; index < userInput.length; index++) {
+    console.log(key);
+    
+    if (key == "") {
+      console.log("check");
+      
+        key = "canLogin";
+        value = true;
+        userCredential[key] = value;
+    } 
+
     key = userInput[index].name;
     value = userInput[index].value;
     userCredential[key] = value;
+    
   }
   checkMailRedundancy(userCredential);
 }
@@ -94,19 +105,22 @@ function getNewUserInformation() {
  */
 async function checkMailRedundancy(credentials) {
 
-  let response = await fetch(database + "/user" + ".json");
+  let response = await fetch(database + "/contacts" + ".json");
   let responseRef = await response.json();
-  let mails = getUsedMails(responseRef);
-  if (responseRef === null) {
-    postJSON("user", credentials);
+  let x = Object.entries(responseRef)
+  let existingUser = x.filter(i => i[1].email == credentials.email)
+  if (existingUser.length == 0) {
+    await addNewContactOnSignup(credentials);
+    return
+  };
+  let existingUserId = existingUser[0][0]; //userID für POST
+  let mails = getUsedMails(responseRef);  //alle mails
+  let existingContact = mails.filter(e => e.mail == credentials.email)
+  if (existingContact.length == 0 || existingContact[0] === null || !existingContact[0].canLogin) {
+    updateDatabaseObject(`contacts/${existingUserId}`, credentials);
     showMessage(credentials);
     return;
-  }
-  if (!mails.includes(credentials.email)) {
-    postJSON("user", credentials);
-    showMessage(credentials);
-    return;
-  }
+  } 
   showErrorMessage("email-redundancy", []);
 }
 
@@ -122,7 +136,10 @@ function getUsedMails(responseRef) {
   }
   let mailValue = Object.values(responseRef);
   let usedMails = mailValue.map((i) => {
-    return i.email;
+    return {
+      mail: i.email,
+      password: i.password,
+      canLogin: i.canLogin} ;
   });
   return usedMails;
 }
@@ -133,8 +150,7 @@ function getUsedMails(responseRef) {
  *
  * @param {object} credentials object to
  */
-function showMessage(credentials) {
-  addNewContactOnSignup(credentials);
+async function showMessage(credentials) {
   let messageBox = document.querySelector(".signup-message");
   let blur = document.querySelector(".background-fade");
   let signup = document.querySelector(".login-container");
@@ -152,13 +168,14 @@ function showMessage(credentials) {
  *
  * @param {object} contactData dedicated information for contact-list
  */
-function addNewContactOnSignup(contactData) {
+async function addNewContactOnSignup(contactData) {
   let contactObj = {};
   contactObj = {
+    canLogin: true,
     email: contactData.email,
+    password: contactData.password,
     name: contactData.name,
     phone: "",
-    user: true
   };
   postJSON("contacts", contactObj);
 }
