@@ -221,12 +221,14 @@ function userHasCredential(loginMail, validMails) {
  */
 async function checkLogInCredentials(responseRef) {
   let usersObj = Object.values(responseRef); // alle User
-  let userID = Object.keys(responseRef)[0] // user ID für session Storage
+  let userEntry = Object.entries(responseRef) // user ID für session Storage
   let loginInput = document.getElementsByTagName("input"); 
   let loginMail = loginInput[0].value //die eingegebene Mail
   let validMails = usersObj.filter(i => i.canLogin == true) //Liste, dürfen sich anmelden
   let name = "";
   let credentialsMerge = []
+  let userIDRef = userEntry.filter(u => u[1].email == loginMail)
+  let userID = userIDRef[0][0]
   
   // prüfen, darf die Mail sich überhaupt anmelden? 
   let userCanLogin = userHasCredential(loginMail, validMails) //boolean
