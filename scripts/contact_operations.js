@@ -164,6 +164,9 @@ function getContactInformation(htmlIdPrefix) {
     name: nameRef.value,
     email: emailRef.value,
     phone: phoneRef.value,
+    password: "",
+    checkbox: "",
+    canLogin: false
   };
   clearAddContactForm(htmlIdPrefix);
   return contactData;
