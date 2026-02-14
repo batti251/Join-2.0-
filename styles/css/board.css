@@ -217,10 +217,13 @@ main {
   cursor: grab;
 }
 
+.drag-handler:active {
+  cursor: grabbing;
+}
+
 .task-card-wrap.dragging {
   z-index: 9999;
   opacity: 0.85;
-  cursor: grabbing;
 }
 
 .col-empty-wrap:last-of-type {

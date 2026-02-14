@@ -69,6 +69,8 @@ function getTaskCardContactsTemplate(indexTaskContact, indexTask) {
 }
 
 function getTaskOverlay(indexTask, currentTask, overlay) {
+  console.log(currentTask);
+  
   overlay.innerHTML = `
     <div class="task-overlay">
     <div class=" task-overlay-category">
@@ -93,6 +95,17 @@ function getTaskOverlay(indexTask, currentTask, overlay) {
     <div class="task-overlay-desc">${
       currentTask?.description || ""
     }</div>
+
+    <div class="task-overlay-meta-wrap creator">
+      <div class="creator-primary">Creator:</div>
+      
+      
+      ${
+        currentTask.creator == "external" ? `<div class="creator-external"><img src="../assets/icons/world.svg"> Extern </div><div>${currentTask.name}</div><a href="mailto:${currentTask.mail}" class="email-externalal"><img src="../assets/icons/mail_attach.svg">E-Mail</a>` : 
+        `<div class="creator-internal"><img src="../assets/icons/member.svg"> Member </div><div>${currentTask.creator}</div><a href="/html/contacts.html?id=${currentTask.creatorId}" class="email-internal"><img src="../assets/icons/person_blue.svg">Profil</a>`
+      }
+    </div>
+
 
     <div class="task-overlay-meta-wrap">
       <div class="due-date-primary">Due date:</div>

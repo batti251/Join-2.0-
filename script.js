@@ -3,6 +3,7 @@ let tasksArray = [];
 let overlayTransitionMiliSeconds = 300;
 let newContact = "newContact";
 let emptyJSON = {};
+let userArray;
 
 let contactColorClasses = [
   "bg-orange",

@@ -35,21 +35,21 @@ async function submitInitialContacts() {
  * @param {string} email contact email
  * @param {string } phone contact phone
  */
-function addInitalContact(name, email, phone) {
-  initialContact = new InitialContact(name, email, phone);
+function addInitalContact(name, email, phone, checkbox, password, canLogin) {
+  initialContact = new InitialContact(name, email, phone, checkbox, password, canLogin);
   initialContacts.push(initialContact);
 }
 
-addInitalContact("Anja Schmidt", "schmidt@gmail.com", "49111111111");
-addInitalContact("Markus Müller", "müller@t-online.de", "49222222222");
-addInitalContact("Tanja Meyer", "meyer@web.de", "49333333333");
-addInitalContact("Beate Krause", "krause@gmail.com", "49444444444");
-addInitalContact("Thomas Schneider", "schneider@gmail.com", "49555555555");
-addInitalContact("Sophie Hoffmann", "hoffmann@gmail.com", "49666666666");
-addInitalContact("Lukas Becker", "becker@t-online.de", "49777777777");
-addInitalContact("Axel Fischer", "fischer@gmail.com", "49888888888");
-addInitalContact("Tim Weber", "weber@gmail.com", "49999999999");
-addInitalContact("Theresa Koch", "koch@gmail.com", "49101010101");
+addInitalContact("Anja Schmidt", "schmidt@gmail.com", "49111111111", "on", "11111111", true);
+addInitalContact("Markus Müller", "müller@t-online.de", "49222222222", "on", "11111111", true);
+addInitalContact("Tanja Meyer", "meyer@web.de", "49333333333", "on", "11111111", true);
+addInitalContact("Beate Krause", "krause@gmail.com", "49444444444", "on", "11111111", true);
+addInitalContact("Thomas Schneider", "schneider@gmail.com", "49555555555", "on", "11111111", true);
+addInitalContact("Sophie Hoffmann", "hoffmann@gmail.com", "49666666666", "on", "11111111", true);
+addInitalContact("Lukas Becker", "becker@t-online.de", "49777777777", "on", "11111111", true);
+addInitalContact("Axel Fischer", "fischer@gmail.com", "49888888888", "on", "11111111", true);
+addInitalContact("Tim Weber", "weber@gmail.com", "49999999999", "on", "11111111", true);
+addInitalContact("Theresa Koch", "koch@gmail.com", "49101010101", "on", "11111111", true);
 
 /**
  * Submits initial tasks to firebase server
@@ -69,7 +69,9 @@ async function submitInitialTasks() {
       { name: "subtask1", done: true },
       { name: "subtask2", done: false },
     ],
-    "human"
+    "human",
+    contactsObj[3][1].name,
+    contactsObj[3][0]
   );
   taskNew(
     "technical-task",
@@ -86,7 +88,9 @@ async function submitInitialTasks() {
       { name: "subtask1", done: true },
       { name: "subtask2", done: false },
     ],
-    "human"
+    "human",
+    contactsObj[3][1].name,
+    contactsObj[3][0]
   );
   taskNew(
     "user-story",
@@ -100,7 +104,9 @@ async function submitInitialTasks() {
       { name: "call Boss", done: false },
       { name: "cry", done: false },
     ],
-    "human"
+    "human",
+    contactsObj[3][1].name,
+    contactsObj[3][0]
   );
   taskNew(
     "user-story",
@@ -114,7 +120,9 @@ async function submitInitialTasks() {
       { name: "subtask1", done: true },
       { name: "subtask2", done: true },
     ],
-    "human"
+    "human",
+    contactsObj[3][1].name,
+    contactsObj[3][0]
   );
   taskNew(
     "technical-task",
@@ -125,7 +133,9 @@ async function submitInitialTasks() {
     "El Pollo Loco!",
     [{ Id: contactsObj[6][0], name: contactsObj[6][1].name }],
     [],
-    "human"
+    "human",
+    contactsObj[6][1].name,
+    contactsObj[6][0]
   );
 }
 
@@ -141,7 +151,12 @@ async function submitInitialTasks() {
  * @param {array} assignedTo task assigned contacts
  * @param {array} subtasks task subtasks
  * @param {array} source task subtasks
+ * @param {array} creator creator of the task
+ * @param {array} creatorId creatorId of the task
  */
-function taskNew(category,description,dueDate,priority,status,title,assignedTo,subtasks,source) {
-  new Task(category,description,dueDate,priority,status,title,assignedTo,subtasks,source);
+function taskNew(category,description,dueDate,priority,status,title,assignedTo,subtasks,source, creator, creatorId) {
+  new Task(category,description,dueDate,priority,status,title,assignedTo,subtasks,source, creator, creatorId);
 }
+
+
+

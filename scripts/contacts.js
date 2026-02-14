@@ -70,7 +70,7 @@ function closeContactOverlays() {
   setTimeout(() => {
     contactScreenRef.style.display = "none";
     document.body.style.overflow = "auto";
-   /*  document.getElementById("back-to-contacts-list-btn").style.display = ""; */
+    /*  document.getElementById("back-to-contacts-list-btn").style.display = ""; */
   }, 500);
 }
 
@@ -111,6 +111,19 @@ async function renderContactsList() {
       contactsListRef.innerHTML += getContactListBookmarkTemplate(i);
       contactsListRef.innerHTML += getContactsListContactTemplate(i);
     }
+  }
+  getContactFromURL();
+}
+
+/**
+ * Gets Query Parameter from URL to open contact-card directly
+ * This is used when profil-link was clicked on task-overlay frfom {@link getTaskOverlay()}
+ */
+function getContactFromURL() {
+  let queryID = window.location.search.split("=")[1];
+  let contactIndex = contactsArray.findIndex((e) => e[0] == queryID);
+  if (contactIndex > -1) {
+    showContactDetails(contactIndex);
   }
 }
 
@@ -174,7 +187,7 @@ function showContactDetails(indexContact) {
  */
 function removeFocusFromAllContacts() {
   contactsListTagsRef = document.getElementsByClassName(
-    "contact-list-item-wrap"
+    "contact-list-item-wrap",
   );
   for (let i = 0; i < contactsListTagsRef.length; i++) {
     contactsListTagsRef[i].classList.remove("focus");
@@ -198,7 +211,7 @@ function addFocusToContact(indexContact) {
  */
 function renderContactDetailsMobileWindow(indexContact) {
   let contactDetailsRef = document.getElementById("contact-details-mobile");
-  document.getElementById("contacts-list-wrap").classList.add('d-none');
+  document.getElementById("contacts-list-wrap").classList.add("d-none");
   contactDetailsRef.innerHTML = getContactDetailsTemplate(indexContact);
   document.getElementById("back-to-contacts-list-btn").style.display = "block";
   document.getElementById("contact-details-mobile-wrap").style.display =
@@ -223,7 +236,7 @@ function renderContactDetailsMobileMenu(indexContact) {
  *
  */
 function backToContactsList() {
-  document.getElementById("contacts-list-wrap").classList.remove('d-none');
+  document.getElementById("contacts-list-wrap").classList.remove("d-none");
   document.getElementById("back-to-contacts-list-btn").style.display = "none";
   document.getElementById("contact-details-mobile-wrap").style.display = "none";
   document.getElementById("edit-contact-btn-mobile").style.display = "none";

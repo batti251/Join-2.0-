@@ -158,6 +158,7 @@ function addNewContactOnSignup(contactData) {
     email: contactData.email,
     name: contactData.name,
     phone: "",
+    user: true
   };
   postJSON("contacts", contactObj);
 }
@@ -167,7 +168,7 @@ function addNewContactOnSignup(contactData) {
  *
  * @param {string} path path of the database
  */
-async function userLogin(path = "user") {
+async function userLogin(path = "contacts") {
   let response = await fetch(database + path + ".json", {
     method: "GET",
     headers: {
@@ -189,14 +190,15 @@ async function checkLogInCredentials(responseRef) {
     return;
   }
   let usersObj = Object.values(responseRef);
+  let userID = Object.keys(responseRef)[0]
   let loginInput = document.getElementsByTagName("input");
   let name = filterUserName(usersObj, loginInput);
   let credentialsMerge = usersObj.map((i) => {
     return i.email + i.password;
   });
   if (credentialsMerge.includes(loginInput[0].value + loginInput[1].value)) {
-    location.href = "html/summary.html";
-    saveSession(name);
+    location.href = "/html/summary.html";
+    saveSession(name, userID);
   } else {
     showErrorMessage("password", [...loginInput]);
   }
@@ -220,7 +222,7 @@ function filterUserName(usersObj, loginInput) {
  *
  * @param {String} name the users name
  */
-function saveSession(name) {
+function saveSession(name, userID) {
   setSessionStorage("user", name[0]);
   setSessionStorage(
     "initials",
@@ -229,4 +231,5 @@ function saveSession(name) {
       .map((i) => i[0]?.toUpperCase())
       .join("")
   );
+  setSessionStorage("id", userID)
 }

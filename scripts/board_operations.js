@@ -21,6 +21,25 @@ async function getTasksArray() {
   return tasksArray;
 }
 
+async function getUsersArray() {
+  userArray = [];
+  let user = await getDataBaseElement("user");
+  if (user == null) {
+    return userArray;
+  }
+  userArray = Object.entries(user)
+/*   userArray = Object.entries(user).map(([userId, userData]) => {
+    if (userData.assignedTo !== undefined) {
+      taskData.assignedTo = Object.entries(userData.assignedTo);
+    }
+    if (userData.subtasks !== undefined) {
+      userData.subtasks = Object.entries(userData.subtasks);
+    }
+    return [userId, userData];
+  }); */
+  return userArray;
+}
+
 /**
  * This Function sets backgroundclass based on tasks category class
  *

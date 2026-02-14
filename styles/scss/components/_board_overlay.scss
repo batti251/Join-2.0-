@@ -193,7 +193,36 @@ input[type="checkbox"] {
 }
 
 
+.creator-external{
+    @include dFlex($fd: row, $g: 8px);
+  @include font($fs: 1rem);
+  padding: 0 4px;
+  border-radius: 4px;
+  background-color: $bg-color-external;
 
+}
+
+.creator-internal{
+    @include dFlex($fd: row, $g: 8px);
+  @include font($fs: 1rem);
+  padding: 0 4px;
+  border-radius: 4px;
+  background-color: $bg-color-internal;
+
+}
+
+.email-external{
+  @include dFlex($fd: row, $g: 8px);
+  @include font($fs: 1rem);
+  color: #42526E;
+   padding: 0 4px;
+  
+}
+
+
+.creator{
+  gap: 8px;
+}
 
 @media screen and (max-width: 1360px) {
   .add-task-overlay-wrap {

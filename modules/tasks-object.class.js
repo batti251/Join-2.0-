@@ -10,8 +10,10 @@ class Task{
     assignedTo;
     subtasks;
     source;
+    creator;
+    creatorId;
 
-    constructor(category, description, dueDate, priority, status, title,assignedTo, subtasks, source){
+    constructor(category, description, dueDate, priority, status, title,assignedTo, subtasks, source, creator, creatorId){
         this.category = category;
         this.description = description;
         this.dueDate = dueDate;
@@ -21,6 +23,8 @@ class Task{
         this.assignedTo = assignedTo;
         this.subtasks = subtasks;
         this.source = source;
+        this.creator = creator;
+        this.creatorId = creatorId;
         this.loadNewTask();
     }
 
@@ -34,7 +38,9 @@ class Task{
         title: this.title,
         assignedTo: this.assignedTo,
         subtasks: this.subtasks,
-        source: this.source
+        source: this.source,
+        creator: this.creator,
+        creatorId: this.creatorId
         };
         await submitObjectToDatabase("tasks", newTaskObj);
     }

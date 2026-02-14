@@ -4,6 +4,8 @@
  * @param {string} newTaskStatusId task status id
  */
 async function addNewTask(newTaskStatusId) {
+let x = await validateUser()
+if (x < 0) return
   let newTaskScalarData = getNewTaskScalarInformation(newTaskStatusId);
   await submitObjectToDatabase("tasks", newTaskScalarData);
   tasksArray = await getTasksArray();
@@ -13,6 +15,12 @@ async function addNewTask(newTaskStatusId) {
   setTimeout(() => {
     directToBoardPage();
   }, 2000);
+}
+
+async function validateUser() {
+  let userID = sessionStorage.getItem("id")
+  let validUser = contactsArray.findIndex((e) => e[0] == userID)
+  return validUser
 }
 
 /**
@@ -229,7 +237,11 @@ function insertMandatoryTaskInfo(newTaskObj, newTaskStatusId) {
   newTaskObj.title = getInputTagValue("task-title");
   newTaskObj.dueDate = getInputTagValue("task-due-date");
   newTaskObj.priority = newTaskPriority;
-  newTaskObj.source = "human"
+  newTaskObj.source = "human";
+  let userID = sessionStorage.getItem("id");
+  let userObj = contactsArray.find(e => e[0] == userID);
+  newTaskObj.creator = userObj[1].name;
+  newTaskObj.creatorId = sessionStorage.getItem("id")
   if (newTaskStatusId) {
     newTaskObj.category = getTaskCategoryFirebaseName();
     newTaskObj.status = newTaskStatusId;
