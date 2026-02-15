@@ -3,7 +3,23 @@ let tasksArray = [];
 let overlayTransitionMiliSeconds = 300;
 let newContact = "newContact";
 let emptyJSON = {};
-let userArray;
+let userArrayuserArray;
+let idUser = ""
+
+
+
+async function test() {
+  idUser = sessionStorage.getItem("id")
+  console.log("Firebase ID: " + idUser);
+  contactsArray = await getDataBaseElement("contacts")
+  tasksArray = await getDataBaseElement("tasks")
+  console.log(contactsArray);
+  console.log(tasksArray);
+}
+
+
+
+
 
 
 let contactColorClasses = [
@@ -347,20 +363,7 @@ function getCurrentDateYYYMMDD() {
   return year + "-" + month + "-" + day;
 }
 
-/**
- * Toggle an arbitrary value from an array
- *
- * @param {*} value arbitrary value
- * @param {*} array array
- */
-function toggleValueFromArray(value, array) {
-  let index = array.indexOf(value);
-  if (index !== -1) {
-    array.splice(index, 1);
-  } else {
-    array.push(value);
-  }
-}
+
 
 /**
  * Function to reset error-messages on login & signup page

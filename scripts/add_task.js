@@ -34,7 +34,7 @@ function clearAddTaskForm() {
   clearInputTagValue("task-title");
   clearInputTagValue("task-description");
   clearInputTagValue("task-due-date");
-  setTaskPriority("task-priority-medium");
+  obj.setTaskPriority("task-priority-medium");
   clearInputTagValue("task-assigned-contacts");
   clearInputTagValue("task-category");
   clearInputTagValue("task-subtasks");
@@ -44,20 +44,7 @@ function clearAddTaskForm() {
   renderSubtasks();
 }
 
-/**
- * Gets taks category firebase name
- *
- * @returns task category firebase name
- */
-function getTaskCategoryFirebaseName() {
-  let key = "";
-  key = getInputTagValue("task-category");
-  if (key.includes("Technical")) {
-    return "technical-task";
-  } else {
-    return "user-story";
-  }
-}
+
 
 /**
  * Inserts optional scalar task information into new Task object
@@ -70,29 +57,7 @@ function insertOptionalScalarTaskInfo(newTaskObj) {
   }
 }
 
-/**
- * Sets new task priority button
- *
- * @param {string} htmlId
- */
-function setTaskPriority(htmlId) {
-  resetAllPriorityBtns();
-  let activeBtn = document.getElementById(htmlId);
-  switch (htmlId) {
-    case "task-priority-urgent":
-      activeBtn.classList.add("active-urgent");
-      newTaskPriority = "urgent";
-      break;
-    case "task-priority-low":
-      activeBtn.classList.add("active-low");
-      newTaskPriority = "low";
-      break;
-    default:
-      activeBtn.classList.add("active-medium");
-      newTaskPriority = "medium";
-      break;
-  }
-}
+
 
 /**
  * Resets all priority buttons to inactive
@@ -104,20 +69,7 @@ function resetAllPriorityBtns() {
   }
 }
 
-/**
- * Opens Task Category Dropdown
- */
-function openTaskCategoryDropdown() {
-  let categoryDropdownRef;
-  let categoryDropdownIconRef;
-  categoryDropdownRef = document.getElementById("task-category-dropdown");
-  categoryDropdownIconRef = document.getElementById(
-    "task-category-dropdown-icon"
-  );
-  clearInputTagValue("task-category");
-  categoryDropdownRef.classList.remove("d-none");
-  categoryDropdownIconRef.classList.add("task-dropdown-open-icon");
-}
+
 
 /**
  * Closes Task Category Dropdown
@@ -306,17 +258,7 @@ function renderContactsBadges(array) {
   }
 }
 
-/**
- * Toggle assignment of a contact
- *
- * @param {string} contactID
- * @param {htmlElement} htmlElement
- */
-function toggleAssignContact(contactID, htmlElement) {
-  htmlElement.classList.toggle("focus");
-  toggleValueFromArray(contactID, newTaskAssignedContactsIndices);
-  renderContactsBadges(newTaskAssignedContactsIndices);
-}
+
 
 /**
  * Renders a taks assigned contacts

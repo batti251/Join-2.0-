@@ -102,7 +102,7 @@ function getTaskOverlay(indexTask, currentTask, overlay) {
       
       ${
         currentTask.creator == "external" ? `<div class="creator-external"><img src="../assets/icons/world.svg"> Extern </div><div>${currentTask.name}</div><a href="mailto:${currentTask.mail}" class="email-externalal"><img src="../assets/icons/mail_attach.svg">E-Mail</a>` : 
-        `<div class="creator-internal"><img src="../assets/icons/member.svg"> Member </div><div>${currentTask.creator}</div><a href="/html/contacts.html?id=${currentTask.creatorId}" class="email-internal"><img src="../assets/icons/person_blue.svg">Profil</a>`
+        `<div class="creator-internal"><img src="../assets/icons/member.svg"> Member </div><div>${currentTask.creator}</div><a href="/html/contacts.html?id=${currentTask.creatorId ? currentTask.creatorId : ""}" class="email-internal"><img src="../assets/icons/person_blue.svg">Profil</a>`
       }
     </div>
 
@@ -153,7 +153,7 @@ function getTaskOverlay(indexTask, currentTask, overlay) {
             (s) =>
               ` <div class="input-container d-flex"><div class="input-checkbox task-overlay-checkbox-wrap"><input type="checkbox" name="checkbox-subtask" ${
                 s[1].done ? "checked" : ""
-              } onclick="setSubtaskStatus(this, ${indexTask}, '${
+              } onclick="obj.setSubtaskStatus(this, ${indexTask}, '${
                 s[0]
               }')"><div>${s[1].name}</div></div></div>`
           )
@@ -338,7 +338,7 @@ function editTaskTemplate(indexTask, currentTask) {
                   >
                   <input
                     oninput="showSubtaskControlButtons()"
-                    onkeypress="addSubtaskOnEnterPress(event)"
+                    onkeypress="obj.addSubtaskOnEnterPress(event)"
                     class="p-relative task-input-border task-input-category"
                     type="text"
                     id="task-subtasks"
@@ -361,7 +361,7 @@ function editTaskTemplate(indexTask, currentTask) {
                     <span class="separator"></span>
                     <div
                       class="task-subtask-icon-wrap d-flex-row-c-c"
-                      onclick="addSubtask()"
+                      onclick="obj.addSubtask()"
                     >
                       <span class="task-submit-subtask-icon"></span>
                     </div>
@@ -375,9 +375,9 @@ function editTaskTemplate(indexTask, currentTask) {
             <div>&#x2022;</div>
             <span class="new-input">${s[1].name}</span>
             <div class=" p-absolute d-flex-row-c-c gap-4px task-subtask-control-icon-wrap">
-                <span class="task-edit-subtask-icon" onclick="editSubtask(${i})"></span>
+                <span class="task-edit-subtask-icon" onclick="obj.editSubtask(${i})"></span>
                 <span class="separator-subtask-edit-delete-icons"></span>
-                <span class="task-delete-subtask-icon" onclick="deleteSubtask(${i})"></span>    
+                <span class="task-delete-subtask-icon" onclick="obj.deleteSubtask(${i})"></span>    
             </div>
         </li>
                     `
