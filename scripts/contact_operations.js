@@ -1,3 +1,5 @@
+let user = new User();
+
 /**
  * Returns an array alphabetically sorted by name.
  *
@@ -15,23 +17,21 @@ async function getSortedContactsArray() {
   return contactsArray;
 }
 
-/**
- * Adds a new contact to the database.
- *
- */
+
+
+
 async function addNewContact() {
-  if (!regexValidation()) {
-    return;
-  }
-  let newContactData = getContactInformation("add-contact-input-");
-  await submitObjectToDatabase("contacts", newContactData);
+  event.preventDefault()
+  user.buildNewUser()
+  await submitObjectToDatabase("contacts", user);
   await renderContactsList();
   closeContactOverlays();
   removeFocusFromAllContacts();
-  let addedContactIndex = getContactIndexByEmail(newContactData.email);
+  let addedContactIndex = getContactIndexByEmail(user.email);
   showContactDetails(addedContactIndex);
   showToastMessage("contact-created-toast-msg");
 }
+
 
 /**
  * Updates the current contact information on the firebase server
@@ -170,25 +170,7 @@ function getContactIndexByEmail(contactEmail) {
   return index;
 }
 
-/**
- * Collects a new contact's information typed into the form.
- *
- */
-function getContactInformation(htmlIdPrefix) {
-  let nameRef = document.getElementById(htmlIdPrefix + "name");
-  let emailRef = document.getElementById(htmlIdPrefix + "email");
-  let phoneRef = document.getElementById(htmlIdPrefix + "phone");
-  let contactData = {
-    name: nameRef.value,
-    email: emailRef.value,
-    phone: phoneRef.value,
-    password: "",
-    checkbox: "",
-    canLogin: false
-  };
-  clearAddContactForm(htmlIdPrefix);
-  return contactData;
-}
+
 
 /**
  * Checks whether contact in contact list has a first letter predecessor. If the contact has a first letter predecessor there is no need for an additional contact list bookmark related to this contact

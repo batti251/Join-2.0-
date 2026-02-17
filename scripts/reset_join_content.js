@@ -36,7 +36,7 @@ async function submitInitialContacts() {
  * @param {string } phone contact phone
  */
 function addInitalContact(name, email, phone, checkbox, password, canLogin) {
-  initialContact = new InitialContact(name, email, phone, checkbox, password, canLogin);
+  initialContact = new User(name, email, phone, checkbox, password, canLogin);
   initialContacts.push(initialContact);
 }
 

@@ -164,7 +164,7 @@ function getAddContactsScreenTemplate() {
           </div>
         </div>
         <div class="add-contact-input-check d-flex-column-c-c">
-          <form novalidate class="add-contacts-form-wrap" onsubmit="requiredInputValidation(undefined, undefined, newContact, undefined); event.preventDefault()">
+          <form id="add-contact-form" novalidate class="add-contacts-form-wrap" onsubmit="addNewContact()">
           <div class=" input-container"> 
           <div class="add-contact-input-wrap">           
             <input
@@ -172,6 +172,7 @@ function getAddContactsScreenTemplate() {
                 class="add-contact-input required"
                 placeholder="Name"
                 id="add-contact-input-name"
+                name="name"
                 oninput="resetErrorMessage()"
               />
               <img
@@ -191,6 +192,7 @@ function getAddContactsScreenTemplate() {
                 class="add-contact-input required"
                 placeholder="Email"
                 id="add-contact-input-email"
+                name="email"
                 oninput="resetErrorMessage()"
               />
               <img
@@ -209,6 +211,7 @@ function getAddContactsScreenTemplate() {
                 type="tel"
                 class="add-contact-input"
                 placeholder="Phone"
+                name="phone"
                 id="add-contact-input-phone"
                 oninput="resetErrorMessage()"
               />
