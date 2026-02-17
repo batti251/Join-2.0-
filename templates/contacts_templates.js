@@ -290,7 +290,7 @@ function getEditContactScreenTemplate(indexContact) {
             </div>
           </div>
           <div class="add-contact-input-check d-flex-column-c-c">
-            <form novalidate class="add-contacts-form-wrap d-flex-column" onsubmit="requiredInputValidation(undefined, undefined, undefined, ${indexContact}); event.preventDefault()">
+            <form id="edit-contact-form" novalidate class="add-contacts-form-wrap d-flex-column" onsubmit="updateContact(${indexContact}); event.preventDefault()">
             
             <div class="height-52px">
               <div class="add-contact-input-wrap d-flex-c-sb">
@@ -299,6 +299,7 @@ function getEditContactScreenTemplate(indexContact) {
                   class="add-contact-input required"
                   placeholder="Name"
                   id="input-${indexContact}-name"
+                  name="name"
                   oninput="resetErrorMessage()"
                 />
                 <img
@@ -316,6 +317,7 @@ function getEditContactScreenTemplate(indexContact) {
                   type="email"
                   class="add-contact-input required"
                   placeholder="Email"
+                  name="email"
                   id="input-${indexContact}-email"
                   oninput="resetErrorMessage()"
                 />
@@ -335,6 +337,7 @@ function getEditContactScreenTemplate(indexContact) {
                   type="tel"
                   class="add-contact-input"
                   placeholder="Phone"
+                  name="phone"
                   id="input-${indexContact}-phone"
                   oninput="resetErrorMessage()"
                 />

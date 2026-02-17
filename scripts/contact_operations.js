@@ -18,11 +18,16 @@ async function getSortedContactsArray() {
 }
 
 
-
-
 async function addNewContact() {
   event.preventDefault()
-  user.buildNewUser()
+  let userIndex = await user.validateUser();
+  console.log(userIndex);
+  
+  if (userIndex < 0) {
+    showToastMessage("add-contact-reject-msg") 
+    return};
+
+  user.buildNewUser("add-contact-form")
   await submitObjectToDatabase("contacts", user);
   await renderContactsList();
   closeContactOverlays();
@@ -39,36 +44,25 @@ async function addNewContact() {
  * @param {integer} indexContact
  */
 async function updateContact(indexContact) {
+  event.preventDefault()
   if (!regexValidation()) {
     return;
   }
-  let htmlIdPrefix = "input-" + String(indexContact) + "-";
-  let editedContactData = getToEditContactInformation(htmlIdPrefix);
-  let contactPath = "contacts/" + contactsArray[indexContact][0];
-  await patchDatabaseObject(contactPath, editedContactData);
+  let userIndex = await user.validateUser();
+  if (userIndex < 0) {
+    showToastMessage("edit-contact-reject-msg") 
+    return};
+
+ let userID = contactsArray[indexContact][0]
+  user.buildNewUser("edit-contact-form", indexContact)
+  await patchDatabaseObject(`contacts/${userID}`, user);
   await renderContactsList();
   renderContactDetails(indexContact);
   closeContactOverlays();
   showToastMessage("contact-updated-toast-msg");
 }
 
-/**
- * creates the contact Object for PUT Request from {@link updateContact}
- * @param {*} htmlIdPrefix 
- * @returns 
- */
-function getToEditContactInformation(htmlIdPrefix) {
-  let nameRef = document.getElementById(htmlIdPrefix + "name");
-  let emailRef = document.getElementById(htmlIdPrefix + "email");
-  let phoneRef = document.getElementById(htmlIdPrefix + "phone");
-  let contactData = {
-    name: nameRef.value,
-    email: emailRef.value,
-    phone: phoneRef.value,
-  };
-  clearAddContactForm(htmlIdPrefix);
-  return contactData;
-}
+
 
 /**
  * Deletes a contact from firebase server
@@ -76,6 +70,10 @@ function getToEditContactInformation(htmlIdPrefix) {
  * @param {integer} indexContact
  */
 async function deleteContact(indexContact) {
+  let userIndex = await user.validateUser();
+  if (userIndex < 0) {
+    showToastMessage("delete-contact-reject-msg") 
+    return};
   let contactId = contactsArray[indexContact][0];
   await deleteContactFromTasks(contactId);
   let path = "contacts/" + contactId;

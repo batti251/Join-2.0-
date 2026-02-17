@@ -16,40 +16,32 @@ class User {
   
   }
 
-
+  /**
+   *
+   * @returns - returns contact Index from DB, or -1, when no User was found
+   */
+  async validateUser() {
+    let validUser = contactsArray.findIndex((e) => e[0] == idUser);
+    return validUser;
+  }
 
 
 /**
  * Adds a new contact to the database.
  *
  */
-buildNewUser() {
-  
-  let form = document.getElementById("add-contact-form");
+buildNewUser(id, indexContact) {
+  let form = document.getElementById(id);
     let formData = new FormData(form);
-    this.getFormValues(formData, currentTask);
+    this.getFormValues(formData, indexContact);
 
 }
-/* 
-  if (!regexValidation()) {
-    return;
-  }
-  let newContactData = getContactInformation("add-contact-input-");
-  await submitObjectToDatabase("contacts", newContactData);
-  await renderContactsList();
-  closeContactOverlays();
-  removeFocusFromAllContacts();
-  let addedContactIndex = getContactIndexByEmail(newContactData.email);
-  showContactDetails(addedContactIndex);
-  showToastMessage("contact-created-toast-msg");
-} */
-
 
   /**
    * This Function builds the tasks key-value pairs from the {@link buildNewTask()}
    * @param {Object} formData 
    */
-  getFormValues(formData, currentTask) {
+  getFormValues(formData, indexContact) {
     for (const [key, value] of formData) {
       switch (key) {
         case "subtasks":
@@ -62,8 +54,11 @@ buildNewUser() {
           this[key] = value;
           break;
       }
-      this.addContactMetaData()
     }
+    if (indexContact) {
+      return
+    }
+    this.addContactMetaData()
   }
 
 addContactMetaData(){

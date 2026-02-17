@@ -256,6 +256,8 @@ function setInputTagValue(htmlId, valueToSet) {
  */
 function showToastMessage(htmlId) {
   document.body.style.overflow = "hidden";
+  console.log(htmlId);
+  
   document.getElementById(htmlId).classList.add("d-block");
   setTimeout(() => {
     msgRef = document.getElementById(htmlId);
