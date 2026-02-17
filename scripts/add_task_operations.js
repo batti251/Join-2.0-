@@ -1,23 +1,25 @@
-  let obj = new Task()
+let obj = new Task();
 
 /**
  * Adds new task to firebase server and directs user to board page
  *
  */
 async function addNewTask() {
-let x = await obj.validateUser()
-if (x < 0) {console.log("false") 
-  return};
-  obj.newAddTask()
-   await submitObjectToDatabase("tasks", obj);
+  let userIndex = await obj.validateUser();
+  if (userIndex < 0) return;
+  obj.buildNewTask("form-add-task");
+  await submitObjectToDatabase("tasks", obj);
   tasksArray = await getTasksArray();
   clearAddTaskForm();
+  closeAddTaskDialog();
+}
+
+function closeAddTaskDialog() {
   showToastMessage("add-task-toast-msg");
   setTimeout(() => {
     directToBoardPage();
   }, 2000);
 }
-
 
 /**
  * Searches a contact to assign via contact's name
@@ -28,65 +30,42 @@ function searchContact() {
     .value.toLowerCase();
   let foundRefs = "";
   let contactsRefs = Array.from(
-    document.getElementsByClassName("task-assigned-contact-wrap")
+    document.getElementsByClassName("task-assigned-contact-wrap"),
   );
   for (let i = 0; i < contactsRefs.length; i++) {
     contactsRefs[i].style.display = "none";
   }
   foundRefs = contactsRefs.filter((htmlElement) =>
-    htmlElement.innerText.toLowerCase().includes(searchKey)
+    htmlElement.innerText.toLowerCase().includes(searchKey),
   );
   for (let i = 0; i < foundRefs.length; i++) {
     foundRefs[i].style.display = "";
   }
 }
 
-
-
-
-
-
-// EDIT TASK refactoring!
 /**
- * Gets new task scalar information from input fields
+ * This Function submits the edited Task to the firebase and reloads the board
  *
- * @param {string} newTaskStatusId
- * @param {object} editedTaskObj
- * @returns
+ * @param {String} indexTask index of the task
  */
-function getNewTaskScalarInformation(newTaskStatusId, editedTaskObj) {
-    console.log("NÖTIG");
-  if (editedTaskObj) {
-    insertMandatoryTaskInfo(editedTaskObj);
-    insertOptionalScalarTaskInfo(editedTaskObj);
-    return editedTaskObj;
-  } else {
-    let newTaskScalarInfo = {};
-    insertMandatoryTaskInfo(newTaskScalarInfo, newTaskStatusId);
-    insertOptionalScalarTaskInfo(newTaskScalarInfo);
-    return newTaskScalarInfo;
-  }
+async function submitEditTask(indexTask) {
+  let editedTaskObj = tasksArray[indexTask][1];
+  let taskID = tasksArray[indexTask][0];
+  let userIndex = await obj.validateUser();
+  event.preventDefault();
+  if (userIndex < 0) return;
+  obj.buildNewTask("form-edit-task", editedTaskObj);
+  await patchDatabaseObject(`tasks/${taskID}`, obj);
+  tasksArray = await getTasksArray();
+  await initBoard();
+  closeEditTaskDialog();
 }
 
-// EDIT TASK refactoring!
-/**
- *
- * @param {object} newTaskObj
- * @param {string} newTaskStatusId
- */
-function insertMandatoryTaskInfo(newTaskObj, newTaskStatusId) {
-  console.log("NÖTIG");
-  
-  newTaskObj.title = getInputTagValue("task-title");
-  newTaskObj.dueDate = getInputTagValue("task-due-date");
-  newTaskObj.priority = newTaskPriority;
-  newTaskObj.source = "human";
-  let userID = sessionStorage.getItem("id");
-  let userObj = contactsArray.find(e => e[0] == userID);
-  newTaskObj.creator = userObj[1].name;
-  newTaskObj.creatorId = sessionStorage.getItem("id")
-  if (newTaskStatusId) {
-    newTaskObj.category = getTaskCategoryFirebaseName();
-    newTaskObj.status = newTaskStatusId;
-  }
+function closeEditTaskDialog() {
+  let overlay = document.querySelector(".task-overlay-wrap");
+  showToastMessage("add-task-toast-msg");
+  closeTaskOverlays();
+  setTimeout(() => {
+    overlay.innerHTML = "";
+  }, 500);
 }

@@ -202,7 +202,7 @@ function editTaskTemplate(indexTask, currentTask) {
       </div>
 
 
-<form class="" onsubmit="requiredInputValidation(undefined, ${indexTask}); event.preventDefault()">
+<form class="" id="form-edit-task" onsubmit="submitEditTask(${indexTask})">
             <div class="d-flex-column gap-8px pd-b-64px">
               <div class="task-main">
                 <div class="task-area task-title">
@@ -215,6 +215,7 @@ function editTaskTemplate(indexTask, currentTask) {
                     class="task-input-border task-input-text-field editable required"
                     type="text"
                     id="task-title"
+                    name="title"
                     value="${currentTask.title}"
                     
                   />
@@ -229,6 +230,7 @@ function editTaskTemplate(indexTask, currentTask) {
                   <textarea
                     class="task-input-border task-input-text-area editable"
                     id="task-description"
+                    name="description"
                   >${currentTask?.description || ""}</textarea>
                 </div>
                 <div class="task-area task-title">
@@ -242,6 +244,7 @@ function editTaskTemplate(indexTask, currentTask) {
                     id="task-due-date"
                     value="${currentTask.dueDate}"
                     onclick="this.showPicker()"
+                    name="dueDate"
                     
                   />
                   <div class="d-none validation">This field is required!</div>
@@ -264,7 +267,7 @@ function editTaskTemplate(indexTask, currentTask) {
                           : ""
                       }"
                       id="task-priority-urgent"
-                      onclick="setTaskPriority('task-priority-urgent')"
+                      onclick="obj.setTaskPriority('task-priority-urgent')"
                       
                     >
                       <span>Urgent</span>
@@ -278,7 +281,7 @@ function editTaskTemplate(indexTask, currentTask) {
                           : ""
                       }"
                       id="task-priority-medium"
-                      onclick="setTaskPriority('task-priority-medium')"
+                      onclick="obj.setTaskPriority('task-priority-medium')"
                     >
                       <span>Medium</span>
                       <span class="btn-priority-icon medium-icon"></span>
@@ -291,7 +294,7 @@ function editTaskTemplate(indexTask, currentTask) {
                           : ""
                       }"
                       id="task-priority-low"
-                      onclick="setTaskPriority('task-priority-low')"
+                      onclick="obj.setTaskPriority('task-priority-low')"
                     >
                       <span>Low</span>
                       <span class="btn-priority-icon low-icon"></span>
@@ -311,6 +314,7 @@ function editTaskTemplate(indexTask, currentTask) {
                     id="task-assigned-contacts"
                     placeholder="Select contacts to assign"
                     oninput="searchContact()"
+                    name="assignedTo"
                     onclick="openTaskAssignedContactsDropdown()"
                     autocomplete="off"
                   />
@@ -341,6 +345,7 @@ function editTaskTemplate(indexTask, currentTask) {
                     onkeypress="obj.addSubtaskOnEnterPress(event)"
                     class="p-relative task-input-border task-input-category"
                     type="text"
+                    name="subtasks"
                     id="task-subtasks"
                     value="${currentTask?.subtask || ""}"
                   />

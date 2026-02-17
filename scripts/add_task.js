@@ -10,8 +10,6 @@ async function addTaskInit() {
   contactsArray = await getSortedContactsArray();
   tasksArray = await getTasksArray();
   renderAddTaskForm("add-task-form-wrap", "triage");
-  console.log(contactsArray);
-  
 }
 
 /**

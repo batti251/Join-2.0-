@@ -85,7 +85,7 @@ function getAddTaskFormTemplate(taskStatusId) {
   return `
   <form
     id="form-add-task"
-    onsubmit="requiredInputValidation('${taskStatusId}'); event.preventDefault() "
+    onsubmit="addNewTask('${taskStatusId}'); event.preventDefault() "
   >
     <div class="form-sub-wraps">
       <div class="task-main">

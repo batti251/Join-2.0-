@@ -4,8 +4,7 @@ let overlayTransitionMiliSeconds = 300;
 let newContact = "newContact";
 let emptyJSON = {};
 let userArrayuserArray;
-let idUser = ""
-
+let idUser = sessionStorage.getItem("id")
 
 
 async function test() {
@@ -233,7 +232,11 @@ function clearInputTagValue(htmlId) {
  * @returns value from the according ID
  */
 function getInputTagValue(htmlId) {
-  return document.getElementById(htmlId).value;
+  if (document.getElementById(htmlId)) {
+    console.log(document.getElementById(htmlId));
+    
+    return document.getElementById(htmlId).value;
+  }
 }
 /**
  * Sets the value of an input html field

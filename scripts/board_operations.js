@@ -445,24 +445,3 @@ function loadOptionalScalarTaskInfo(currentTask, indexTask) {
   newSubtasksIndices = currentTask.subtasks?.map((i) => i[1].Id) || [];
   newTaskSubtasks = Object.values(currentSubtasks).map((i) => i[1]);
 }
-
-/**
- * This Function submits the edited Task to the firebase and reloads the board
- *
- * @param {String} indexTask index of the task
- */
-async function submitEditTask(indexTask) {
-  let overlay = document.querySelector(".task-overlay-wrap");
-  let editedTaskObj = tasksArray[indexTask][1];
-  let taskID = tasksArray[indexTask][0];
-  let newTaskObj = getNewTaskScalarInformation("", editedTaskObj);
-  await updateDatabaseObject(`tasks/${taskID}`, newTaskObj);
-  tasksArray = await getTasksArray();
-  await submitNewTaskOptionalComplexInfo(taskID);
-  await initBoard();
-  showToastMessage("add-task-toast-msg");
-  closeTaskOverlays();
-  setTimeout(() => {
-    overlay.innerHTML = "";
-  }, 500);
-}
