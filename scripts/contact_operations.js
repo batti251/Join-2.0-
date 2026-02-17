@@ -76,8 +76,7 @@ async function deleteContact(indexContact) {
     return};
   let contactId = contactsArray[indexContact][0];
   await deleteContactFromTasks(contactId);
-  let path = "contacts/" + contactId;
-  responseMessage = await deleteDataBaseElement(path);
+  await deleteDataBaseElement("contacts/" + contactId);
   clearContactDetails();
   await renderContactsList();
   closeContactOverlays();

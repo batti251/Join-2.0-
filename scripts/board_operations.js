@@ -413,6 +413,10 @@ function getTaskCompletedSubtasksNumber(indexTask) {
  * @param {String} indexTask  index of the task
  */
 async function deleteTask(indexTask) {
+  let userIndex = await obj.validateUser();
+  if (userIndex < 0) {
+    showToastMessage("delete-task-reject-msg") 
+    return};
   closeTaskOverlays();
   await deleteDataBaseElement(`tasks/${tasksArray[indexTask][0]}`);
   await initBoard();
