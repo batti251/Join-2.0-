@@ -6,7 +6,9 @@ let obj = new Task();
  */
 async function addNewTask() {
   let userIndex = await obj.validateUser();
-  if (userIndex < 0) return;
+  if (userIndex < 0) {
+    showToastMessage("add-task-reject-msg") 
+    return};
   obj.buildNewTask("form-add-task");
   await submitObjectToDatabase("tasks", obj);
   tasksArray = await getTasksArray();
@@ -19,6 +21,10 @@ function closeAddTaskDialog() {
   setTimeout(() => {
     directToBoardPage();
   }, 2000);
+}
+
+function name(params) {
+  
 }
 
 /**
@@ -53,7 +59,9 @@ async function submitEditTask(indexTask) {
   let taskID = tasksArray[indexTask][0];
   let userIndex = await obj.validateUser();
   event.preventDefault();
-  if (userIndex < 0) return;
+  if (userIndex < 0) {
+    showToastMessage("edit-task-reject-msg");
+    return};
   obj.buildNewTask("form-edit-task", editedTaskObj);
   await patchDatabaseObject(`tasks/${taskID}`, obj);
   tasksArray = await getTasksArray();
