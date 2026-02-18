@@ -5,6 +5,7 @@ button {
   border-radius: 8px;
   border-style: unset;
   padding: 0;
+      background-color: transparent;
   &:hover {
     cursor: pointer;
   }
@@ -59,6 +60,7 @@ button {
 }
 
 .btn-highlight {
+  padding: 0 6px;
   background-color: $color-highlight;
   @include size($h: 48px, $w: 100%);
   max-width: 100%;

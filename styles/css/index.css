@@ -15,6 +15,7 @@ button {
   border-radius: 8px;
   border-style: unset;
   padding: 0;
+  background-color: transparent;
 }
 button:hover {
   cursor: pointer;
@@ -79,6 +80,7 @@ button > a {
 }
 
 .btn-highlight {
+  padding: 0 6px;
   background-color: #29abe2;
   height: 48px;
   width: 100%;

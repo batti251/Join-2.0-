@@ -10,9 +10,9 @@
     <link rel="stylesheet" href="../styles/css/main.css" />
     <link rel="stylesheet" href="../styles/css/login.css" />
     <link rel="stylesheet" href="../styles/css/triage.css" />
-
+    <script src="../templates/stakeholder_templates.js"></script>
     <script src="./../scripts/db.js"></script>
-    <script src="./../scripts/init.js"></script>
+    <script src="./../scripts/init.js" defer ></script>
     <script src="./../script.js"></script>
   </head>
   <body onload="inits()">
@@ -36,40 +36,7 @@
         <header class="header-index"></header>
 
 
-          <main class="triage-container stakeholder-container">
-
-<div class="container-wrap stakeholder-wrap">
-
-
-<div class="stakeholder-headline">
-  <div class="headline-navigate">
-  <a href="./../index.html" class="arrow-left">
-              <img src="../assets/icons/arrow-left.svg" alt=""/>
-            </a>
-  <span><span id="ai-requests"></span> / 10 requests used today</span>
-</div>
- <h1>Welcome</h1>
-</div>
-
-
-<h2>Easily create a ticket by sending an email - no extra steps needed.</h2>
-
-<div class="figure">
-    <img src="./../assets/icons/triage_kanban_request.svg" alt="">
-
-<div class="paragraph">
-<p>On this platform, you can submit your feature requests via email. 
-    Our AI system will automatically generate a ticket with a deadline and priority level. 
-</p>
-
-<p>A total of 10 requests can be created per day. 
-    After this limit, emails can still be sent, but they will be manually reviewed by our team instead of generating AI tickets.</p>
-</div>
-</div>
-
-<button class="btn-highlight btn-stakeholder"><a href="./howto.html">Continue</a><img src="" alt=""></button>
-</div>
-
+          <main class="triage-container stakeholder-container" id="stakeholder-content">
 </main>
 
 

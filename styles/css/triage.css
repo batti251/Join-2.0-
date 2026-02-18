@@ -215,6 +215,7 @@ h1 {
 }
 
 h2 {
+  margin-top: 24px;
   font-family: "Inter";
   font-size: 28px;
   font-weight: 400;
@@ -355,6 +356,21 @@ strong[class*=hover] {
   color: #29abe2;
 }
 
+.ai-limit {
+  margin-top: 24px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  background-color: #FFD2D2;
+  font-family: "Inter";
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 120%;
+}
+
+#ai-requests {
+  color: #ff8190;
+}
+
 @media screen and (max-width: 992px) {
   .choice-wrap {
     padding: 20px;
@@ -463,6 +479,10 @@ strong[class*=hover] {
   .figure > img {
     width: 292px;
     height: 107;
+  }
+  .ai-limit {
+    margin-top: 0;
+    padding: 8px 16px;
   }
 }
 @media screen and (max-height: 766px) {

@@ -58,6 +58,8 @@ h1 {
 }
 
 h2 {
+  margin-top: 24px;
+
   @include font($fs: 28px, $fw: 400);
   margin: 0.25rem;
 }
@@ -148,6 +150,19 @@ body:has(strong.form-hover:hover) button.form-hover {
 
 strong[class*="hover"]{
   color: $color-highlight;
+}
+
+
+.ai-limit{
+  margin-top: 24px;
+  padding: 16px 24px;
+  border-radius: 8px;
+  background-color: #FFD2D2;
+  @include font($fw: 500, $fs: 20px)
+}
+
+#ai-requests{
+  @include text($c: #ff8190);
 }
 
 @media screen and (max-width: 992px) {
@@ -293,12 +308,19 @@ strong[class*="hover"]{
       height: 107;
     }
   }
+
+  
+  .ai-limit{
+    margin-top: 0;
+    padding: 8px 16px;
+  }
 }
 
 @media screen and (max-height: 766px) {
   .grid {
     grid-template-rows: 20% 100dvh 10%;
   }
+
 }
 
 @media screen and (max-width: 380px) {
