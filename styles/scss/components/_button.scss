@@ -4,6 +4,7 @@
 button {
   border-radius: 8px;
   border-style: unset;
+  padding: 0;
   &:hover {
     cursor: pointer;
   }
@@ -17,9 +18,14 @@ button {
     box-shadow: none;
     cursor: default;
   }
+  > a {
+    @include dFlex();
+    @include size($w: 100%, $h: 100%);
+  }
 }
 
 .btn-primary {
+  padding: 0 6px;
   background-color: $color-primary;
   @include size($h: 48px, $w: 100%);
   max-width: 110px;
