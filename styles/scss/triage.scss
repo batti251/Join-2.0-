@@ -115,6 +115,28 @@ h2 {
   @include size($w: 100%);
 }
 
+.triage-container{
+  padding: 84px 20px !important;
+}
+
+.textblock-wrap{
+  height: 170px;
+}
+
+.textblock{
+    height: 140px;
+    width: 84%;
+    border-radius: 10px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #d1d1d1;
+    padding: 8px;
+}
+
+  textarea{
+    @include size($h: 100%, $w: 100%)
+  }
+
 
 body:has(strong.mail-hover:hover) button.mail-hover {
   animation: pulse 1s;
@@ -190,7 +212,8 @@ strong[class*="hover"]{
       "main"
       "footer";
     /* grid-template-rows: 30% calc(100dvh - 40%) 10%; */
-    grid-template-rows: 25% calc(100dvh - 40%) 10%;
+    /* grid-template-rows: 20% 100dvh 10%; */
+    grid-template-rows: 8% calc(100dvh - 20%) 10%;
     max-height: 560px;
   }
 
@@ -274,6 +297,18 @@ strong[class*="hover"]{
 
 @media screen and (max-height: 766px) {
   .grid {
-    grid-template-rows: 10% 86dvh 0%;
+    grid-template-rows: 20% 100dvh 10%;
   }
+}
+
+@media screen and (max-width: 380px) {
+
+/*   .grid{
+    grid-template-rows: 20% 100dvh 10%;
+  } */
+
+
+  .triage-container {
+    padding: 124px 20px !important;
+}
 }

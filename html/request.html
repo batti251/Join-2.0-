@@ -34,48 +34,50 @@
 
 
         <header class="header-index">
-     
-      </header>
-
-
-
-          <main class="triage-container">
+        </header>
+        
+        
+        
+        <main class="triage-container">
+            <h1>Request Form</h1>
 
  <form onsubmit="sendMail(event)" novalidate action="/sendMail.php" class="mail-request">
             <div class="input-container">
               <div class="input-content">
-                <input placeholder="Your Name" type="text" name="name" required pattern="([\s\S]*\S){2,}[\s\S]*" />
+                <input class="validate" placeholder="Your Name" type="text" name="name" required pattern="([\s\S]*\S){2,}[\s\S]*" />
               </div> 
-              <div id="user-existance-error" class="login-error validation d-none"> User does not exist. Please sign up before login.</div>
+              <div id="user-existance-error" class="login-error validation d-none"> This Field is required!</div>
             </div>
 
             <div class="input-container">
               <div class="input-content">
-                <input placeholder="Your Mail" type="email" name="email" required pattern="^[a-zA-Z0-9._%+\-]+@([a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}$"  />
+                <input class="validate" placeholder="Your Mail" type="email" name="email" required pattern="^[a-zA-Z0-9._%+\-]+@([a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}$"  />
               </div> 
-              <div id="user-existance-error" class="login-error validation d-none"> User does not exist. Please sign up before login.</div>
+              <div id="user-existance-error" class="login-error validation d-none"> Please enter a valid email!</div>
             </div>
             
             <div class="input-container">
               <div class="input-content">
-                <input placeholder="Subject" type="text" name="subject" required pattern="([\s\S]*\S){5,}[\s\S]*" />
+                <input class="validate" placeholder="Subject" type="text" name="subject" required pattern="([\s\S]*\S){2,}[\s\S]*" />
               </div> 
-              <div id="user-existance-error" class="login-error validation d-none"> User does not exist. Please sign up before login.</div>
+              <div id="user-existance-error" class="login-error validation d-none">Please enter a subject!</div>
             </div>
 
                 <select name="request-type" id="">
-                    <option value="technical-task">Technical Task</option>
-                    <option value="user-story">User Story</option>
-                    <option value="bug">Bug Report</option>
+                    <option  class="task-input-dropdown" value="technical-task">Technical Task</option>
+                    <option  class="task-input-dropdown" value="user-story">User Story</option>
                 </select>
 
-                <textarea name="body" id="" required></textarea>
+                <div class="textblock-wrap">
+                <div class="textblock">
+                <textarea class="validate" placeholder="Enter your Text here" name="body" id="" pattern="([\s\S]*\S){5,}[\s\S]*"  required></textarea>
+                </div>
+                <div id="user-existance-error" class="login-error validation d-none"> This Field is required!</div>
+                </div>
 
 
-            <button class="btn-primary" type="submit">Send</button>
-           <a href="mailto:bastibuenz25@gmail.com">asdasd</a>
-          </form>
-
+                <button class="btn-primary" type="submit">Send</button>
+              </form>
 </main>
 
 

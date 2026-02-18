@@ -385,6 +385,22 @@ function resetErrorMessage() {
   });
 }
 
+
+
+function checkValidation() {
+  let toValidate = document.querySelectorAll(".validate")
+  let error = document.querySelectorAll(".validation")
+  console.log(toValidate);
+  let valid;
+  [...toValidate].every((e,i) => {
+      valid = e.checkValidity();
+      valid ? error[i].classList.add("d-none") : error[i].classList.remove("d-none");
+     return valid;
+  });
+ return valid;
+}
+
+
 /**
  * This Function adds z-index-1 - class to current clicked element
  * It removes all current set z-index-1. classes
@@ -403,11 +419,13 @@ function setZIndex(dropdown) {
 function sendMail(e) {
   e.preventDefault();
   let form = new FormData(e.target);
-  
   for (const [key, values] of form) {
     emptyJSON[key] = values;
   }
-  console.log(emptyJSON);
+  
+ if (!checkValidation()) {
+  return
+ }
 
   fetch(webhook, {
     method: "POST",

@@ -47,6 +47,7 @@ input {
 textarea {
   border: none;
   outline: none;
+  resize: none;
 }
 
 form > textarea {
