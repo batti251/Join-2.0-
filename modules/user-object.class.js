@@ -61,6 +61,10 @@ buildNewUser(id, indexContact) {
     this.addContactMetaData()
   }
 
+  /**
+   * Adds additional Data to the new user-object
+   * This Function is only called, when no user is set up 
+   */
 addContactMetaData(){
     this.checkbox = "";
     this.password = "";

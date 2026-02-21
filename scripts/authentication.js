@@ -80,20 +80,14 @@ function getNewUserInformation() {
   let key = "";
   let value = "";
   for (let index = 0; index < userInput.length; index++) {
-    console.log(key);
-    
     if (key == "") {
-      console.log("check");
-      
         key = "canLogin";
         value = true;
         userCredential[key] = value;
     } 
-
     key = userInput[index].name;
     value = userInput[index].value;
     userCredential[key] = value;
-    
   }
   checkMailRedundancy(userCredential);
 }

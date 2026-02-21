@@ -154,12 +154,17 @@ async function sendUpdateMail(currentTask, targetStatus) {
   })
 }
 
-
+/**
+ * Handler for proper task-update
+ * It updates the database, if a column or currentTask was set.
+ * It also sends an email to the task-creator.
+ * 
+ * @param {String} column - the target column 
+ */
 async function moveTaskToColumn(column) {
   if (!column || !currentTask) return;
   const targetStatus = column.id.replace("-", "");
   await updateDatabaseObject(`tasks/${currentTask[0]}/status`, targetStatus);
-  console.log(currentTask);
   await sendUpdateMail(currentTask, targetStatus)
   await initBoard();
 }

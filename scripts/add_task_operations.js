@@ -16,6 +16,10 @@ async function addNewTask() {
   closeAddTaskDialog();
 }
 
+/**
+ * This function shows toast-message after successfull task add
+ * It directs to the board, after a 2second timeout
+ */
 function closeAddTaskDialog() {
   showToastMessage("add-task-toast-msg");
   setTimeout(() => {
@@ -23,9 +27,6 @@ function closeAddTaskDialog() {
   }, 2000);
 }
 
-function name(params) {
-  
-}
 
 /**
  * Searches a contact to assign via contact's name
@@ -69,6 +70,9 @@ async function submitEditTask(indexTask) {
   closeEditTaskDialog();
 }
 
+/**
+ * This function shows toast-message after successfull user edit
+ */
 function closeEditTaskDialog() {
   let overlay = document.querySelector(".task-overlay-wrap");
   showToastMessage("add-task-toast-msg");

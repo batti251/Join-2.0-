@@ -303,6 +303,9 @@ buildNewTask(id, currentTask) {
     }
   }
 
+  /**
+   * Handler to build Assigned-To-Array for the new Task 
+   */
   assignedToFunction() {
     this.assignedTo = []
     for (let contactID of newTaskAssignedContactsIndices) {
