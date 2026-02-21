@@ -356,6 +356,24 @@ strong[class*=hover] {
   color: #29abe2;
 }
 
+.join-logo {
+  position: absolute;
+  top: 4%;
+  left: 4%;
+  width: 10%;
+  height: 10%;
+}
+.join-logo a {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+select:hover {
+  cursor: pointer;
+}
+
 .message {
   position: absolute;
   top: 50%;

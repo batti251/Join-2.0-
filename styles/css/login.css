@@ -149,6 +149,9 @@ body {
   box-sizing: border-box;
 }
 
+.join-logo {
+  height: 100%;
+}
 .join-logo > img {
   /* @include position($p: absolute, $t: 5%, $l: 10%); */
   height: 100%;
@@ -156,6 +159,13 @@ body {
   z-index: 2;
   max-width: 80px;
   max-height: 80px;
+}
+.join-logo a {
+  max-width: 80px;
+  max-height: 80px;
+  height: 100%;
+  width: 100%;
+  display: flex;
 }
 
 header {
@@ -343,7 +353,7 @@ main {
   .btn-transparent {
     font-size: 16px;
   }
-  .join-logo > img {
+  .join-logo {
     position: absolute;
     top: 5%;
     right: unset;

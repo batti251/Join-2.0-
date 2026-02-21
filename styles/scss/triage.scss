@@ -151,6 +151,26 @@ strong[class*="hover"] {
   color: $color-highlight;
 }
 
+.join-logo{
+  position: absolute;
+    top: 4%;
+    left: 4%;
+    width: 10%;
+    height: 10%;
+    a{
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+    }
+}
+
+select{
+  &:hover{
+    cursor: pointer;
+  }
+}
+
 .message {
   @include position($p: absolute, $t: 50%, $l: 50%);
   @include size($w: 50%, $h: 5%);

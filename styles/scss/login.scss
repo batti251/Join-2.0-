@@ -7,6 +7,7 @@ body {
 }
 
 .join-logo {
+    height: 100%;
   > img {
     /* @include position($p: absolute, $t: 5%, $l: 10%); */
     @include size($h: 100%, $w: 100%);
@@ -14,6 +15,14 @@ body {
     max-width: 80px;
     max-height: 80px;
   }
+  a{
+    max-width: 80px;
+    max-height: 80px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+  }
+
 }
 
 header {
@@ -155,7 +164,7 @@ main {
     font-size: 16px;
   }
 
-  .join-logo > img {
+  .join-logo  {
     @include position($p: absolute, $t: 5%, $l: 10%);
   }
 }
