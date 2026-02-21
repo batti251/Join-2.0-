@@ -115,10 +115,52 @@ function searchTask() {
   setNoTaskFoundFeedback(foundRef);
 }
 
+/**
+ * This builds a new object, useable for the n8n Mail recall
+ * This function is called, when a task was moved to another column
+ * 
+ * @param {Object} currentTask - the task, that has been changed 
+ * @param {string} targetStatus - the new status-id 
+ * @returns - the new built Object
+ */
+function mapObject(currentTask, targetStatus){
+  let objRef = {}
+  let taskRef = currentTask[1]
+  objRef = {
+    "mail" : taskRef.mail,
+    "newStatus" : targetStatus,
+    "title" : taskRef.title,
+    "name" : taskRef.name
+  }
+
+  return objRef
+}
+
+/**
+ * This Function triggers the n8n-Webhook Mailing
+ * It's triggered, after a task was moved within the board
+ * 
+ * @param {Object} currentTask - the task, that has been changed 
+ * @param {string} targetStatus - the new status-id 
+ */
+async function sendUpdateMail(currentTask, targetStatus) {
+  let obj = mapObject(currentTask, targetStatus)
+    fetch(webhookMailUpdate, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(obj)
+  })
+}
+
+
 async function moveTaskToColumn(column) {
   if (!column || !currentTask) return;
   const targetStatus = column.id.replace("-", "");
   await updateDatabaseObject(`tasks/${currentTask[0]}/status`, targetStatus);
+  console.log(currentTask);
+  await sendUpdateMail(currentTask, targetStatus)
   await initBoard();
 }
 
