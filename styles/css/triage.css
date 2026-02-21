@@ -356,11 +356,33 @@ strong[class*=hover] {
   color: #29abe2;
 }
 
+.message {
+  position: absolute;
+  top: 50%;
+  right: unset;
+  bottom: unset;
+  left: 50%;
+  /* transform: translate(-50%, -50%); */
+  height: 5%;
+  width: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #2a3647;
+  color: white;
+  border: solid 2px;
+  border-radius: 10px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
+}
+
 .ai-limit {
   margin-top: 24px;
   padding: 16px 24px;
   border-radius: 8px;
-  background-color: #FFD2D2;
+  background-color: #ffd2d2;
   font-family: "Inter";
   font-size: 20px;
   font-weight: 500;
@@ -492,8 +514,8 @@ strong[class*=hover] {
 }
 @media screen and (max-width: 380px) {
   /*   .grid{
-      grid-template-rows: 20% 100dvh 10%;
-    } */
+    grid-template-rows: 20% 100dvh 10%;
+  } */
   .triage-container {
     padding: 124px 20px !important;
   }

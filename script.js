@@ -427,6 +427,7 @@ function sendMail(e) {
   return
  }
 
+
   fetch(webhook, {
     method: "POST",
     headers: {
@@ -434,17 +435,27 @@ function sendMail(e) {
     },
     body: JSON.stringify(emptyJSON)
   })
-  .then(response => response.text())
-  .then(result => {
-    console.log("Mail sent:", result);
-    alert("Mail wurde gesendet ✅");
+  .then(response => {
+    console.log(response);
+    console.log(response.ok);
+    
+    if (response.ok) {
+      showMessageBox("success");
+      
+    } else {
+      showMessageBox("error");
+    }
   })
   .catch(error => {
-    console.error("Error:", error);
-    alert("Fehler beim Senden ❌");
-  });
+    console.error("Fetch error:", error);
+    showMessageBox("error");
+  })
+  .finally(() => {
+    resetInputs();
+    hideMessageBox()
+  })
 
-  resetInputs()
+
 
 }
 
@@ -453,4 +464,16 @@ function resetInputs() {
   [...requiredFields].forEach(e => { 
    e.value = ""
   });
+}
+
+function showMessageBox(type) {
+  let gridRef =  document.getElementById('login-view');
+  type == "error" ?  gridRef.innerHTML += messageError() : gridRef.innerHTML += messageSuccess() 
+}
+
+function hideMessageBox() {
+    setTimeout(() => {
+    let messageRef = document.querySelectorAll(".message");
+    [...messageRef][0].outerHTML = ""
+  }, 2000);
 }

@@ -105,3 +105,29 @@ function initHowToTemplate(aiNumber) {
 
     `
 }
+
+function messageSuccess() {
+  return `
+  <div class="message">
+  <span>Thank you! Your form has been sent!</span>
+  <svg class="checkmark" viewBox="0 0 52 52" aria-hidden="true">
+    <path
+      d="M14 27 L22 35 L38 18"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </svg>
+</div>
+  `
+}
+
+function messageError() {
+  return `
+  <div class="message">
+  <span>Ooops, something went wrong.. Please try again</span>
+</div>
+  `
+}

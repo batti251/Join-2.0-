@@ -112,33 +112,32 @@ h2 {
   }
 }
 
-.btn-group{
+.btn-group {
   @include dFlex($fd: row, $g: 16px, $ai: unset, $jc: unset);
   @include size($w: 100%);
 }
 
-.triage-container{
+.triage-container {
   padding: 84px 20px !important;
 }
 
-.textblock-wrap{
+.textblock-wrap {
   height: 170px;
 }
 
-.textblock{
-    height: 140px;
-    width: 84%;
-    border-radius: 10px;
-    border-style: solid;
-    border-width: 1px;
-    border-color: #d1d1d1;
-    padding: 8px;
+.textblock {
+  height: 140px;
+  width: 84%;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d1d1d1;
+  padding: 8px;
 }
 
-  textarea{
-    @include size($h: 100%, $w: 100%)
-  }
-
+textarea {
+  @include size($h: 100%, $w: 100%);
+}
 
 body:has(strong.mail-hover:hover) button.mail-hover {
   animation: pulse 1s;
@@ -148,20 +147,31 @@ body:has(strong.form-hover:hover) button.form-hover {
   animation: pulse 1s;
 }
 
-strong[class*="hover"]{
+strong[class*="hover"] {
   color: $color-highlight;
 }
 
+.message {
+  @include position($p: absolute, $t: 50%, $l: 50%);
+  @include size($w: 50%, $h: 5%);
+  transform: translate(-50%, -50%);
+  background-color: #2a3647;
+  color: white;
+  border: solid 2px  ;
+  border-radius: 10px;
+  padding: 8px;
+  @include dFlex();
+}
 
-.ai-limit{
+.ai-limit {
   margin-top: 24px;
   padding: 16px 24px;
   border-radius: 8px;
-  background-color: #FFD2D2;
-  @include font($fw: 500, $fs: 20px)
+  background-color: #ffd2d2;
+  @include font($fw: 500, $fs: 20px);
 }
 
-#ai-requests{
+#ai-requests {
   @include text($c: #ff8190);
 }
 
@@ -309,8 +319,7 @@ strong[class*="hover"]{
     }
   }
 
-  
-  .ai-limit{
+  .ai-limit {
     margin-top: 0;
     padding: 8px 16px;
   }
@@ -320,17 +329,14 @@ strong[class*="hover"]{
   .grid {
     grid-template-rows: 20% 100dvh 10%;
   }
-
 }
 
 @media screen and (max-width: 380px) {
-
-/*   .grid{
+  /*   .grid{
     grid-template-rows: 20% 100dvh 10%;
   } */
 
-
   .triage-container {
     padding: 124px 20px !important;
-}
+  }
 }
