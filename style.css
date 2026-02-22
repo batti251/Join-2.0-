@@ -1,5 +1,11 @@
 * {
   font-family: Inter;
+    margin: 0;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar-track {
+  background: #2a3647;
 }
 
 body {
@@ -27,6 +33,7 @@ ul {
 
 button {
   border-style: unset;
+  cursor: pointer;
 } /*  */
 
 button:disabled {
@@ -37,11 +44,37 @@ button:disabled:hover {
   background-color: gray;
   box-shadow: none;
   cursor: default;
-} /*  */
+} 
+
+
+.disable-scroll {
+  overflow: hidden;
+}
+
+menu {
+  padding: 0;
+  margin: 0;
+}
 
 input {
   border: none;
   outline: none;
+}
+
+input[type="checkbox"] {
+  background: url(/assets/icons/checkbox.svg) no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  padding: 0 0 0 0px;
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
+  cursor: pointer;
+}
+
+input::-webkit-calendar-picker-indicator {
+  cursor: pointer;
 }
 
 textarea {
@@ -65,27 +98,10 @@ form > select {
   border-color: #d1d1d1;
   height: 50px;
   width: 32%;
-
 }
 
 .text-center {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.scroll-container {
-  scroll-behavior: smooth;
-  overflow-y: scroll;
-}
-
-.width-100p {
-  width: 100%;
-}
-
-.text-center-relative {
-  position: relative;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -107,239 +123,14 @@ form > select {
   display: none !important;
 }
 
-.d-flex-row-c-c {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.d-flex-column-c-c {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-.d-flex-column-c {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.d-flex-c-sb {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.d-flex-sb {
-  display: flex;
-  justify-content: space-between;
-}
-
-.d-flex-row-end-sb {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-}
-
-.d-flex-row-c-fe {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.d-flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.d-flex-c-se {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.d-flex-align-item-c {
-  display: flex;
-  align-items: center;
-}
-
-.d-flex-row-c-fs {
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
-.d-flex-align-item-b {
-  display: flex;
-  align-items: baseline;
-}
-
-.d-flex-column-rev {
-  display: flex;
-  flex-direction: column-reverse;
-}
-
-.h-100vh {
-  height: 100vh;
-}
-
-.mg-t-8px {
-  margin-top: 8px;
-}
-
-.mg-t-48px {
-  margin-top: 48px;
-}
-
-.mg-t-80px {
-  margin-top: 80px;
-}
-
-.mg-t-110px {
-  margin-top: 110px;
-}
-
-.mg-t-200px {
-  margin-top: 200px;
-}
-
-.mg-t-140px {
-  margin-top: 140px;
-}
-
-.mg-l-8px {
-  margin-left: 8px;
-}
-
-.mg-b-16px {
-  margin-bottom: 16px;
-}
-
-.mg-b-40px {
-  margin-bottom: 40px;
-}
-
-.font-sz-47px {
-  font-size: 47px;
-}
-
 .text-area {
   max-width: 620px;
   gap: 35px;
 }
 
-
 .text {
   white-space: pre-line;
   text-align: justify;
-}
-
-.padding-t64-r400 {
-  padding-top: 64px;
-  padding-right: 400px;
-}
-
-.bg-dark {
-  background-color: #2a3647 !important;
-}
-
-.pd-t-110px {
-  padding-top: 110px;
-}
-
-.pd-t-60px {
-  padding-top: 60px;
-}
-
-.pd-lr-96px {
-  padding-left: 96px;
-  padding-right: 96px;
-}
-
-.pd-b-8px {
-  padding-bottom: 8px;
-}
-
-.pd-b-24px {
-  padding-bottom: 24px;
-}
-
-.pd-b-64px {
-  padding-bottom: 64px;
-}
-
-.pd-8px-16px {
-  padding: 8px 16px;
-}
-
-.pd-64px {
-  padding: 64px;
-}
-
-.gap-4px {
-  gap: 4px;
-}
-
-.gap-8px {
-  gap: 8px;
-}
-
-.gap-16px {
-  gap: 16px;
-}
-
-.gap-24px {
-  gap: 24px;
-}
-
-.gap-32px {
-  gap: 32px;
-}
-
-.gap-48px {
-  gap: 48px;
-}
-
-.gap-56px {
-  gap: 48px;
-}
-
-.gap-64px {
-  gap: 64px;
-}
-
-.height-86px {
-  height: 86px;
-}
-
-.height-52px {
-  height: 52px;
-}
-
-.height-96px {
-  height: 96px;
-}
-
-.max-width-976px {
-  max-width: 976px;
-}
-
-.p-relative {
-  position: relative;
-}
-
-.p-absolute {
-  position: absolute;
-}
-
-.animate-bg-blur {
-  animation: 0.25s animateBgBlur linear;
-}
-
-.animate-bg-unblur {
-  animation: 0.25s animateBgUnblur linear;
 }
 
 .index-1 {

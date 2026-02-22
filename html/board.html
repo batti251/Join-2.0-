@@ -4,14 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Board</title>
-    <link rel="stylesheet" href="../styles/assets.css" />
+    <link rel="stylesheet" href="../styles/css/font.css" />
     <link rel="stylesheet" href="../style.css" />
-    <link rel="stylesheet" href="../styles/colors.css" />
     <link rel="stylesheet" href="../styles/css/main.css" />
     <link rel="stylesheet" href="../styles/css/board.css" />
     <link rel="stylesheet" href="../styles/css/add_task.css" />
-    <link rel="stylesheet" href="../styles/desktop_template.css" />
-    <link rel="stylesheet" href="../styles/keyframes.css" />
     <link rel="icon" href="../assets/img/faviconLogo.svg" />
     <script src="../script.js"></script>
     <script src="../scripts/db.js"></script>
@@ -60,14 +57,14 @@
               />
               <div class="search-icon-wrap">
                 <div class="board-vline"></div>
-                <div class="d-flex-row-c-c search-icon-div">
+                <div class="search-icon-div">
                   <button class="search-icon"></button>
                 </div>
               </div>
             </div>
             <button class="add-task-btn" onclick="openAddTaskOverlay('triage')">
               <span class="add-task-btn-text">Add task</span>
-              <div class="d-flex-row-c-c">
+              <div class="add-task-btn-icon-wrap">
                 <img
                 src="../assets/icons/add_white.svg"
                 alt="add task"
@@ -81,7 +78,7 @@
         <div class="board-col-wrap">
           
           <div class="col-content-wrap">
-            <div class="col-title-wrap mg-b-16px">
+            <div class="col-title-wrap">
               <div class="col-title">Triage</div>
             </div>
             <div
@@ -89,7 +86,7 @@
             id="triage"
             >
             <div
-            class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
+            class="no-task-feedback"
             >
             No tasks To do
           </div>
@@ -98,7 +95,7 @@
       
       
       <div class="col-content-wrap" >
-        <div class="col-title-wrap mg-b-16px">
+        <div class="col-title-wrap">
           <div class="col-title">To do</div>
         </div>
         <div
@@ -106,7 +103,7 @@
               id="to-do"
               >
               <div
-              class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
+              class="no-task-feedback"
               >
               No tasks To do
             </div>
@@ -114,7 +111,7 @@
         </div>
         
         <div class="col-content-wrap">
-          <div class="col-title-wrap mg-b-16px">
+          <div class="col-title-wrap">
             <div class="col-title">In progress</div>
           </div>
           <div
@@ -122,7 +119,7 @@
           id="in-progress"
           >
           <div
-          class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
+          class="no-task-feedback"
           >
           No tasks in progress
         </div>
@@ -130,7 +127,7 @@
     </div>
     
     <div class="col-content-wrap">
-      <div class="col-title-wrap mg-b-16px">
+      <div class="col-title-wrap">
         <div class="col-title">Await feedback</div>
       </div>
       <div
@@ -138,7 +135,7 @@
       id="await-feedback"
       >
       <div
-      class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
+      class="no-task-feedback"
       >
       No tasks awaiting feedback
     </div>
@@ -146,7 +143,7 @@
 </div>
 
 <div class="col-content-wrap">
-  <div class="col-title-wrap mg-b-16px">
+  <div class="col-title-wrap">
     <div class="col-title">Done</div>
   </div>
   <div
@@ -154,7 +151,7 @@
   id="done"
   >
   <div
-  class="no-task-feedback font-OpenSans-400-16px d-flex-row-c-c"
+  class="no-task-feedback"
   >
   No tasks done
 </div>
@@ -169,16 +166,16 @@ class="bg-dimmed"
 id="add-task-overlay-bg-wrap"
 onclick="closeAddTaskOverlay();closeTaskAssignedContactsDropdown()"
 >
-<div class="d-flex-row-c-c h-100vh">
+<div class="">
   <div
-              class="add-task-overlay-wrap bg-white pd-64px p-relative d-none"
+              class="add-task-overlay-wrap d-none"
               id="add-task-overlay-wrap"
               onclick="event.stopPropagation(); closeTaskAssignedContactsDropdown()"
               >
               <div class="scroll-overlay">
-                <div class="title-wrap mg-b-40px">
+                <div class="title-wrap">
                   <div
-                  class="close-icon-add-task-overlay-wrap d-flex-row-c-c"
+                  class="close-icon-add-task-overlay-wrap"
                   onclick="closeAddTaskOverlay()"
                   >
                   <img
@@ -194,26 +191,26 @@ onclick="closeAddTaskOverlay();closeTaskAssignedContactsDropdown()"
           </div>
         </div>
       </div>
-      <div class="toast-msg font-Inter-400-20px" id="add-task-toast-msg">
-        <div class="d-flex-c-sb gap-32px">
+      <div class="toast-msg" id="add-task-toast-msg">
+        <div class="toast-msg-spans">
           <span>Task added to board</span>
           <span class="add-task-toast-icon"></span>
         </div>
       </div>
-       <div class="toast-msg font-Inter-400-20px" id="add-task-reject-msg">
-        <div class="d-flex-c-sb gap-32px">
+       <div class="toast-msg" id="add-task-reject-msg">
+        <div class="toast-msg-spans">
           <span>This account is not allowed to add tasks!</span>
           <span class="add-task-toast-icon"></span>
         </div>
       </div>
-      <div class="toast-msg font-Inter-400-20px" id="edit-task-reject-msg">
-        <div class="d-flex-c-sb gap-32px">
+      <div class="toast-msg" id="edit-task-reject-msg">
+        <div class="toast-msg-spans">
           <span>This account is not allowed to edit tasks!</span>
           <span class="add-task-toast-icon"></span>
         </div>
       </div>
-      <div class="toast-msg font-Inter-400-20px" id="delete-task-reject-msg">
-        <div class="d-flex-c-sb gap-32px">
+      <div class="toast-msg" id="delete-task-reject-msg">
+        <div class="toast-msg-spans">
           <span>This account is not allowed to delete tasks!</span>
           <span class="add-task-toast-icon"></span>
         </div>

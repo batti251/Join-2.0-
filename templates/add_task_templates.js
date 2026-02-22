@@ -1,9 +1,8 @@
 function getSubtaskListTemplate(indexSubtask) {
   return `
-        <li id="task-subtask-${indexSubtask}" class="p-relative subtask-list-element">
-            <div>&#x2022;</div>
-            ${newTaskSubtasks[indexSubtask].name}
-            <div class=" p-absolute d-flex-row-c-c gap-4px task-subtask-control-icon-wrap">
+        <li id="task-subtask-${indexSubtask}" class="subtask-list-element">
+            <div>&#x2022; ${newTaskSubtasks[indexSubtask].name}</div>
+            <div class="task-subtask-control-icon-wrap">
                 <span class="task-edit-subtask-icon" onclick="obj.editSubtask(${indexSubtask})"></span>
                 <span class="separator-subtask-edit-delete-icons"></span>
                 <span class="task-delete-subtask-icon" onclick="obj.deleteSubtask(${indexSubtask})"></span>    
@@ -14,13 +13,13 @@ function getSubtaskListTemplate(indexSubtask) {
 
 function getEditSubtaskTemplate(indexSubtask) {
   return `
-    <input type="text" class="p-relative font-Inter-400-13px subtask-list-element edit-subtask" id="task-subtask-edit-${indexSubtask}" value="${newTaskSubtasks[indexSubtask].name}"></input>
-        <div class=" p-absolute d-flex-row-c-c gap-4px task-subtask-control-icon-wrap">
-            <div class="d-flex-row-c-c task-subtask-icon-wrap">
+    <input type="text" class="subtask-list-element edit-subtask" id="task-subtask-edit-${indexSubtask}" value="${newTaskSubtasks[indexSubtask].name}"></input>
+        <div class="edit-task-subtask-control-icon-wrap">
+            <div class="task-subtask-icon-wrap">
                 <span class="task-delete-subtask-icon" onclick="obj.deleteSubtask(${indexSubtask})"></span>
             </div>
             <span class="separator-subtask-edit-delete-icons"></span>
-            <div class="d-flex-row-c-c task-subtask-icon-wrap">
+            <div class="task-subtask-icon-wrap">
                 <span class="task-submit-subtask-icon" onclick="obj.addEditedSubtask(${indexSubtask})"></span>
             </div>    
         </div>
@@ -30,9 +29,9 @@ function getEditSubtaskTemplate(indexSubtask) {
 function getTaskAssigendContactsTemplate(contactID, indexContact) {
   return `
     <div id="task-assigned-contact-wrap-${contactID}" onclick="obj.toggleAssignContact('${contactID}',this)">
-      <div class="pd-8px-16px task-assigned-contact-wrap d-flex-c-sb">
-        <div class="d-flex-row-c-fs gap-16px">
-            <div name="assignTo" class="profile-badge font-Inter-400-12px d-flex-row-c-c text-color-white ${getContactColorClassNameByFirebaseId(
+      <div class="task-assigned-contact-wrap">
+        <div class="user-badge-wrap">
+            <div name="assignTo" class="profile-badge ${getContactColorClassNameByFirebaseId(
               contactID
             )}">
                 ${getFirstTwoStringInitialsByFirebaseId(contactID)}
@@ -45,23 +44,6 @@ function getTaskAssigendContactsTemplate(contactID, indexContact) {
     `;
 }
 
-function getTaskAssigendContactsOverlayTemplate(contactID, indexContact) {
-  return `
-    <div id="task-assigned-contact-wrap-overlay-${contactID}" onclick="obj.toggleAssignContact('${contactID}',this)">
-      <div class="d-flex-c-sb pd-8px-16px task-assigned-contact-wrap">  
-      <div class="d-flex-row-c-fs gap-16px">
-            <div class="profile-badge font-Inter-400-12px d-flex-row-c-c text-color-white ${getContactColorClassNameByFirebaseId(
-              contactID
-            )}">
-                ${getFirstTwoStringInitialsByFirebaseId(contactID)}
-            </div>
-            ${contactsArray[indexContact][1].name}
-        </div>
-        <span class="task-assigned-contacts-checkbox-icon"></span>
-      </div>
-    </div>
-    `;
-}
 
 function getTaskAssignedContactBadgeTemplate(contactID, indexContact) {
   return `
@@ -193,11 +175,11 @@ function getAddTaskFormTemplate(taskStatusId) {
             autocomplete="off"
           />
           <span
-            class="task-dropdown-icon p-relative"
+            class="task-dropdown-icon"
             id="task-assigend-contacts-dropdown-icon"
           ></span>
           <div
-            class="d-none task-input-dropdown p-absolute"
+            class="d-none task-input-dropdown"
             id="task-assigned-contacts-dropdown"
           ></div>
           <div
@@ -228,7 +210,7 @@ function getAddTaskFormTemplate(taskStatusId) {
             id="task-category-dropdown-icon"
           ></span>
           <div
-            class="d-none p-absolute task-input-dropdown"
+            class="d-none task-input-dropdown"
             id="task-category-dropdown"
           >
             <div
@@ -254,29 +236,29 @@ function getAddTaskFormTemplate(taskStatusId) {
           <input
             oninput="showSubtaskControlButtons()"
             onkeypress="obj.addSubtaskOnEnterPress(event)"
-            class="p-relative task-input-border task-input-category "
+            class="task-input-border task-input-category "
             type="text"
             id="task-subtasks"
             name="subtasks"
             placeholder="Add new subtask"
           />
           <span
-            class="p-absolute task-subtask-icon task-add-subtask-icon"
+            class="task-subtask-icon task-add-subtask-icon"
             id="task-add-subtask-icon"
           ></span>
           <div
-            class="d-none p-absolute task-subtask-icon"
+            class="d-none task-subtask-icon"
             id="task-clear-submit-subtask-icon-wrap"
           >
             <div
-              class="d-flex-row-c-c task-subtask-icon-wrap"
+              class="task-subtask-icon-wrap"
               onclick="clearInputTagValue('task-subtasks')"
             >
               <span class="task-clear-subtask-icon"></span>
             </div>
             <span class="separator"></span>
             <div
-              class="d-flex-row-c-c task-subtask-icon-wrap"
+              class="task-subtask-icon-wrap"
               onclick="obj.addSubtask()"
             >
               <span class="task-submit-subtask-icon"></span>

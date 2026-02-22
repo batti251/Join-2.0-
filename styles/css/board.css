@@ -61,6 +61,11 @@ main {
 }
 
 .search-icon-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: unset;
+  gap: 0;
   height: 32px;
   width: 32px;
 }
@@ -91,6 +96,7 @@ main {
 .col-title-wrap {
   display: flex;
   justify-content: space-between;
+  margin-bottom: 16px;
 }
 
 .col-title {
@@ -141,6 +147,14 @@ main {
   font-size: 20px;
   font-weight: 700;
   color: #ffffff;
+}
+
+.add-task-btn-icon-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0;
 }
 
 .add-task-btn:hover {
@@ -367,6 +381,7 @@ main {
   align-items: center;
   flex-direction: row-reverse;
   gap: 0;
+  margin-bottom: 40px;
 }
 
 @media screen and (max-width: 1360px) {
@@ -451,9 +466,6 @@ main {
   }
   .search-wrap {
     width: 100%;
-  }
-  .font-Inter-700-61px {
-    font-size: 34px;
   }
 }
 

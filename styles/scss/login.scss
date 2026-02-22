@@ -88,6 +88,7 @@ main {
 }
 
 .reset-join-btn {
+  color: #29ABE2;
   &:hover {
     cursor: pointer;
     color: #007cee;
@@ -120,6 +121,13 @@ main {
   height: 100%;
   width: 100%;
   background-color: #f6f7f8;
+  position: absolute;
+}
+
+.background-fade-dark{
+   height: 100%;
+  width: 100%;
+  background-color: #2a3647 !important;
   position: absolute;
 }
 

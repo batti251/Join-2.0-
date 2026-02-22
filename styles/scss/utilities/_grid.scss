@@ -118,6 +118,7 @@ aside {
   @include dFlex($jc: space-between);
   @include size($w: 232px);
   @include padding($p: 64px 0);
+  @include font($fs: 1rem);
   top: 0;
   box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.1);
 }

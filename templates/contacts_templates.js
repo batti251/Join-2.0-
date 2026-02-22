@@ -7,12 +7,12 @@
 function getContactsListContactTemplate(indexContact) {
   return `
     <div class="contact-list-item-wrap" onclick="showContactDetails(${indexContact})" id="contacts-list-${indexContact}">
-        <div class="profile-badge font-Inter-400-12px d-flex-row-c-c text-color-white ${getContactColorClassName(
+        <div class="profile-badge ${getContactColorClassName(
           indexContact,
         )}">${getFirstTwoStringInitialsByFirebaseId(
           contactsArray[indexContact][0],
         )}</div>
-        <div class="contact-name-wrap d-flex-column">
+        <div class="contact-name-wrap">
             <div class="contact-name">${
               contactsArray[indexContact][1].name
             }</div>
@@ -133,7 +133,7 @@ function getContactDetailsMobileMenuTemplate(indexContact) {
 function getAddContactsScreenTemplate() {
   return `
         <div
-          class="close-icon-wrap d-flex-row-c-c"
+          class="close-icon-wrap"
           onclick="closeContactOverlays()"
         >
           <span class="close-icon"></span>
@@ -142,7 +142,7 @@ function getAddContactsScreenTemplate() {
           <img
             src="../assets/icons/join_icon.svg"
             alt="Join Logo"
-            class="add-contacts-screen-logo mg-t-80px"
+            class="add-contacts-screen-logo"
           />
           <div class="add-contacts-title-wrap">
             <div class="add-contacts-screen-title-text-wrap">
@@ -154,8 +154,8 @@ function getAddContactsScreenTemplate() {
             <div class="add-contacts-title-page-hline"></div>
           </div>
         </div>
-        <div class="d-flex-row-c-c p-relative">
-          <div class="add-contact-badge-wrap d-flex-row-c-c">
+        <div class="add-contact-icon-seperator">
+          <div class="add-contact-badge-wrap">
             <img
               src="../assets/icons/person.svg"
               alt="person icon"
@@ -163,7 +163,7 @@ function getAddContactsScreenTemplate() {
             />
           </div>
         </div>
-        <div class="add-contact-input-check d-flex-column-c-c">
+        <div class="add-contact-input-check">
           <form id="add-contact-form" novalidate class="add-contacts-form-wrap" onsubmit="addNewContact()">
           <div class=" input-container"> 
           <div class="add-contact-input-wrap">           
@@ -262,7 +262,7 @@ function getAddContactsScreenTemplate() {
 function getEditContactScreenTemplate(indexContact) {
   return `
           <div
-            class="close-icon-wrap d-flex-row-c-c"
+            class="close-icon-wrap"
             onclick="closeContactOverlays()"
           >
             <span class="close-icon"></span>
@@ -271,29 +271,29 @@ function getEditContactScreenTemplate(indexContact) {
             <img
               src="../assets/icons/join_icon.svg"
               alt="Join Logo"
-              class="add-contacts-screen-logo mg-t-80px"
+              class="add-contacts-screen-logo"
             />
             <div class="add-contacts-title-wrap">
               <div class="add-contacts-screen-title-text-wrap">
-                <span class="add-contacts-screen-title-text text-color-white font-Inter-700-61px">Edit contact</span>
+                <span class="add-contacts-screen-title-text">Edit contact</span>
               </div>
               <div class="add-contacts-title-page-hline"></div>
             </div>
           </div>
-          <div class="d-flex-row-c-c p-relative">
+          <div class="add-contact-icon-seperator">
             <div class="${getContactColorClassName(
               indexContact,
-            )} contact-badge-wrap d-flex-row-c-c">
-              <div class="font-sz-47px">${getFirstTwoStringInitialsByFirebaseId(
+            )} contact-badge-wrap">
+              <div class="contact-badge-initial">${getFirstTwoStringInitialsByFirebaseId(
                 contactsArray[indexContact][0],
               )}</div>
             </div>
           </div>
-          <div class="add-contact-input-check d-flex-column-c-c">
-            <form id="edit-contact-form" novalidate class="add-contacts-form-wrap d-flex-column" onsubmit="updateContact(${indexContact}); event.preventDefault()">
+          <div class="add-contact-input-check">
+            <form id="edit-contact-form" novalidate class="add-contacts-form-wrap" onsubmit="updateContact(${indexContact}); event.preventDefault()">
             
-            <div class="height-52px">
-              <div class="add-contact-input-wrap d-flex-c-sb">
+            <div class="form-contact-input-wrap">
+              <div class="add-contact-input-wrap">
                 <input
                   type="text"
                   class="add-contact-input required"
@@ -308,11 +308,11 @@ function getEditContactScreenTemplate(indexContact) {
                   class="add-contact-input-icon"
                 />
                  </div>
-                  <div class="d-none validation font-Inter-400-13px text-color-FF8190">This field is required!</div>
+                  <div class="d-none validation">This field is required!</div>
             </div>
-              <div class="input-container d-flex-column">
-              <div class="height-52px">
-              <div class="add-contact-input-wrap d-flex-c-sb">
+              <div class="input-container">
+              <div class="form-contact-input-wrap">
+              <div class="add-contact-input-wrap">
                 <input
                   type="email"
                   class="add-contact-input required"
@@ -327,12 +327,12 @@ function getEditContactScreenTemplate(indexContact) {
                   class="add-contact-input-icon"
                 />
                </div>  
-              <div class="d-none validation font-Inter-400-13px text-color-FF8190">This field is required!</div>
-              <div id="email-error" class="d-none validation email font-Inter-400-13px text-color-FF8190">Please enter a valid e-mail address</div>
+              <div class="d-none validation">This field is required!</div>
+              <div id="email-error" class="d-none validation email">Please enter a valid e-mail address</div>
             </div>
               </div>
-              <div class="input-container d-flex-column height-52px">
-              <div class="add-contact-input-wrap d-flex-c-sb">
+              <div class="input-container">
+              <div class="add-contact-input-wrap">
                 <input
                   type="tel"
                   class="add-contact-input"
@@ -347,13 +347,13 @@ function getEditContactScreenTemplate(indexContact) {
                   class="add contact-input-icon"
                 />
               </div>
- <div id="phone-error" class="d-none validation email font-Inter-400-13px text-color-FF8190">Please enter a valid phone number</div>
+ <div id="phone-error" class="d-none validation email">Please enter a valid phone number</div>
 </div>
               <div class="add-contact-btns-wrap">
-                <button type="button" class="add-contact-btn-cancel bg-white text-color-2A3647" onclick="deleteContact(${indexContact})">
+                <button type="button" class="add-contact-btn-cancel" onclick="deleteContact(${indexContact})">
                   <span>Delete</span>
                 </button>
-                <button type="submit" class="add-contact-btn d-flex-row-c-c">
+                <button type="submit" class="add-contact-btn">
                   <span>Save</span>
                   <img
                     src="../assets/icons/check_withoutBorder.svg"

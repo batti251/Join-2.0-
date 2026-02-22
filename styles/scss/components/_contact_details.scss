@@ -3,7 +3,8 @@
 
 form {
   > .input-container {
-    align-items: unset;
+    @include dFlex();
+    @include size($h: 52px, $w: 100%);
   }
 }
 
@@ -169,6 +170,7 @@ form {
 }
 
 .close-icon-wrap {
+  @include dFlex($fd: unset);
   @include size($w: 32px, $h: 32px);
   @include position($p: absolute, $t: 32px, $r: 48px);
   border-radius: 50%;
@@ -190,6 +192,12 @@ form {
 
 .add-contacts-screen-logo {
   @include size($w: 56px, $h: 66px);
+  margin-top: 80px;
+}
+
+.add-contact-icon-seperator{
+  @include dFlex($fd: unset);
+  position: relative;
 }
 
 .add-contacts-screen-title-text-wrap {
@@ -201,13 +209,11 @@ form {
 }
 
 .add-contacts-screen-title-text {
-  font-size: 61px;
-  font-weight: 700;
+  @include font($fs: 61px, $fw: 700);
 }
 
 .add-contacts-screen-title-subtext {
-  font-size: 27px;
-  font-weight: 400;
+   @include font($fs: 27px);
 }
 
 .add-contacts-title-page-hline {
@@ -221,10 +227,15 @@ form {
 }
 
 .add-contact-badge-wrap {
+  @include dFlex($fd: unset);
   @include size($w: 120px, $h: 120px);
   background-color: #d1d1d1;
   border: 3px solid white;
   border-radius: 50%;
+}
+
+.form-contact-input-wrap{
+  height: 52px;
 }
 
 .add-contact-input-wrap {
@@ -274,13 +285,8 @@ form {
   @include size($w: 16px, $h: 11px);
 }
 
-.add-contact-btn {
-  @include dFlex($fd: unset, $g: 12px);
-  @include font($fs: 20px, $fw: 700);
-  border-radius: 10px;
-  padding: 16px;
-  background-color: $color-primary;
-  color: white;
+.contact-badge-initial{
+  font-size: 47px;
 }
 
 .add-contact-btn:hover {
@@ -293,6 +299,7 @@ form {
 }
 
 .contact-badge-wrap {
+  @include dFlex($fd: unset);
   @include size($w: 120px, $h: 120px);
   border: 3px solid white;
   border-radius: 50%;

@@ -98,6 +98,8 @@ form {
   @include position($p: absolute, $t: 50%, $l: 50%);
   transform: translate(calc(100vw - 50%), -50%);
   transition: transform 250ms linear;
+  background-color: white;
+  padding: 64px;
 }
 
 .add-task-overlay-wrap.overlay-open {
@@ -105,6 +107,7 @@ form {
 }
 
 .close-icon-add-task-overlay-wrap {
+  @include dFlex($fd: unset);
   @include size($w: 32px, $h: 32px);
   border-radius: 50%;
 }

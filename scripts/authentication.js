@@ -149,7 +149,7 @@ async function showMessage(credentials) {
   let blur = document.querySelector(".background-fade");
   let signup = document.querySelector(".login-container");
   messageBox.classList.remove("d-none");
-  messageBox.classList.add("d-flex-row-c-c");
+/*   messageBox.classList.add("d-flex-row-c-c"); */
   blur.style.backgroundColor = "rgb(0, 0, 0, 0.10)";
   signup.classList.add('index-1')
   setTimeout(() => {

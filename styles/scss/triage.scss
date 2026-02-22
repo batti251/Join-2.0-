@@ -95,7 +95,7 @@ h2 {
 }
 
 .choice-container {
-  @include dFlex($ai: flex-start, $g: 24px);
+  @include dFlex($ai: center, $g: 24px);
   @include size($w: 277px);
   > .role-check {
     @include dFlex($fd: row, $g: 8px);

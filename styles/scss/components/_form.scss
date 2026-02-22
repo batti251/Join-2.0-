@@ -18,7 +18,7 @@ form {
     }
     > .input-content {
       @include dFlex($fd: row, $g: 10px);
-      @include size($h: 24px, $w: 100%);
+      @include size($h: 44px, $w: 100%);
       @include inputBorder();
       @include padding($p: 12px 21px);
       max-width: 80%;
@@ -87,6 +87,10 @@ input[type="checkbox"] {
   }
 }
 
+.reset-join{
+  @include dFlex($g: 8px);
+  @include font($fs: 13px);
+}
 
 @media screen and (max-width: 992px) {
   .input-container {

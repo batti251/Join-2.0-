@@ -134,7 +134,7 @@ function toggleTaskAssignedContactsDropdown() {
     "task-assigned-contacts-dropdown"
   );
   assignedContactsDropdownRef.classList.toggle("d-none");
-  assignedContactsDropdownRef.classList.toggle("d-flex-column");
+/*   assignedContactsDropdownRef.classList.toggle("d-flex-column"); */
   toggleTaskAssignedContactsDropdownIcon();
   toggleTaskAssignedContactsBadges();
   renderTaskAssigendContacts();
@@ -170,7 +170,7 @@ function openTaskAssignedContactsDropdown() {
     "task-assigned-contacts-dropdown"
   );
   assignedContactsDropdownRef.classList.remove("d-none");
-  assignedContactsDropdownRef.classList.add("d-flex-column");
+/*   assignedContactsDropdownRef.classList.add("d-flex-column"); */
   openTaskAssignedContactsDropdownIcon();
   openTaskAssignedContactsDropdownBadges();
   renderTaskAssigendContacts();
@@ -208,7 +208,7 @@ function closeTaskAssignedContactsDropdown() {
   );
   if (assignedContactsDropdownRef === null) return;
   assignedContactsDropdownRef.classList.add("d-none");
-  assignedContactsDropdownRef.classList.remove("d-flex-column");
+/*   assignedContactsDropdownRef.classList.remove("d-flex-column"); */
   closeTaskAssignedContactsDropdownIcon();
   closeTaskAssignedContactsDropdownBadges();
   renderTaskAssigendContacts();

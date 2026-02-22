@@ -6,6 +6,11 @@ form {
     @include size($w: 100%);
 }
 
+.form-edit-task-wrap{
+  @include dFlex($g: 8px);
+  padding-bottom: 64px;
+}
+
 #add-task-form-wrap{
      @include size($w: 100%);
 }

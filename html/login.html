@@ -5,18 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Join</title>
     <link rel="stylesheet" href="./../style.css" />
-    <link rel="stylesheet" href="./../styles/assets.css" />
+    <link rel="stylesheet" href="./../styles/css/font.css" />
     <link rel="stylesheet" href="./../styles/css/main.css">
     <link rel="stylesheet" href="./../styles/css/login.css">
-    <link rel="stylesheet" href="./../styles/colors.css" />
-    <link rel="stylesheet" href="./../styles/keyframes.css" />
     <link rel="icon" href="./../assets/img/faviconLogo.svg" />
   <script src="./../script.js"></script>
   <script src="./../scripts/db.js"></script>
-<!--   <script src="./../scripts/add_task_operations.js"></script> -->
   <script src="./../scripts/board_operations.js"></script>
   <script src="./../scripts/add_task.js"></script>
-<!--   <script src="./../scripts/contact_operations.js"></script> -->
   <script src="./../modules/tasks-object.class.js"></script>
   <script src="./../modules/user-object.class.js"></script>
   <script src="./../scripts/reset_join_content.js"></script>
@@ -89,13 +85,11 @@
             <button onclick="guestLogin()" id="guest-login" class="btn-transparent" type="button">
               Guest Log In
             </button>  
-          <!--   <button class="font-Inter-700-16px text-color-white btn-signup btn-responsive" onclick="signupPage()">
-              Sign Up
-            </button>  -->        
+                 
           </div>
 
-          <div class="reset-join d-flex-column-c-c gap-8px font-Inter-400-13px">
-              <div>For resetting and pulling fresh join content data: <span class="reset-join-btn text-color-29ABE2" onclick="resetJoinContent()">click here</span>.</div>
+          <div class="reset-join">
+              <div>For resetting and pulling fresh join content data: <span class="reset-join-btn" onclick="resetJoinContent()">click here</span>.</div>
               <div class="col-red">Caution: this will reset all sign up data.</div>
           </div> 
         </main>
@@ -111,8 +105,8 @@
 
 
 
-        <div class="toast-msg font-Inter-400-20px" id="reset-join-msg">
-          <div class="d-flex-c-sb gap-32px">
+        <div class="toast-msg" id="reset-join-msg">
+          <div class="toast-msg-spans">
             Join content resetted successfully
           </div>
         </div>

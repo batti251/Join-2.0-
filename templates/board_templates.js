@@ -147,7 +147,7 @@ function getTaskOverlay(indexTask, currentTask, overlay) {
 
     <div class="task-overlay-assignment-wrap">
       <div class="">Subtasks</div>
-      <article class="d-flex-column">${
+      <article>${
         currentTask.subtasks
           ?.map(
             (s) =>
@@ -203,7 +203,7 @@ function editTaskTemplate(indexTask, currentTask) {
 
 
 <form class="" id="form-edit-task" onsubmit="submitEditTask(${indexTask})">
-            <div class="d-flex-column gap-8px pd-b-64px">
+            <div class="form-edit-task-wrap">
               <div class="task-main">
                 <div class="task-area task-title">
                   <label
@@ -319,11 +319,11 @@ function editTaskTemplate(indexTask, currentTask) {
                     autocomplete="off"
                   />
                   <span
-                    class="p-absolute task-dropdown-icon"
+                    class="task-dropdown-icon"
                     id="task-assigend-contacts-dropdown-icon"
                   ></span>
                   <div
-                    class="d-none p-absolute task-input-dropdown"
+                    class="d-none task-input-dropdown"
                     id="task-assigned-contacts-dropdown"
                   ></div>
                   <div
@@ -343,29 +343,29 @@ function editTaskTemplate(indexTask, currentTask) {
                   <input
                     oninput="showSubtaskControlButtons()"
                     onkeypress="obj.addSubtaskOnEnterPress(event)"
-                    class="p-relative task-input-border task-input-category"
+                    class="task-input-border task-input-category"
                     type="text"
                     name="subtasks"
                     id="task-subtasks"
                     value="${currentTask?.subtask || ""}"
                   />
                   <span
-                    class="p-absolute task-subtask-icon task-add-subtask-icon"
+                    class="task-subtask-icon task-add-subtask-icon"
                     id="task-add-subtask-icon"
                   ></span>
                   <div
-                    class="d-none p-absolute task-subtask-icon"
+                    class="d-none task-subtask-icon"
                     id="task-clear-submit-subtask-icon-wrap"
                   >
                     <div
-                      class="task-subtask-icon-wrap d-flex-row-c-c"
+                      class="task-subtask-icon-wrap"
                       onclick="clearInputTagValue('task-subtasks')"
                     >
                       <span class="task-clear-subtask-icon"></span>
                     </div>
                     <span class="separator"></span>
                     <div
-                      class="task-subtask-icon-wrap d-flex-row-c-c"
+                      class="task-subtask-icon-wrap"
                       onclick="obj.addSubtask()"
                     >
                       <span class="task-submit-subtask-icon"></span>
@@ -376,10 +376,10 @@ function editTaskTemplate(indexTask, currentTask) {
                     currentTask.subtasks
                       ?.map(
                         (s, i) => ` 
-                            <li id="task-subtask-${i}" class="p-relative font-Inter-400-13px subtask-list-element d-flex-row-c-fs gap-8px">
-            <div>&#x2022;</div>
-            <span class="new-input">${s[1].name}</span>
-            <div class=" p-absolute d-flex-row-c-c gap-4px task-subtask-control-icon-wrap">
+                            <li id="task-subtask-${i}" class="subtask-list-element">
+            <div>&#x2022; <span class="new-input">${s[1].name}</span></div>
+            
+            <div class="task-subtask-control-icon-wrap">
                 <span class="task-edit-subtask-icon" onclick="obj.editSubtask(${i})"></span>
                 <span class="separator-subtask-edit-delete-icons"></span>
                 <span class="task-delete-subtask-icon" onclick="obj.deleteSubtask(${i})"></span>    
