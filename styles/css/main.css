@@ -2000,6 +2000,9 @@ nav > span {
   align-items: center;
   flex-direction: column;
   gap: 8px;
+  color: white;
+  height: auto;
+  width: 100%;
 }
 .policy-legal > a {
   display: flex;
@@ -2013,7 +2016,7 @@ nav > span {
   color: #a8a8a8;
 }
 .policy-legal > a:hover {
-  background-color: #29abe2;
+  background-color: #2a3d59;
 }
 
 .active {

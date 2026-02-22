@@ -16,8 +16,25 @@ ul {
   list-style: disc;
 }
 
-.help-legal-polilcy-wrap {
-  padding: 0 64px;
+.help-legal-policy-wrap {
+  padding: 80px 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
+}
+
+.article-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
+}
+
+.text-paragraph {
+  width: 100%;
 }
 
 /*# sourceMappingURL=help_legal_policy.css.map */

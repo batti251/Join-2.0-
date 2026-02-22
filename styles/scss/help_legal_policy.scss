@@ -21,6 +21,16 @@ ul{
     list-style: disc;
 }
 
-.help-legal-polilcy-wrap{
-    padding: 0 64px;
+.help-legal-policy-wrap{
+    padding: 80px 64px;
+    @include dFlex();
+}
+
+.article-page{
+    @include dFlex()
+}
+
+
+.text-paragraph {
+  width: 100%;
 }

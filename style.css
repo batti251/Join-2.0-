@@ -230,10 +230,6 @@ form > select {
   gap: 35px;
 }
 
-.text-paragraph {
-  width: 100%;
-  gap: 10px;
-}
 
 .text {
   white-space: pre-line;
