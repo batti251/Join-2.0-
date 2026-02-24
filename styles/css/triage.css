@@ -215,12 +215,11 @@ body {
   overflow: unset;
 }
 
-main {
+/* main {
   top: 50%;
   width: 70%;
   transform: translate(-50%, -50%);
-}
-
+} */
 aside {
   align-items: flex-start;
   width: 100%;
@@ -251,6 +250,7 @@ aside {
   align-items: flex-start;
   flex-direction: column;
   gap: 0;
+  margin-top: 5%;
 }
 
 .btn-stakeholder {
@@ -381,7 +381,7 @@ h2 {
 
 .btn-group {
   display: flex;
-  justify-content: unset;
+  justify-content: center;
   align-items: unset;
   flex-direction: row;
   gap: 16px;
@@ -390,21 +390,8 @@ h2 {
 }
 
 .triage-container {
-  padding: 84px 20px !important;
-}
-
-.textblock-wrap {
-  height: 170px;
-}
-
-.textblock {
-  height: 140px;
-  width: 84%;
-  border-radius: 10px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #d1d1d1;
-  padding: 8px;
+  z-index: 1;
+  padding: 5% 20px !important;
 }
 
 textarea {
@@ -517,7 +504,7 @@ select:hover {
   .btn-stakeholder {
     width: 212px;
     font-size: 16px;
-    /* padding: 15px 24px; */
+    padding: 15px 24px;
   }
   .btn-highlight {
     background-color: #2a3647;
@@ -546,7 +533,7 @@ select:hover {
     font-size: 32px;
   }
   .triage-headline > span {
-    font-size: 1rem;
+    font-size: 1.175rem;
   }
   .role-check > span {
     font-size: 14px;
@@ -564,7 +551,7 @@ select:hover {
   }
   .btn-triage {
     font-size: 16px;
-    padding: 15px 24px;
+    padding: 8px 16px;
   }
   .signup-container {
     display: flex;
@@ -585,8 +572,8 @@ select:hover {
     bottom: 100%;
   }
   .figure > img {
-    width: 292px;
-    height: 107;
+    width: 260px;
+    height: 100px;
   }
   .ai-limit {
     margin-top: 0;
@@ -595,7 +582,16 @@ select:hover {
 }
 @media screen and (max-height: 766px) {
   .grid {
-    grid-template-rows: 20% 100dvh 10%;
+    grid-template-rows: 10dvh 85dvh 5dvh;
+  }
+  .paragraph {
+    font-size: 14px;
+  }
+  h2 {
+    font-size: 15px;
+  }
+  h1 {
+    font-size: 32px !important;
   }
 }
 @media screen and (max-width: 380px) {
@@ -603,7 +599,7 @@ select:hover {
     grid-template-rows: 20% 100dvh 10%;
   } */
   .triage-container {
-    padding: 124px 20px !important;
+    padding: 12px 20px !important;
   }
 }
 

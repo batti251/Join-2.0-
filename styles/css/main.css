@@ -353,6 +353,7 @@ form > .input-container > .login-error {
   width: auto;
   margin: 2px 0;
   position: relative;
+  top: 5%;
 }
 
 .mail-request {
@@ -600,6 +601,33 @@ form {
     flex-direction: column;
   }
 }
+.mail-request {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
+}
+
+.textblock-wrap {
+  height: 170px;
+  width: 80%;
+}
+
+.request-select {
+  width: 80%;
+}
+
+.textblock {
+  height: 140px;
+  width: 100%;
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d1d1d1;
+  padding: 8px;
+}
+
 .task-dropdown-icon {
   height: 5px;
   width: 7px;
@@ -1089,12 +1117,17 @@ input[type=checkbox] {
   border-radius: 20px;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.15);
   animation: slide-up 1s forwards;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
 }
 
 .signup-message-text {
   padding: 0 25px;
-  height: 24px;
-  width: 262px;
+  /*   height: 24px;
+    width: 262px; */
   background-color: rgba(56, 56, 56, 0.1);
   color: #f6f7f8;
 }
@@ -1118,6 +1151,7 @@ input[type=checkbox] {
   border-radius: 20px;
   pointer-events: none;
   z-index: 100;
+  width: 100%;
 }
 .toast-msg > .toast-msg-spans {
   display: flex;
@@ -1946,6 +1980,8 @@ form > .input-container {
 
 .grid {
   display: grid;
+  justify-items: center;
+  align-items: center;
   grid-template-columns: 100%;
   grid-template-rows: 9% calc(100dvh - 20%) 10%;
   grid-template-areas: "header" "main" "footer";
@@ -1959,6 +1995,7 @@ form > .input-container {
 }
 .grid > main {
   grid-area: main;
+  z-index: 1;
 }
 .grid > footer {
   grid-area: footer;
@@ -1981,7 +2018,7 @@ header {
   gap: 0;
   height: 96px;
   width: auto;
-  z-index: 1;
+  z-index: 2;
 }
 
 .header-main {
@@ -2265,6 +2302,14 @@ main {
     display: flex;
   }
   .header-headline {
+    display: none;
+  }
+}
+@media screen and (max-height: 800px) {
+  main {
+    overflow: scroll;
+  }
+  ::-webkit-scrollbar {
     display: none;
   }
 }

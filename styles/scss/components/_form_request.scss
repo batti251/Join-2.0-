@@ -1,0 +1,25 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixin" as *;
+
+.mail-request{
+    @include dFlex();
+}
+
+
+.textblock-wrap {
+  @include size($h: 170px, $w: 80%);
+}
+
+.request-select{
+    width: 80%;
+}
+
+.textblock {
+  @include size($h: 140px, $w: 100%);
+  border-radius: 10px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #d1d1d1;
+  padding: 8px;
+}
+

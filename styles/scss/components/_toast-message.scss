@@ -9,12 +9,13 @@
   border-radius: 20px;
   box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.15);
   animation: slide-up 1s forwards;
+  @include dFlex()
 }
 
 .signup-message-text {
   padding: 0 25px;
-  height: 24px;
-  width: 262px;
+/*   height: 24px;
+  width: 262px; */
   background-color: rgb(56, 56, 56, 0.1);
   color: $color-secondary;
 }
@@ -31,6 +32,7 @@
   border-radius: 20px;
   pointer-events: none;
   z-index: 100;
+  width: 100%;
 
   > .toast-msg-spans {
     @include dFlex($fd: unset, $jc: space-between, $g: 32px);

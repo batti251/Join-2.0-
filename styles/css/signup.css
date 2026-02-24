@@ -211,8 +211,15 @@
   -webkit-text-fill-color: transparent;
 }
 
+.grid {
+  grid-template-rows: 15% 75% 10%;
+}
+
 main {
-  max-height: 580px;
+  max-height: max(50%, 660px);
+  height: 100%;
+  justify-content: unset;
+  align-items: unset;
 }
 
 aside {
@@ -227,6 +234,7 @@ form {
 
 .join-logo > img {
   position: absolute;
+  left: 5%;
 }
 
 .signup-container {
@@ -260,12 +268,15 @@ form {
 }
 @media screen and (max-width: 600px) {
   .grid {
-    grid-template-rows: calc(100dvh - 5%) 0% 5%;
+    grid-template-rows: 10% 75% 10%;
+  }
+  .join-logo > img {
+    top: -40%;
   }
 }
 @media screen and (max-width: 380px) {
   main {
-    max-height: 460px;
+    max-height: 530px;
   }
   .signup-container {
     max-height: 480px;

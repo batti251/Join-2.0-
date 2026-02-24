@@ -4,11 +4,11 @@ body {
   overflow: unset;
 }
 
-main {
+/* main {
   top: 50%;
   width: 70%;
   transform: translate(-50%, -50%);
-}
+} */
 
 aside {
   align-items: flex-start;
@@ -34,6 +34,7 @@ aside {
 
 .stakeholder-wrap {
   @include dFlex($ai: flex-start);
+  margin-top: 5%;
 }
 
 .btn-stakeholder {
@@ -113,27 +114,17 @@ h2 {
 }
 
 .btn-group {
-  @include dFlex($fd: row, $g: 16px, $ai: unset, $jc: unset);
+  @include dFlex($fd: row, $g: 16px, $ai: unset);
   @include size($w: 100%);
 }
 
 .triage-container {
-  padding: 84px 20px !important;
+  z-index: 1;
+  padding: 5% 20px !important;
 }
 
-.textblock-wrap {
-  height: 170px;
-}
 
-.textblock {
-  height: 140px;
-  width: 84%;
-  border-radius: 10px;
-  border-style: solid;
-  border-width: 1px;
-  border-color: #d1d1d1;
-  padding: 8px;
-}
+
 
 textarea {
   @include size($h: 100%, $w: 100%);
@@ -242,7 +233,7 @@ select{
   .btn-stakeholder {
     width: 212px;
     font-size: 16px;
-    /* padding: 15px 24px; */
+    padding: 15px 24px;
   }
 
   .btn-highlight {
@@ -280,7 +271,7 @@ select{
   }
   .triage-headline {
     > span {
-      font-size: 1rem;
+      font-size: 1.175rem;
     }
   }
 
@@ -306,7 +297,7 @@ select{
 
   .btn-triage {
     font-size: 16px;
-    padding: 15px 24px;
+    padding: 8px 16px;
   }
 
   .signup-container {
@@ -334,8 +325,8 @@ select{
 
   .figure {
     > img {
-      width: 292px;
-      height: 107;
+      width: 260px;
+      height: 100px;
     }
   }
 
@@ -347,8 +338,19 @@ select{
 
 @media screen and (max-height: 766px) {
   .grid {
-    grid-template-rows: 20% 100dvh 10%;
+    grid-template-rows: 10dvh 85dvh 5dvh;
   }
+
+  .paragraph{
+    font-size: 14px;
+  }
+  h2{
+    font-size: 15px;
+  }
+  h1{
+    font-size: 32px !important;
+  }
+
 }
 
 @media screen and (max-width: 380px) {
@@ -357,6 +359,6 @@ select{
   } */
 
   .triage-container {
-    padding: 124px 20px !important;
+    padding: 12px 20px !important;
   }
 }

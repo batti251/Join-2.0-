@@ -409,6 +409,7 @@ form > .input-container > .login-error {
   width: auto;
   margin: 2px 0;
   position: relative;
+  top: 5%;
 }
 
 .mail-request {
@@ -631,6 +632,8 @@ input[type=checkbox]:checked:hover {
 
 .grid {
   display: grid;
+  justify-items: center;
+  align-items: center;
   grid-template-columns: 100%;
   grid-template-rows: 9% calc(100dvh - 20%) 10%;
   grid-template-areas: "header" "main" "footer";
@@ -644,6 +647,7 @@ input[type=checkbox]:checked:hover {
 }
 .grid > main {
   grid-area: main;
+  z-index: 1;
 }
 .grid > footer {
   grid-area: footer;
@@ -666,7 +670,7 @@ header {
   gap: 0;
   height: 96px;
   width: auto;
-  z-index: 1;
+  z-index: 2;
 }
 
 .header-main {
@@ -950,6 +954,14 @@ main {
     display: flex;
   }
   .header-headline {
+    display: none;
+  }
+}
+@media screen and (max-height: 800px) {
+  main {
+    overflow: scroll;
+  }
+  ::-webkit-scrollbar {
     display: none;
   }
 }

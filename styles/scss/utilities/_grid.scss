@@ -2,6 +2,8 @@
 
 .grid {
   display: grid;
+  justify-items: center;
+  align-items: center;
   grid-template-columns: 100%;
   grid-template-rows: 9% calc(100dvh - 20%) 10%;
   grid-template-areas:
@@ -19,6 +21,7 @@
 
   > main {
     grid-area: main;
+    z-index: 1;
   }
 
   > footer {
@@ -40,7 +43,7 @@ header {
   grid-area: nav;
   @include dFlex($fd: row, $jc: space-between);
   @include size($h: 96px);
-  z-index: 1;
+  z-index: 2;
 }
 
 
@@ -256,6 +259,20 @@ main {
     display: none;
   }
 }
+
+
+@media screen and (max-height: 800px) {
+  main {
+    overflow: scroll;
+  }
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+
+}
+
 
 @media screen and (max-height: 439px) {
   .landscape-orientation {

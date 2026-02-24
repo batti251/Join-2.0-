@@ -105,6 +105,7 @@ async function checkMailRedundancy(credentials) {
   let existingUser = x.filter(i => i[1].email == credentials.email)
   if (existingUser.length == 0) {
     await addNewContactOnSignup(credentials);
+    showMessage(credentials);
     return
   };
   let existingUserId = existingUser[0][0]; //userID für POST
@@ -146,10 +147,12 @@ function getUsedMails(responseRef) {
  */
 async function showMessage(credentials) {
   let messageBox = document.querySelector(".signup-message");
+  console.log(messageBox);
+  
   let blur = document.querySelector(".background-fade");
   let signup = document.querySelector(".login-container");
   messageBox.classList.remove("d-none");
-/*   messageBox.classList.add("d-flex-row-c-c"); */
+  messageBox.classList.add("d-flex");
   blur.style.backgroundColor = "rgb(0, 0, 0, 0.10)";
   signup.classList.add('index-1')
   setTimeout(() => {

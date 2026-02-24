@@ -70,12 +70,9 @@ h1 {
 
 main {
   @include dFlex($g: 32px);
-  @include size($h: 100%, $w: 100%);
-  @include position($p: relative, $t: 55%, $l: 50%);
-  transform: translate(-50%, -50%);
-  @include padding($p: 48px 115px);
+  @include size($h: auto, $w: 100%);
+  @include padding($p: 1% 10%);
   max-width: 652px;
-  max-height: 480px;
   border-radius: 30px;
   background-color: #ffffff;
   transition: ease-in-out 0.5s;
@@ -99,7 +96,7 @@ main {
   @include dFlex($fd: row, $g: 8px);
   @include font();
   margin-block-start: 0.5rem;
-  @include size($h: 100%);
+  @include size($h: -webkit-fill-available);
   > li {
     min-width: 109px;
 
@@ -133,7 +130,7 @@ main {
 
 @media screen and (max-width: 992px) {
   main {
-    width: 80% !important;
+    width: 90% !important;
     padding: 24px 20px !important;
   }
 
@@ -146,10 +143,19 @@ main {
 @media (max-width: 600px) {
   .grid {
     grid-template-areas:
+      "void"
       "main"
       "header"
       "footer";
-    grid-template-rows: calc(100dvh - 15%) 9% 6%;
+    grid-template-rows: 14% 70% 10% 6%;
+  }
+  h1{
+    font-size: 40px;
+  }
+
+  .join-logo{
+    max-width: 60px;
+    max-height: 60px;
   }
 
   header {
@@ -194,7 +200,7 @@ main {
     }
   }
 
-  main {
-    max-height: 400px;
-  }
+  /* main {
+    max-height: 500px;
+  } */
 }

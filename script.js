@@ -77,7 +77,7 @@ function regexValidation() {
  */
 function showErrorMessage(field, array) {
   let errorRef = document.getElementById(`${field}-error`);
-  errorRef.classList.remove("d-none");
+  errorRef.classList.remove("opacity-0");
   array?.forEach((input) => {
     input.parentElement.classList.add("error-border");
   });
@@ -381,7 +381,7 @@ function resetErrorMessage() {
     element.parentElement.classList.remove("error-border");
   });
   [...message].forEach((message) => {
-    message.classList.add("d-none");
+    message.classList.add("opacity-0");
   });
 }
 
