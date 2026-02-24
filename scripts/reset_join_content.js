@@ -71,7 +71,8 @@ async function submitInitialTasks() {
     ],
     "human",
     contactsObj[3][1].name,
-    contactsObj[3][0]
+    contactsObj[3][0],
+    "krause@gmail.com"
   );
   taskNew(
     "technical-task",
@@ -90,7 +91,8 @@ async function submitInitialTasks() {
     ],
     "human",
     contactsObj[3][1].name,
-    contactsObj[3][0]
+    contactsObj[3][0],
+    "krause@gmail.com"
   );
   taskNew(
     "user-story",
@@ -106,7 +108,8 @@ async function submitInitialTasks() {
     ],
     "human",
     contactsObj[3][1].name,
-    contactsObj[3][0]
+    contactsObj[3][0],
+    "krause@gmail.com"
   );
   taskNew(
     "user-story",
@@ -122,7 +125,8 @@ async function submitInitialTasks() {
     ],
     "human",
     contactsObj[3][1].name,
-    contactsObj[3][0]
+    contactsObj[3][0],
+    "krause@gmail.com"
   );
   taskNew(
     "technical-task",
@@ -135,7 +139,8 @@ async function submitInitialTasks() {
     [],
     "human",
     contactsObj[6][1].name,
-    contactsObj[6][0]
+    contactsObj[6][0],
+    "becker@t-online.de"
   );
 }
 

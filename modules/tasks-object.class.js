@@ -24,6 +24,8 @@ class Task {
     source,
     creator,
     creatorId,
+    mail,
+
   ) {
     this.category = category;
     this.description = description;
@@ -36,6 +38,7 @@ class Task {
     this.source = source;
     this.creator = creator;
     this.creatorId = creatorId;
+    this.mail = mail
     this.loadNewTask();
   }
 
@@ -52,6 +55,7 @@ class Task {
       source: this.source,
       creator: this.creator,
       creatorId: this.creatorId,
+      mail: this.mail
     };
     await submitObjectToDatabase("tasks", newTaskObj);
   }
@@ -104,6 +108,8 @@ buildNewTask(id, currentTask) {
     this.creator = sessionStorage.getItem("user");
     this.creatorId = sessionStorage.getItem("id");
     this.category = this.getTaskCategoryFirebaseName();
+    let mailRef = contactsArray.filter(x => x[0] == this.creatorId)
+    this.mail = mailRef[0][1].email 
   }
 
   /**
