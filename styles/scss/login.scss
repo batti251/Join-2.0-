@@ -9,7 +9,6 @@ body {
 .join-logo {
     height: 100%;
   > img {
-    /* @include position($p: absolute, $t: 5%, $l: 10%); */
     @include size($h: 100%, $w: 100%);
     z-index: 2;
     max-width: 80px;
@@ -199,8 +198,4 @@ main {
       max-height: 48px;
     }
   }
-
-  /* main {
-    max-height: 500px;
-  } */
 }

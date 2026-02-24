@@ -729,8 +729,6 @@ header {
   width: 56px;
   color: #29abe2;
   font-weight: bold;
-  /* text-align: center;
-   background-color: #ffffff; */
   border-radius: 559px;
 }
 .profile-ellipse:hover {
@@ -791,6 +789,7 @@ aside {
   font-size: 1rem;
   font-weight: 400;
   line-height: 120%;
+  z-index: 1;
   top: 0;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
 }
@@ -869,14 +868,11 @@ main {
   .page {
     grid-template-columns: auto;
     grid-template-areas: "nav" "main" "aside";
-    grid-template-rows: 80px auto;
+    grid-template-rows: 80px auto 80px;
   }
   header {
     height: 80px;
     width: auto;
-    /*     width: 100vw;
-       height: 80px;
-    */
   }
   .header-container {
     padding: 16px 20px;
@@ -891,26 +887,13 @@ main {
   aside {
     height: 80px;
     width: 100vw;
-    /* height: 80px;
-    width: 100vw;
-    height: 80px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
     gap: 0;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between; */
     padding: 0;
   }
-  /*   .summary-content {
-    gap: 0;
-  } */
-  /* 
-  .join-logo {
-    display: none;
-  } */
   .policy-legal {
     display: none;
   }
@@ -928,10 +911,11 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
     height: 76px;
     width: 76px;
-    padding: 0 8px;
+    padding: 0;
+    text-align: center;
   }
   nav > a:hover {
     border-radius: 8px;

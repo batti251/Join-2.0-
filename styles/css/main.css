@@ -12,7 +12,6 @@
   right: unset;
   bottom: unset;
   left: 50%;
-  /* transform: translate(-50%, -50%); */
   padding: 48px 115px;
   max-width: 652px;
   max-height: 480px;
@@ -636,7 +635,6 @@ form {
   right: 16px;
   bottom: unset;
   left: unset;
-  /* transform: translate(-50%, -50%); */
   transform: translateY(-50%);
   pointer-events: none;
   background-image: url("./../../../assets/icons/arrow_drop_down.svg");
@@ -651,7 +649,6 @@ form {
   right: 0;
   bottom: unset;
   left: 0;
-  /* transform: translate(-50%, -50%); */
   z-index: 2;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
@@ -756,7 +753,6 @@ form {
   right: unset;
   bottom: unset;
   left: 50%;
-  /* transform: translate(-50%, -50%); */
   height: auto;
   width: 525px;
   padding: 48px 40px;
@@ -786,7 +782,6 @@ form {
   right: 0;
   bottom: 0;
   left: 0;
-  /* transform: translate(-50%, -50%); */
   height: 100vh;
   width: auto;
 }
@@ -795,7 +790,7 @@ form {
   max-height: 130px;
   max-width: 445px;
   overflow: overlay;
-  white-space: pre;
+  white-space: break-spaces;
 }
 
 .task-overlay-meta-wrap {
@@ -804,7 +799,7 @@ form {
   align-items: unset;
   flex-direction: unset;
   gap: 25px;
-  height: 24px;
+  height: auto;
   width: auto;
 }
 
@@ -889,7 +884,6 @@ form {
   right: unset;
   bottom: unset;
   left: 50%;
-  /* transform: translate(-50%, -50%); */
   transform: translate(calc(100vw - 50%), -50%);
   transition: transform 250ms linear;
   background-color: white;
@@ -1003,7 +997,6 @@ input[type=checkbox] {
   right: 0;
   bottom: 0;
   left: 0;
-  /* transform: translate(-50%, -50%); */
   height: 100vh;
   width: auto;
   background-color: rgba(0, 0, 0, 0);
@@ -1027,6 +1020,8 @@ input[type=checkbox] {
   font-size: 1rem;
   font-weight: 400;
   line-height: 120%;
+  height: 100%;
+  width: min(100px, 30%);
   padding: 0 4px;
   border-radius: 4px;
   background-color: #EBFC88;
@@ -1042,6 +1037,8 @@ input[type=checkbox] {
   font-size: 1rem;
   font-weight: 400;
   line-height: 120%;
+  height: 100%;
+  width: min(100px, 30%);
   padding: 0 4px;
   border-radius: 4px;
   background-color: #92FFBC;
@@ -1059,6 +1056,11 @@ input[type=checkbox] {
   line-height: 120%;
   color: #42526E;
   padding: 0 4px;
+  width: 30%;
+}
+
+.creator-name {
+  font-size: 1rem;
 }
 
 .creator {
@@ -1077,28 +1079,36 @@ input[type=checkbox] {
   } */
 }
 @media screen and (max-width: 820px) {
-  .task-overlay-wrap {
-    max-width: 75%;
-    padding: 16px 12px;
+  .task-overlay-title {
+    font-size: 2rem;
   }
   .overlay-priority {
     flex-direction: column;
     align-items: center;
+  }
+  .task-overlay-wrap {
+    padding: 16px 12px;
+    max-height: unset;
+    max-width: unset;
+    overflow: auto;
+    height: 100vh;
+    width: 100%;
+    border-radius: 0;
+    background-color: #f6f7f8;
+  }
+  .task-overlay-category {
+    align-items: flex-end;
+    flex-direction: column-reverse;
+    gap: 8px;
+  }
+  .task-overlay-meta-wrap {
+    flex-direction: column;
   }
   .add-task-overlay-wrap {
     max-height: unset;
     max-width: unset;
     height: calc(100vh - 160px);
     width: 100vw;
-    border-radius: 0;
-    background-color: #f6f7f8;
-  }
-  .task-overlay-wrap {
-    max-height: unset;
-    max-width: unset;
-    overflow: auto;
-    height: 100vh;
-    width: 100%;
     border-radius: 0;
     background-color: #f6f7f8;
   }
@@ -1138,7 +1148,6 @@ input[type=checkbox] {
   right: unset;
   bottom: unset;
   left: 50%;
-  /* transform: translate(-50%, -50%); */
   padding: 20px;
   font-family: "Inter";
   font-size: 20px;
@@ -1392,7 +1401,6 @@ form > .input-container {
   right: unset;
   bottom: unset;
   left: 50%;
-  /* transform: translate(-50%, -50%); */
   transform: translate(100%, -50%);
   transition: transform 250ms linear;
   background-color: white;
@@ -1430,7 +1438,6 @@ form > .input-container {
   right: 48px;
   bottom: unset;
   left: unset;
-  /* transform: translate(-50%, -50%); */
   border-radius: 50%;
 }
 
@@ -1661,7 +1668,6 @@ form > .input-container {
     right: unset;
     bottom: unset;
     left: 50%;
-    /* transform: translate(-50%, -50%); */
     transform: translate(-50%, -50%);
   }
   .add-contact-input-wrap {
@@ -1684,7 +1690,6 @@ form > .input-container {
     right: unset;
     bottom: unset;
     left: 50%;
-    /* transform: translate(-50%, -50%); */
     transform: translate(-50%, -50%);
   }
   .contacts-details-wrap {
@@ -2077,8 +2082,6 @@ header {
   width: 56px;
   color: #29abe2;
   font-weight: bold;
-  /* text-align: center;
-   background-color: #ffffff; */
   border-radius: 559px;
 }
 .profile-ellipse:hover {
@@ -2139,6 +2142,7 @@ aside {
   font-size: 1rem;
   font-weight: 400;
   line-height: 120%;
+  z-index: 1;
   top: 0;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
 }
@@ -2217,14 +2221,11 @@ main {
   .page {
     grid-template-columns: auto;
     grid-template-areas: "nav" "main" "aside";
-    grid-template-rows: 80px auto;
+    grid-template-rows: 80px auto 80px;
   }
   header {
     height: 80px;
     width: auto;
-    /*     width: 100vw;
-       height: 80px;
-    */
   }
   .header-container {
     padding: 16px 20px;
@@ -2239,26 +2240,13 @@ main {
   aside {
     height: 80px;
     width: 100vw;
-    /* height: 80px;
-    width: 100vw;
-    height: 80px; */
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-direction: column;
     gap: 0;
-    /* display: flex;
-    flex-direction: column;
-    justify-content: space-between; */
     padding: 0;
   }
-  /*   .summary-content {
-    gap: 0;
-  } */
-  /* 
-  .join-logo {
-    display: none;
-  } */
   .policy-legal {
     display: none;
   }
@@ -2276,10 +2264,11 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 8px;
+    gap: 4px;
     height: 76px;
     width: 76px;
-    padding: 0 8px;
+    padding: 0;
+    text-align: center;
   }
   nav > a:hover {
     border-radius: 8px;

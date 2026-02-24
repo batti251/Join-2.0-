@@ -435,7 +435,6 @@ select:hover {
   right: unset;
   bottom: unset;
   left: 50%;
-  /* transform: translate(-50%, -50%); */
   height: 5%;
   width: 50%;
   transform: translate(-50%, -50%);

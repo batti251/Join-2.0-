@@ -221,7 +221,6 @@ body {
   height: 100%;
 }
 .join-logo > img {
-  /* @include position($p: absolute, $t: 5%, $l: 10%); */
   height: 100%;
   width: 100%;
   z-index: 2;
@@ -436,7 +435,6 @@ main {
     right: unset;
     bottom: unset;
     left: 10%;
-    /* transform: translate(-50%, -50%); */
   }
 }
 @media (max-width: 480px) {
@@ -452,9 +450,6 @@ main {
     max-width: 48px;
     max-height: 48px;
   }
-  /* main {
-    max-height: 500px;
-  } */
 }
 
 /*# sourceMappingURL=login.css.map */

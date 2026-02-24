@@ -132,7 +132,6 @@
   right: 40px;
   bottom: 40px;
   left: unset;
-  /* transform: translate(-50%, -50%); */
   background-color: #2a3647;
   border-radius: 46px;
   padding: 12px;
@@ -155,7 +154,6 @@
   right: 40px;
   bottom: 40px;
   left: unset;
-  /* transform: translate(-50%, -50%); */
   height: 56px;
   width: 56px;
   background-color: #2a3647;
@@ -193,7 +191,6 @@
   right: 48px;
   bottom: unset;
   left: unset;
-  /* transform: translate(-50%, -50%); */
   height: 24px;
   width: 24px;
   display: none;
@@ -237,7 +234,6 @@
   right: 16px;
   bottom: 96px;
   left: unset;
-  /* transform: translate(-50%, -50%); */
   display: none;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.2509803922);
   background-color: white;

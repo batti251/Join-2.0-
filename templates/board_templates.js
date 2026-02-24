@@ -101,7 +101,7 @@ function getTaskOverlay(indexTask, currentTask, overlay) {
       
       
       ${
-        currentTask.creator == "external" ? `<div class="creator-external"><img src="../assets/icons/world.svg"> Extern </div><div>${currentTask.name}</div><a href="mailto:${currentTask.mail}" class="email-externalal"><img src="../assets/icons/mail_attach.svg">E-Mail</a>` : 
+        currentTask.creator == "external" ? `<div class="creator-external"><img src="../assets/icons/world.svg"> Extern </div><div class="creator-name">${currentTask.name}</div><a href="mailto:${currentTask.mail}" class="email-external"><img src="../assets/icons/mail_attach.svg">E-Mail</a>` : 
         `<div class="creator-internal"><img src="../assets/icons/member.svg"> Member </div><div>${currentTask.creator}</div><a href="/html/contacts.html?id=${currentTask.creatorId ? currentTask.creatorId : ""}" class="email-internal"><img src="../assets/icons/person_blue.svg">Profil</a>`
       }
     </div>
