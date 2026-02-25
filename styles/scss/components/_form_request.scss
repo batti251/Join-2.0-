@@ -2,7 +2,7 @@
 @use "../abstracts/mixin" as *;
 
 .mail-request{
-    @include dFlex();
+    @include dFlex($g: 8px);
 }
 
 

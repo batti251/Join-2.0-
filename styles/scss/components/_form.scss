@@ -52,9 +52,6 @@ form {
   }
 }
 
-.mail-request{
-  gap: 8px;
-}
 
 input[type="checkbox"] {
   background: url("./../../../assets/icons/checkbox.svg") no-repeat;
@@ -93,6 +90,10 @@ input[type="checkbox"] {
   @include font($fs: 13px);
 }
 
+.error-border{
+  border-color: $color-error !important;
+}
+
 @media screen and (max-width: 992px) {
   .input-container {
     max-height: 77.19px;
@@ -107,7 +108,7 @@ input[type="checkbox"] {
 
 
 
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
   form {
     gap: 14px !important;
   }

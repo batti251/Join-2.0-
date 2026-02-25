@@ -39,105 +39,40 @@ function checkInput() {
  *
  * @param {Event} event event-object to stop page-reload after submit
  */
-function signupFormValidation(event) {
+async function signupFormValidation(event) {
   event.preventDefault();
-  if (!regexValidation()) {
-    return;
-  }
   let userInput = document.getElementsByTagName("input");
-  if (userInput[2].value.length < 8) {
-    showErrorMessage("password-length", []);
-  } else if (userInput[2].value !== userInput[3].value) {
-    showErrorMessage("password", []);
-  } else {
+   if (userInput[2].value !== userInput[3].value) {
+     showErrorMessage("password", []); 
+  }  
+  if (await validSignup()) {
     getNewUserInformation();
   }
 }
 
+
 /**
- * Function to trigger Password visible/unvisible for user
+ * Function to create a new user account,
+ * If a users mail-address already exists, it will update the dedicated user-entry
+ * If the users mail-address does not exist, a new user will be submit
  *
- * @param {HTMLElement}  x the clicked Icon element
  */
-function showPassword(x) {
-  let password = x.previousElementSibling;
-  if (password.type === "password" && password.value.length > 0) {
-    password.type = "text";
-    x.src = '/assets/icons/visibility_on.svg' 
+async function getNewUserInformation() {
+  let mailUsed = await lookupMail();
+      let hasUserAccount
+  if (mailUsed > -1) {
+     hasUserAccount = contactsArray[mailUsed][1].canLogin
+  } else 
+    hasUserAccount = true
+  if (!hasUserAccount) {
+    user.buildNewUser("signup-form", 1 , "signup");
+    await patchDatabaseObject(`contacts/${contactsArray[mailUsed][0]}`, user);
   } else {
-    password.type = "password";
-    x.src = '/assets/icons/visibility_off.svg' 
+    user.buildNewUser("signup-form",1, "signup");
+    await submitObjectToDatabase("contacts", user);
   }
 }
 
-/**
- * Function to create JSON-object (signup - user credential), if checkMailRedundancy is false
- *
- */
-function getNewUserInformation() {
-  let userInput = document.getElementsByTagName("input");
-  let userCredential = {};
-  let key = "";
-  let value = "";
-  for (let index = 0; index < userInput.length; index++) {
-    if (key == "") {
-        key = "canLogin";
-        value = true;
-        userCredential[key] = value;
-    } 
-    key = userInput[index].name;
-    value = userInput[index].value;
-    userCredential[key] = value;
-  }
-  checkMailRedundancy(userCredential);
-}
-  
-/**
- * This function validates, if the mail during sign-up-process is already used in the database
- *
- * @param {object} credentials the sign-up credentials
- */
-async function checkMailRedundancy(credentials) {
-
-  let response = await fetch(database + "/contacts" + ".json");
-  let responseRef = await response.json();
-  let x = Object.entries(responseRef)
-  let existingUser = x.filter(i => i[1].email == credentials.email)
-  if (existingUser.length == 0) {
-    await addNewContactOnSignup(credentials);
-    showMessage(credentials);
-    return
-  };
-  let existingUserId = existingUser[0][0]; //userID für POST
-  let mails = getUsedMails(responseRef);  //alle mails
-  let existingContact = mails.filter(e => e.mail == credentials.email)
-  if (existingContact.length == 0 || existingContact[0] === null || !existingContact[0].canLogin) {
-    updateDatabaseObject(`contacts/${existingUserId}`, credentials);
-    showMessage(credentials);
-    return;
-  } 
-  showErrorMessage("email-redundancy", []);
-}
-
-/**
- * This function gets all current used mails as an Array
- *
- * @param {*} responseRef all current users in the database
- * @returns Array with all already in use emails
- */
-function getUsedMails(responseRef) {
-  if (responseRef === null) {
-    return "";
-  }
-  let mailValue = Object.values(responseRef);
-  let usedMails = mailValue.map((i) => {
-    return {
-      mail: i.email,
-      password: i.password,
-      canLogin: i.canLogin} ;
-  });
-  return usedMails;
-}
 
 /**
  * This Function gives the User feedback, if signup was successful.
@@ -147,8 +82,6 @@ function getUsedMails(responseRef) {
  */
 async function showMessage(credentials) {
   let messageBox = document.querySelector(".signup-message");
-  console.log(messageBox);
-  
   let blur = document.querySelector(".background-fade");
   let signup = document.querySelector(".login-container");
   messageBox.classList.remove("d-none");
@@ -158,23 +91,6 @@ async function showMessage(credentials) {
   setTimeout(() => {
     location.href = "./login.html";
   }, 1800);
-}
-
-/**
- * This function creates a contact-object from users signup and posts it into /contacts-path
- *
- * @param {object} contactData dedicated information for contact-list
- */
-async function addNewContactOnSignup(contactData) {
-  let contactObj = {};
-  contactObj = {
-    canLogin: true,
-    email: contactData.email,
-    password: contactData.password,
-    name: contactData.name,
-    phone: "",
-  };
-  postJSON("contacts", contactObj);
 }
 
 /**
@@ -194,7 +110,6 @@ async function userLogin(path = "contacts") {
 }
 
 
-
 /**
  * Validates if the user has a proper login-account
  * @param {*} usersObj 
@@ -207,7 +122,6 @@ function userHasCredential(loginMail, validMails) {
   let isValid = valid.length > 0 
   return isValid
 }
-
 
 
 
@@ -230,7 +144,6 @@ async function checkLogInCredentials(responseRef) {
     userID = userIDRef[0][0]
  }
   
-
   // prüfen, darf die Mail sich überhaupt anmelden? 
   let userCanLogin = userHasCredential(loginMail, validMails) //boolean
   if (responseRef == null || !userCanLogin) {
@@ -278,4 +191,112 @@ function saveSession(name, userID) {
       .join("")
   );
   setSessionStorage("id", userID)
+}
+
+/**
+ * This Function handles the contact validations 
+ * It's called from {@link addNewContact()} and {@link updateContact()}
+ * @param {Boolean} canLogin - flag from user-entry (true: has active account ; false: has no active account => sign-in possible)
+ * @returns - 
+ */
+async function validContact(canLogin) {
+  let state = true
+  let errorRef = document.getElementById(`email-error`);
+  if ( !await isMailUsable() && canLogin) {
+   errorRef.innerHTML = "Mail already exist. Please take an unused email";
+    return
+  }
+  if (! await isValidUser()) {
+    showToastMessage("add-contact-reject-msg") 
+    return};
+  if (!checkValidation()) {
+    errorRef.innerHTML = "Please enter a valid, unused e-mail address";
+    return  state = false
+  }
+  return state
+}
+
+/**
+ * This Function queries, if a user-entry has a valid mail and active account
+ * This is used for sign-in
+ * 
+ * @returns - it returns either true ()
+ */
+async function isMailUsable() {
+  let state = true
+  let mailUsed = await lookupMail();
+  let hasUserAccount
+  if (mailUsed > -1) {
+     hasUserAccount = contactsArray[mailUsed][1].canLogin
+  }
+    if (mailUsed >= 0 && hasUserAccount) {
+    showErrorMessage("email")
+    return  state = false    
+  } else 
+    return state = true
+}
+
+/**
+ * This Function looks for stored mails, within the database
+ * @returns - it returns either -1 (Mail does not exist), or  the according Index (Mail exists) 
+ */
+async function lookupMail() {
+  contactsArray = await getSortedContactsArray()
+  let toValidate = document.querySelectorAll(".validate");
+  let mailInputRef = [...toValidate].filter(e => e.name == "email")
+  let mailInput = mailInputRef[0]?.value;
+  let usedMails = contactsArray.map((e) => {return e[1].email})
+  let validMail = usedMails.findIndex((e) => e == mailInput);
+  return validMail;
+  }
+
+
+/**
+ * Handler to query if the active user is allowed to add,edit,delete tasks and contacts
+ * @returns - it returns either true () or false, depending  on the filtered userIndex
+ */
+async function isValidUser() {
+  let state = true
+  let userIndex = await user.validateUser();
+  if (userIndex < 0) {
+    showToastMessage("add-contact-reject-msg") 
+    return  state = false};
+    return state = true
+}
+
+/**
+ * Handler to query if the signed in mail is already in use
+ * It's called from {@link signupFormValidation()}
+ * @returns - returns either true (mail is not in use) or false (mail is in use)
+ */
+async function validSignup() {
+  let state = true
+  let errorRef = document.getElementById(`email-error`);
+
+  if (!await isMailUsable()) {
+   errorRef.innerHTML = "Mail already exist. Please take an unused email";
+    return
+  } 
+   if (!checkValidation()) {
+    errorRef.innerHTML = "Please enter a valid, unused e-mail address";
+    return  state = false
+  }
+  return state
+}
+
+
+/**
+ * Function to trigger Password visible/unvisible for user
+ *
+ * @param {HTMLElement}  x the clicked Icon element
+ */
+function showPassword(x) {
+  let password = x.previousElementSibling;
+  if (password.type === "password" && password.value.length > 0) {
+    password.type = "text";
+    x.src = '/assets/icons/visibility_on.svg' 
+  } else {
+    password.type = "password";
+    x.src = '/assets/icons/visibility_off.svg' 
+  }
 }

@@ -5,20 +5,7 @@ let newContact = "newContact";
 let emptyJSON = {};
 let userArrayuserArray;
 let idUser = sessionStorage.getItem("id")
-
-
-async function test() {
-  idUser = sessionStorage.getItem("id")
-  console.log("Firebase ID: " + idUser);
-  contactsArray = await getDataBaseElement("contacts")
-  tasksArray = await getDataBaseElement("tasks")
-  console.log(contactsArray);
-  console.log(tasksArray);
-}
-
-
-
-
+let user = new User();
 
 
 let contactColorClasses = [
@@ -48,26 +35,6 @@ function stopEventPropagation(event) {
   event.stopPropagation();
 }
 
-/**
- * This function checks Mail and Phone Validation according to set regex
- *
- * @returns Boolean value that determines whether the code block is executed or skipped
- */
-function regexValidation() {
-  const regexMail = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
-  const regexPhone = /^\+?\d{8,}$/;
-  let mail = document.querySelectorAll("input");
-  let filteredMail = [...mail].filter((t) => t.type == "email");
-  let filteredPhone = [...mail].filter((t) => t.type == "tel");
-  if (!regexMail.test(filteredMail[0].value)) {
-    showErrorMessage("email", []);
-    return false;
-  }
-  if (filteredPhone[0]?.value && !regexPhone.test(filteredPhone[0].value)) {
-    showErrorMessage("phone", []);
-    return false;
-  } else return true;
-}
 
 /**
  * This functions adds error-messages, based on the errors-id
@@ -256,8 +223,6 @@ function setInputTagValue(htmlId, valueToSet) {
  */
 function showToastMessage(htmlId) {
   document.body.style.overflow = "hidden";
-  console.log(htmlId);
-  
   document.getElementById(htmlId).classList.add("d-block");
   setTimeout(() => {
     msgRef = document.getElementById(htmlId);
@@ -267,7 +232,6 @@ function showToastMessage(htmlId) {
   }, 10);
   setTimeout(() => {
     document.body.style.overflow = "auto";
-
     document.getElementById(htmlId).classList.remove("d-none");
   }, 500);
 }
@@ -280,59 +244,6 @@ function directToBoardPage() {
   location.href = "board.html";
 }
 
-/**
- * This Function replaces HTML5 Validation
- *  *
- * @param {String} taskStatusId parameter for addNewTask-case
- * @param {String} indexTask parameter for editTask-case
- * @param {String} newContact parameter for addNewContact-case
- * @param {String} indexContact parameter for editContact-case
- */
-function requiredInputValidation(
-  taskStatusId,
-  indexTask,
-  newContact,
-  indexContact,
-  subtask,
-) {
-  let requiredFields = document.getElementsByClassName("required");
-  let validationMessageRef = document.getElementsByClassName("validation");
-  let whitespacePattern = /^[ \t]*$/;
-  let validationTrue = [...requiredFields].every(
-    (element) => element.value != "" && !whitespacePattern.test(element.value),
-  );
-  if (validationTrue) {
-    setAddOrEditSubmit(taskStatusId, indexTask, newContact, indexContact);
-  } else {
-    [...requiredFields].forEach((element, i) => {
-      if (element.value === "" || whitespacePattern.test(element.value)) {
-        validationMessageRef[i].classList.remove("d-none");
-      } else {
-        validationMessageRef[i].classList.add("d-none");
-      }
-    });
-  }
-}
-
-/**
- * This Function wether submits a new task, or an editTask, depending on the tasks paramater
- *
- * @param {String} taskStatusId parameter for addNewTask-case
- * @param {String} indexTask parameter for editTask-case
- * @param {String} newContact parameter for addNewContact-case
- * @param {String} indexContact parameter for editContact-case
- */
-function setAddOrEditSubmit(taskStatusId, indexTask, newContact, indexContact) {
-  if (taskStatusId) {
-    addNewTask(taskStatusId);
-  } else if (indexTask >= 0) {
-    submitEditTask(indexTask);
-  } else if (newContact) {
-    addNewContact();
-  } else if (indexContact >= 0) {
-    updateContact(indexContact);
-  }
-}
 
 /**
  * Blurs background of the main screen.
@@ -368,8 +279,6 @@ function getCurrentDateYYYMMDD() {
   return year + "-" + month + "-" + day;
 }
 
-
-
 /**
  * Function to reset error-messages on login & signup page
  *
@@ -386,15 +295,17 @@ function resetErrorMessage() {
 }
 
 
-
+/**
+ * Handler to identify, if all required fields match the regex-patterns
+ * @returns either true (all required fields are valid) or false (at least 1 required field is invalid)
+ */
 function checkValidation() {
-  let toValidate = document.querySelectorAll(".validate")
-  let error = document.querySelectorAll(".validation")
-  console.log(toValidate);
+  let toValidate = document.querySelectorAll(".validate");
+  let error = document.querySelectorAll(".validation");
   let valid;
   [...toValidate].every((e,i) => {
       valid = e.checkValidity();
-      valid ? error[i].classList.add("d-none") : error[i].classList.remove("d-none");
+      valid ? error[i].classList.add("opacity-0") : error[i].classList.remove("opacity-0");
      return valid;
   });
  return valid;
@@ -416,6 +327,10 @@ function setZIndex(dropdown) {
   dropdown.classList.add("z-index-1");
 }
 
+/**
+ * This Function sends a signal to a webhook, to initiate n8n-workflow
+ * @param {Event} e - the according Event
+ */
 function sendMail(e) {
   e.preventDefault();
   let form = new FormData(e.target);
@@ -455,10 +370,11 @@ function sendMail(e) {
     hideMessageBox()
   })
 
-
-
 }
 
+/**
+ * Resets all required fields 
+ */
 function resetInputs() {
   let requiredFields = document.querySelectorAll('[required]');
   [...requiredFields].forEach(e => { 
@@ -466,11 +382,19 @@ function resetInputs() {
   });
 }
 
+/**
+ * Handler to trigger according mail-information, depending on the fetch-result {@link sendMail() } 
+ * @param {String} type 
+ */
 function showMessageBox(type) {
   let gridRef =  document.getElementById('login-view');
   type == "error" ?  gridRef.innerHTML += messageError() : gridRef.innerHTML += messageSuccess() 
 }
 
+/**
+ * Handler to remove Message Box, after call
+ * It's called after 2000 miliseconds
+ */
 function hideMessageBox() {
     setTimeout(() => {
     let messageRef = document.querySelectorAll(".message");

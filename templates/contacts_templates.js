@@ -169,11 +169,13 @@ function getAddContactsScreenTemplate() {
           <div class="add-contact-input-wrap">           
             <input
                 type="text"
-                class="add-contact-input required"
+                class="add-contact-input validate"
                 placeholder="Name"
                 id="add-contact-input-name"
+                pattern="\\p{L}+(?:[ \\-']\\p{L}+)*"
                 name="name"
                 oninput="resetErrorMessage()"
+                required
               />
               <img
                 src="../assets/icons/person_icon.svg"
@@ -181,7 +183,7 @@ function getAddContactsScreenTemplate() {
                 class="add-contact-input-icon"
               />
               </div>
-               <div class="d-none validation">This field is required!</div>
+               <div class="opacity-0 validation">This field is required!</div>
 
                </div>
             <div class="input-container ">
@@ -189,10 +191,12 @@ function getAddContactsScreenTemplate() {
             <div class="add-contact-input-wrap">
               <input
                 type="email"
-                class="add-contact-input required"
+                class="add-contact-input validate"
                 placeholder="Email"
                 id="add-contact-input-email"
+                pattern="^[a-zA-Z0-9._%+\\-]+@([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}$"
                 name="email"
+                required
                 oninput="resetErrorMessage()"
               />
               <img
@@ -201,15 +205,15 @@ function getAddContactsScreenTemplate() {
                 class="add-contact-input-icon"
               /> 
              </div>  
-              <div class="d-none validation">This field is required!</div>
-              <div id="email-error" class="d-none validation email">Please enter a valid e-mail address</div>
+              <div id="email-error" class="opacity-0 validation email">Please enter a valid, unused e-mail address</div>
             </div>  
  </div>
             <div class="input-container ">
             <div class="add-contact-input-wrap">
               <input
                 type="tel"
-                class="add-contact-input"
+                class="add-contact-input validate"
+                pattern="^[0-9]{6,20}$"
                 placeholder="Phone"
                 name="phone"
                 id="add-contact-input-phone"
@@ -221,7 +225,7 @@ function getAddContactsScreenTemplate() {
                 class="add-contact-input-icon"
               />
             </div>
-              <div id="phone-error" class="d-none validation email">Please enter a valid phone number</div>
+              <div id="phone-error" class="opacity-0 validation email">Please enter a valid phone number</div>
             </div>
 
             <div class="add-contact-btns-wrap">
@@ -260,6 +264,9 @@ function getAddContactsScreenTemplate() {
  * @returns - HTML template for edit contact screen
  */
 function getEditContactScreenTemplate(indexContact) {
+  console.log(indexContact);
+  console.log();
+  
   return `
           <div
             class="close-icon-wrap"
@@ -290,14 +297,15 @@ function getEditContactScreenTemplate(indexContact) {
             </div>
           </div>
           <div class="add-contact-input-check">
-            <form id="edit-contact-form" novalidate class="add-contacts-form-wrap" onsubmit="updateContact(${indexContact}); event.preventDefault()">
+            <form id="edit-contact-form" novalidate class="add-contacts-form-wrap" onsubmit="updateContact(${indexContact}, ${contactsArray[indexContact][1].canLogin}); event.preventDefault()">
             
             <div class="form-contact-input-wrap">
               <div class="add-contact-input-wrap">
                 <input
                   type="text"
-                  class="add-contact-input required"
+                  class="add-contact-input validate"
                   placeholder="Name"
+                  pattern="\\p{L}+(?:[ \\-']\\p{L}+)*"
                   id="input-${indexContact}-name"
                   name="name"
                   oninput="resetErrorMessage()"
@@ -308,15 +316,31 @@ function getEditContactScreenTemplate(indexContact) {
                   class="add-contact-input-icon"
                 />
                  </div>
-                  <div class="d-none validation">This field is required!</div>
+                  <div class="opacity-0 validation">This field is required!</div>
             </div>
               <div class="input-container">
               <div class="form-contact-input-wrap">
               <div class="add-contact-input-wrap">
+              ${contactsArray[indexContact][1].canLogin ? `
                 <input
+                  disabled
                   type="email"
-                  class="add-contact-input required"
+                  class="add-contact-input"
                   placeholder="Email"
+                  id="input-${indexContact}-email"
+                />
+                <img
+                  src="../assets/icons/mail_icon.svg"
+                  alt="email-icon"
+                  class="add-contact-input-icon"
+                />
+                </div>  
+              <div id="email-error" class="opacity-1 validation email">User-accounts are not allowed to edit!</div>
+            </div>` : `<input
+                  type="email"
+                  class="add-contact-input validate"
+                  placeholder="Email"
+                  pattern="^[a-zA-Z0-9._%+\\-]+@([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}$"
                   name="email"
                   id="input-${indexContact}-email"
                   oninput="resetErrorMessage()"
@@ -326,17 +350,20 @@ function getEditContactScreenTemplate(indexContact) {
                   alt="email-icon"
                   class="add-contact-input-icon"
                 />
-               </div>  
-              <div class="d-none validation">This field is required!</div>
-              <div id="email-error" class="d-none validation email">Please enter a valid e-mail address</div>
+                </div>  
+              <div id="email-error" class="opacity-0 validation email">Please enter a valid, unused e-mail address</div>
             </div>
+            `}
+                
+               
               </div>
               <div class="input-container">
               <div class="add-contact-input-wrap">
                 <input
                   type="tel"
-                  class="add-contact-input"
+                  class="add-contact-input validate"
                   placeholder="Phone"
+                  pattern="^[0-9]{6,20}$"
                   name="phone"
                   id="input-${indexContact}-phone"
                   oninput="resetErrorMessage()"
@@ -347,7 +374,7 @@ function getEditContactScreenTemplate(indexContact) {
                   class="add contact-input-icon"
                 />
               </div>
- <div id="phone-error" class="d-none validation email">Please enter a valid phone number</div>
+ <div id="phone-error" class="opacity-0 validation email">Please enter a valid phone number</div>
 </div>
               <div class="add-contact-btns-wrap">
                 <button type="button" class="add-contact-btn-cancel" onclick="deleteContact(${indexContact})">

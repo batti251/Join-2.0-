@@ -10,11 +10,13 @@
     <link rel="stylesheet" href="../styles/css/login.css">
     <link rel="stylesheet" href="../styles/css/signup.css">
     <link rel="icon" href="../assets/img/faviconLogo.svg" />
+  <script src="../modules/user-object.class.js"></script>
     <script src="../script.js"></script>
+    <script src="../scripts/init.js"></script>
     <script src="../scripts/db.js"></script>
     <script src="../scripts/authentication.js"></script>
   </head>
-  <body>
+  <body onload="initDatabase()">
 
     <div class="landscape-orientation d-none">
       This screen size isn't supported in this view. <br />Please adjust your
@@ -51,6 +53,7 @@
 
 
           <form
+            id="signup-form"
             novalidate
             class="form-signup"
             onsubmit="signupFormValidation(event)"
@@ -59,18 +62,24 @@
               <div class="input-content">
                 <input
                   required
+                  class="validate"
+                  pattern="([\s\S]*\S){2,}[\s\S]*"
                   placeholder="Name"
                   type="text"
                   name="name"
                   id="add-contact-input-name"
                 /><img src="../assets/icons/person_icon.svg" alt="" />
               </div>
+               <div id="user-existance-error" class="login-error validation opacity-0"> This Field is required!</div>
+          
             </div>
             
             <div class="input-container">
               <div class="input-content">
                 <input
                   required
+                  class="validate"
+                  pattern="^[a-zA-Z0-9._%+\-]+@([a-zA-Z0-9\-]+\.)+[a-zA-Z]{2,}$"
                   placeholder="Email"
                   type="email"
                   name="email"
@@ -79,17 +88,17 @@
                 /><img src="../assets/icons/mail_icon.svg" alt="" />
           </div>
 
-                <div
+                <!-- <div
                 id="email-error"
                 class="opacity-0 validation email login-error"
                 >
                 Please enter a valid e-mail address.
-              </div>
+              </div> -->
               <div
-              id="email-redundancy-error"
+              id="email-error"
               class="opacity-0 validation email login-error"
               >
-              E-mail address already exists!
+              Please enter a valid, unused e-mail address.
             </div>
             </div>
 
@@ -97,6 +106,8 @@
               <div class="input-content">
                 <input
                   required
+                  class="validate"
+                  pattern="^.{8,}$"
                   placeholder="Password"
                   type="password"
                   name="password"
@@ -117,6 +128,8 @@
               <div class="input-content">
                 <input
                   required
+                  class="validate"
+                  pattern="^.{8,}$"
                   placeholder="Confirm Password"
                   type="password"
                   name="password"

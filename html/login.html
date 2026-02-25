@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="./../styles/css/main.css">
     <link rel="stylesheet" href="./../styles/css/login.css">
     <link rel="icon" href="./../assets/img/faviconLogo.svg" />
+    <script src="./../modules/user-object.class.js"></script>
+    <script src="./../modules/tasks-object.class.js"></script>
   <script src="./../script.js"></script>
   <script src="./../scripts/db.js"></script>
   <script src="./../scripts/board_operations.js"></script>
   <script src="./../scripts/add_task.js"></script>
-  <script src="./../modules/tasks-object.class.js"></script>
-  <script src="./../modules/user-object.class.js"></script>
   <script src="./../scripts/reset_join_content.js"></script>
   <script src="./../scripts/authentication.js"></script>
   <script src="./../scripts/desktop_template.js"></script>
@@ -64,14 +64,14 @@
           <form>
             <div class="input-container">
               <div class="input-content">
-                <input placeholder="Email" type="email" name="email" id="email" oninput="resetErrorMessage()"/><img src="./../assets/icons/mail_icon.svg" alt="" />
+                <input class="validate" placeholder="Email" type="email" name="email" id="email" oninput="resetErrorMessage()"/><img src="./../assets/icons/mail_icon.svg" alt="" />
               </div> 
               <div id="user-existance-error" class="login-error validation opacity-0"> User does not exist. Please sign up before login.</div>
             </div>
             
             <div class="input-container">
               <div class="input-content">
-                <input placeholder="Password" type="password" name="" id="password" oninput="resetErrorMessage()"/><img src="./../assets/icons/visibility_off.svg" class="pw-icon" onclick="showPassword(this)"/>
+                <input class="validate" placeholder="Password" type="password" name="" id="password" oninput="resetErrorMessage()"/><img src="./../assets/icons/visibility_off.svg" class="pw-icon" onclick="showPassword(this)"/>
                 </div>
                 <div id="password-error" class="login-error validation email opacity-0">Check your email and password. Please try again.</div>
             </div>

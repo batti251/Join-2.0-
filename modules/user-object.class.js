@@ -25,15 +25,14 @@ class User {
     return validUser;
   }
 
-
 /**
  * Adds a new contact to the database.
  *
  */
-buildNewUser(id, indexContact) {
+buildNewUser(id, indexContact, hasSource) {
   let form = document.getElementById(id);
     let formData = new FormData(form);
-    this.getFormValues(formData, indexContact);
+    this.getFormValues(formData, indexContact, hasSource);
 
 }
 
@@ -41,7 +40,7 @@ buildNewUser(id, indexContact) {
    * This Function builds the tasks key-value pairs from the {@link buildNewTask()}
    * @param {Object} formData 
    */
-  getFormValues(formData, indexContact) {
+  getFormValues(formData, indexContact, hasSource) {
     for (const [key, value] of formData) {
       switch (key) {
         case "subtasks":
@@ -55,11 +54,24 @@ buildNewUser(id, indexContact) {
           break;
       }
     }
-    if (indexContact) {
+    
+    if (indexContact && hasSource == "signup") {
+      this.addSignupMetaData()
+      return
+    } else if (indexContact && hasSource){
+      console.log("hier");
       return
     }
     this.addContactMetaData()
   }
+
+/**
+ * This Function makes the user-contact to an active account
+ * This is set in {@link getNewUserInformation()}
+ */
+addSignupMetaData(){
+    this.canLogin = true
+}
 
   /**
    * Adds additional Data to the new user-object

@@ -41,6 +41,7 @@ button {
 .btn-transparent {
   @include size($h: 48px, $w: 100%);
   max-width: 177px;
+  padding: 8px;
   @include text($c: #2a3647);
   @include font($fs: 21px, $fw: 700);
   background-color: transparent;

@@ -70,6 +70,7 @@ button > a {
   height: 48px;
   width: 100%;
   max-width: 177px;
+  padding: 8px;
   color: #2a3647;
   font-family: "Inter";
   font-size: 21px;
@@ -355,10 +356,6 @@ form > .input-container > .login-error {
   top: 5%;
 }
 
-.mail-request {
-  gap: 8px;
-}
-
 input[type=checkbox] {
   background: url("./../../../assets/icons/checkbox.svg") no-repeat;
   background-position: center;
@@ -400,6 +397,10 @@ input[type=checkbox]:checked:hover {
   line-height: 120%;
 }
 
+.error-border {
+  border-color: #ff8190 !important;
+}
+
 @media screen and (max-width: 992px) {
   .input-container {
     max-height: 77.19px;
@@ -409,7 +410,7 @@ input[type=checkbox]:checked:hover {
     display: none;
   }
 }
-@media (max-width: 480px) {
+@media screen and (max-width: 480px) {
   form {
     gap: 14px !important;
   }
@@ -605,7 +606,7 @@ form {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 0;
+  gap: 8px;
 }
 
 .textblock-wrap {

@@ -1,26 +1,3 @@
-/**
- * Pulls task data from firebase server and put them into an array
- *
- * @returns array with all tasks from firebase server
- */
-async function getTasksArray() {
-  tasksArray = [];
-  let tasks = await getDataBaseElement("tasks");
-  if (tasks == null) {
-    return tasksArray;
-  }
-  tasksArray = Object.entries(tasks).map(([taskId, taskData]) => {
-    if (taskData.assignedTo !== undefined) {
-      taskData.assignedTo = Object.entries(taskData.assignedTo);
-    }
-    if (taskData.subtasks !== undefined) {
-      taskData.subtasks = Object.entries(taskData.subtasks);
-    }
-    return [taskId, taskData];
-  });
-  return tasksArray;
-}
-
 async function getUsersArray() {
   userArray = [];
   let user = await getDataBaseElement("user");
@@ -28,15 +5,6 @@ async function getUsersArray() {
     return userArray;
   }
   userArray = Object.entries(user)
-/*   userArray = Object.entries(user).map(([userId, userData]) => {
-    if (userData.assignedTo !== undefined) {
-      taskData.assignedTo = Object.entries(userData.assignedTo);
-    }
-    if (userData.subtasks !== undefined) {
-      userData.subtasks = Object.entries(userData.subtasks);
-    }
-    return [userId, userData];
-  }); */
   return userArray;
 }
 

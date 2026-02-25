@@ -1,31 +1,8 @@
-let user = new User();
-
-/**
- * Returns an array alphabetically sorted by name.
- *
- * @async
- * @returns {Promise<Array<[string,Object]>>} A promise that resolves to an array of [id, contact] pairs sorted by name.
- */
-async function getSortedContactsArray() {
-  let contacts = await getDataBaseElement("contacts");
-  contactsArray = Object.entries(contacts);
-  contactsArray.sort((idValuePairA, idValuePairB) => {
-    const nameA = idValuePairA[1].name.toLowerCase();
-    const nameB = idValuePairB[1].name.toLowerCase();
-    return nameA.localeCompare(nameB);
-  });
-  return contactsArray;
-}
-
-
 async function addNewContact() {
   event.preventDefault()
-  let userIndex = await user.validateUser();
-  console.log(userIndex);
-  
-  if (userIndex < 0) {
-    showToastMessage("add-contact-reject-msg") 
-    return};
+  if (!await validContact()) {
+    return
+  }
 
   user.buildNewUser("add-contact-form")
   await submitObjectToDatabase("contacts", user);
@@ -43,18 +20,14 @@ async function addNewContact() {
  *
  * @param {integer} indexContact
  */
-async function updateContact(indexContact) {
+async function updateContact(indexContact, canLogin) {
   event.preventDefault()
-  if (!regexValidation()) {
-    return;
+  if (!await validContact(canLogin)) {
+    return
   }
-  let userIndex = await user.validateUser();
-  if (userIndex < 0) {
-    showToastMessage("edit-contact-reject-msg") 
-    return};
 
  let userID = contactsArray[indexContact][0]
-  user.buildNewUser("edit-contact-form", indexContact)
+  user.buildNewUser("edit-contact-form", indexContact, "editContact")
   await patchDatabaseObject(`contacts/${userID}`, user);
   await renderContactsList();
   renderContactDetails(indexContact);
