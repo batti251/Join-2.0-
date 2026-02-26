@@ -237,6 +237,8 @@ button > a {
   align-items: center;
   flex-direction: unset;
   gap: 12px;
+  height: 56px;
+  width: auto;
   color: #2a3647;
   border: 1px solid #2a3647;
   padding: 16px;
@@ -262,7 +264,9 @@ button > a {
   justify-content: center;
   align-items: center;
   flex-direction: unset;
-  gap: 12px;
+  gap: 0;
+  height: 56px;
+  width: auto;
   border: 1px solid #2a3647;
   background-color: #2a3647;
   padding: 16px;
@@ -670,7 +674,7 @@ header {
   flex-direction: row;
   gap: 0;
   height: 96px;
-  width: auto;
+  width: 100%;
   z-index: 2;
 }
 
@@ -871,16 +875,10 @@ main {
     grid-template-areas: "nav" "main" "aside";
     grid-template-rows: 80px auto 80px;
   }
-  header {
-    height: 80px;
-    width: auto;
-  }
   .header-container {
     padding: 16px 20px;
     height: 80px;
     justify-content: space-between;
-    /*  padding: 16px 20px; */
-    /* padding: 0; */
   }
   main {
     height: calc(100vh - 160px);
@@ -906,6 +904,7 @@ main {
     gap: 0;
     height: 80px;
     width: 100%;
+    padding: 3px;
   }
   nav > a {
     display: flex;

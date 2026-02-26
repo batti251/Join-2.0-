@@ -172,6 +172,7 @@ select{
   border-radius: 10px;
   padding: 8px;
   @include dFlex();
+  z-index: 99;
 }
 
 .ai-limit {
@@ -307,7 +308,7 @@ select{
   .stakeholder-headline {
     align-items: unset;
     flex-direction: column-reverse;
-    gap: unset;
+    gap: 24px;
   }
 
   .headline-navigate {

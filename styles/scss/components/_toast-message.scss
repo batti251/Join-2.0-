@@ -32,7 +32,7 @@
   border-radius: 20px;
   pointer-events: none;
   z-index: 100;
-  width: 100%;
+  width: auto;
 
   > .toast-msg-spans {
     @include dFlex($fd: unset, $jc: space-between, $g: 32px);

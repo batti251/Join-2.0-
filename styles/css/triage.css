@@ -448,6 +448,7 @@ select:hover {
   align-items: center;
   flex-direction: column;
   gap: 0;
+  z-index: 99;
 }
 
 .ai-limit {
@@ -558,7 +559,7 @@ select:hover {
   .stakeholder-headline {
     align-items: unset;
     flex-direction: column-reverse;
-    gap: unset;
+    gap: 24px;
   }
   .headline-navigate {
     flex-direction: row-reverse;

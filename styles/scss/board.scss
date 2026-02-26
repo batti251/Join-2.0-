@@ -389,7 +389,18 @@ main {
     padding: 0 32px;
     gap: 40px;
   }
-  .add-task-btn {
+
+  .board-search-add-task-wrap{
+    @include dFlex($fd: column-reverse, $ai: end, $jc: unset, $g: 32px);
+  }
+
+  .add-task-btn{
+    @include size($w: 34px, $h: 34px);
+    padding: 8px;
+    justify-content: center;
+  }
+
+  .add-task-btn-text {
     display: none;
   }
 

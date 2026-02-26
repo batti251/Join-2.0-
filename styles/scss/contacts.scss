@@ -214,18 +214,9 @@
   }
 
 
-
-
-
-
-
-
-
-
-
   .contacts-list-wrap {
     @include size($h: calc(100vh - 96px), $w: calc(100vw - 232px));
-    padding: 0 24px;
+    padding: 0 12px;
   }
 
   .contacts-list {
@@ -242,10 +233,7 @@
 }
 
 
-
 @media (max-width: 820px) {
-
-
   .add-new-contact-btn-mobile {
     bottom: 96px;
   }
@@ -253,12 +241,6 @@
   .edit-contact-btn-mobile {
     bottom: 96px;
   }
-
-
-
-
-
-
 
 
   .join-logo{
@@ -275,18 +257,9 @@
 }
 
 @media (max-width: 440px) {
-
-
-
   .contact-details-mobile-wrap {
     padding: 40px 16px;
   }
-
-
-
-
-
-
 
   .bookmark-wrap {
     width: 100%;

@@ -282,7 +282,7 @@ input[type="checkbox"] {
   .add-task-overlay-wrap {
     max-height: unset;
     max-width: unset;
-    height: calc(100vh - 160px);
+    height: 100dvh;
     width: 100vw;
     border-radius: 0;
     background-color: #f6f7f8;

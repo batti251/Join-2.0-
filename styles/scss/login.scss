@@ -20,14 +20,19 @@ body {
     height: 100%;
     width: 100%;
     display: flex;
-  }
+    min-width: 40px;
+    min-height: 40px;
+    img{
+      width: 100%;
+    }
+}
 
 }
 
 header {
   @include dFlex($fd: row, $jc: space-between);
   @include padding($p: 24px);
-  height: 100%;
+  height: auto;
 }
 
 .headline-container {

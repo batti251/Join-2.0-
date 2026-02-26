@@ -90,6 +90,7 @@ form {
 .validation {
   @include font($fs: 13px);
   color: $color-error;
+  text-align: center;
 }
 
 .text-red {
