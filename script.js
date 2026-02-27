@@ -294,7 +294,6 @@ function resetErrorMessage() {
   });
 }
 
-
 /**
  * Handler to identify, if all required fields match the regex-patterns
  * @returns either true (all required fields are valid) or false (at least 1 required field is invalid)
@@ -310,7 +309,6 @@ function checkValidation() {
   });
  return valid;
 }
-
 
 /**
  * This Function adds z-index-1 - class to current clicked element
@@ -342,7 +340,6 @@ function sendMail(e) {
   return
  }
 
-
   fetch(webhook, {
     method: "POST",
     headers: {
@@ -369,7 +366,6 @@ function sendMail(e) {
     resetInputs();
     hideMessageBox()
   })
-
 }
 
 /**
