@@ -66,7 +66,7 @@ async function getNewUserInformation() {
   } else 
     hasUserAccount = true
   if (!hasUserAccount) {
-    user.buildNewUser("signup-form", 1 , "signup");
+    user.buildNewUser("signup-form", 1 , "patch");
     await patchDatabaseObject(`contacts/${contactsArray[mailUsed][0]}`, user);
   } else {
     user.buildNewUser("signup-form",1, "signup");

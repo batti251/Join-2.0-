@@ -1,7 +1,7 @@
 class User {
   name;
   email;
-  phone;
+  phone = "";
   checkbox;
   password;
   canLogin;
@@ -33,7 +33,8 @@ buildNewUser(id, indexContact, hasSource) {
   let form = document.getElementById(id);
     let formData = new FormData(form);
     this.getFormValues(formData, indexContact, hasSource);
-
+  /* console.log(newTaskSubtasks); */
+  
 }
 
   /**
@@ -42,27 +43,18 @@ buildNewUser(id, indexContact, hasSource) {
    */
   getFormValues(formData, indexContact, hasSource) {
     for (const [key, value] of formData) {
-      switch (key) {
-        case "subtasks":
-          this[key] = newTaskSubtasks;
-          break;
-        case "assignedTo":
-          this.assignedToFunction();
-          break;
-        default:
           this[key] = value;
-          break;
       }
+          if (hasSource == "patch") {
+        this.addSignupMetaData()
+      } else if (hasSource == "signup") {
+        this.addSignupMetaData()
+        this.phone = "";
+      }
+        
+    if (indexContact < 1) {
+      this.addContactMetaData()
     }
-    
-    if (indexContact && hasSource == "signup") {
-      this.addSignupMetaData()
-      return
-    } else if (indexContact && hasSource){
-      console.log("hier");
-      return
-    }
-    this.addContactMetaData()
   }
 
 /**
