@@ -47,6 +47,7 @@ async function signupFormValidation(event) {
   }  
   if (await validSignup()) {
     getNewUserInformation();
+    showMessage();
   }
 }
 
@@ -87,6 +88,7 @@ async function showMessage(credentials) {
   messageBox.classList.remove("d-none");
   messageBox.classList.add("d-flex");
   blur.style.backgroundColor = "rgb(0, 0, 0, 0.10)";
+  blur.style.zIndex = 2;
   signup.classList.add('index-1')
   setTimeout(() => {
     location.href = "./login.html";

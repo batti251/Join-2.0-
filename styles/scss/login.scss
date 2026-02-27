@@ -75,7 +75,7 @@ h1 {
 main {
   @include dFlex($g: 32px);
   @include size($h: auto, $w: 100%);
-  @include padding($p: 1% 10%);
+  @include padding($p: 1% 2%);
   max-width: 652px;
   border-radius: 30px;
   background-color: #ffffff;

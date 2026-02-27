@@ -19,7 +19,6 @@
   background-color: #ffffff;
   animation: hide 2s forwards;
   z-index: -1;
-  transition: ease-in-out 0.5s;
 }
 
 button {
@@ -1138,6 +1137,7 @@ input[type=checkbox] {
   align-items: center;
   flex-direction: column;
   gap: 0;
+  z-index: 999;
 }
 
 .signup-message-text {

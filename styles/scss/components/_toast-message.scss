@@ -9,7 +9,8 @@
   border-radius: 20px;
   box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.15);
   animation: slide-up 1s forwards;
-  @include dFlex()
+  @include dFlex();
+  z-index: 999;
 }
 
 .signup-message-text {
