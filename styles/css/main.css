@@ -2223,6 +2223,11 @@ main {
   max-width: 1920px;
 }
 
+.landscape-orientation {
+  opacity: 0;
+  display: none;
+}
+
 @media screen and (max-width: 820px) {
   .page {
     grid-template-columns: auto;
@@ -2303,17 +2308,22 @@ main {
     display: none;
   }
 }
-@media screen and (max-height: 439px) {
+@media screen and (max-height: 540px) {
   .landscape-orientation {
+    opacity: 1;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 0;
     height: 100%;
     width: 100%;
     position: fixed;
-    top: 0%;
+    top: unset;
+    right: unset;
+    bottom: unset;
+    left: unset;
     background: rgba(0, 0, 0, 0.9);
-    left: 0%;
     overflow: initial;
     z-index: 9999;
     color: #ffffff;

@@ -173,6 +173,11 @@ main {
   max-width: 1920px;
 }
 
+.landscape-orientation{
+  opacity: 0;
+  display: none;
+}
+
 @media screen and (max-width: 820px) {
   .page {
     grid-template-columns: auto;
@@ -253,17 +258,13 @@ main {
 }
 
 
-@media screen and (max-height: 439px) {
+@media screen and (max-height: 540px) {
   .landscape-orientation {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    width: 100%;
-    position: fixed;
-    top: -0%;
+    opacity: 1;
+    @include dFlex();
+    @include size($h: 100%, $w: 100%);
+    @include position($p: fixed);
     background: rgb(0, 0, 0, 0.9);
-    left: -0%;
     overflow: initial;
     z-index: 9999;
     color: #ffffff;
