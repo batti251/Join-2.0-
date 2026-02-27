@@ -94,11 +94,13 @@ function searchTask() {
 function mapObject(currentTask, targetStatus){
   let objRef = {}
   let taskRef = currentTask[1]
+  console.log(taskRef);
+  
   objRef = {
     "mail" : taskRef.mail,
     "newStatus" : targetStatus,
     "title" : taskRef.title,
-    "name" : taskRef.name
+    "name" : taskRef.name ?? taskRef.creator
   }
 
   return objRef
