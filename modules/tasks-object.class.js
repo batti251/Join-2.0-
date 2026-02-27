@@ -105,6 +105,7 @@ buildNewTask(id, currentTask) {
   addMetaProperties(currentTask) {
     this.source = "human";
     currentTask ? this.status = currentTask.status : this.status = "triage";
+    this.priority ? this.priority :  this.priority = "medium";
     this.creator = sessionStorage.getItem("user");
     this.creatorId = sessionStorage.getItem("id");
     this.category = this.getTaskCategoryFirebaseName();
