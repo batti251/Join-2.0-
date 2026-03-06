@@ -70,7 +70,6 @@ function closeContactOverlays() {
   setTimeout(() => {
     contactScreenRef.style.display = "none";
     document.body.style.overflow = "auto";
-    /*  document.getElementById("back-to-contacts-list-btn").style.display = ""; */
   }, 500);
 }
 

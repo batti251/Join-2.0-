@@ -1264,6 +1264,7 @@ form > .input-container {
   gap: 21px;
   transform: translateX(300%);
   transition: transform 250ms linear;
+  position: fixed;
 }
 
 .contact-details-show {

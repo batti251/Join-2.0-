@@ -201,19 +201,38 @@ function saveSession(name, userID) {
  * @param {Boolean} canLogin - flag from user-entry (true: has active account ; false: has no active account => sign-in possible)
  * @returns - 
  */
-async function validContact(canLogin) {
+async function validContact(canLogin, indexContact) {
   let state = true
   let errorRef = document.getElementById(`email-error`);
-  if ( !await isMailUsable() && canLogin) {
+  console.log(canLogin);
+  console.log(indexContact);
+  
+  if ( !await isMailUsable(indexContact) && indexContact) {
+    console.log("!MailUsable & indexContact");
+   return
+  }  else if ( !await isMailUsable()) {
+      console.log("!MailUsable");
+      //kommt bei Add Task => läuft normal
    errorRef.innerHTML = "Mail already exist. Please take an unused email";
     return
-  }
+  }  
+
+ // Fehler, wenn kontakt editieren, ohne email änderung
+ // wenn ausgeklammert, dann doppelte Einträge möglich
+
+ /*  if ( !await isMailUsable() && canLogin) {
+    console.log("!MailUsable & canLogin");
+   errorRef.innerHTML = "Mail already exist. Please take an unused email";
+    return
+  } */
   if (! await isValidUser()) {
     showToastMessage("add-contact-reject-msg") 
     return};
   if (!checkValidation()) {
-    errorRef.innerHTML = "Please enter a valid, unused e-mail address";
-    return  state = false
+    console.log("Validation Fail");
+    
+    errorRef.innerHTML = "Please enter a valid, unused email";
+    return 
   }
   return state
 }
@@ -224,17 +243,30 @@ async function validContact(canLogin) {
  * 
  * @returns - it returns either true ()
  */
-async function isMailUsable() {
+async function isMailUsable(indexContact) {
   let state = true
-  let mailUsed = await lookupMail();
+  let mailUsed = await lookupMail(indexContact);
+  console.log(mailUsed);
+  console.log(mailUsed > -1);
+  
   let hasUserAccount
-  if (mailUsed > -1) {
-     hasUserAccount = contactsArray[mailUsed][1].canLogin
+  if (mailUsed === true) {
+    console.log("gleiche Mail");
+    
+     sameMailEdit = true
   }
+  if (mailUsed > -1) {
+     hasUserAccount = true
+  }
+  console.log(hasUserAccount);
+  
     if (mailUsed >= 0 && hasUserAccount) {
+      console.log(mailUsed);
+      console.log(hasUserAccount);
+      
     showErrorMessage("email")
     return  state = false    
-  } else 
+  } else if (sameMailEdit)
     return state = true
 }
 
@@ -242,13 +274,22 @@ async function isMailUsable() {
  * This Function looks for stored mails, within the database
  * @returns - it returns either -1 (Mail does not exist), or  the according Index (Mail exists) 
  */
-async function lookupMail() {
+async function lookupMail(indexContact) {
   contactsArray = await getSortedContactsArray()
   let toValidate = document.querySelectorAll(".validate");
   let mailInputRef = [...toValidate].filter(e => e.name == "email")
   let mailInput = mailInputRef[0]?.value;
   let usedMails = contactsArray.map((e) => {return e[1].email})
   let validMail = usedMails.findIndex((e) => e == mailInput);
+  console.log(validMail);
+  if (validMail == indexContact) {
+    console.log(validMail == indexContact);
+    //hier ist editieren (ohne Account) möglich!
+    sameMail = true
+    return sameMail
+  }
+  console.log(indexContact);  //wenn indexContact & valid Mail gleich, dann mail überspringen, sonst Fehler
+  
   return validMail;
   }
 

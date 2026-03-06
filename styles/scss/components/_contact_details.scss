@@ -52,6 +52,7 @@ form {
   @include dFlex($ai: unset, $jc: unset, $g: 21px);
   transform: translateX(300%);
   transition: transform 250ms linear;
+  position: fixed;
 }
 
 .contact-details-show {

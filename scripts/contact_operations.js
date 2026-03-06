@@ -22,7 +22,7 @@ async function addNewContact() {
  */
 async function updateContact(indexContact, canLogin) {
   event.preventDefault()
-  if (!await validContact(canLogin)) {
+  if (!await validContact(canLogin,indexContact)) {
     return
   }
 

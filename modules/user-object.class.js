@@ -33,8 +33,6 @@ buildNewUser(id, indexContact, hasSource) {
   let form = document.getElementById(id);
     let formData = new FormData(form);
     this.getFormValues(formData, indexContact, hasSource);
-  /* console.log(newTaskSubtasks); */
-  
 }
 
   /**

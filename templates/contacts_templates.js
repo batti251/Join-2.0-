@@ -265,7 +265,6 @@ function getAddContactsScreenTemplate() {
  */
 function getEditContactScreenTemplate(indexContact) {
   console.log(indexContact);
-  console.log();
   
   return `
           <div
@@ -335,7 +334,7 @@ function getEditContactScreenTemplate(indexContact) {
                   class="add-contact-input-icon"
                 />
                 </div>  
-              <div id="email-error" class="opacity-1 validation email">User-accounts are not allowed to edit!</div>
+              <div id="email-error" class="email">User-accounts are not allowed to edit!</div>
             </div>` : `<input
                   type="email"
                   class="add-contact-input validate"

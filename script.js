@@ -302,6 +302,12 @@ function checkValidation() {
   let toValidate = document.querySelectorAll(".validate");
   let error = document.querySelectorAll(".validation");
   let valid;
+  console.log(toValidate);
+  [...toValidate].forEach((e,i) => {
+    console.log(error[i]);
+    
+  });
+
   [...toValidate].every((e,i) => {
       valid = e.checkValidity();
       valid ? error[i].classList.add("opacity-0") : error[i].classList.remove("opacity-0");
