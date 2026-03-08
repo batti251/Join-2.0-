@@ -195,6 +195,8 @@ function saveSession(name, userID) {
   setSessionStorage("id", userID)
 }
 
+
+
 /**
  * This Function handles the contact validations 
  * It's called from {@link addNewContact()} and {@link updateContact()}
@@ -202,40 +204,24 @@ function saveSession(name, userID) {
  * @returns - 
  */
 async function validContact(canLogin, indexContact) {
+  initMailObj()
   let state = true
   let errorRef = document.getElementById(`email-error`);
-  console.log(canLogin);
-  console.log(indexContact);
-  
-  if ( !await isMailUsable(indexContact) && indexContact) {
-    console.log("!MailUsable & indexContact");
-   return
-  }  else if ( !await isMailUsable()) {
-      console.log("!MailUsable");
-      //kommt bei Add Task => läuft normal
+  if ( !await isMailUsable(indexContact)) {
    errorRef.innerHTML = "Mail already exist. Please take an unused email";
     return
   }  
-
- // Fehler, wenn kontakt editieren, ohne email änderung
- // wenn ausgeklammert, dann doppelte Einträge möglich
-
- /*  if ( !await isMailUsable() && canLogin) {
-    console.log("!MailUsable & canLogin");
-   errorRef.innerHTML = "Mail already exist. Please take an unused email";
-    return
-  } */
   if (! await isValidUser()) {
     showToastMessage("add-contact-reject-msg") 
     return};
   if (!checkValidation()) {
-    console.log("Validation Fail");
-    
     errorRef.innerHTML = "Please enter a valid, unused email";
     return 
   }
   return state
 }
+
+
 
 /**
  * This Function queries, if a user-entry has a valid mail and active account
@@ -244,30 +230,17 @@ async function validContact(canLogin, indexContact) {
  * @returns - it returns either true ()
  */
 async function isMailUsable(indexContact) {
-  let state = true
-  let mailUsed = await lookupMail(indexContact);
-  console.log(mailUsed);
-  console.log(mailUsed > -1);
-  
-  let hasUserAccount
-  if (mailUsed === true) {
-    console.log("gleiche Mail");
-    
-     sameMailEdit = true
+  let editMailObj = await lookupMail(indexContact);
+  if (editMailObj.sameMailDBLookUp === true) {
+     return editMailObj.continueSubmit = true 
+  } 
+    else if (editMailObj.addContact){
+    return editMailObj.continueSubmit = true 
   }
-  if (mailUsed > -1) {
-     hasUserAccount = true
-  }
-  console.log(hasUserAccount);
-  
-    if (mailUsed >= 0 && hasUserAccount) {
-      console.log(mailUsed);
-      console.log(hasUserAccount);
-      
+    else if (!editMailObj.sameMailDBLookUp) {
     showErrorMessage("email")
-    return  state = false    
-  } else if (sameMailEdit)
-    return state = true
+    return  editMailObj.continueSubmit = false    
+  } 
 }
 
 /**
@@ -279,18 +252,41 @@ async function lookupMail(indexContact) {
   let toValidate = document.querySelectorAll(".validate");
   let mailInputRef = [...toValidate].filter(e => e.name == "email")
   let mailInput = mailInputRef[0]?.value;
-  let usedMails = contactsArray.map((e) => {return e[1].email})
-  let validMail = usedMails.findIndex((e) => e == mailInput);
-  console.log(validMail);
-  if (validMail == indexContact) {
-    console.log(validMail == indexContact);
-    //hier ist editieren (ohne Account) möglich!
-    sameMail = true
-    return sameMail
+  let usedMails = contactsArray.map((e) => {return e})
+  let validMail = usedMails.findIndex((e) => e[1].email == mailInput);
+  let existingUser = usedMails[validMail]
+
+  return SubmitHandler(existingUser, validMail, indexContact)
+ 
   }
-  console.log(indexContact);  //wenn indexContact & valid Mail gleich, dann mail überspringen, sonst Fehler
-  
-  return validMail;
+
+ function SubmitHandler(existingUser, validMail, indexContact) {
+  if (!existingUser) {
+    editMailHandler.addContact = true
+    return editMailHandler
+  }
+  if (validMail == indexContact) { 
+    console.log(validMail == indexContact);
+    editMailHandler.sameMailDBLookUp = true
+  } else {
+    editMailHandler.sameMailDBLookUp = false
+  }
+  if (existingUser[1]?.canLogin === true) {
+    editMailHandler.hasUserAccount = true
+  } else {
+    editMailHandler.hasUserAccount = false
+  }
+  return editMailHandler;
+  }
+
+
+
+  function initMailObj() {
+      editMailHandler = {
+  sameMailDBLookUp: false,
+  hasUserAccount: false,
+  continueSubmit: false,
+}
   }
 
 
