@@ -25,7 +25,6 @@ async function updateContact(indexContact, canLogin) {
   if (!await validContact(canLogin,indexContact)) {
     return
   }
-
  let userID = contactsArray[indexContact][0]
   user.buildNewUser("edit-contact-form", indexContact, "editContact")
   await patchDatabaseObject(`contacts/${userID}`, user);
@@ -33,6 +32,7 @@ async function updateContact(indexContact, canLogin) {
   renderContactDetails(indexContact);
   closeContactOverlays();
   showToastMessage("contact-updated-toast-msg");
+  user = new User();
 }
 
 

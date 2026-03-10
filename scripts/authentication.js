@@ -60,7 +60,7 @@ async function signupFormValidation(event) {
  */
 async function getNewUserInformation() {
   let mailUsed = await lookupMail();
-      let hasUserAccount
+      let hasUserAccount;
   if (mailUsed > -1) {
      hasUserAccount = contactsArray[mailUsed][1].canLogin
   } else 
@@ -207,7 +207,7 @@ async function validContact(canLogin, indexContact) {
   initMailObj()
   let state = true
   let errorRef = document.getElementById(`email-error`);
-  if ( !await isMailUsable(indexContact)) {
+  if ( !await isMailUsable(indexContact) && !canLogin) {
    errorRef.innerHTML = "Mail already exist. Please take an unused email";
     return
   }  
@@ -255,7 +255,6 @@ async function lookupMail(indexContact) {
   let usedMails = contactsArray.map((e) => {return e})
   let validMail = usedMails.findIndex((e) => e[1].email == mailInput);
   let existingUser = usedMails[validMail]
-
   return SubmitHandler(existingUser, validMail, indexContact)
  
   }
@@ -263,18 +262,20 @@ async function lookupMail(indexContact) {
  function SubmitHandler(existingUser, validMail, indexContact) {
   if (!existingUser) {
     editMailHandler.addContact = true
+    return editMailHandler 
+  } if (existingUser === undefined) {
+    editMailHandler.hasUserAccount = true;
     return editMailHandler
-  }
+  } 
   if (validMail == indexContact) { 
-    console.log(validMail == indexContact);
-    editMailHandler.sameMailDBLookUp = true
+    editMailHandler.sameMailDBLookUp = true;
   } else {
     editMailHandler.sameMailDBLookUp = false
   }
   if (existingUser[1]?.canLogin === true) {
-    editMailHandler.hasUserAccount = true
+    editMailHandler.hasUserAccount = true;
   } else {
-    editMailHandler.hasUserAccount = false
+    editMailHandler.hasUserAccount = false;
   }
   return editMailHandler;
   }
@@ -282,11 +283,11 @@ async function lookupMail(indexContact) {
 
 
   function initMailObj() {
-      editMailHandler = {
-  sameMailDBLookUp: false,
-  hasUserAccount: false,
-  continueSubmit: false,
-}
+  editMailHandler = {
+    sameMailDBLookUp: false,
+    hasUserAccount: false,
+    continueSubmit: false,
+  }
   }
 
 
@@ -295,7 +296,7 @@ async function lookupMail(indexContact) {
  * @returns - it returns either true () or false, depending  on the filtered userIndex
  */
 async function isValidUser() {
-  let state = true
+  let state = true;
   let userIndex = await user.validateUser();
   if (userIndex < 0) {
     showToastMessage("add-contact-reject-msg") 

@@ -334,7 +334,7 @@ function getEditContactScreenTemplate(indexContact) {
                   class="add-contact-input-icon"
                 />
                 </div>  
-              <div id="email-error" class="email">User-accounts are not allowed to edit!</div>
+              <div class="email">User-accounts are not allowed to edit!</div>
             </div>` : `<input
                   type="email"
                   class="add-contact-input validate"

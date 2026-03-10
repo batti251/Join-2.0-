@@ -44,11 +44,11 @@ function stopEventPropagation(event) {
  */
 function showErrorMessage(field, array) {
   let errorRef = document.getElementById(`${field}-error`);
-  errorRef.classList.remove("opacity-0");
+  errorRef?.classList.remove("opacity-0");
   array?.forEach((input) => {
     input.parentElement.classList.add("error-border");
   });
-  errorRef.previousElementSibling.classList.add("error-border");
+  errorRef?.previousElementSibling.classList.add("error-border");
 }
 
 /**
