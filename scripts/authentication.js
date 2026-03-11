@@ -53,6 +53,26 @@ async function signupFormValidation(event) {
 }
 
 
+
+/**
+ * Mail-Handler for several authentication cases:
+ * addContact: Handles contact adding
+ * sameMailDBLookUp: true => both states (before editing | after edit-submit) have the same mail 
+ *                   false => both states have different mails
+ * hasUserAccount: true => the edit contact has a valid private account
+ *                 false => the edit contact has not a valid private account
+ * continueSubmit: flag to mark continue process 
+ */
+  function initMailObj() {
+  editMailHandler = {
+    sameMailDBLookUp: false,
+    hasUserAccount: false,
+    continueSubmit: false,
+    addContact: false
+  }
+  }
+
+
 /**
  * Function to create a new user account,
  * If a users mail-address already exists, it will update the dedicated user-entry
@@ -207,18 +227,14 @@ function saveSession(name, userID) {
  *                      false = notAValidContact 
  */
 async function validContact(canLogin, indexContact) {
-  initMailObj()
-  let state = true
+  initMailObj();
+  let state = true;
   let errorRef = document.getElementById(`email-error`);
   if ( !await isMailUsable(indexContact) && !canLogin) {
-    console.log("!isMailUsable && !canLogin");
-    
    errorRef.innerHTML = "Mail already exist. Please take an unused email";
     return
   }  
   if (!await isValidUser()) {
-    console.log("!isValidUser");
-    
     showToastMessage("add-contact-reject-msg") 
     return};
   if (!checkValidation()) {
@@ -233,14 +249,11 @@ async function validContact(canLogin, indexContact) {
 /**
  * This Function queries, if a user-entry has a valid mail and active account
  * This is used for sign-in
- * It 
  * @param {*} indexContact 
  * @returns - returns boolean handler for continue Submit process
  */
 async function isMailUsable(indexContact) {
   await lookupMail(indexContact);
-  console.log(editMailHandler);
-  
   if (editMailHandler.sameMailDBLookUp === true) {
      return editMailHandler.continueSubmit = true 
   } 
@@ -270,50 +283,27 @@ async function lookupMail(indexContact) {
   let validMail = usedMails.findIndex((e) => e[1].email == mailInput);
   let existingUser = usedMails[validMail]
   return editMailHandlerUpdate(existingUser, validMail, indexContact)
- 
   }
 
   /**
-   * 
+   * Handler to sort different edit-contact cases, to prevent overwriting-typed bugs 
+   * Cases explained here {@link initMailObj()}
    * @param {Boolean} existingUser 
    * @param {Number} validMail 
    * @param {Number} indexContact 
    * @returns - editMalHandler-Object
    */
  function editMailHandlerUpdate(existingUser, validMail, indexContact) {
-  console.log(typeof existingUser);
-  console.log(typeof validMail);
-  console.log(typeof indexContact);
-  
   if (validMail == indexContact) { 
-    console.log("validMail == indexContact"); //eigener contact ohne mail änderung --success-- (EDIT) 2
-    
     editMailHandler.sameMailDBLookUp = true;
   } 
   if (!existingUser) {
-    console.log("!existingUser");            //contact angelegt --success-- (ADD) 1
-                                     //disabled mail getauscht --success!!!-- (EDIT) 7
     editMailHandler.addContact = true
     return editMailHandler 
   } else if (existingUser[1]?.canLogin === true || existingUser === undefined) {
-    console.log("User undefined or canLogin");  //eigener contact, mail angepasst, contact-mail vergeben & bereits login-account --error-- (EDIT) 3
-                                                //contact angelegt, contact-mail vergeben & bereits login-account --error-- (ADD) 5
     editMailHandler.hasUserAccount = true;
   } 
-
-console.log(editMailHandler);
-
   return editMailHandler;
-  }
-
-
-
-  function initMailObj() {
-  editMailHandler = {
-    sameMailDBLookUp: false,
-    hasUserAccount: false,
-    continueSubmit: false,
-  }
   }
 
 
@@ -326,7 +316,8 @@ async function isValidUser() {
   let userIndex = await user.validateUser();
   if (userIndex < 0) {
     showToastMessage("add-contact-reject-msg") 
-    return  state = false};
+    return  state = false
+  };
     return state = true
 }
 
@@ -338,7 +329,6 @@ async function isValidUser() {
 async function validSignup() {
   let state = true
   let errorRef = document.getElementById(`email-error`);
-
   if (!await isMailUsable()) {
    errorRef.innerHTML = "Mail already exist. Please take an unused email";
     return
