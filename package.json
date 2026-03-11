@@ -4,7 +4,7 @@
   "description": "Join is a browser-based Kanban board application developed as a **group project** during the Developer Akademie Frontend Course.  \r The goal was to collaboratively build a task management tool using **pure HTML, CSS, and JavaScript**, without any frameworks, and a **Firebase backend**.",
   "main": "script.js",
   "scripts": {
-   "dev:css": "sass --watch styles/scss:styles/css",
+   "watch": "sass --watch styles/scss:styles/css",
     "build:css": "sass styles/scss:styles/css --style=compressed"
   },
   "repository": {

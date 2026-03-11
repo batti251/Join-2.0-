@@ -41,6 +41,7 @@ function checkInput() {
  */
 async function signupFormValidation(event) {
   event.preventDefault();
+  initMailObj()
   let userInput = document.getElementsByTagName("input");
    if (userInput[2].value !== userInput[3].value) {
      showErrorMessage("password", []); 
@@ -201,17 +202,23 @@ function saveSession(name, userID) {
  * This Function handles the contact validations 
  * It's called from {@link addNewContact()} and {@link updateContact()}
  * @param {Boolean} canLogin - flag from user-entry (true: has active account ; false: has no active account => sign-in possible)
- * @returns - 
+ * @param {*} indexContact 
+ * @returns - states:   true = isAValidContact
+ *                      false = notAValidContact 
  */
 async function validContact(canLogin, indexContact) {
   initMailObj()
   let state = true
   let errorRef = document.getElementById(`email-error`);
   if ( !await isMailUsable(indexContact) && !canLogin) {
+    console.log("!isMailUsable && !canLogin");
+    
    errorRef.innerHTML = "Mail already exist. Please take an unused email";
     return
   }  
-  if (! await isValidUser()) {
+  if (!await isValidUser()) {
+    console.log("!isValidUser");
+    
     showToastMessage("add-contact-reject-msg") 
     return};
   if (!checkValidation()) {
@@ -226,26 +233,33 @@ async function validContact(canLogin, indexContact) {
 /**
  * This Function queries, if a user-entry has a valid mail and active account
  * This is used for sign-in
- * 
- * @returns - it returns either true ()
+ * It 
+ * @param {*} indexContact 
+ * @returns - returns boolean handler for continue Submit process
  */
 async function isMailUsable(indexContact) {
-  let editMailObj = await lookupMail(indexContact);
-  if (editMailObj.sameMailDBLookUp === true) {
-     return editMailObj.continueSubmit = true 
+  await lookupMail(indexContact);
+  console.log(editMailHandler);
+  
+  if (editMailHandler.sameMailDBLookUp === true) {
+     return editMailHandler.continueSubmit = true 
   } 
-    else if (editMailObj.addContact){
-    return editMailObj.continueSubmit = true 
+    else if (editMailHandler.addContact){
+    return editMailHandler.continueSubmit = true 
   }
-    else if (!editMailObj.sameMailDBLookUp) {
+    else if (!editMailHandler.sameMailDBLookUp) {
     showErrorMessage("email")
-    return  editMailObj.continueSubmit = false    
+    return  editMailHandler.continueSubmit = false    
   } 
 }
 
+
+
 /**
  * This Function looks for stored mails, within the database
- * @returns - it returns either -1 (Mail does not exist), or  the according Index (Mail exists) 
+ * @param {Number} indexContact - index of the sorted contacts array
+ * @returns - editMailHandler-Object from {@link initMailObj()}
+ *          - proceeds with function {@link isMailUsable()} && {@link getNewUserInformation()}
  */
 async function lookupMail(indexContact) {
   contactsArray = await getSortedContactsArray()
@@ -255,28 +269,40 @@ async function lookupMail(indexContact) {
   let usedMails = contactsArray.map((e) => {return e})
   let validMail = usedMails.findIndex((e) => e[1].email == mailInput);
   let existingUser = usedMails[validMail]
-  return SubmitHandler(existingUser, validMail, indexContact)
+  return editMailHandlerUpdate(existingUser, validMail, indexContact)
  
   }
 
- function SubmitHandler(existingUser, validMail, indexContact) {
+  /**
+   * 
+   * @param {Boolean} existingUser 
+   * @param {Number} validMail 
+   * @param {Number} indexContact 
+   * @returns - editMalHandler-Object
+   */
+ function editMailHandlerUpdate(existingUser, validMail, indexContact) {
+  console.log(typeof existingUser);
+  console.log(typeof validMail);
+  console.log(typeof indexContact);
+  
+  if (validMail == indexContact) { 
+    console.log("validMail == indexContact"); //eigener contact ohne mail änderung --success-- (EDIT) 2
+    
+    editMailHandler.sameMailDBLookUp = true;
+  } 
   if (!existingUser) {
+    console.log("!existingUser");            //contact angelegt --success-- (ADD) 1
+                                     //disabled mail getauscht --success!!!-- (EDIT) 7
     editMailHandler.addContact = true
     return editMailHandler 
-  } if (existingUser === undefined) {
+  } else if (existingUser[1]?.canLogin === true || existingUser === undefined) {
+    console.log("User undefined or canLogin");  //eigener contact, mail angepasst, contact-mail vergeben & bereits login-account --error-- (EDIT) 3
+                                                //contact angelegt, contact-mail vergeben & bereits login-account --error-- (ADD) 5
     editMailHandler.hasUserAccount = true;
-    return editMailHandler
   } 
-  if (validMail == indexContact) { 
-    editMailHandler.sameMailDBLookUp = true;
-  } else {
-    editMailHandler.sameMailDBLookUp = false
-  }
-  if (existingUser[1]?.canLogin === true) {
-    editMailHandler.hasUserAccount = true;
-  } else {
-    editMailHandler.hasUserAccount = false;
-  }
+
+console.log(editMailHandler);
+
   return editMailHandler;
   }
 

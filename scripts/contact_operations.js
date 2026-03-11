@@ -12,6 +12,7 @@ async function addNewContact() {
   let addedContactIndex = getContactIndexByEmail(user.email);
   showContactDetails(addedContactIndex);
   showToastMessage("contact-created-toast-msg");
+  user = new User();
 }
 
 
