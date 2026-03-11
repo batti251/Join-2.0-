@@ -52,8 +52,6 @@ async function signupFormValidation(event) {
   }
 }
 
-
-
 /**
  * Mail-Handler for several authentication cases:
  * addContact: Handles contact adding
@@ -71,7 +69,6 @@ async function signupFormValidation(event) {
     addContact: false
   }
   }
-
 
 /**
  * Function to create a new user account,
@@ -132,7 +129,6 @@ async function userLogin(path = "contacts") {
   checkLogInCredentials(responseRef);
 }
 
-
 /**
  * Validates if the user has a proper login-account
  * @param {*} usersObj 
@@ -146,44 +142,76 @@ function userHasCredential(loginMail, validMails) {
   return isValid
 }
 
-
-
 /**
  * This function checks, if login-credentials are valid to credentials from database
  *
  * @param {object} responseRef all user credentials from the database
  */
 async function checkLogInCredentials(responseRef) {
-  let usersObj = Object.values(responseRef); // alle User
-  let userEntry = Object.entries(responseRef) // user ID für session Storage
-  let loginInput = document.getElementsByTagName("input"); 
-  let loginMail = loginInput[0].value //die eingegebene Mail
-  let validMails = usersObj.filter(i => i.canLogin == true) //Liste, dürfen sich anmelden
-  let name = "";
-  let credentialsMerge = []
-  let userIDRef = userEntry.filter(u => u[1].email == loginMail)
-  let userID = ""
- if (userIDRef.length > 0) {
-    userID = userIDRef[0][0]
- }
-  
-  // prüfen, darf die Mail sich überhaupt anmelden? 
-  let userCanLogin = userHasCredential(loginMail, validMails) //boolean
-  if (responseRef == null || !userCanLogin) {
-    showErrorMessage("user-existance", []);
-    return;
-  } else {
-    name = filterUserName(usersObj, loginInput);  // Name des accounts
-    credentialsMerge = validMails.map((i) => { return i.email + i.password;}); // Liste, anmeldung & pw
-  }
+  let loginInputRef = document.getElementsByTagName("input");
+  let loginMail = loginInputRef[0].value;
+  let userCanLogin = getCanLoginState(responseRef);
+  let validMails = getCanLoginEntries(responseRef);
+  let userID = setUserID(loginMail, validMails);
+  if (userCanLogin) {
+    sendValidationCases(loginInputRef, validMails, userID)
+  } else { 
+    showErrorMessage("user-existance", [])
+    return}
+}
 
-  // validierung der mail & pw, wenn user valid ist
-  if (credentialsMerge.includes(loginInput[0].value + loginInput[1].value)) {
+/**
+ * called Function when valid userCanLogin from {@link checkLogInCredentials()}
+ * It validates the users sent credentials
+ * When Credentials are correct, userlogin will proceed, else error message will be displayed
+ * @param {HTMLCollection} loginInputRef 
+ * @param {Array} validMails 
+ * @param {String} userID 
+ */
+function sendValidationCases(loginInputRef, validMails, userID) {
+  let name = filterUserName(validMails, loginInputRef);
+  let credentialsMerge = validMails.map((i) => { return i.email + i.password;}); // Liste, anmeldung & pw
+  validCredentials = credentialsMerge.includes(loginInputRef[0].value + loginInputRef[1].value)
+  if (validCredentials) {
     location.href = "/html/summary.html";
     saveSession(name, userID);
   } else {
-    showErrorMessage("password", [...loginInput]);
+    showErrorMessage("password", [...loginInputRef]);
   }
+}
+
+/**
+ * This Functions returns the UserID from the mail-Input 
+ * @param {String} loginMail 
+ * @param {Array} validMails 
+ * @returns - UserID or ""
+ */
+function setUserID(loginMail, validMails) {
+  let userIDRef = validMails.filter(u => u.email == loginMail)
+  let hasUserIDRef = userIDRef.length > 0;
+  return hasUserIDRef ? userID = userIDRef[0][0] : "";
+}
+
+/**
+ * This Functions prepares and returns the answer if the login-authentification was successful
+ * @returns - Boolean - true: Authentification-process suceed
+ *                    - false: Authentification-process failed
+ */
+function getCanLoginState(responseRef) {
+  let loginInputRef = document.getElementsByTagName("input"); 
+  let loginMail = loginInputRef[0].value
+  let validMails = getCanLoginEntries(responseRef);
+  return userHasCredential(loginMail, validMails)
+}
+
+/**
+ * 
+ * @param {Array*} responseRef - list of all active accounts
+ * @returns 
+ */
+function getCanLoginEntries(responseRef) {
+   let usersObj = Object.values(responseRef);
+   return usersObj.filter(i => i.canLogin == true);
 }
 
 /**
@@ -216,8 +244,6 @@ function saveSession(name, userID) {
   setSessionStorage("id", userID)
 }
 
-
-
 /**
  * This Function handles the contact validations 
  * It's called from {@link addNewContact()} and {@link updateContact()}
@@ -244,8 +270,6 @@ async function validContact(canLogin, indexContact) {
   return state
 }
 
-
-
 /**
  * This Function queries, if a user-entry has a valid mail and active account
  * This is used for sign-in
@@ -265,8 +289,6 @@ async function isMailUsable(indexContact) {
     return  editMailHandler.continueSubmit = false    
   } 
 }
-
-
 
 /**
  * This Function looks for stored mails, within the database
