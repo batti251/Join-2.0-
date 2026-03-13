@@ -84,16 +84,10 @@
                   type="email"
                   name="email"
                   id="add-contact-input-email"
+                  autocomplete="email"
                   oninput="resetErrorMessage(), checkInput()"
                 /><img src="../assets/icons/mail_icon.svg" alt="" />
           </div>
-
-                <!-- <div
-                id="email-error"
-                class="opacity-0 validation email login-error"
-                >
-                Please enter a valid e-mail address.
-              </div> -->
               <div
               id="email-error"
               class="opacity-0 validation email login-error"
@@ -112,6 +106,7 @@
                   type="password"
                   name="password"
                   id="password"
+                  autocomplete="new-password"
                   oninput="resetErrorMessage(), checkInput()"
                 />
                 <img src="./../assets/icons/visibility_off.svg" class="pw-icon" onclick="showPassword(this)"/>
@@ -134,6 +129,7 @@
                   type="password"
                   name="password"
                   id="password-confirm"
+                  autocomplete="new-password"
                   oninput="resetErrorMessage(), checkInput()"
                 />
                 <img src="./../assets/icons/visibility_off.svg" class="pw-icon" onclick="showPassword(this)"/>
