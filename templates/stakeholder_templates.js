@@ -57,7 +57,7 @@ function initLimitWelcomeTemplate(aiNumber) {
 </div>
 <div class="btn-group">
 <button class="btn-highlight btn-stakeholder form-hover"><a href="./request.html" target="_blank" rel="noopener noreferrer">Request per Form</a><img src="" alt=""></button>
-<button class="btn-highlight btn-stakeholder mail-hover"><a href="mailto:bastibuenz25@gmail.com">Request per Mail</a></button>
+<button class="btn-highlight btn-stakeholder mail-hover"><a href="mailto:bastibuenz25@gmail.com?subject=Join: New Request">Request per Mail</a></button>
 </div>
 </div>
     `
@@ -99,7 +99,7 @@ function initHowToTemplate(aiNumber) {
 
 <div class="btn-group">
 <button class="btn-highlight btn-stakeholder form-hover"><a href="./request.html" target="_blank" rel="noopener noreferrer">Request per Form</a><img src="" alt=""></button>
-<button class="btn-highlight btn-stakeholder mail-hover"><a href="mailto:bastibuenz25@gmail.com">Request per Mail</a></button>
+<button class="btn-highlight btn-stakeholder mail-hover"><a href="mailto:bastibuenz25@gmail.com?subject=Join: New Request">Request per Mail</a></button>
 </div>
 </div>
 
