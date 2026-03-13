@@ -152,7 +152,7 @@ async function checkLogInCredentials(responseRef) {
   let loginMail = loginInputRef[0].value;
   let userCanLogin = getCanLoginState(responseRef);
   let validMails = getCanLoginEntries(responseRef);
-  let userID = setUserID(loginMail, validMails);
+  let userID = setUserID(loginMail, validMails, responseRef);
   if (userCanLogin) {
     sendValidationCases(loginInputRef, validMails, userID)
   } else { 
@@ -186,10 +186,9 @@ function sendValidationCases(loginInputRef, validMails, userID) {
  * @param {Array} validMails 
  * @returns - UserID or ""
  */
-function setUserID(loginMail, validMails) {
-  let userIDRef = validMails.filter(u => u.email == loginMail)
-  let hasUserIDRef = userIDRef.length > 0;
-  return hasUserIDRef ? userID = userIDRef[0][0] : "";
+function setUserID(loginMail, validMails, responseRef) {
+  getUsersObjRef = Object.entries(responseRef).filter(u => u[1].email == loginMail)
+  return getUsersObjRef ? userID = getUsersObjRef[0][0] : "";
 }
 
 /**
