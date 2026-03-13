@@ -43,7 +43,7 @@ form {
 }
 
 .task-overlay-meta-wrap {
-  @include dFlex($fd: unset, $ai: unset, $jc: unset, $g: 25px);
+  @include dFlex($fd: unset, $ai: center, $jc: unset, $g: 25px);
   @include size($h: auto, $w:auto);
 }
 
@@ -217,10 +217,10 @@ input[type="checkbox"] {
 }
 
 .email-external{
-  @include dFlex($fd: row, $g: 8px);
+  @include dFlex($fd: row, $jc: unset, $g: 8px);
   @include font($fs: 1rem);
   color: #42526E;
-   padding: 0 4px;
+  padding: 0 4px;
   width: 30%;
 }
 
@@ -240,14 +240,11 @@ input[type="checkbox"] {
   }
 }
 
-@media screen and (max-width: 1200px) {
-  /*   .scroll-overlay {
-    height: 72vh;
-  } */
-}
-
 @media screen and (max-width: 820px) {
 
+.task-overlay-desc{
+  max-width: 90%;
+}
 
   .task-overlay-title{
     font-size: 2rem;
@@ -276,6 +273,11 @@ input[type="checkbox"] {
 }
 
 .task-overlay-meta-wrap{
+
+  align-items: unset;
+}
+
+.creator{
   flex-direction: column;
 }
 

@@ -801,7 +801,7 @@ form {
 .task-overlay-meta-wrap {
   display: flex;
   justify-content: unset;
-  align-items: unset;
+  align-items: center;
   flex-direction: unset;
   gap: 25px;
   height: auto;
@@ -1051,7 +1051,7 @@ input[type=checkbox] {
 
 .email-external {
   display: flex;
-  justify-content: center;
+  justify-content: unset;
   align-items: center;
   flex-direction: row;
   gap: 8px;
@@ -1078,12 +1078,10 @@ input[type=checkbox] {
     padding: 24px;
   }
 }
-@media screen and (max-width: 1200px) {
-  /*   .scroll-overlay {
-    height: 72vh;
-  } */
-}
 @media screen and (max-width: 820px) {
+  .task-overlay-desc {
+    max-width: 90%;
+  }
   .task-overlay-title {
     font-size: 2rem;
   }
@@ -1107,6 +1105,9 @@ input[type=checkbox] {
     gap: 8px;
   }
   .task-overlay-meta-wrap {
+    align-items: unset;
+  }
+  .creator {
     flex-direction: column;
   }
   .add-task-overlay-wrap {
