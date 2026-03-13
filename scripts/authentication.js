@@ -88,7 +88,6 @@ async function getNewUserInformation(inputMail) {
   }
 }
 
-
 /**
  * This Function gives the User feedback, if signup was successful.
  * Also triggers to add a new contact
@@ -146,6 +145,10 @@ async function checkLogInCredentials(responseRef) {
   let loginInputRef = document.getElementsByTagName("input");
   let loginMail = loginInputRef[0].value;
   let userCanLogin = getCanLoginState(responseRef);
+  if (!userCanLogin) {
+    showErrorMessage("user-existance", [])
+    return
+  }
   let validMails = getCanLoginEntries(responseRef);
   let userID = setUserID(loginMail, responseRef);
   if (userCanLogin) {
@@ -324,7 +327,7 @@ async function lookupMail(indexContact) {
   } else if (existingUser[1]?.canLogin === true || existingUser === undefined) {
     editMailHandler.hasUserAccount = true;
   } 
-  else if (!existingUser[1]?.canLogin  && indexContact === undefined ) {
+  else if (!existingUser[1]?.canLogin  && validMail == -1 ) {
     editMailHandler.canSignup = true;
   } 
   return editMailHandler;
