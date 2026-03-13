@@ -46,10 +46,8 @@ async function signupFormValidation(event) {
    if (userInput[2].value !== userInput[3].value) {
      showErrorMessage("password", []); 
   }  
-  console.log(await validSignup());
-  
   if (await validSignup()) {
-    getNewUserInformation();
+    getNewUserInformation(userInput[1].value);
     showMessage();
   }
 }
@@ -68,7 +66,8 @@ async function signupFormValidation(event) {
     sameMailDBLookUp: false,
     hasUserAccount: false,
     continueSubmit: false,
-    addContact: false
+    addContact: false,
+    canSignup: false
   }
   }
 
@@ -78,16 +77,11 @@ async function signupFormValidation(event) {
  * If the users mail-address does not exist, a new user will be submit
  *
  */
-async function getNewUserInformation() {
-  let mailUsed = await lookupMail();
-      let hasUserAccount;
-  if (mailUsed > -1) {
-     hasUserAccount = contactsArray[mailUsed][1].canLogin
-  } else 
-    hasUserAccount = true
-  if (!hasUserAccount) {
+async function getNewUserInformation(inputMail) {
+  let userObj = contactsArray.filter(e =>  e[1].email == inputMail)
+  if (editMailHandler.canSignup) {
     user.buildNewUser("signup-form", 1 , "patch");
-    await patchDatabaseObject(`contacts/${contactsArray[mailUsed][0]}`, user);
+    await patchDatabaseObject(`contacts/${userObj[0][0]}`, user);
   } else {
     user.buildNewUser("signup-form",1, "signup");
     await submitObjectToDatabase("contacts", user);
@@ -99,9 +93,8 @@ async function getNewUserInformation() {
  * This Function gives the User feedback, if signup was successful.
  * Also triggers to add a new contact
  *
- * @param {object} credentials object to
  */
-async function showMessage(credentials) {
+async function showMessage() {
   let messageBox = document.querySelector(".signup-message");
   let blur = document.querySelector(".background-fade");
   let signup = document.querySelector(".login-container");
@@ -279,7 +272,7 @@ async function validContact(canLogin, indexContact) {
  */
 async function isMailUsable(indexContact) {
   await lookupMail(indexContact);
-   if (editMailHandler.continueSubmit) {
+   if (editMailHandler.canSignup) {
     return  editMailHandler    
   } 
 
@@ -332,7 +325,7 @@ async function lookupMail(indexContact) {
     editMailHandler.hasUserAccount = true;
   } 
   else if (!existingUser[1]?.canLogin  && indexContact === undefined ) {
-    editMailHandler.continueSubmit = true;
+    editMailHandler.canSignup = true;
   } 
   return editMailHandler;
   }
@@ -368,8 +361,6 @@ async function validSignup() {
     errorRef.innerHTML = "Please enter a valid, unused e-mail address";
     return  state = false
   }
-  console.log(state);
-  
   return state
 }
 
