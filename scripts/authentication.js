@@ -46,6 +46,8 @@ async function signupFormValidation(event) {
    if (userInput[2].value !== userInput[3].value) {
      showErrorMessage("password", []); 
   }  
+  console.log(await validSignup());
+  
   if (await validSignup()) {
     getNewUserInformation();
     showMessage();
@@ -152,7 +154,7 @@ async function checkLogInCredentials(responseRef) {
   let loginMail = loginInputRef[0].value;
   let userCanLogin = getCanLoginState(responseRef);
   let validMails = getCanLoginEntries(responseRef);
-  let userID = setUserID(loginMail, validMails, responseRef);
+  let userID = setUserID(loginMail, responseRef);
   if (userCanLogin) {
     sendValidationCases(loginInputRef, validMails, userID)
   } else { 
@@ -186,7 +188,7 @@ function sendValidationCases(loginInputRef, validMails, userID) {
  * @param {Array} validMails 
  * @returns - UserID or ""
  */
-function setUserID(loginMail, validMails, responseRef) {
+function setUserID(loginMail, responseRef) {
   getUsersObjRef = Object.entries(responseRef).filter(u => u[1].email == loginMail)
   return getUsersObjRef ? userID = getUsersObjRef[0][0] : "";
 }
@@ -277,6 +279,10 @@ async function validContact(canLogin, indexContact) {
  */
 async function isMailUsable(indexContact) {
   await lookupMail(indexContact);
+   if (editMailHandler.continueSubmit) {
+    return  editMailHandler    
+  } 
+
   if (editMailHandler.sameMailDBLookUp === true) {
      return editMailHandler.continueSubmit = true 
   } 
@@ -287,6 +293,7 @@ async function isMailUsable(indexContact) {
     showErrorMessage("email")
     return  editMailHandler.continueSubmit = false    
   } 
+  
 }
 
 /**
@@ -324,6 +331,9 @@ async function lookupMail(indexContact) {
   } else if (existingUser[1]?.canLogin === true || existingUser === undefined) {
     editMailHandler.hasUserAccount = true;
   } 
+  else if (!existingUser[1]?.canLogin  && indexContact === undefined ) {
+    editMailHandler.continueSubmit = true;
+  } 
   return editMailHandler;
   }
 
@@ -358,6 +368,8 @@ async function validSignup() {
     errorRef.innerHTML = "Please enter a valid, unused e-mail address";
     return  state = false
   }
+  console.log(state);
+  
   return state
 }
 
