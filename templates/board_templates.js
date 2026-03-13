@@ -69,8 +69,6 @@ function getTaskCardContactsTemplate(indexTaskContact, indexTask) {
 }
 
 function getTaskOverlay(indexTask, currentTask, overlay) {
-  console.log(currentTask);
-  
   overlay.innerHTML = `
     <div class="task-overlay">
     <div class=" task-overlay-category">

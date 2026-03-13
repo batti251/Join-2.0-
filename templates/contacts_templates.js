@@ -264,8 +264,6 @@ function getAddContactsScreenTemplate() {
  * @returns - HTML template for edit contact screen
  */
 function getEditContactScreenTemplate(indexContact) {
-  console.log(indexContact);
-  
   return `
           <div
             class="close-icon-wrap"

@@ -106,9 +106,6 @@ buildNewTask(id, currentTask) {
     this.source = "human";
     currentTask ? this.status = currentTask.status : this.status = "triage";
     this.priority = this.priority ?? "medium";
-    console.log(this.creator);
-    console.log(this.creatorId);
-    xxxxx
     this.creator = sessionStorage.getItem("user");
     this.creatorId = sessionStorage.getItem("id");
     this.category = this.getTaskCategoryFirebaseName();

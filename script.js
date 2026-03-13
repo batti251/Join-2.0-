@@ -200,8 +200,6 @@ function clearInputTagValue(htmlId) {
  */
 function getInputTagValue(htmlId) {
   if (document.getElementById(htmlId)) {
-    console.log(document.getElementById(htmlId));
-    
     return document.getElementById(htmlId).value;
   }
 }
@@ -302,12 +300,6 @@ function checkValidation() {
   let toValidate = document.querySelectorAll(".validate");
   let error = document.querySelectorAll(".validation");
   let valid;
-  console.log(toValidate);
-  [...toValidate].forEach((e,i) => {
-    console.log(error[i]);
-    
-  });
-
   [...toValidate].every((e,i) => {
       valid = e.checkValidity();
       valid ? error[i].classList.add("opacity-0") : error[i].classList.remove("opacity-0");
@@ -354,12 +346,8 @@ function sendMail(e) {
     body: JSON.stringify(emptyJSON)
   })
   .then(response => {
-    console.log(response);
-    console.log(response.ok);
-    
     if (response.ok) {
       showMessageBox("success");
-      
     } else {
       showMessageBox("error");
     }
