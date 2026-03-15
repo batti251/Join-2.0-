@@ -1,4 +1,4 @@
-@use "./../abstracts" as *;
+@use "./../abstracts/" as mx;
 
 .grid {
   display: grid;
@@ -41,29 +41,29 @@
 
 header {
   grid-area: nav;
-  @include dFlex($fd: row, $jc: space-between);
-  @include size($h: 96px, $w: 100%);
+  @include mx.dFlex($fd: row, $jc: space-between);
+  @include mx.size($h: 96px, $w: 100%);
   z-index: 2;
 }
 
 
 .header-main {
   grid-area: nav;
-  @include dFlex($fd: row, $jc: space-between);
-  @include size($h: 96px);
+  @include mx.dFlex($fd: row, $jc: space-between);
+  @include mx.size($h: 96px);
   background-color: #ffffff;
   box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.1);
 }
 
 .header-container {
-  @include padding($p: 20px 40px 20px 120px);
-  @include dFlex($fd: row, $jc: space-between);
-  @include size($w: 100%);
+  @include mx.padding($p: 20px 40px 20px 120px);
+  @include mx.dFlex($fd: row, $jc: space-between);
+  @include mx.size($w: 100%);
   max-width: 1920px;
   > .join-logo {
-    @include dFlex($fd: row);
+    @include mx.dFlex($fd: row);
     > img {
-      @include size($w: 100.03px, $h: 121.97px);
+      @include mx.size($w: 100.03px, $h: 121.97px);
     }
   }
 }
@@ -73,14 +73,14 @@ header {
 }
 
 .header-user {
-  @include dFlex($jc: flex-start, $fd: row, $g: 16px);
-  @include size($w: 104px, $h: 56px);
+  @include mx.dFlex($jc: flex-start, $fd: row, $g: 16px);
+  @include mx.size($w: 104px, $h: 56px);
 }
 
 .profile-ellipse {
   position: relative;
-  @include size($w: 56px, $h: 56px);
-  @include text($c: #29abe2);
+  @include mx.size($w: 56px, $h: 56px);
+  @include mx.text($c: #29abe2);
   font-weight: bold;
   border-radius: 559px;
   &:hover {
@@ -93,20 +93,20 @@ header {
   position: relative;
   top: 150px;
   right: 160px;
-  @include size($w: 150px, $h: 204px);
+  @include mx.size($w: 150px, $h: 204px);
   border-radius: 20px 0 20px 20px;
   border: unset;
   background-color: #2a3647;
   box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.1);
   > .dropdown-menu-inside {
-    @include dFlex($g: 8px);
-    @include size($w: 130px, $h: 184px);
-    @include padding($p: 8px 16px);
+    @include mx.dFlex($g: 8px);
+    @include mx.size($w: 130px, $h: 184px);
+    @include mx.padding($p: 8px 16px);
     > a {
-      @include size($w: 130px, $h: 46px);
-      @include font($fs: 1rem);
-      @include text($c: #cdcdcd);
-      @include dFlex();
+      @include mx.size($w: 130px, $h: 46px);
+      @include mx.font($fs: 1rem);
+      @include mx.text($c: #cdcdcd);
+      @include mx.dFlex();
       text-decoration: none;
       border-radius: 8px;
     }
@@ -116,23 +116,23 @@ header {
 aside {
   grid-area: aside;
   background-color: #2a3647;
-  @include dFlex($jc: space-between);
-  @include size($w: 232px);
-  @include padding($p: 64px 0);
-  @include font($fs: 1rem);
+  @include mx.dFlex($jc: space-between);
+  @include mx.size($w: 232px);
+  @include mx.padding($p: 64px 0);
+  @include mx.font($fs: 1rem);
   z-index: 1;
   top: 0;
   box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.1);
 }
 
 nav {
-  @include dFlex($ai: flex-start, $g: 15px);
-  @include text($c: #ffffff);
-  @include size($w: 232px, $h: 229px);
+  @include mx.dFlex($ai: flex-start, $g: 15px);
+  @include mx.text($c: #ffffff);
+  @include mx.size($w: 232px, $h: 229px);
   > a {
-    @include dFlex($fd: row, $jc: flex-start, $g: 8px);
-    @include size($h: 46px, $w: -webkit-fill-available);
-    @include padding($p: 8px 56px);
+    @include mx.dFlex($fd: row, $jc: flex-start, $g: 8px);
+    @include mx.size($h: 46px, $w: -webkit-fill-available);
+    @include mx.padding($p: 8px 56px);
     background-color: #2a3647;
     color: #ffffff;
     text-decoration: none;
@@ -141,18 +141,18 @@ nav {
     }
   }
   > span {
-    @include size($w: 72px, $h: 19px);
+    @include mx.size($w: 72px, $h: 19px);
   }
 }
 
 .policy-legal {
-  @include dFlex($g: 8px);
+  @include mx.dFlex($g: 8px);
   color: white;
-  @include size($w: 100%);
+  @include mx.size($w: 100%);
   > a {
-    @include dFlex($g: 8px);
-    @include size($h: 35px, $w: -webkit-fill-available);
-    @include padding($p: 8px 56px);
+    @include mx.dFlex($g: 8px);
+    @include mx.size($h: 35px, $w: -webkit-fill-available);
+    @include mx.padding($p: 8px 56px);
     color: #a8a8a8;
     &:hover {
       background-color: #2a3d59;
@@ -169,7 +169,7 @@ nav {
 
 main {
   grid-area: main;
-  @include size($h: calc(100vh - 96px));
+  @include mx.size($h: calc(100vh - 96px));
   max-width: 1920px;
 }
 
@@ -190,7 +190,7 @@ main {
 
 
   .header-container {
-    @include padding($p: 16px 20px);
+    @include mx.padding($p: 16px 20px);
     height: 80px;
     justify-content: space-between;
   }
@@ -200,8 +200,8 @@ main {
   }
 
   aside {
-    @include size($w: 100vw, $h: 80px);
-    @include dFlex($jc: space-between);
+    @include mx.size($w: 100vw, $h: 80px);
+    @include mx.dFlex($jc: space-between);
     padding: 0;
   }
 
@@ -210,24 +210,24 @@ main {
   }
 
   nav {
-    @include dFlex($fd: row, $jc: space-evenly, $ai: unset);
-    @include size($w: 100%, $h: 80px);
+    @include mx.dFlex($fd: row, $jc: space-evenly, $ai: unset);
+    @include mx.size($w: 100%, $h: 80px);
     padding: 3px;
     > a {
-      @include dFlex($g: 4px);
-      @include size($w: 76px, $h: 76px);
-      @include padding($p: 0);
+      @include mx.dFlex($g: 4px);
+      @include mx.size($w: 76px, $h: 76px);
+      @include mx.padding($p: 0);
       text-align: center;
       &:hover {
         border-radius: 8px;
       }
       > img {
-        @include size($w: 24px, $h: 24px);
+        @include mx.size($w: 24px, $h: 24px);
       }
     }
 
     > span {
-      @include font($fs: 1rem);
+      @include mx.font($fs: 1rem);
       white-space: nowrap;
     }
   }
@@ -261,9 +261,9 @@ main {
 @media screen and (max-height: 540px) {
   .landscape-orientation {
     opacity: 1;
-    @include dFlex();
-    @include size($h: 100%, $w: 100%);
-    @include position($p: fixed);
+    @include mx.dFlex();
+    @include mx.size($h: 100%, $w: 100%);
+    @include mx.position($p: fixed);
     background: rgb(0, 0, 0, 0.9);
     overflow: initial;
     z-index: 9999;
