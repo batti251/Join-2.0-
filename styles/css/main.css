@@ -1742,11 +1742,7 @@ form > .input-container > .input-checkbox {
 form > .input-container > .input-checkbox > span {
   gap: 10px;
 }
-form > .input-container > .input-checkbox > .accept-policy:hover {
-  text-decoration: underline;
-  text-decoration-style: solid;
-}
-form > .input-container > .login-error {
+form > .login-error {
   color: #ff8190;
   font-family: "Inter";
   font-size: 12px;
@@ -1757,6 +1753,14 @@ form > .input-container > .login-error {
   margin: 2px 0;
   position: relative;
   top: 5%;
+}
+
+.accept-policy {
+  color: #29abe2 !important;
+}
+.accept-policy:hover {
+  text-decoration: underline;
+  text-decoration-style: solid;
 }
 
 input[type=checkbox] {
@@ -2664,6 +2668,14 @@ form > select {
 
 .index-1 {
   z-index: -1 !important;
+}
+
+#task-category {
+  caret-color: transparent;
+}
+
+#task-assigned-contacts {
+  caret-color: transparent;
 }
 
 /*# sourceMappingURL=main.css.map */

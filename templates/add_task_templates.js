@@ -68,6 +68,7 @@ function getAddTaskFormTemplate(taskStatusId) {
   <form
     id="form-add-task"
     onsubmit="addNewTask('${taskStatusId}'); event.preventDefault() "
+    novalidate
   >
     <div class="form-sub-wraps">
       <div class="task-main">
@@ -78,14 +79,16 @@ function getAddTaskFormTemplate(taskStatusId) {
             >Title<span class="text-red">*</span></label
           >
           <input
-            class="task-input-border task-input-text-field required"
+            class="task-input-border task-input-text-field validate"
+            pattern="([\\s\\S]*\\S){2,}[\\s\\S]*" 
             type="text"
             id="task-title"
             placeholder="Enter a title"
-            oninput="resetErrorMessage()"
+            oninput="resetErrorMessage(this)"
             name="title"
+            required
           />
-          <div class="d-none validation">This field is required!</div>
+          <div class="opacity-0 validation">This field is required!</div>
         </div>
 
         <div class="task-area">
@@ -106,16 +109,17 @@ function getAddTaskFormTemplate(taskStatusId) {
             >Due date<span class="col-red">*</span></label
           >
           <input
-            class="task-input-border task-input-date required"
+            class="task-input-border task-input-date validate"
             type="date"
             min="${currentDate}"
             id="task-due-date"
             placeholder="dd/mm/yyyy"
-            oninput="resetErrorMessage()"
+            onfocus="resetErrorMessage(this)"
             onclick="this.showPicker()"
             name="dueDate"
+            required
           />
-           <div class="d-none validation">This field is required!</div>
+           <div class="opacity-0 validation">This field is required!</div>
         </div>
         
       </div>
@@ -195,15 +199,16 @@ function getAddTaskFormTemplate(taskStatusId) {
             >Category<span class="text-red">*</span></label
           >
           <input
-            class="task-input-border task-input-category required"
+            class="task-input-border task-input-category validate"
             type="text"
             id="task-category"
             placeholder="Select task category"
             onclick="obj.openTaskCategoryDropdown()"
             name="category"
             autocomplete="off"
-            oninput="resetErrorMessage()"
-            readonly
+            onfocus="resetErrorMessage(this)"
+            required
+            onkeydown="return false"
           />
           <span
             class="task-dropdown-icon"
@@ -224,7 +229,7 @@ function getAddTaskFormTemplate(taskStatusId) {
             >User Story
             </div>
           </div>
-           <div class="d-none validation">This field is required!</div>
+           <div class="opacity-0 validation">This field is required!</div>
         </div>
 
         <div class="task-area">

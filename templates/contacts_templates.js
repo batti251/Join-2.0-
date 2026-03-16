@@ -174,7 +174,7 @@ function getAddContactsScreenTemplate() {
                 id="add-contact-input-name"
                 pattern="\\p{L}+(?:[ \\-']\\p{L}+)*"
                 name="name"
-                oninput="resetErrorMessage()"
+                oninput="resetErrorMessage(this)"
                 required
               />
               <img
@@ -197,7 +197,7 @@ function getAddContactsScreenTemplate() {
                 pattern="^[a-zA-Z0-9._%+\\-]+@([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}$"
                 name="email"
                 required
-                oninput="resetErrorMessage()"
+                oninput="resetErrorMessage(this)"
               />
               <img
                 src="../assets/icons/mail_icon.svg"
@@ -217,7 +217,7 @@ function getAddContactsScreenTemplate() {
                 placeholder="Phone"
                 name="phone"
                 id="add-contact-input-phone"
-                oninput="resetErrorMessage()"
+                oninput="resetErrorMessage(this)"
               />
               <img
                 src="../assets/icons/call.svg"
@@ -305,7 +305,8 @@ function getEditContactScreenTemplate(indexContact) {
                   pattern="\\p{L}+(?:[ \\-']\\p{L}+)*"
                   id="input-${indexContact}-name"
                   name="name"
-                  oninput="resetErrorMessage()"
+                  oninput="resetErrorMessage(this)"
+                  required
                 />
                 <img
                   src="../assets/icons/person_icon.svg"
@@ -340,7 +341,8 @@ function getEditContactScreenTemplate(indexContact) {
                   pattern="^[a-zA-Z0-9._%+\\-]+@([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}$"
                   name="email"
                   id="input-${indexContact}-email"
-                  oninput="resetErrorMessage()"
+                  oninput="resetErrorMessage(this)"
+                  required
                 />
                 <img
                   src="../assets/icons/mail_icon.svg"
@@ -363,7 +365,7 @@ function getEditContactScreenTemplate(indexContact) {
                   pattern="^[0-9]{6,20}$"
                   name="phone"
                   id="input-${indexContact}-phone"
-                  oninput="resetErrorMessage()"
+                  oninput="resetErrorMessage(this)"
                 />
                 <img
                   src="../assets/icons/call.svg"

@@ -200,7 +200,7 @@ function editTaskTemplate(indexTask, currentTask) {
       </div>
 
 
-<form class="" id="form-edit-task" onsubmit="submitEditTask(${indexTask})">
+<form class="" id="form-edit-task" onsubmit="submitEditTask(${indexTask})" novalidate>
             <div class="form-edit-task-wrap">
               <div class="task-main">
                 <div class="task-area task-title">
@@ -210,14 +210,15 @@ function editTaskTemplate(indexTask, currentTask) {
                     >Title<span class="col-red">*</span></label
                   >
                   <input
-                    class="task-input-border task-input-text-field editable required"
+                    class="task-input-border task-input-text-field editable validate"
                     type="text"
                     id="task-title"
                     name="title"
                     value="${currentTask.title}"
-                    
+                    pattern="\\p{L}+(?:[ \\-']\\p{L}+)*"
+                    required
                   />
-                  <div class="d-none validation">This field is required!</div>
+                  <div class="opacity-0 validation">This field is required!</div>
                 </div>
                 <div class="task-area">
                   <label
@@ -236,16 +237,17 @@ function editTaskTemplate(indexTask, currentTask) {
                     >Due date<span class="col-red">*</span></label
                   >
                   <input
-                    class="task-input-border task-input-date editable required"
+                    class="task-input-border task-input-date editable validate"
                     type="date"
                     min="${currentDate}"
                     id="task-due-date"
                     value="${currentTask.dueDate}"
                     onclick="this.showPicker()"
+                    onfocus="resetErrorMessage(this)"
                     name="dueDate"
-                    
+                    required
                   />
-                  <div class="d-none validation">This field is required!</div>
+                  <div class="opacity-0 validation">This field is required!</div>
                 </div>
               </div>
 

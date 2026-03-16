@@ -9,6 +9,10 @@ async function addNewTask() {
   if (userIndex < 0) {
     showToastMessage("add-task-reject-msg") 
     return};
+  if (!checkValidation()) {
+    return
+  };
+    
   obj.buildNewTask("form-add-task");
   await submitObjectToDatabase("tasks", obj);
   tasksArray = await getTasksArray();
@@ -63,6 +67,9 @@ async function submitEditTask(indexTask) {
   if (userIndex < 0) {
     showToastMessage("edit-task-reject-msg");
     return};
+      if (!checkValidation()) {
+    return
+  };
   obj.buildNewTask("form-edit-task", editedTaskObj);
   await patchDatabaseObject(`tasks/${taskID}`, obj);
   tasksArray = await getTasksArray();

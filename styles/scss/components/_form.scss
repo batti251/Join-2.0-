@@ -34,11 +34,6 @@ form {
       > span {
         gap: 10px;
       }
-      > .accept-policy {
-        &:hover {
-          text-decoration: underline;
-          text-decoration-style: solid;
-        }
       }
     }
     > .login-error {
@@ -50,7 +45,14 @@ form {
       top: 5%;
     }
   }
-}
+
+  .accept-policy {
+    color: $color-highlight !important;
+        &:hover {
+          text-decoration: underline;
+          text-decoration-style: solid;
+        }
+      }
 
 
 input[type="checkbox"] {

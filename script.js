@@ -281,7 +281,9 @@ function getCurrentDateYYYMMDD() {
  * Function to reset error-messages on login & signup page
  *
  */
-function resetErrorMessage() {
+function resetErrorMessage(x) {
+  x.classList.remove('error-border');
+  
   let error = document.getElementsByTagName("input");
   let message = document.getElementsByClassName("validation");
   [...error].forEach((element) => {
@@ -297,12 +299,21 @@ function resetErrorMessage() {
  * @returns either true (all required fields are valid) or false (at least 1 required field is invalid)
  */
 function checkValidation() {
+  console.log("hier");
+  
   let toValidate = document.querySelectorAll(".validate");
   let error = document.querySelectorAll(".validation");
   let valid;
   [...toValidate].every((e,i) => {
       valid = e.checkValidity();
+      console.log(valid);
+      
+      console.log(e.parentElement);
+      
       valid ? error[i].classList.add("opacity-0") : error[i].classList.remove("opacity-0");
+      valid ? e.classList.remove('error-border') : e.classList.add('error-border') ;
+      valid ? e.parentElement.classList.remove('error-border') : e.parentElement.classList.add('error-border') ;
+      
      return valid;
   });
  return valid;
