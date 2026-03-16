@@ -1,6 +1,7 @@
 # 📋 Join – Kanban Board Web App
 
-Join is a browser-based Kanban board application developed as a **group project** during the Developer Akademie Frontend Course.  
+Join is a browser-based Kanban board application developed as a **group project** during the Developer Akademie Frontend Course.
+It has now been upgraded through a solo-project.
 The goal was to collaboratively build a task management tool using **pure HTML, CSS, and JavaScript**, without any frameworks, and a **Firebase backend**.
 
 ---
@@ -29,7 +30,7 @@ The project focuses on teamwork, clean JavaScript structure, and backend integra
 - **HTML5** – Application structure  
 - **CSS3** – Layout and responsive design  
 - **JavaScript (ES6)** – Application logic  
-- **Firebase** – Backend (database & authentication)  
+- **Firebase** – Backend (database)  
 
 ➡️ No frameworks or libraries used – pure vanilla JavaScript.
 
@@ -57,8 +58,9 @@ The application consists of four main sections:
 ## ✅ Task Management
 
 ### Task Statuses
-Each task can be assigned to one of four statuses:
+Each task can be assigned to one of five statuses:
 
+- **Triage**
 - **To Do**
 - **In Progress**
 - **Await Feedback**
@@ -87,30 +89,33 @@ Tasks can be moved between these states via the board.
 
 A guest login is available for testing purposes.  
 Guests can explore the application without creating an account.
+Guests do not have the authorisation to proceed CRUD functionalities.
+A User-Account is required
 
 ---
 
-## 🤖 Planned Feature: AI Task Assistant
+## 🤖 New Feature: AI Task Assistant
 
-As a next step, Join will be extended with an AI-powered assistant.
+Join has been extended with an AI-powered assistant.
 
-The goal is to allow stakeholders to submit feature requests and technical tasks via email.
+Stakeholders are allowed to submit feature requests and technical tasks via email or embedded forrm.
 Incoming emails will be automatically analyzed, categorized, prioritized, and converted into tasks on the Kanban board.
 
 This feature is designed to demonstrate a practical use of AI-driven automation with a clear, user-friendly workflow for portfolio and demo purposes.
+The workflow is created with n8n
 
 ---
 
 ## 🔗 Live Demo
 
 🎯 Join here:  
-👉 https://join.sebastian-buenz.de/
+👉 https://join-issue.sebastian-buenz.de/
 
 ---
 
 ## 🖥️ Preview
 
-![Preview Image](/assets/img/preview.png)
+![Preview Image](/assets/img/preview-issue.png)
 
 ---
 
@@ -128,4 +133,4 @@ This project is intended for **educational purposes only**.
 You are welcome to view and explore the code for learning,  
 but redistribution or commercial use is not permitted.
 
-© 2025 – Join Project Team
+© 2026 – Sebastian Bünz
