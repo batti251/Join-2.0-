@@ -1466,6 +1466,105 @@ form > .input-container {
     height: 100vh;
   }
 }
+@keyframes pulse {
+  50% {
+    transform: scale(1.1);
+    background-color: #2a3647;
+  }
+}
+@keyframes animateBgBlur {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes animateBgUnblur {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes toast-fly-in-out {
+  0% {
+    transform: translate(300%, -50%);
+    opacity: 0;
+  }
+  10% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(300%, -50%);
+    opacity: 0;
+  }
+}
+@keyframes hide {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    z-index: 0;
+  }
+  100% {
+    z-index: 0;
+  }
+}
+@keyframes slide-up {
+  from {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%) translateY(-50%);
+  }
+  to {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%) translateY(-50%);
+  }
+}
+@keyframes backgroundFade {
+  0% {
+    background-color: #f6f7f8;
+  }
+}
+@keyframes fadeGreeting {
+  0% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.dialog {
+  position: relative;
+  top: 50%;
+  right: unset;
+  bottom: unset;
+  left: 50%;
+  width: min(600px, 90%);
+  transform: translate(-50%, -50%);
+}
+
+.closebar {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  flex-direction: unset;
+  gap: 0;
+}
+
 .task-dropdown-icon {
   height: 5px;
   width: 7px;
@@ -2098,87 +2197,6 @@ input[type=checkbox]:checked:hover {
   animation: toast-fly-in-out 2s linear;
 }
 
-@keyframes pulse {
-  50% {
-    transform: scale(1.1);
-    background-color: #2a3647;
-  }
-}
-@keyframes animateBgBlur {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
-@keyframes animateBgUnblur {
-  0% {
-    opacity: 100%;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes toast-fly-in-out {
-  0% {
-    transform: translate(300%, -50%);
-    opacity: 0;
-  }
-  10% {
-    transform: translate(-50%, -50%);
-    opacity: 1;
-  }
-  90% {
-    transform: translate(-50%, -50%);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(300%, -50%);
-    opacity: 0;
-  }
-}
-@keyframes hide {
-  0% {
-    opacity: 0;
-  }
-  25% {
-    z-index: 0;
-  }
-  100% {
-    z-index: 0;
-  }
-}
-@keyframes slide-up {
-  from {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%) translateY(-50%);
-  }
-  to {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%) translateY(-50%);
-  }
-}
-@keyframes backgroundFade {
-  0% {
-    background-color: #f6f7f8;
-  }
-}
-@keyframes fadeGreeting {
-  0% {
-    opacity: 1;
-  }
-  66% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
 .grid {
   display: grid;
   justify-items: center;

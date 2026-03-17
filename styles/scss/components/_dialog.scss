@@ -1,0 +1,12 @@
+@use './../abstracts/' as *;
+
+.dialog{
+    @include position($p: relative, $l: 50%, $t:  50%);
+    width: min(600px, 90%);
+    transform: translate(-50%, -50%);
+}
+
+.closebar{
+     @include dFlex($fd: unset, $jc: end);
+     
+}

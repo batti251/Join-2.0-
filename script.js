@@ -134,6 +134,9 @@ async function updateDatabaseObject(path = "", object = {}) {
  * @param {*} object the object according to the path
  */
 async function patchDatabaseObject(path = "", object = {}) {
+  console.log(path);
+  console.log(database);
+  
   let response = await fetch(database + path + ".json", {
     method: "PATCH",
     headers: {
@@ -300,14 +303,11 @@ function resetErrorMessage(x) {
  */
 function checkValidation() {
   console.log("hier");
-  
   let toValidate = document.querySelectorAll(".validate");
   let error = document.querySelectorAll(".validation");
   let valid;
   [...toValidate].every((e,i) => {
       valid = e.checkValidity();
-      console.log(valid);
-      
       console.log(e.parentElement);
       
       valid ? error[i].classList.add("opacity-0") : error[i].classList.remove("opacity-0");
@@ -348,6 +348,7 @@ function sendMail(e) {
  if (!checkValidation()) {
   return
  }
+  closeDialog("dialog");
 
   fetch(webhook, {
     method: "POST",
@@ -401,4 +402,19 @@ function hideMessageBox() {
     let messageRef = document.querySelectorAll(".message");
     [...messageRef][0].outerHTML = ""
   }, 2000);
+}
+
+
+function openDialogModal(id, aiNumber) {
+  let main = document.getElementsByTagName('main');
+  [...main][0].innerHTML += openDialogTemplate(aiNumber)
+  const dialog = document.getElementById(id);
+  dialog.showModal()  // modal + backdrop + Escape
+  
+  
+}
+
+function closeDialog(id){
+  const dialog = document.getElementById(id);
+  dialog.close()  // modal + backdrop + Escape
 }

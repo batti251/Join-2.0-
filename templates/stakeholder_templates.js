@@ -56,7 +56,7 @@ function initLimitWelcomeTemplate(aiNumber) {
 </div>
 </div>
 <div class="btn-group">
-<button class="btn-highlight btn-stakeholder form-hover"><a href="./request.html" target="_blank" rel="noopener noreferrer">Request per Form</a><img src="" alt=""></button>
+<button class="btn-highlight btn-stakeholder form-hover" onclick='openDialogModal("dialog")'>Request per Form</button>
 <button class="btn-highlight btn-stakeholder mail-hover"><a href="mailto:joincollector.buenz@gmail.com?subject=Join: New Request">Request per Mail</a></button>
 </div>
 </div>
@@ -98,13 +98,63 @@ function initHowToTemplate(aiNumber) {
 </div>
 
 <div class="btn-group">
-<button class="btn-highlight btn-stakeholder form-hover"><a href="./request.html" target="_blank" rel="noopener noreferrer">Request per Form</a><img src="" alt=""></button>
+<button class="btn-highlight btn-stakeholder form-hover" onclick='openDialogModal("dialog")'>Request per Form</button>
 <button class="btn-highlight btn-stakeholder mail-hover"><a href="mailto:joincollector.buenz@gmail.com?subject=Join: New Request">Request per Mail</a></button>
 </div>
 </div>
 
     `
 }
+
+function openDialogTemplate() {
+  return `
+  <dialog id="dialog" class="dialog">
+  <div class="closebar">
+          <button class="close-icon-overlay" onclick='closeDialog("dialog")'>
+            <img src="../assets/icons/close.svg" aslt="close" class="close-icon"/>
+          </button>
+        </div>
+        <form onsubmit='sendMail(event)' novalidate action="/sendMail.php" class="mail-request">
+        <h1>Request Form</h1>
+        <div class="input-container">
+              <div class="input-content">
+                <input class="validate" placeholder="Your Name" type="text" name="name" required pattern="([\\s\\S]*\\S){2,}[\\s\\S]*" />
+              </div> 
+              <div id="user-existance-error" class="login-error validation opacity-0"> This Field is required!</div>
+            </div>
+
+            <div class="input-container">
+              <div class="input-content">
+                <input class="validate" placeholder="Your Mail" type="email" name="email" required pattern="^[a-zA-Z0-9._%+\\-]+@([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}$"  />
+              </div> 
+              <div id="user-existance-error" class="login-error validation opacity-0"> Please enter a valid email!</div>
+            </div>
+            
+            <div class="input-container">
+              <div class="input-content">
+                <input class="validate" placeholder="Subject" type="text" name="subject" required pattern="([\\s\\S]*\\S){2,}[\\s\\S]*" />
+              </div> 
+              <div id="user-existance-error" class="login-error validation opacity-0">Please enter a subject!</div>
+            </div>
+
+                <select name="request-type" class="request-select">
+                    <option  class="task-input-dropdown" value="technical-task">Technical Task</option>
+                    <option  class="task-input-dropdown" value="user-story">User Story</option>
+                </select>
+
+                <div class="textblock-wrap">
+                <div class="textblock">
+                <textarea class="validate" placeholder="Enter your Text here" name="body" minlength="5" pattern="([\\s\\S]*\\S){5,}[\\s\\S]*" required></textarea>
+                </div>
+                <div id="user-existance-error" class="login-error validation opacity-0"> This Field is required!</div>
+                </div>
+
+                <button class="btn-primary" type="submit">Send</button>
+              </form>
+            </dialog>
+  `
+}
+
 
 function messageSuccess() {
   return `
