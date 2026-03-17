@@ -72,15 +72,6 @@ h1 {
   @include font($fs: 19px, $fw: 400);
 }
 
-main {
-  @include dFlex($g: 32px);
-  @include size($h: auto, $w: 100%);
-  @include padding($p: 1% 2%);
-  max-width: 652px;
-  border-radius: 30px;
-  background-color: #ffffff;
-  transition: ease-in-out 0.5s;
-}
 
 .login-btn-container {
   @include dFlex($fd: row);
@@ -133,11 +124,6 @@ main {
 }
 
 @media screen and (max-width: 992px) {
-  main {
-    width: 90% !important;
-    padding: 24px 20px !important;
-  }
-
   .join-logo > img {
     height: 64px;
     width: 78px;
@@ -184,12 +170,6 @@ main {
 
   .join-logo  {
     @include position($p: absolute, $t: 5%, $l: 10%);
-  }
-}
-
-@media (max-width: 480px) {
-  main {
-    gap: 24px !important;
   }
 }
 

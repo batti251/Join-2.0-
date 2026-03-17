@@ -681,6 +681,125 @@ button > a {
   background-image: url("./../../../assets/icons/low_white.svg");
 }
 
+@keyframes pulse {
+  50% {
+    transform: scale(1.1);
+    background-color: #2a3647;
+  }
+}
+@keyframes animateBgBlur {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 100%;
+  }
+}
+@keyframes animateBgUnblur {
+  0% {
+    opacity: 100%;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes toast-fly-in-out {
+  0% {
+    transform: translate(300%, -50%);
+    opacity: 0;
+  }
+  10% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(300%, -50%);
+    opacity: 0;
+  }
+}
+@keyframes hide {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    z-index: 0;
+  }
+  100% {
+    z-index: 0;
+  }
+}
+@keyframes slide-up {
+  from {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%) translateY(-50%);
+  }
+  to {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%) translateY(-50%);
+  }
+}
+@keyframes backgroundFade {
+  0% {
+    background-color: #f6f7f8;
+  }
+}
+@keyframes fadeGreeting {
+  0% {
+    opacity: 1;
+  }
+  66% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.card-wrap {
+  background-color: white !important;
+  border-radius: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+  padding: 1% 2%;
+  height: min(500px, 90%);
+  width: min(700px, 90%);
+}
+
+.card-wrap__login {
+  gap: 32px;
+  max-width: 652px;
+  transition: ease-in-out 0.5s;
+}
+.card-wrap__signup {
+  justify-content: space-between;
+  height: min(700px, 90%);
+}
+
+@media screen and (max-width: 992px) {
+  .card-wrap {
+    padding: 24px 20px !important;
+  }
+}
+@media (max-width: 480px) {
+  .card-wrap {
+    gap: 24px !important;
+  }
+}
+@media screen and (max-width: 380px) {
+  .card-wrap__signup {
+    padding: 12px 20px !important;
+  }
+}
 .task-card-wrap {
   border-radius: 24px;
   background-color: #ffffff;
@@ -1464,87 +1583,6 @@ form > .input-container {
   .contact-screen {
     width: 100vw;
     height: 100vh;
-  }
-}
-@keyframes pulse {
-  50% {
-    transform: scale(1.1);
-    background-color: #2a3647;
-  }
-}
-@keyframes animateBgBlur {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 100%;
-  }
-}
-@keyframes animateBgUnblur {
-  0% {
-    opacity: 100%;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-@keyframes toast-fly-in-out {
-  0% {
-    transform: translate(300%, -50%);
-    opacity: 0;
-  }
-  10% {
-    transform: translate(-50%, -50%);
-    opacity: 1;
-  }
-  90% {
-    transform: translate(-50%, -50%);
-    opacity: 1;
-  }
-  100% {
-    transform: translate(300%, -50%);
-    opacity: 0;
-  }
-}
-@keyframes hide {
-  0% {
-    opacity: 0;
-  }
-  25% {
-    z-index: 0;
-  }
-  100% {
-    z-index: 0;
-  }
-}
-@keyframes slide-up {
-  from {
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translate(-50%) translateY(-50%);
-  }
-  to {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%) translateY(-50%);
-  }
-}
-@keyframes backgroundFade {
-  0% {
-    background-color: #f6f7f8;
-  }
-}
-@keyframes fadeGreeting {
-  0% {
-    opacity: 1;
-  }
-  66% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
   }
 }
 .dialog {

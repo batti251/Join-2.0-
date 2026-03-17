@@ -1,0 +1,41 @@
+@use "./../abstracts/" as *;
+
+.card-wrap {
+  background-color: white !important;
+  border-radius: 30px;
+  @include dFlex($fd: column, $g: 8px);
+  padding: 1% 2%;
+  @include size($h:min(500px, 90%) , $w: min(700px, 90%))
+}
+
+.card-wrap {
+  &__login {
+    gap: 32px;
+    max-width: 652px;
+    transition: ease-in-out 0.5s;
+  }
+  &__signup {
+    justify-content: space-between;
+    height: min(700px, 90%);
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .card-wrap {
+    padding: 24px 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-wrap {
+    gap: 24px !important;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .card-wrap {
+    &__signup {
+      padding: 12px 20px !important;
+    }
+  }
+}

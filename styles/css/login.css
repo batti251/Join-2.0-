@@ -195,21 +195,6 @@ h1 {
   line-height: 120%;
 }
 
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 32px;
-  height: auto;
-  width: 100%;
-  padding: 1% 2%;
-  max-width: 652px;
-  border-radius: 30px;
-  background-color: #ffffff;
-  transition: ease-in-out 0.5s;
-}
-
 .login-btn-container {
   display: flex;
   justify-content: center;
@@ -272,10 +257,6 @@ main {
 }
 
 @media screen and (max-width: 992px) {
-  main {
-    width: 90% !important;
-    padding: 24px 20px !important;
-  }
   .join-logo > img {
     height: 64px;
     width: 78px;
@@ -316,11 +297,6 @@ main {
     right: unset;
     bottom: unset;
     left: 10%;
-  }
-}
-@media (max-width: 480px) {
-  main {
-    gap: 24px !important;
   }
 }
 @media screen and (max-width: 380px) {
