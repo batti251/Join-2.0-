@@ -1,5 +1,4 @@
-@use "abstracts/variables" as *;
-@use "abstracts/mixin" as *;
+@use "./../abstracts/" as *;
 
 .contact-container{
    @include dFlex($ai: unset, $jc: unset, $fd: unset);

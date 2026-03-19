@@ -1,4 +1,4 @@
-@use "abstracts" as *;
+@use "./../abstracts/" as *;
 
 body {
   overflow: unset;
@@ -10,12 +10,12 @@ body {
   transform: translate(-50%, -50%);
 } */
 
-aside {
+.aside-index {
   align-items: flex-start;
   width: 100%;
 }
 
-.join-logo {
+.join-logo-index {
   > img {
     position: absolute;
     top: 4%;
@@ -103,7 +103,7 @@ h2 {
     width: 80%;
   }
 }
-
+/* 
 .signup-container {
   @include dFlex($d: none, $fd: row);
   > .text-to-signup {
@@ -112,7 +112,7 @@ h2 {
   > a {
     @include text($c: white);
   }
-}
+} */
 
 .btn-group {
   @include dFlex($fd: row, $g: 16px, $ai: unset);
@@ -143,7 +143,7 @@ strong[class*="hover"] {
   color: $color-highlight;
 }
 
-.join-logo{
+.join-logo-index{
   position: absolute;
     top: 4%;
     left: 4%;
@@ -259,7 +259,7 @@ select{
     flex-direction: column-reverse;
     justify-content: flex-start;
 
-    > aside {
+    > .aside-index {
       width: 100%;
     }
   }

@@ -1,5 +1,4 @@
-@use "abstracts/variables" as *;
-@use "abstracts/mixin" as *;
+@use "./../abstracts/" as *;
 
 
 
@@ -13,7 +12,7 @@
     color: #29ABE2;
 }
 
-main{
+.main-policy{
     overflow-y: scroll;
 }
 
