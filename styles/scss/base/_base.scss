@@ -13,9 +13,14 @@ body {
   padding: 0;
   border: unset;
   background-color: #f6f7f8;
-  font-size: 20px;
+  font-size: clamp(1.125rem, 2rem, 1vw);
   font-weight: 400;
   cursor: default;
+}
+
+
+h1 {
+  font-size: clamp(1.8rem, calc(7vw + 1rem), 4rem);
 }
 
 a {

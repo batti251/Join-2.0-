@@ -232,23 +232,23 @@ function getAddContactsScreenTemplate() {
               <button
                 type="button"
                 onclick="closeContactOverlays()"
-                class="add-contact-btn-cancel"
+                class="btn btn--add-contact-cancel"
               >
                 <span>Cancel</span>
                 <img
                   src="../assets/icons/cancel.svg"
                   alt="cancel"
-                  class="add-contact-btn-icon-cancel"
+                  class="btn--add-contact-cancel-icon-cancel"
                   onmouseover="this.src='/assets/icons/close-blue.svg';"
                   onmouseout="this.src='/assets/icons/cancel.svg';"
                 />
               </button>
-              <button type="submit" class="add-contact-btn">
+              <button type="submit" class="btn btn--add-contact">
                 <span>Create contact</span>
                 <img
                   src="../assets/icons/check_withoutBorder.svg"
                   alt="check"
-                  class="add-contact-btn-icon-check"
+                  class="btn--add-contact-cancel-icon-check"
                 />
               </button>
             </div>
@@ -376,10 +376,10 @@ function getEditContactScreenTemplate(indexContact) {
  <div id="phone-error" class="opacity-0 validation email">Please enter a valid phone number</div>
 </div>
               <div class="add-contact-btns-wrap">
-                <button type="button" class="add-contact-btn-cancel" onclick="deleteContact(${indexContact})">
+                <button type="button" class="btn btn--add-contact-cancel" onclick="deleteContact(${indexContact})">
                   <span>Delete</span>
                 </button>
-                <button type="submit" class="add-contact-btn">
+                <button type="submit" class="btn btn--add-contact">
                   <span>Save</span>
                   <img
                     src="../assets/icons/check_withoutBorder.svg"

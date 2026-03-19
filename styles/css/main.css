@@ -416,24 +416,30 @@ input[type=checkbox] {
     height: unset;
   }
 }
-button {
-  border-radius: 8px;
+.btn {
+  font-family: "Inter";
+  font-size: clamp(1.125rem, 2rem, 1vw);
+  font-weight: 700;
+  line-height: 120%;
+  border-radius: 10px;
   border-style: unset;
   padding: 0;
   background-color: transparent;
+  height: 48px;
+  width: min(200px, 100%);
 }
-button:hover {
+.btn:hover {
   cursor: pointer;
 }
-button:disabled {
+.btn:disabled {
   background-color: gray;
 }
-button:disabled:hover {
+.btn:disabled:hover {
   background-color: gray;
   box-shadow: none;
   cursor: default;
 }
-button > a {
+.btn > a {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -443,66 +449,39 @@ button > a {
   width: 100%;
 }
 
-.btn-primary {
+.btn--highlight {
   padding: 0 6px;
-  background-color: #2a3647;
+  background-color: #29abe2;
   height: 48px;
   width: 100%;
-  max-width: 110px;
   color: #ffffff;
   font-family: "Inter";
-  font-size: 21px;
-  font-weight: 700;
+  font-size: clamp(1.125rem, 2rem, 1vw);
+  font-weight: 400;
   line-height: 120%;
 }
-.btn-primary:hover {
+.btn--highlight:hover {
   background-color: #29abe2;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
 }
-
-.btn-transparent {
-  height: 48px;
-  width: 100%;
-  max-width: 177px;
+.btn--transparent {
   padding: 8px;
   color: #2a3647;
   font-family: "Inter";
-  font-size: 21px;
+  font-size: clamp(1.125rem, 2rem, 1vw);
   font-weight: 700;
   line-height: 120%;
   background-color: transparent;
   border-color: #2a3647;
   border-style: solid;
 }
-.btn-transparent:hover {
+.btn--transparent:hover {
   color: #29abe2;
   border-color: #29abe2;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
   border-width: 2px;
 }
-.btn-transparent > span {
-  width: 129px;
-  height: 25px;
-}
-
-.btn-highlight {
-  padding: 0 6px;
-  background-color: #29abe2;
-  height: 48px;
-  width: 100%;
-  max-width: 100%;
-  color: #ffffff;
-  font-family: "Inter";
-  font-size: 23px;
-  font-weight: 400;
-  line-height: 120%;
-}
-.btn-highlight:hover {
-  background-color: #29abe2;
-  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
-}
-
-.btn-priority {
+.btn--priority {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -519,33 +498,179 @@ button > a {
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 }
-.btn-priority:hover {
-  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.1);
-}
-
-.btn-priority-icon {
+.btn--priority-icon {
   display: inline-block;
   height: 15px;
   width: 20px;
 }
-
-.add-contact-btn {
+.btn--priority:hover {
+  box-shadow: 2px 4px 4px rgba(0, 0, 0, 0.1);
+}
+.btn--primary {
+  padding: 0 6px;
+  background-color: #2a3647;
+  height: 48px;
+  width: 100%;
+  max-width: 110px;
+  color: #ffffff;
+  font-weight: 700;
+}
+.btn--primary:hover {
+  background-color: #29abe2;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+}
+.btn--add-task {
+  width: 164px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+  padding: 8px 16px;
+  background-color: #2a3647;
+  color: #ffffff;
+  font-weight: 700;
+}
+.btn--add-task:hover {
+  background-color: #354355;
+}
+.btn--add-task-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0;
+}
+.btn--add-task-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  gap: 0;
+  height: 19px;
+  width: 19px;
+}
+.btn--add-task:active {
+  background-color: #29abe2;
+}
+.btn--clear {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: unset;
+  gap: 12px;
+  height: 56px;
+  width: auto;
+  color: #2a3647;
+  border: 1px solid #2a3647;
+  padding: 16px;
+}
+.btn--clear:hover {
+  color: #29abe2;
+  border: 1px solid #29abe2;
+}
+.btn--clear:hover .btn--clear-icon {
+  background-image: url("./../../../assets/icons/close-blue.svg");
+}
+.btn--clear-icon {
+  height: 11px;
+  width: 11px;
+  background-image: url("./../../../assets/icons/cancel.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.btn--add-contact {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: unset;
   gap: 12px;
   font-family: "Inter";
-  font-size: 20px;
+  font-size: clamp(1.125rem, 2rem, 1vw);
   font-weight: 700;
   line-height: 120%;
-  border-radius: 10px;
   padding: 16px;
   background-color: #2a3647;
   color: white;
 }
+.btn--add-contact-cancel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: unset;
+  gap: 12px;
+  border: 1px solid #2a3647;
+  padding: 16px;
+  background-color: white;
+  color: #2a3647;
+}
+.btn--add-contact-cancel-icon-cancel {
+  height: 12px;
+  width: 12px;
+}
+.btn--add-contact-cancel-icon-check {
+  height: 11px;
+  width: 16px;
+}
+.btn--add-contact-cancel:hover {
+  border-color: #29abe2;
+  color: #29abe2;
+}
+.btn--add-contact:hover {
+  background-color: #29abe2;
+}
+.btn--submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: unset;
+  gap: 12px;
+  height: 56px;
+  width: auto;
+  border: 1px solid #2a3647;
+  background-color: #2a3647;
+  padding: 16px;
+  color: white;
+}
+.btn--submit-icon {
+  height: 11px;
+  width: 16px;
+  background-image: url("./../../../assets/icons/check_withoutBorder.svg");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.btn--submit:hover {
+  background-color: #29abe2;
+}
 
-.urgent-icon {
+.btn--add-contact-new {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: unset;
+  gap: 16px;
+  padding: 12px 0;
+  height: auto;
+  width: 352px;
+  border-radius: 10px;
+  background-color: #2a3647;
+  color: white;
+  font-family: "Inter";
+  font-size: clamp(1.125rem, 2rem, 1vw);
+  font-weight: 700;
+  line-height: 120%;
+}
+.btn--add-contact-new-img {
+  height: 32px;
+  width: 32px;
+}
+.btn--add-contact-new:hover {
+  background-color: #354355;
+}
+
+.btn--priority .urgent-icon {
   background-image: url("./../../../assets/icons/urgent.svg");
 }
 
@@ -557,98 +682,6 @@ button > a {
 
 .low-icon {
   background-image: url("./../../../assets/icons/low.svg");
-}
-
-.btn-clear-icon {
-  height: 11px;
-  width: 11px;
-  background-image: url("./../../../assets/icons/cancel.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.btn-clear {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: unset;
-  gap: 12px;
-  height: 56px;
-  width: auto;
-  color: #2a3647;
-  border: 1px solid #2a3647;
-  padding: 16px;
-  border-radius: 10px;
-}
-.btn-clear:hover {
-  color: #29abe2;
-  border: 1px solid #29abe2;
-}
-.btn-clear > span {
-  font-family: "Inter";
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 120%;
-}
-
-.btn-clear:hover .btn-clear-icon {
-  background-image: url("./../../../assets/icons/close-blue.svg");
-}
-
-.btn-submit {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: unset;
-  gap: 0;
-  height: 56px;
-  width: auto;
-  border: 1px solid #2a3647;
-  background-color: #2a3647;
-  padding: 16px;
-  border-radius: 10px;
-  color: white;
-}
-.btn-submit:hover {
-  background-color: #29abe2;
-}
-.btn-submit > span {
-  font-family: "Inter";
-  font-size: 21px;
-  font-weight: 400;
-  line-height: 120%;
-}
-
-.btn-edit {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: unset;
-  gap: 12px;
-  border: 1px solid #2a3647;
-  background-color: #2a3647;
-  padding: 8px;
-  border-radius: 10px;
-  color: white;
-}
-.btn-edit:hover {
-  background-color: #29abe2;
-}
-.btn-edit > span {
-  font-family: "Inter";
-  font-size: 21px;
-  font-weight: 400;
-  line-height: 120%;
-}
-
-.btn-submit-icon {
-  height: 11px;
-  width: 16px;
-  background-image: url("./../../../assets/icons/check_withoutBorder.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
 }
 
 .active-urgent {
@@ -681,6 +714,20 @@ button > a {
   background-image: url("./../../../assets/icons/low_white.svg");
 }
 
+@media screen and (max-width: 1260px) {
+  .btn--add-contact-new {
+    display: none;
+  }
+}
+@media screen and (max-width: 820px) {
+  .btn--add-task {
+    height: 34px;
+    width: 34px;
+  }
+  .btn--add-task-text {
+    display: none;
+  }
+}
 @keyframes pulse {
   50% {
     transform: scale(1.1);
@@ -771,7 +818,7 @@ button > a {
   flex-direction: column;
   gap: 8px;
   padding: 1% 2%;
-  height: min(500px, 90%);
+  height: min(500px, 100%);
   width: min(700px, 90%);
 }
 
@@ -785,11 +832,6 @@ button > a {
   height: min(700px, 90%);
 }
 
-@media screen and (max-width: 992px) {
-  .card-wrap {
-    padding: 24px 20px !important;
-  }
-}
 @media (max-width: 480px) {
   .card-wrap {
     gap: 24px !important;
@@ -1389,33 +1431,6 @@ form > .input-container {
   gap: 24px;
 }
 
-.add-contact-btn-cancel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: unset;
-  gap: 12px;
-  font-family: "Inter";
-  font-size: 20px;
-  font-weight: 400;
-  line-height: 120%;
-  border: 1px solid #2a3647;
-  padding: 16px;
-  border-radius: 10px;
-  background-color: white;
-  color: #2a3647;
-}
-
-.add-contact-btn-icon-cancel {
-  height: 12px;
-  width: 12px;
-}
-
-.add-contact-btn-icon-check {
-  height: 11px;
-  width: 16px;
-}
-
 .contact-badge-initial {
   font-size: 47px;
 }
@@ -1814,9 +1829,9 @@ form {
     gap: 16px;
     height: 90px;
   }
-  .btn-priority {
-    padding: 10px 2px;
-  }
+  /*   .btn-priority {
+      padding: 10px 2px;
+    } */
 }
 @media screen and (max-width: 620px) {
   .overlay-priority {
@@ -1958,9 +1973,9 @@ input[type=checkbox]:checked:hover {
   form {
     gap: 14px !important;
   }
-  h1 {
-    font-size: 52px;
-  }
+  /*  h1 {
+     font-size: 52px;
+   } */
   input {
     font-size: 1rem !important;
   }
@@ -2590,9 +2605,13 @@ body {
   padding: 0;
   border: unset;
   background-color: #f6f7f8;
-  font-size: 20px;
+  font-size: clamp(1.125rem, 2rem, 1vw);
   font-weight: 400;
   cursor: default;
+}
+
+h1 {
+  font-size: clamp(1.8rem, 7vw + 1rem, 4rem);
 }
 
 a {

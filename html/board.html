@@ -42,10 +42,6 @@
         <div class="board-headline">
           <div class="board-headline-mobile">
             <div class="board-headline-text">Board</div>
-            <button
-            class="d-none add-task-btn-mobile"
-            onclick="openAddTaskOverlay('triage')"
-            ></button>
           </div>
           <div class="board-search-add-task-wrap">
             <div class="search-wrap">
@@ -62,13 +58,13 @@
                 </div>
               </div>
             </div>
-            <button class="add-task-btn" onclick="openAddTaskOverlay('triage')">
-              <span class="add-task-btn-text">Add task</span>
-              <div class="add-task-btn-icon-wrap">
+            <button class="btn btn--add-task" onclick="openAddTaskOverlay('triage')">
+              <span class="btn--add-task-text">Add task</span>
+              <div class="btn--add-task-wrap">
                 <img
                 src="../assets/icons/add_white.svg"
                 alt="add task"
-                class="add-taks-btn-icon"
+                class="btn--add-task-icon"
                 />
               </div>
             </button>

@@ -61,7 +61,7 @@ function insertOptionalScalarTaskInfo(newTaskObj) {
  * Resets all priority buttons to inactive
  */
 function resetAllPriorityBtns() {
-  let buttons = document.getElementsByClassName("btn-priority");
+  let buttons = document.getElementsByClassName("btn--priority");
   for (let i = 0; i < buttons.length; i++) {
     buttons[i].classList.remove("active-urgent", "active-medium", "active-low");
   }

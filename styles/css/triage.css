@@ -116,8 +116,10 @@ aside {
 }
 
 .stakeholder-container {
+  display: flex;
   max-width: 964px;
   background-color: #f6f7f8;
+  padding: 5% min(20px, 5%);
 }
 
 .stakeholder-wrap {
@@ -125,8 +127,9 @@ aside {
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  gap: 0;
+  gap: 8px;
   margin-top: 5%;
+  width: 100%;
 }
 
 .btn-stakeholder {
@@ -146,27 +149,21 @@ aside {
 }
 
 .paragraph {
-  font-family: "Inter";
-  font-size: 19px;
-  font-weight: 400;
-  line-height: 120%;
+  /* @include font($fs: 19px); */
   max-width: 500px;
   text-align: justify;
 }
 
-h1 {
+/* h1 {
   font-size: 40px;
 }
 
 h2 {
   margin-top: 24px;
-  font-family: "Inter";
-  font-size: 28px;
-  font-weight: 400;
-  line-height: 120%;
-  margin: 0.25rem;
-}
 
+  @include font($fs: 28px, $fw: 400);
+  margin: 0.25rem;
+} */
 .triage-headline {
   display: flex;
   justify-content: center;
@@ -175,12 +172,9 @@ h2 {
   gap: 24px;
   max-width: unset;
   max-height: unset;
-}
-.triage-headline > span {
-  font-family: "Inter";
-  font-size: 23px;
-  font-weight: 400;
-  line-height: 120%;
+  /*   > span {
+      @include font($fs: 23px);
+    } */
 }
 
 .stakeholder-headline {
@@ -191,12 +185,6 @@ h2 {
   gap: 42px;
   height: auto;
   width: 100%;
-}
-.stakeholder-headline > h1 {
-  font-family: "Inter";
-  font-size: 64px;
-  font-weight: 700;
-  line-height: 120%;
 }
 
 .headline-navigate {
@@ -210,10 +198,7 @@ h2 {
 }
 .headline-navigate > span {
   color: #29abe2;
-  font-family: "Inter";
-  font-size: 19px;
-  font-weight: 400;
-  line-height: 120%;
+  /* @include font($fs: 19px); */
 }
 
 .choice-wrap {
@@ -239,6 +224,7 @@ h2 {
   align-items: center;
   flex-direction: row;
   gap: 8px;
+  width: 80%;
 }
 
 .signup-container {
@@ -332,10 +318,7 @@ select:hover {
   padding: 16px 24px;
   border-radius: 8px;
   background-color: #ffd2d2;
-  font-family: "Inter";
-  font-size: 20px;
-  font-weight: 500;
-  line-height: 120%;
+  /* @include font($fw: 500, $fs: 20px); */
 }
 
 #ai-requests {
@@ -352,13 +335,15 @@ select:hover {
   }
   .triage-headline {
     max-width: 72%;
+    /* > span {
+      font-size: 1.25rem;
+    } */
   }
-  .triage-headline > span {
-    font-size: 1.25rem;
-  }
-  .stakeholder-headline > h1 {
-    font-size: 40px;
-  }
+  /*   .stakeholder-headline {
+      > h1 {
+        font-size: 40px;
+      }
+    } */
   .stakeholder-wrap {
     align-items: center;
   }
@@ -370,19 +355,19 @@ select:hover {
     width: 292px;
     height: 202px;
   }
-  h2 {
-    font-size: 22px;
-  }
+  /*   h2 {
+      font-size: 22px;
+    } */
   .paragraph {
     max-width: unset;
-    font-size: 16px;
+    /* font-size: 16px; */
   }
   .btn-stakeholder {
     width: 212px;
-    font-size: 16px;
+    /* font-size: 16px; */
     padding: 15px 24px;
   }
-  .btn-highlight {
+  .btn--highlight {
     background-color: #2a3647;
   }
 }
@@ -405,14 +390,18 @@ select:hover {
     flex-direction: column;
     padding: 8px;
   }
-  h1 {
-    font-size: 32px;
+  /*  h1 {
+     font-size: 32px;
+   } */
+  .triage-headline {
+    /*  > span {
+       font-size: 1.175rem;
+     } */
   }
-  .triage-headline > span {
-    font-size: 1.175rem;
-  }
-  .role-check > span {
-    font-size: 14px;
+  .role-check {
+    /*  > span {
+       font-size: 14px;
+     } */
   }
   .container-wrap {
     gap: 16px;
@@ -425,10 +414,11 @@ select:hover {
     gap: 16px;
     width: 100%;
   }
-  .btn-triage {
-    font-size: 16px;
-    padding: 8px 16px;
-  }
+  /* 
+    .btn-triage {
+      font-size: 16px;
+      padding: 8px 16px;
+    } */
   .signup-container {
     display: flex;
   }
@@ -439,9 +429,6 @@ select:hover {
   }
   .headline-navigate {
     flex-direction: row-reverse;
-  }
-  .stakeholder-wrap {
-    width: 100%;
   }
   .arrow-left {
     position: relative;
@@ -460,15 +447,16 @@ select:hover {
   .grid {
     grid-template-rows: 10dvh 85dvh 5dvh;
   }
-  .paragraph {
+  /* .paragraph{
     font-size: 14px;
-  }
-  h2 {
-    font-size: 15px;
-  }
-  h1 {
-    font-size: 32px !important;
-  }
+  } */
+  /*   h2{
+      font-size: 15px;
+    }
+    h1{
+      font-size: 32px !important;
+    }
+   */
 }
 @media screen and (max-width: 380px) {
   /*   .grid{

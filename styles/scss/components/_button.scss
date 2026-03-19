@@ -1,11 +1,13 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixin" as *;
 
-button {
-  border-radius: 8px;
+.btn {
+  @include font($fw: 700);
+  border-radius: 10px;
   border-style: unset;
   padding: 0;
-      background-color: transparent;
+  background-color: transparent;
+  @include size($h: 48px, $w: min(200px, 100%));
   &:hover {
     cursor: pointer;
   }
@@ -25,85 +27,187 @@ button {
   }
 }
 
-.btn-primary {
-  padding: 0 6px;
-  background-color: $color-primary;
-  @include size($h: 48px, $w: 100%);
-  max-width: 110px;
-  @include text($c: #ffffff);
-  @include font($fs: 21px, $fw: 700);
-  &:hover {
-    background-color: #29abe2;
-    box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.25);
+.btn {
+  &--highlight {
+    padding: 0 6px;
+    background-color: $color-highlight;
+    @include size($h: 48px, $w: 100%);
+    @include text($c: #ffffff);
+    @include font($fw: 400);
+    &:hover {
+      background-color: #29abe2;
+      box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.25);
+    }
+  }
+
+  &--transparent {
+    padding: 8px;
+    @include text($c: #2a3647);
+    @include font($fw: 700);
+    background-color: transparent;
+    border-color: #2a3647;
+    border-style: solid;
+
+    &:hover {
+      color: #29abe2;
+      border-color: #29abe2;
+      box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.25);
+      border-width: 2px;
+    }
+  }
+  &--priority {
+    @include dFlex($fd: unset, $g: 8px);
+    @include padding($p: 16px 10px);
+    @include font($fs: 20px);
+    @include size($w: 100%);
+    background: white;
+    box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.1);
+    border-radius: 10px;
+    &-icon {
+      display: inline-block;
+      @include size($w: 20px, $h: 15px);
+    }
+
+    &:hover {
+      box-shadow: 2px 4px 4px rgb(0, 0, 0, 0.1);
+    }
+  }
+  &--primary {
+    padding: 0 6px;
+    background-color: $color-primary;
+    @include size($h: 48px, $w: 100%);
+    max-width: 110px;
+    @include text($c: #ffffff);
+    font-weight: 700;
+    &:hover {
+      background-color: #29abe2;
+      box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.25);
+    }
+  }
+  &--add-task {
+    width: 164px;
+    @include dFlex($g: 10px, $fd: row);
+    padding: 8px 16px;
+    background-color: #2a3647;
+    color: #ffffff;
+    font-weight: 700;
+    &:hover {
+      background-color: #354355;
+    }
+
+    &-wrap {
+      @include dFlex($fd: row);
+    }
+
+    &-icon {
+      @include dFlex($fd: row);
+      @include size($h: 19px, $w: 19px);
+    }
+
+    &:active {
+      background-color: $color-highlight;
+    }
+  }
+
+  &--clear {
+    @include dFlex($fd: unset, $g: 12px);
+    @include size($h: 56px);
+    color: #2a3647;
+    border: 1px solid #2a3647;
+    padding: 16px;
+    &:hover {
+      color: $color-highlight;
+      border: 1px solid $color-highlight;
+      .btn--clear-icon {
+        background-image: url("./../../../assets/icons/close-blue.svg");
+      }
+    }
+    &-icon {
+      @include size($w: 11px, $h: 11px);
+      background-image: url("./../../../assets/icons/cancel.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+
+  &--add-contact {
+    @include dFlex($fd: unset, $g: 12px);
+    @include font($fw: 700);
+    padding: 16px;
+    background-color: $color-primary;
+    color: white;
+
+    &-cancel {
+      @include dFlex($fd: unset, $g: 12px);
+      border: 1px solid $color-primary;
+      padding: 16px;
+      background-color: white;
+      color: $color-primary;
+      &-icon-cancel {
+        @include size($w: 12px, $h: 12px);
+      }
+      &-icon-check {
+        @include size($w: 16px, $h: 11px);
+      }
+
+      &:hover{
+        border-color: $color-highlight;
+        color: $color-highlight;
+      }
+    }
+    &:hover{
+      background-color: $color-highlight;
+    }
+  }
+
+  &--submit {
+    @include dFlex($fd: unset, $g: 12px);
+    @include size($h: 56px);
+    border: 1px solid $color-primary;
+    background-color: $color-primary;
+    @include padding($p: 16px);
+    color: white;
+
+    &-icon {
+      @include size($w: 16px, $h: 11px);
+      background-image: url("./../../../assets/icons/check_withoutBorder.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &:hover {
+      background-color: $color-highlight;
+    }
   }
 }
 
-.btn-transparent {
-  @include size($h: 48px, $w: 100%);
-  max-width: 177px;
-  padding: 8px;
-  @include text($c: #2a3647);
-  @include font($fs: 21px, $fw: 700);
-  background-color: transparent;
-  border-color: #2a3647;
-  border-style: solid;
 
-  &:hover {
-    color: #29abe2;
-    border-color: #29abe2;
-    box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.25);
-    border-width: 2px;
-  }
-  > span {
-    width: 129px;
-    height: 25px;
-  }
-}
-
-.btn-highlight {
-  padding: 0 6px;
-  background-color: $color-highlight;
-  @include size($h: 48px, $w: 100%);
-  max-width: 100%;
-  @include text($c: #ffffff);
-  @include font($fs: 23px, $fw: 400);
-  &:hover {
-    background-color: #29abe2;
-    box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.25);
-  }
-}
-
-.btn-priority {
-  @include dFlex($fd: unset, $g: 8px);
-  @include padding($p: 16px 10px);
-  @include font($fs: 20px);
-  @include size($w: 100%);
-  background: white;
-  box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.1);
+.btn--add-contact-new {
+  @include dFlex($fd: unset, $g: 16px);
+  @include padding($p: 12px 0);
+  @include size($w: 352px);
   border-radius: 10px;
-  &:hover {
-    box-shadow: 2px 4px 4px rgb(0, 0, 0, 0.1);
-  }
-}
-
-.btn-priority-icon {
-  display: inline-block;
-  @include size($w: 20px, $h: 15px);
-}
-
-
-.add-contact-btn {
-  @include dFlex($fd: unset, $g: 12px);
-  @include font($fs: 20px, $fw: 700);
-  border-radius: 10px;
-  padding: 16px;
   background-color: $color-primary;
   color: white;
+  @include font($fw: 700);
+
+  &-img {
+  @include size($w: 32px, $h: 32px);
+}
+
+  &:hover{
+    background-color: #354355;
+  }
 }
 
 
 
-.urgent-icon {
+
+
+
+.btn--priority .urgent-icon {
   background-image: url("./../../../assets/icons/urgent.svg");
 }
 
@@ -116,77 +220,6 @@ button {
 .low-icon {
   background-image: url("./../../../assets/icons/low.svg");
 }
-
-.btn-clear-icon {
-  @include size($w: 11px, $h: 11px);
-  background-image: url("./../../../assets/icons/cancel.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.btn-clear {
-  @include dFlex($fd: unset, $g: 12px);
-  @include size($h: 56px);
-  color: #2a3647;
-  border: 1px solid #2a3647;
-  padding: 16px;
-  border-radius: 10px;
-  &:hover {
-    color: $color-highlight;
-    border: 1px solid $color-highlight;
-  }
-  > span {
-    @include font($fs: 20px);
-  }
-}
-
-
-.btn-clear:hover .btn-clear-icon {
-  background-image: url("./../../../assets/icons/close-blue.svg");
-}
-
-.btn-submit {
-  @include dFlex($fd: unset);
-   @include size($h: 56px);
-  border: 1px solid $color-primary;
-  background-color: $color-primary;
-  @include padding($p: 16px);
-  border-radius: 10px;
-  color: white;
-  &:hover {
-    background-color: $color-highlight;
-  }
-  > span{
-     @include font($fs: 21px);
-  }
-}
-
-.btn-edit{
-  @include dFlex($fd: unset, $g: 12px);
-  border: 1px solid $color-primary;
-  background-color: $color-primary;
-  @include padding($p: 8px);
-  border-radius: 10px;
-  color: white;
-  &:hover {
-    background-color: $color-highlight;
-  }
-  > span{
-     @include font($fs: 21px);
-  }
-}
-
-.btn-submit-icon {
-  @include size($w: 16px, $h: 11px);
-  background-image: url("./../../../assets/icons/check_withoutBorder.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-
-
 
 .active-urgent {
   color: white;
@@ -216,4 +249,22 @@ button {
 
 .active-low .low-icon {
   background-image: url("./../../../assets/icons/low_white.svg");
+}
+
+
+
+@media screen and (max-width: 1260px) {
+
+.btn--add-contact-new {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .btn--add-task {
+    @include size($w: 34px, $h: 34px);
+    &-text {
+      display: none;
+    }
+  }
 }

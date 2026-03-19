@@ -28,13 +28,16 @@ aside {
 }
 
 .stakeholder-container {
+  display: flex;
   max-width: 964px;
   background-color: $color-secondary;
+  padding: 5% min(20px, 5%);
 }
 
 .stakeholder-wrap {
-  @include dFlex($ai: flex-start);
+  @include dFlex($ai: flex-start, $g: 8px);
   margin-top: 5%;
+  width: 100%;
 }
 
 .btn-stakeholder {
@@ -49,12 +52,12 @@ aside {
 }
 
 .paragraph {
-  @include font($fs: 19px);
+  /* @include font($fs: 19px); */
   max-width: 500px;
   text-align: justify;
 }
 
-h1 {
+/* h1 {
   font-size: 40px;
 }
 
@@ -63,31 +66,28 @@ h2 {
 
   @include font($fs: 28px, $fw: 400);
   margin: 0.25rem;
-}
+} */
 
 .triage-headline {
   @include dFlex($g: 24px);
   max-width: unset;
   max-height: unset;
-  > span {
+/*   > span {
     @include font($fs: 23px);
-  }
+  } */
 }
 
-.stakeholder-headline {
+ .stakeholder-headline {
   @include dFlex($g: 42px);
   @include size($w: 100%);
-  > h1 {
-    @include font($fs: 64px, $fw: 700);
-  }
-}
+} 
 
 .headline-navigate {
   @include dFlex($fd: row, $jc: space-between);
   @include size($w: 100%);
   > span {
     @include text($c: $color-highlight);
-    @include font($fs: 19px);
+    /* @include font($fs: 19px); */
   }
 }
 
@@ -100,6 +100,7 @@ h2 {
   @include size($w: 277px);
   > .role-check {
     @include dFlex($fd: row, $g: 8px);
+    width: 80%;
   }
 }
 
@@ -180,7 +181,7 @@ select{
   padding: 16px 24px;
   border-radius: 8px;
   background-color: #ffd2d2;
-  @include font($fw: 500, $fs: 20px);
+  /* @include font($fw: 500, $fs: 20px); */
 }
 
 #ai-requests {
@@ -198,16 +199,16 @@ select{
 
   .triage-headline {
     max-width: 72%;
-    > span {
+    /* > span {
       font-size: 1.25rem;
-    }
+    } */
   }
 
-  .stakeholder-headline {
+/*   .stakeholder-headline {
     > h1 {
       font-size: 40px;
     }
-  }
+  } */
 
   .stakeholder-wrap {
     align-items: center;
@@ -222,22 +223,22 @@ select{
     }
   }
 
-  h2 {
+/*   h2 {
     font-size: 22px;
-  }
+  } */
 
   .paragraph {
     max-width: unset;
-    font-size: 16px;
+    /* font-size: 16px; */
   }
 
   .btn-stakeholder {
     width: 212px;
-    font-size: 16px;
+    /* font-size: 16px; */
     padding: 15px 24px;
   }
 
-  .btn-highlight {
+  .btn--highlight {
     background-color: $color-primary;
   }
 }
@@ -267,19 +268,19 @@ select{
     padding: 8px;
   }
 
-  h1 {
+ /*  h1 {
     font-size: 32px;
-  }
+  } */
   .triage-headline {
-    > span {
+   /*  > span {
       font-size: 1.175rem;
-    }
+    } */
   }
 
   .role-check {
-    > span {
+   /*  > span {
       font-size: 14px;
-    }
+    } */
   }
 
   .container-wrap {
@@ -295,11 +296,11 @@ select{
     gap: 16px;
     width: 100%;
   }
-
+/* 
   .btn-triage {
     font-size: 16px;
     padding: 8px 16px;
-  }
+  } */
 
   .signup-container {
     display: flex;
@@ -313,10 +314,6 @@ select{
 
   .headline-navigate {
     flex-direction: row-reverse;
-  }
-
-  .stakeholder-wrap {
-    width: 100%;
   }
 
   .arrow-left {
@@ -342,16 +339,16 @@ select{
     grid-template-rows: 10dvh 85dvh 5dvh;
   }
 
-  .paragraph{
+  /* .paragraph{
     font-size: 14px;
-  }
-  h2{
+  } */
+/*   h2{
     font-size: 15px;
   }
   h1{
     font-size: 32px !important;
   }
-
+ */
 }
 
 @media screen and (max-width: 380px) {

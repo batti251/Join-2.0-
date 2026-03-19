@@ -261,7 +261,7 @@ function editTaskTemplate(indexTask, currentTask) {
                   <div class="overlay-priority">
                     <button
                       type="button"
-                      class="btn-priority ${
+                      class="btn btn--priority ${
                         currentTask.priority == "urgent"
                           ? `active-${currentTask.priority}`
                           : ""
@@ -271,11 +271,11 @@ function editTaskTemplate(indexTask, currentTask) {
                       
                     >
                       <span>Urgent</span>
-                      <span class="btn-priority-icon urgent-icon"></span>
+                      <span class="btn--priority-icon urgent-icon"></span>
                     </button>
                     <button
                       type="button"
-                      class="btn-priority  ${
+                      class="btn btn--priority  ${
                         currentTask.priority == "medium"
                           ? `active-${currentTask.priority}`
                           : ""
@@ -284,11 +284,11 @@ function editTaskTemplate(indexTask, currentTask) {
                       onclick="obj.setTaskPriority('task-priority-medium')"
                     >
                       <span>Medium</span>
-                      <span class="btn-priority-icon medium-icon"></span>
+                      <span class="btn--priority-icon medium-icon"></span>
                     </button>
                     <button
                       type="button"
-                      class="btn-priority  ${
+                      class="btn btn--priority  ${
                         currentTask.priority == "low"
                           ? `active-${currentTask.priority}`
                           : ""
@@ -297,7 +297,7 @@ function editTaskTemplate(indexTask, currentTask) {
                       onclick="obj.setTaskPriority('task-priority-low')"
                     >
                       <span>Low</span>
-                      <span class="btn-priority-icon low-icon"></span>
+                      <span class="btn--priority-icon low-icon"></span>
                     </button>
                   </div>
                 </div>
@@ -401,7 +401,7 @@ function editTaskTemplate(indexTask, currentTask) {
 
               <div class="task-form-btn-wrap">
                 <button
-                  class="task-form-btn btn-submit btn-edit"
+                  class="btn btn--submit"
                   type="submit"
                 >
                   <span class="">Ok</span>

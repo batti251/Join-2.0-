@@ -29,36 +29,6 @@
   box-shadow: 4px 0 6px 0 rgba(0, 0, 0, 0.08);
 }
 
-.add-new-contact-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: unset;
-  gap: 16px;
-  padding: 12px 0;
-  height: auto;
-  width: 352px;
-  border-radius: 10px;
-  background-color: #2a3647;
-}
-
-.add-new-contact-btn:hover {
-  background-color: #354355;
-}
-
-.add-new-contact-text {
-  color: white;
-  font-family: "Inter";
-  font-size: 21px;
-  font-weight: 700;
-  line-height: 120%;
-}
-
-.add-new-contact-img {
-  height: 32px;
-  width: 32px;
-}
-
 .bookmark-wrap {
   height: 24px;
   width: 352px;
@@ -280,9 +250,6 @@
   }
   .bookmark-separator {
     width: 100%;
-  }
-  .add-new-contact-btn {
-    display: none;
   }
 }
 @media (max-width: 820px) {

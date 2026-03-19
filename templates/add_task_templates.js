@@ -134,30 +134,30 @@ function getAddTaskFormTemplate(taskStatusId) {
           <div class="overlay-priority">
             <button
               type="button"
-              class="btn-priority"
+              class="btn btn--priority"
               id="task-priority-urgent"
               onclick="obj.setTaskPriority('task-priority-urgent')"
             >
               <span>Urgent</span>
-              <span class="btn-priority-icon urgent-icon"></span>
+              <span class="btn--priority-icon urgent-icon"></span>
             </button>
             <button
               type="button"
-              class="btn-priority active-medium"
+              class="btn btn--priority active-medium"
               id="task-priority-medium"
               onclick="obj.setTaskPriority('task-priority-medium')"
             >
               <span>Medium</span>
-              <span class="btn-priority-icon medium-icon"></span>
+              <span class="btn--priority-icon medium-icon"></span>
             </button>
             <button
               type="button"
-              class="btn-priority"
+              class="btn btn--priority"
               id="task-priority-low"
               onclick="obj.setTaskPriority('task-priority-low')"
             >
               <span>Low</span>
-              <span class="btn-priority-icon low-icon"></span>
+              <span class="btn--priority-icon low-icon"></span>
             </button>
           </div>
         </div>
@@ -281,19 +281,19 @@ function getAddTaskFormTemplate(taskStatusId) {
 
       <div class="task-form-btn-wrap">
         <button
-          class="btn-clear"
+          class="btn btn--clear"
           type="reset"
           onclick="clearAddTaskForm()"
         >
           <span class="">Clear</span>
-          <span class="btn-clear-icon"></span>
+          <span class="btn btn--clear-icon"></span>
         </button>
         <button
-          class="task-form-btn btn-submit"
+          class="btn btn--submit"
           type="submit"
         >
           <span class="">Create Task</span>
-          <span class="submit-task-btn-icon"></span>
+          <span class="btn--submit-icon"></span>
         </button>
       </div>
     </div>

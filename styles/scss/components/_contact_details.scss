@@ -268,23 +268,7 @@ form {
   gap: 24px;
 }
 
-.add-contact-btn-cancel {
-  @include dFlex($fd: unset, $g: 12px);
-  @include font($fs: 20px);
-  border: 1px solid $color-primary;
-  padding: 16px;
-  border-radius: 10px;
-  background-color: white;
-  color: $color-primary;
-}
 
-.add-contact-btn-icon-cancel {
-  @include size($w: 12px, $h: 12px);
-}
-
-.add-contact-btn-icon-check {
-  @include size($w: 16px, $h: 11px);
-}
 
 .contact-badge-initial{
   font-size: 47px;

@@ -42,12 +42,14 @@ header {
   gap: 16px;
 }
 
-h1 {
+/* h1 {
   @include font($fs: 61px, $fw: 700);
   @include text();
   margin-block-start: 0;
   margin-block-end: 0;
-}
+} */
+
+
 .headline-underline {
   width: 150px;
   @include underline();
@@ -139,9 +141,9 @@ h1 {
       "footer";
     grid-template-rows: 14% 70% 10% 6%;
   }
-  h1{
+/*   h1{
     font-size: 40px;
-  }
+  } */
 
   .join-logo{
     max-width: 60px;

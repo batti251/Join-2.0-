@@ -2,7 +2,7 @@
 
 function initWelcomeTemplate(aiNumber) {
     return `
-<div class="container-wrap stakeholder-wrap">
+<div class="stakeholder-wrap">
 <div class="stakeholder-headline">
   <div class="headline-navigate">
   <a href="./../index.html" class="arrow-left">
@@ -23,14 +23,14 @@ function initWelcomeTemplate(aiNumber) {
     After this limit, emails can still be sent, but they will be manually reviewed by our team instead of generating AI tickets.</p>
 </div>
 </div>
-<button class="btn-highlight btn-stakeholder" onclick="continueProcess(${aiNumber})">Continue</button>
+<button class="btn btn--highlight btn-stakeholder" onclick="continueProcess(${aiNumber})">Continue</button>
 </div>` 
 
 }
 
 function initLimitWelcomeTemplate(aiNumber) {
     return `
-     <div class="container-wrap stakeholder-wrap">
+     <div class="stakeholder-wrap">
 <div class="stakeholder-headline">
   <div class="headline-navigate">
   <a href="./../index.html" class="arrow-left">
@@ -68,7 +68,7 @@ function initHowToTemplate(aiNumber) {
     return `
     
 
-<div class="container-wrap stakeholder-wrap">
+<div class="stakeholder-wrap">
 
 
 <div class="stakeholder-headline">
@@ -98,8 +98,8 @@ function initHowToTemplate(aiNumber) {
 </div>
 
 <div class="btn-group">
-<button class="btn-highlight btn-stakeholder form-hover" onclick='openDialogModal("dialog")'>Request per Form</button>
-<button class="btn-highlight btn-stakeholder mail-hover"><a href="mailto:joincollector.buenz@gmail.com?subject=Join: New Request">Request per Mail</a></button>
+<button class="btn btn--highlight form-hover" onclick='openDialogModal("dialog")'>Request per Form</button>
+<button class="btn btn--highlight mail-hover"><a href="mailto:joincollector.buenz@gmail.com?subject=Join: New Request">Request per Mail</a></button>
 </div>
 </div>
 
