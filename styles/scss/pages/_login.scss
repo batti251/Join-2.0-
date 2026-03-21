@@ -24,7 +24,7 @@ body {
       min-width: 40px;
       min-height: 40px;
       img {
-        width: 100%;
+        width: 80px;
       }
     }
   }
@@ -120,6 +120,7 @@ body {
       "header"
       "footer";
     grid-template-rows:  15% 1fr 5% 5%;
+    gap: 16px;
   }
 
   .join-logo-login {

@@ -262,7 +262,7 @@ main {
 }
 
 
-@media screen and (max-height: 540px) {
+@media screen and (max-height: 620px) {
   .landscape-orientation {
     opacity: 1;
     @include mx.dFlex();

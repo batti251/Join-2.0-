@@ -426,7 +426,8 @@ input[type=checkbox] {
   padding: 0;
   background-color: transparent;
   height: 48px;
-  width: min(200px, 100%);
+  width: min(220px, 100%);
+  font-size: clamp(1.125rem, 1.375rem, 1vw);
 }
 .btn:hover {
   cursor: pointer;
@@ -509,8 +510,7 @@ input[type=checkbox] {
 .btn--primary {
   padding: 0 6px;
   background-color: #2a3647;
-  height: 48px;
-  width: 100%;
+  /* @include size($h: 48px, $w: 100%); */
   max-width: 110px;
   color: #ffffff;
   font-weight: 700;
@@ -2757,7 +2757,7 @@ main {
     display: none;
   }
 }
-@media screen and (max-height: 540px) {
+@media screen and (max-height: 620px) {
   .landscape-orientation {
     opacity: 1;
     display: flex;
@@ -4017,7 +4017,7 @@ body {
   min-height: 40px;
 }
 .join-logo-login a img {
-  width: 100%;
+  width: 80px;
 }
 .join-logo-signup > img {
   height: 100%;
@@ -4140,6 +4140,7 @@ body {
   #login-view {
     grid-template-areas: "void" "main" "header" "footer";
     grid-template-rows: 15% 1fr 5% 5%;
+    gap: 16px;
   }
   .join-logo-login {
     max-width: 60px;
@@ -4376,6 +4377,7 @@ body {
 
 .join-logo-index > img {
   aspect-ratio: 1/1;
+  width: 80px;
 }
 
 .container-wrap {
