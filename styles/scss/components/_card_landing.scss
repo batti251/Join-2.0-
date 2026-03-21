@@ -4,14 +4,15 @@
   background-color: white !important;
   border-radius: 30px;
   @include dFlex($fd: column, $g: 8px);
-  padding: 1% 2%;
-  @include size($h:min(500px, 100%) , $w: min(700px, 90%))
+  padding: 1% 1%;
+  @include size($h:min(420px, 90%) , $w: min(700px, 90%))
 }
 
 .card-landing {
   &__login {
     gap: 32px;
     max-width: 652px;
+    height: min(500px, 90%);
     transition: ease-in-out 0.5s;
   }
   &__signup {
@@ -23,7 +24,7 @@
 
 @media (max-width: 480px) {
   .card-landing {
-    gap: 24px !important;
+    gap: 8px !important;
   }
 }
 

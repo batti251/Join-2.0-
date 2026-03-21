@@ -22,7 +22,7 @@ body {
   @include dFlex($fd: row);
 }
 
-h1 {
+.h1-summary {
   white-space: nowrap;
 }
 

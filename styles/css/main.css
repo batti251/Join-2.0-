@@ -817,14 +817,15 @@ input[type=checkbox] {
   align-items: center;
   flex-direction: column;
   gap: 8px;
-  padding: 1% 2%;
-  height: min(500px, 100%);
+  padding: 1% 1%;
+  height: min(420px, 90%);
   width: min(700px, 90%);
 }
 
 .card-landing__login {
   gap: 32px;
   max-width: 652px;
+  height: min(500px, 90%);
   transition: ease-in-out 0.5s;
 }
 .card-landing__signup {
@@ -834,7 +835,7 @@ input[type=checkbox] {
 
 @media (max-width: 480px) {
   .card-landing {
-    gap: 24px !important;
+    gap: 8px !important;
   }
 }
 @media screen and (max-width: 380px) {
@@ -2168,8 +2169,8 @@ input[type=checkbox]:checked:hover {
     flex-direction: column !important;
     gap: 16px !important;
   }
-  .login-btn-container > .btn-primary,
-  .login-btn-container .btn-transparent {
+  .login-btn-container > .btn--primary,
+  .login-btn-container .btn--transparent {
     max-width: 180px !important;
   }
   .input-checkbox {
@@ -2438,7 +2439,7 @@ input[type=checkbox]:checked:hover {
   justify-items: center;
   align-items: center;
   grid-template-columns: 100%;
-  grid-template-rows: 9% calc(100dvh - 20%) 10%;
+  grid-template-rows: 9% 1fr 10%;
   grid-template-areas: "header" "main" "footer";
   height: 100dvh;
   max-width: 1920px;
@@ -2577,7 +2578,7 @@ header {
   border-radius: 8px;
 }
 
-aside {
+.aside-page {
   grid-area: aside;
   background-color: #2a3647;
   display: flex;
@@ -2662,9 +2663,13 @@ nav > span {
 
 main {
   grid-area: main;
+  /* @include mx.size($h: calc(100vh - 96px)); */
+  max-width: 1920px;
+}
+
+.main-page {
   height: calc(100vh - 96px);
   width: auto;
-  max-width: 1920px;
 }
 
 .landscape-orientation {
@@ -2683,10 +2688,10 @@ main {
     height: 80px;
     justify-content: space-between;
   }
-  main {
+  .main-page {
     height: calc(100vh - 160px);
   }
-  aside {
+  .aside-page {
     height: 80px;
     width: 100vw;
     display: flex;
@@ -2745,7 +2750,7 @@ main {
   }
 }
 @media screen and (max-height: 800px) {
-  main {
+  .main-page {
     overflow: scroll;
   }
   ::-webkit-scrollbar {
@@ -3910,11 +3915,11 @@ form > select {
   width: 100%;
 }
 
-.grid {
-  grid-template-rows: 15% 75% 10%;
-}
-
+/*   .grid {
+    grid-template-rows: 15% 75% 10%;
+  } */
 .card-landing__signup {
+  margin: 8% 0 0 0;
   max-height: max(50%, 660px);
   height: 100%;
   justify-content: unset;
@@ -3961,9 +3966,9 @@ form {
   }
 }
 @media screen and (max-width: 600px) {
-  .grid {
-    grid-template-rows: 10% 75% 10%;
-  }
+  /*   .grid {
+      grid-template-rows: 10% 75% 10%;
+    } */
   .join-logo-signup > img {
     top: -40%;
   }
@@ -4132,9 +4137,9 @@ body {
   }
 }
 @media (max-width: 600px) {
-  .grid {
+  #login-view {
     grid-template-areas: "void" "main" "header" "footer";
-    grid-template-rows: 14% 70% 10% 6%;
+    grid-template-rows: 15% 1fr 5% 5%;
   }
   .join-logo-login {
     max-width: 60px;
@@ -4204,7 +4209,7 @@ body {
   gap: 0;
 }
 
-h1 {
+.h1-summary {
   white-space: nowrap;
 }
 
@@ -4366,12 +4371,11 @@ body {
 .aside-index {
   align-items: flex-start;
   width: 100%;
+  padding: 10% 0 0 0;
 }
 
 .join-logo-index > img {
-  position: absolute;
-  top: 4%;
-  left: 4%;
+  aspect-ratio: 1/1;
 }
 
 .container-wrap {
@@ -4379,14 +4383,15 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 48px;
+  gap: 16px;
 }
 
 .stakeholder-container {
-  display: flex;
   max-width: 964px;
   background-color: #f6f7f8;
-  padding: 5% min(20px, 5%);
+  padding: 1% 1%;
+  height: min(580px, 90%);
+  width: min(700px, 90%);
 }
 
 .stakeholder-wrap {
@@ -4395,7 +4400,7 @@ body {
   align-items: flex-start;
   flex-direction: column;
   gap: 8px;
-  margin-top: 5%;
+  margin: 0 0 10% 0;
   width: 100%;
 }
 
@@ -4411,8 +4416,8 @@ body {
   gap: 0;
 }
 .figure > img {
-  height: 280px;
-  width: 416px;
+  height: 90%;
+  width: 50%;
 }
 
 .paragraph {
@@ -4425,7 +4430,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 24px;
+  gap: 16px;
   max-width: unset;
   max-height: unset;
 }
@@ -4435,7 +4440,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  gap: 42px;
+  gap: 24px;
   height: auto;
   width: 100%;
 }
@@ -4478,6 +4483,7 @@ body {
   gap: 8px;
   height: 100%;
   width: 100%;
+  text-wrap: nowrap;
 }
 
 .btn-group {
@@ -4513,16 +4519,17 @@ strong[class*=hover] {
 }
 
 .join-logo-index {
-  position: absolute;
+  /*   position: absolute;
   top: 4%;
   left: 4%;
   width: 10%;
-  height: 10%;
+  height: 10%; */
 }
 .join-logo-index a {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 34px;
+  height: 34px;
+  left: 24px;
   z-index: 2;
 }
 
@@ -4576,7 +4583,7 @@ select:hover {
     width: 204px;
   }
   .triage-headline {
-    max-width: 72%;
+    max-width: 80%;
   }
   .stakeholder-wrap {
     align-items: center;
@@ -4586,8 +4593,8 @@ select:hover {
     width: 100%;
   }
   .figure > img {
-    width: 292px;
-    height: 202px;
+    width: 40%;
+    height: 60%;
   }
   .paragraph {
     max-width: unset;
@@ -4603,8 +4610,8 @@ select:hover {
 @media screen and (max-width: 600px) {
   .grid {
     grid-template-areas: "header" "main" "footer";
-    grid-template-rows: 8% calc(100dvh - 20%) 10%;
-    max-height: 560px;
+    /* grid-template-rows: 8% calc(100dvh - 20%) 10%; */
+    /*  max-height: 560px; */
   }
   .header-index {
     flex-direction: column-reverse;
@@ -4639,10 +4646,6 @@ select:hover {
   .headline-navigate {
     flex-direction: row-reverse;
   }
-  .arrow-left {
-    position: relative;
-    bottom: 100%;
-  }
   .figure > img {
     width: 260px;
     height: 100px;
@@ -4653,9 +4656,9 @@ select:hover {
   }
 }
 @media screen and (max-height: 766px) {
-  .grid {
+  /* .grid {
     grid-template-rows: 10dvh 85dvh 5dvh;
-  }
+  } */
 }
 @media screen and (max-width: 380px) {
   .triage-container {

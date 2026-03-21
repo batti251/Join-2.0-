@@ -382,7 +382,7 @@ function resetInputs() {
  * @param {String} type 
  */
 function showMessageBox(type) {
-  let gridRef =  document.getElementById('login-view');
+  let gridRef =  document.getElementById('triage-view');
   type == "error" ?  gridRef.innerHTML += messageError() : gridRef.innerHTML += messageSuccess() 
 }
 

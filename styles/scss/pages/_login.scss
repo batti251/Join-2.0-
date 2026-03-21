@@ -113,13 +113,13 @@ body {
 }
 
 @media (max-width: 600px) {
-  .grid {
+  #login-view {
     grid-template-areas:
       "void"
       "main"
       "header"
       "footer";
-    grid-template-rows: 14% 70% 10% 6%;
+    grid-template-rows:  15% 1fr 5% 5%;
   }
 
   .join-logo-login {

@@ -5,7 +5,7 @@
   justify-items: center;
   align-items: center;
   grid-template-columns: 100%;
-  grid-template-rows: 9% calc(100dvh - 20%) 10%;
+  grid-template-rows: 9% 1fr 10%;
   grid-template-areas:
     "header"
     "main"
@@ -113,7 +113,7 @@ header {
   }
 }
 
-aside {
+.aside-page {
   grid-area: aside;
   background-color: #2a3647;
   @include mx.dFlex($jc: space-between);
@@ -169,8 +169,12 @@ nav {
 
 main {
   grid-area: main;
-  @include mx.size($h: calc(100vh - 96px));
+  /* @include mx.size($h: calc(100vh - 96px)); */
   max-width: 1920px;
+}
+
+.main-page {
+  @include mx.size($h: calc(100vh - 96px));
 }
 
 .landscape-orientation{
@@ -195,11 +199,11 @@ main {
     justify-content: space-between;
   }
 
-  main {
+  .main-page {
     height: calc(100vh - 160px);
   }
 
-  aside {
+  .aside-page {
     @include mx.size($w: 100vw, $h: 80px);
     @include mx.dFlex($jc: space-between);
     padding: 0;
@@ -246,7 +250,7 @@ main {
 
 
 @media screen and (max-height: 800px) {
-  main {
+  .main-page {
     overflow: scroll;
   }
 
