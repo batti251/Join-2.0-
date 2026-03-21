@@ -282,8 +282,7 @@ function getCurrentDateYYYMMDD() {
  *
  */
 function resetErrorMessage(x) {
-  x.classList.remove('error-border');
-  
+  x? x.classList.remove('error-border') : "";
   let error = document.getElementsByTagName("input");
   let message = document.getElementsByClassName("validation");
   [...error].forEach((element) => {
