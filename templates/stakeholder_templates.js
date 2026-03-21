@@ -1,5 +1,3 @@
-
-
 function initWelcomeTemplate(aiNumber) {
     return `
 <div class="stakeholder-wrap">
@@ -56,8 +54,8 @@ function initLimitWelcomeTemplate(aiNumber) {
 </div>
 </div>
 <div class="btn-group">
-<button class="btn-highlight btn-stakeholder form-hover" onclick='openDialogModal("dialog")'>Request per Form</button>
-<button class="btn-highlight btn-stakeholder mail-hover"><a href="mailto:joincollector.buenz@gmail.com?subject=Join: New Request">Request per Mail</a></button>
+<button class="btn btn--highlight btn-stakeholder form-hover" onclick='openDialogModal("dialog")'>Request per Form</button>
+<button class="btn btn--highlight btn-stakeholder mail-hover"><a href="mailto:joincollector.buenz@gmail.com?subject=Join: New Request">Request per Mail</a></button>
 </div>
 </div>
     `

@@ -3,7 +3,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=You are analyzing incoming ticket data from a webhook.\n\nINPUT DATA:\nsubject: {{ $('Webhook - Incoming Form').item.json.body.subject }}\nbody: {{ $('Webhook - Incoming Form').item.json.body.body }}\n\nOUTPUT REQUIREMENT:\nGenerate a valid JSON object with exactly these fields:\n{\n  \"category\": \"{{ $('Webhook - Incoming Form').item.json.body['request-type'] }}\",\n  \"status\": \"triage\",\n  \"title\": \"{{ $('Webhook - Incoming Form').item.json.body.subject }}\",\n  \"dueDate\": \"yyyy-mm-dd\",\n  \"description\": \"string\",\n  \"priority\": \"low | medium | urgent\",\n  \"source\" : \"ai\",\n  \"creator\" : \"external\",\n  \"name\": {{ $('Webhook - Incoming Form').item.json.body.name }},\n  \"mail\": {{ $('Webhook - Incoming Form').item.json.body.email }},\n  \"subtasks\": see \"5. subtasks\" below,\n  \"assignedTo\": see \"6.assignedTo\" below\n}\n\nLANGUAGE RULE:\n- Detect the language of the input (subject/body)\n- If input is in German → write description in German\n- If input is in English → write description in English\n- Keep field values like priority and status in English (low/medium/high, triage)\n\nFIELD RULES:\n\n1. DEFAULT VALUE:\n   - If no information is available → use \"No summarize possible! Please contact the creator of the ticket\"\n\n2. dueDate:\n   - Extract deadline from subject or body if mentioned\n   - Recognize keywords: \"morgen\" (tomorrow), \"übermorgen\" (day after tomorrow), \"nächste Woche\" (next week), \"bis\" (by), \"deadline\", etc.\n   - Calculate actual date based on today's date: {{ $today }}\n   - Format: ALWAYS yyyy-mm-dd\n   - If \"not analysed\": today's date + 5 business days (skip weekends)\n\n3. description:\n   - Brief neutral summary in 2-3 sentences\n   - Focus primarily on body content\n   - Keep it factual and concise\n   - Write in the same language as the input (German or English)\n\n4. priority:\n   - urgent = critical, blocker, system outage, urgent, immediate action required\n   - medium = important but not critical, normal priority, standard request\n   - low = minor priority, can wait, nice-to-have\n   - If you used \"No summarize possible! Please contact the creator of the ticket\" \n     for other fields → set priority to \"low\"\n\n5. subtasks\n\n     If the email contains a list of tasks or hints like \"Einkaufsliste\", \"list\", \n     \"Liste\", \"Subtask\", \"Nebenaufgabe\", \"side-quest\" or similar words, extract the \n     individual list items as subtasks.\n    - The field subtasks must always be a JSON array of objects.\n    - Each object must have exactly this structure:\n    - { \"name\": \"short description\", \"done\": false }\n    - Rules for each subtask:\n      - name must contain a short description of the task.\n      - Maximum length: 50 characters.\n      - If needed, trim the text but do not change the original meaning.\n      - done must always be the boolean false.\n      - Do NOT create nested arrays.\n      - Do NOT use numeric keys or tuple-like structures.\n      - Do NOT return arrays inside arrays.\n      - Correct example:\n        subtasks: [\n          { \"name\": \"Analyze login error\", \"done\": false },\n          { \"name\": \"Check server logs\", \"done\": false },\n          { \"name\": \"Deploy fix\", \"done\": false }\n        ]\n      \n    - If no subtasks are detected, return: \"subtasks\": []\n\n6. assigendTo\n  You are given a contacts array: {{ $json.assignedTo }}\nEach entry has this structure: { \"Id\": \"...\", \"name\": \"...\" }\n\nYour task:\n1. Scan the email text for any person names or name fragments.\n2. For each detected name/fragment, find ALL entries in {{ $json.assignedTo }} whose name contains or starts with that fragment.\n3. Collect the matched full names (e.g. \"Lukas\" → \"Lukas Becker\").\n\nReturn ONLY a valid JSON array of full name strings from {{ $json.assignedTo }}.\nNo explanation. No extra text. Only the JSON array.\n\nExample: [\"Lukas Becker\", \"Tanja Meyer\"]\nIf no matches found: []\n\n\nCRITICAL OUTPUT FORMAT:\n- Return ONLY pure JSON\n- NO markdown code blocks\n- NO backticks (`)\n- NO additional text, explanations, or commentary\n- Response must start with `{` and end with `}`\n- Ensure valid JSON syntax (proper quotes, commas, no trailing commas)",
+        "text": "=You are analyzing incoming ticket data from a webhook.\n\nINPUT DATA:\nsubject: {{ $('Webhook - Incoming Form').item.json.body.subject }}\nbody: {{ $('Webhook - Incoming Form').item.json.body.body }}\n\nOUTPUT REQUIREMENT:\nGenerate a valid JSON object with exactly these fields:\n{\n  \"category\": \"{{ $('Webhook - Incoming Form').item.json.body['request-type'] }}\",\n  \"status\": \"triage\",\n  \"title\": \"{{ $('Webhook - Incoming Form').item.json.body.subject }}\",\n  \"dueDate\": \"yyyy-mm-dd\",\n  \"description\": \"string\",\n  \"priority\": \"low | medium | urgent\",\n  \"source\" : \"ai\",\n  \"creator\" : \"external\",\n  \"name\": {{ $('Webhook - Incoming Form').item.json.body.name }},\n  \"mail\": {{ $('Webhook - Incoming Form').item.json.body.email }},\n  \"subtasks\": see \"5. subtasks\" below,\n  \"assignedTo\": see \"6.assignedTo\" below\n}\n\nLANGUAGE RULE:\n- Detect the language of the input (subject/body)\n- If input is in German → write description in German\n- If input is in English → write description in English\n- Keep field values like priority and status in English (low/medium/high, triage)\n\nFIELD RULES:\n\n1. DEFAULT VALUE:\n   - If no information is available → use \"No summarize possible! Please contact the creator of the ticket\"\n\n2. dueDate:\n   - Extract deadline from subject or body if mentioned\n   - Recognize keywords: \"morgen\" (tomorrow), \"übermorgen\" (day after tomorrow), \"nächste Woche\" (next week), \"bis\" (by), \"deadline\", etc.\n   - Calculate actual date based on today's date: {{ $today }}\n   - Format: ALWAYS yyyy-mm-dd\n   - If \"not analysed\": today's date + 5 business days (skip weekends)\n\n3. description:\n   - Brief neutral summary in 2-3 sentences\n   - Focus primarily on body content\n   - Keep it factual and concise\n   - Write in the same language as the input (German or English)\n\n4. priority:\n   - urgent = critical, blocker, system outage, urgent, immediate action required\n   - medium = important but not critical, normal priority, standard request\n   - low = minor priority, can wait, nice-to-have\n   - If you used \"No summarize possible! Please contact the creator of the ticket\" \n     for other fields → set priority to \"low\"\n\n5. subtasks\n\n     If the email contains a list of tasks or hints like \"Einkaufsliste\", \"list\", \n     \"Liste\", \"Subtask\", \"Nebenaufgabe\", \"side-quest\" or similar words, extract the \n     individual list items as subtasks.\n    - The field subtasks must always be a JSON array of objects.\n    - Each object must have exactly this structure:\n    - { \"name\": \"short description\", \"done\": false }\n    - Rules for each subtask:\n      - name must contain a short description of the task.\n      - Maximum length: 50 characters.\n      - If needed, trim the text but do not change the original meaning.\n      - done must always be the boolean false.\n      - Do NOT create nested arrays.\n      - Do NOT use numeric keys or tuple-like structures.\n      - Do NOT return arrays inside arrays.\n      - Correct example:\n        subtasks: [\n          { \"name\": \"Analyze login error\", \"done\": false },\n          { \"name\": \"Check server logs\", \"done\": false },\n          { \"name\": \"Deploy fix\", \"done\": false }\n        ]\n      \n    - If no subtasks are detected, return: \"subtasks\": []\n\n6. assigendTo\n  The contacts array is:\n{{ $json.assignedTo }}\n\nEach entry: { \"Id\": \"...\", \"name\": \"...\" }\n\nYour task:\n1. Scan the email for person names or fragments.\n2. For each found name/fragment: push it to an Array \n\nIf no matches: []\n\n\n\nCRITICAL OUTPUT FORMAT:\n- Return ONLY pure JSON\n- NO markdown code blocks\n- NO backticks (`)\n- NO additional text, explanations, or commentary\n- Response must start with `{` and end with `}`\n- Ensure valid JSON syntax (proper quotes, commas, no trailing commas)",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -27,12 +27,7 @@
       ],
       "id": "85ca68f6-69fe-49e9-9fbb-8ceb1539e477",
       "name": "Google Gemini Chat Model",
-      "credentials": {
-        "googlePalmApi": {
-          "id": "rI1RFg5AIMRpVbta",
-          "name": "Google Gemini(PaLM) Api account"
-        }
-      }
+      "credentials": {}
     },
     {
       "parameters": {},
@@ -65,17 +60,12 @@
       "retryOnFail": true,
       "alwaysOutputData": true,
       "notesInFlow": false,
-      "credentials": {
-        "smtp": {
-          "id": "UIWYV4uz9PFE8o6N",
-          "name": "SMTP account"
-        }
-      }
+      "credentials": {}
     },
     {
       "parameters": {
         "method": "POST",
-        "url": "...firebase/tasks.json",
+        "url": "firebase/tasks.json",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
@@ -121,7 +111,7 @@
             },
             {
               "name": "assignedTo",
-              "value": "={{ $('restructure JSON').item.json.assignedTo }}"
+              "value": "={{ $('matchAssignedToID').item.json.assignedTo }}"
             }
           ]
         },
@@ -186,7 +176,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const raw = $input.first().json.output\n  .replace(/```json/g, \"\")\n  .replace(/```/g, \"\")\n  .trim();\n\nreturn [{ json: JSON.parse(raw) }];\n"
+        "jsCode": "const raw = $('AI Agent').first().json.output\n  .replace(/```json/g, \"\")\n  .replace(/```/g, \"\")\n  .trim();\n\nreturn [{ json: JSON.parse(raw) }];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -200,7 +190,7 @@
     {
       "parameters": {
         "method": "PUT",
-        "url": "...firebase/aicounter/-Ol74VTj318bdX3TYVo-.json",
+        "url": "firebase/-Ol74VTj318bdX3TYVo-.json",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
@@ -224,7 +214,7 @@
     {
       "parameters": {
         "method": "PUT",
-        "url": "...firebase.app/aicounter/-Ol74VTj318bdX3TYVo-.json",
+        "url": "firebase/-Ol74VTj318bdX3TYVo-.json",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
@@ -247,7 +237,7 @@
     },
     {
       "parameters": {
-        "url": "...firebase.app/aicounter/-Ol74VTj318bdX3TYVo-.json",
+        "url": "firebase/-Ol74VTj318bdX3TYVo-.json",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -277,12 +267,7 @@
       "id": "61305418-36aa-4c93-a547-3857c435afd6",
       "name": "Send an Email",
       "webhookId": "ba4121f6-29c2-48fe-b55d-483a58d42c2c",
-      "credentials": {
-        "smtp": {
-          "id": "UIWYV4uz9PFE8o6N",
-          "name": "SMTP account"
-        }
-      }
+      "credentials": {}
     },
     {
       "parameters": {
@@ -342,7 +327,7 @@
     {
       "parameters": {
         "promptType": "define",
-        "text": "=You are analyzing incoming ticket data from an email.\n\nINPUT DATA:\nsubject: {{ $('Gmail Trigger').item.json.Subject }}\nbody: {{ $('Gmail Trigger').item.json.snippet }}\n\nOUTPUT REQUIREMENT:\nGenerate a valid JSON object with exactly these fields:\n{\n  \"category\": depending on the bodies content either 'technical-task' or 'user-story',\n  \"status\": \"triage\",\n  \"title\": \"{{ $('Gmail Trigger').item.json.Subject }}\",\n  \"dueDate\": \"yyyy-mm-dd\",\n  \"description\": \"string\",\n  \"priority\": \"low | medium | urgent\",\n  \"name\": \"{{ $('Gmail Trigger').item.json.From }}\",\n  \"subtasks\" : see \"7. subtasks\" below,\n  \"assignedTo\" : see \"8. assignedTo\" below\n}\n\nLANGUAGE RULE:\n- Detect the language of the input (subject/body)\n- If input is in German → write description in German\n- If input is in English → write description in English\n- Keep field values like priority and status in English (low/medium/high, triage)\n\nFIELD RULES:\n\n1. DEFAULT VALUE:\n   - If no information is available → use \"not analysed\"\n\n2. dueDate:\n   - Extract deadline from subject or body if mentioned\n   - Recognize keywords: \"morgen\" (tomorrow), \"übermorgen\" (day after tomorrow), \"nächste Woche\" (next week), \"bis\" (by), \"deadline\", etc.\n   - Calculate actual date based on {{ $today }}\n   - Format: ALWAYS yyyy-mm-dd\n   - if you find nothing take todays's date + 5 business days (skip weekends)\n\n3. name:\n   - analyse the from-field: {{ $('Gmail Trigger').item.json.From }}\n   - set a short but meaningful Real Name, according the from field\n   - if no realistic name can be set, take the email-address\n\n4. description:\n   - Brief neutral summary in 2-3 sentences\n   - Focus primarily on body content\n   - Keep it factual and concise\n   - Write in the same language as the input (German or English)\n\n5. priority:\n   - urgent = critical, blocker, system outage, urgent, immediate action required\n   - medium = important but not critical, normal priority, standard request\n   - low = minor priority, can wait, nice-to-have\n   - If you used \"not analysed\" for other fields → set priority to \"low\"\n\n6. CAUTION:\n   - if the requests topic is not related to a business-use-case just return a             neutral descirption \n   - mark it in the subject as a potential \"spam-mail?\"\n\n7. subtasks\n\n     If the email contains a list of tasks or hints like \"Einkaufsliste\", \"list\", \n     \"Liste\", \"Subtask\", \"Nebenaufgabe\", \"side-quest\" or similar words, extract the \n     individual list items as subtasks.\n    - The field subtasks must always be a JSON array of objects.\n    - Each object must have exactly this structure:\n    - { \"name\": \"short description\", \"done\": false }\n    - Rules for each subtask:\n    - name must contain a short description of the task.\n    - Maximum length: 50 characters.\n    - If needed, trim the text but do not change the original meaning.\n    - done must always be the boolean false.\n    - Do NOT create nested arrays.\n    - DO NOT CREATE, ADD, EDIT or MAP names and Id's from {{ $json.assignedTo }} \n    - Do NOT use numeric keys or tuple-like structures.\n    - Do NOT return arrays inside arrays.\n    - Correct example:\n      subtasks: [\n        { \"name\": \"Analyze login error\", \"done\": false },\n        { \"name\": \"Check server logs\", \"done\": false },\n        { \"name\": \"Deploy fix\", \"done\": false }\n      ]\n    \n    - If no subtasks are detected, return: \"subtasks\": []\n\n8. assignedTo\n\n  You are given a contacts array: {{ $json.assignedTo }}\nEach entry has this structure: { \"Id\": \"...\", \"name\": \"...\" }\n\nYour task:\n1. Scan the email text for any person names or name fragments.\n2. For each detected name/fragment, find ALL entries in {{ $json.assignedTo }} whose name contains or starts with that fragment.\n3. Collect the matched full names (e.g. \"Lukas\" → \"Lukas Becker\").\n\nReturn ONLY a valid JSON array of full name strings from {{ $json.assignedTo }}.\nNo explanation. No extra text. Only the JSON array.\n\nExample: [\"Lukas Becker\", \"Tanja Meyer\"]\nIf no matches found: []\n\n\nCRITICAL OUTPUT FORMAT:\n- Return ONLY pure JSON\n- NO markdown code blocks\n- NO backticks (`)\n- NO additional text, explanations, or commentary\n- Response must start with `{` and end with `}`\n- Ensure valid JSON syntax (proper quotes, commas, no trailing commas)",
+        "text": "=You are analyzing incoming ticket data from an email.\n\nINPUT DATA:\nsubject: {{ $('Gmail Trigger').item.json.Subject }}\nbody: {{ $('Gmail Trigger').item.json.snippet }}\n\nOUTPUT REQUIREMENT:\nGenerate a valid JSON object with exactly these fields:\n{\n  \"category\": depending on the bodies content either 'technical-task' or 'user-story',\n  \"status\": \"triage\",\n  \"title\": \"{{ $('Gmail Trigger').item.json.Subject }}\",\n  \"dueDate\": \"yyyy-mm-dd\",\n  \"description\": \"string\",\n  \"priority\": \"low | medium | urgent\",\n  \"name\": \"{{ $('Gmail Trigger').item.json.From }}\",\n  \"subtasks\" : see \"7. subtasks\" below,\n  \"assignedTo\" : see \"8. assignedTo\" below\n}\n\nLANGUAGE RULE:\n- Detect the language of the input (subject/body)\n- If input is in German → write description in German\n- If input is in English → write description in English\n- Keep field values like priority and status in English (low/medium/high, triage)\n\nFIELD RULES:\n\n1. DEFAULT VALUE:\n   - If no information is available → use \"not analysed\"\n\n2. dueDate:\n   - Extract deadline from subject or body if mentioned\n   - Recognize keywords: \"morgen\" (tomorrow), \"übermorgen\" (day after tomorrow), \"nächste Woche\" (next week), \"bis\" (by), \"deadline\", etc.\n   - Calculate actual date based on {{ $today }}\n   - Format: ALWAYS yyyy-mm-dd\n   - if you find nothing take todays's date + 5 business days (skip weekends)\n\n3. name:\n   - analyse the from-field: {{ $('Gmail Trigger').item.json.From }}\n   - set a short but meaningful Real Name, according the from field\n   - if no realistic name can be set, take the email-address\n\n4. description:\n   - Brief neutral summary in 2-3 sentences\n   - Focus primarily on body content\n   - Keep it factual and concise\n   - Write in the same language as the input (German or English)\n\n5. priority:\n   - urgent = critical, blocker, system outage, urgent, immediate action required\n   - medium = important but not critical, normal priority, standard request\n   - low = minor priority, can wait, nice-to-have\n   - If you used \"not analysed\" for other fields → set priority to \"low\"\n\n6. CAUTION:\n   - if the requests topic is not related to a business-use-case just return a             neutral descirption \n   - mark it in the subject as a potential \"spam-mail?\"\n\n7. subtasks\n\n     If the email contains a list of tasks or hints like \"Einkaufsliste\", \"list\", \n     \"Liste\", \"Subtask\", \"Nebenaufgabe\", \"side-quest\" or similar words, extract the \n     individual list items as subtasks.\n    - The field subtasks must always be a JSON array of objects.\n    - Each object must have exactly this structure:\n    - { \"name\": \"short description\", \"done\": false }\n    - Rules for each subtask:\n    - name must contain a short description of the task.\n    - Maximum length: 50 characters.\n    - If needed, trim the text but do not change the original meaning.\n    - done must always be the boolean false.\n    - Do NOT create nested arrays.\n    - DO NOT CREATE, ADD, EDIT or MAP names and Id's from {{ $json.assignedTo }} \n    - Do NOT use numeric keys or tuple-like structures.\n    - Do NOT return arrays inside arrays.\n    - Correct example:\n      subtasks: [\n        { \"name\": \"Analyze login error\", \"done\": false },\n        { \"name\": \"Check server logs\", \"done\": false },\n        { \"name\": \"Deploy fix\", \"done\": false }\n      ]\n    \n    - If no subtasks are detected, return: \"subtasks\": []\n\n8. assignedTo\n\nThe contacts array is:\n{{ $json.assignedTo }}\n\nEach entry: { \"Id\": \"...\", \"name\": \"...\" }\n\nYour task:\n1. Scan the email for person names or fragments.\n2. For each found name/fragment: push it to an Array \n\nIf no matches: []\n\n\nCRITICAL OUTPUT FORMAT:\n- Return ONLY pure JSON\n- NO markdown code blocks\n- NO backticks (`)\n- NO additional text, explanations, or commentary\n- Response must start with `{` and end with `}`\n- Ensure valid JSON syntax (proper quotes, commas, no trailing commas)",
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
@@ -366,12 +351,7 @@
       ],
       "id": "7604d529-59bc-4fac-b427-b09177544894",
       "name": "Google Gemini Chat Model1",
-      "credentials": {
-        "googlePalmApi": {
-          "id": "rI1RFg5AIMRpVbta",
-          "name": "Google Gemini(PaLM) Api account"
-        }
-      }
+      "credentials": {}
     },
     {
       "parameters": {},
@@ -387,7 +367,7 @@
     {
       "parameters": {
         "method": "POST",
-        "url": "...firebase.app/tasks.json",
+        "url": "firebase/tasks.json",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
@@ -512,7 +492,7 @@
     {
       "parameters": {
         "method": "PUT",
-        "url": "...firebase.app/aicounter/-Ol74VTj318bdX3TYVo-.json",
+        "url": "firebase/-Ol74VTj318bdX3TYVo-.json",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
@@ -566,12 +546,7 @@
       ],
       "id": "3c3bd2e8-f155-4ed4-88ce-c290de84078f",
       "name": "Gmail Trigger",
-      "credentials": {
-        "gmailOAuth2": {
-          "id": "KfNjSswV1tFxmr35",
-          "name": "Gmail account"
-        }
-      }
+      "credentials": {}
     },
     {
       "parameters": {
@@ -588,7 +563,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const input = $input.first().json;\n\nconst result = Object.entries(input).map(([id, value]) => {\n  return {\n    id: id,\n    name: value.name\n  };\n});\n\nreturn [\n  {\n    json: {\n      assignedTo: result\n    }\n  }\n];"
+        "jsCode": "const input = $input.first().json;\n\nconst result = Object.entries(input).map(([id, value]) => {\n  return {\n    Id: id,\n    name: value.name\n  };\n});\n\nreturn [\n  {\n    json: {\n      assignedTo: result\n    }\n  }\n];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -601,7 +576,7 @@
     },
     {
       "parameters": {
-        "url": "...firebase.app/aicounter/-Ol74VTj318bdX3TYVo-.json",
+        "url": "firebase/-Ol74VTj318bdX3TYVo-.json",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -615,7 +590,7 @@
     },
     {
       "parameters": {
-        "url": "...firebase.app/aicounter/-Ol74VTj318bdX3TYVo-.json",
+        "url": "firebase/-Ol74VTj318bdX3TYVo-.json",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -629,7 +604,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const output = $json.output;\n\nconst jsonMatch = output.match(/\\{[\\s\\S]*\\}/);\nconst parsed = JSON.parse(jsonMatch[0]);\n\nconst detectedNames = parsed.assignedTo; \nconst contacts = $('mapAssignedToFetch').first().json.assignedTo;\n\nconst matched = contacts.filter(contact =>\n  detectedNames.some(name => contact.name === name)\n);\n\nreturn [{ json: { assignedTo: matched } }];"
+        "jsCode": "const output = $input.first().json.output;\n\nconst jsonMatch = output.match(/\\{[\\s\\S]*\\}/);\nconst parsed = JSON.parse(jsonMatch[0]);\n\nconst detectedNames = parsed.assignedTo;\nconst contacts = $('mapAssignedToFetch').first().json.assignedTo;\n\nconst matched = contacts.filter(contact =>\n  detectedNames.some(name => \n    contact.name.toLowerCase().startsWith(name.toLowerCase())\n  )\n);\n\nreturn [{ json: { assignedTo: matched } }];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -642,7 +617,7 @@
     },
     {
       "parameters": {
-        "jsCode": "const output = $json.output;\n\nconst jsonMatch = output.match(/\\{[\\s\\S]*\\}/);\nconst parsed = JSON.parse(jsonMatch[0]);\n\nconst detectedNames = parsed.assignedTo;\nconst contacts = $('mapAssignedToFetch').first().json.assignedTo; \n\nconst matched = contacts.filter(contact =>\n  detectedNames.some(name => contact.name === name)\n);\n\nreturn [{ json: { assignedTo: matched } }];"
+        "jsCode": "const output = $input.first().json.output;\n\nconst jsonMatch = output.match(/\\{[\\s\\S]*\\}/);\nconst parsed = JSON.parse(jsonMatch[0]);\n\nconst detectedNames = parsed.assignedTo;\nconst contacts = $('mapAssignedToFetch1').first().json.assignedTo;\n\nconst matched = contacts.filter(contact =>\n  detectedNames.some(name => \n    contact.name.toLowerCase().startsWith(name.toLowerCase())\n  )\n);\n\nreturn [{ json: { assignedTo: matched } }];"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
@@ -655,7 +630,7 @@
     },
     {
       "parameters": {
-        "url": "...firebase.app/contacts.json",
+        "url": "firebase/contacts.json",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -669,7 +644,7 @@
     },
     {
       "parameters": {
-        "url": "...firebase.app/contacts.json",
+        "url": "firebase/contacts.json",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
@@ -997,7 +972,6 @@
   },
   "pinData": {},
   "meta": {
-    "templateCredsSetupCompleted": true,
     "instanceId": "8b655f3ed6ba73dab12c62bcabefc69340644163ea039d0848b89b960f235671"
   }
 }
