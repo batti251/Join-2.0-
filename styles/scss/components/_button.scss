@@ -76,7 +76,6 @@
   &--primary {
     padding: 0 6px;
     background-color: $color-primary;
-    /* @include size($h: 48px, $w: 100%); */
     max-width: 110px;
     @include text($c: #ffffff);
     font-weight: 700;
@@ -152,12 +151,12 @@
         @include size($w: 16px, $h: 11px);
       }
 
-      &:hover{
+      &:hover {
         border-color: $color-highlight;
         color: $color-highlight;
       }
     }
-    &:hover{
+    &:hover {
       background-color: $color-highlight;
     }
   }
@@ -184,7 +183,6 @@
   }
 }
 
-
 .btn--add-contact-new {
   @include dFlex($fd: unset, $g: 16px);
   @include padding($p: 12px 0);
@@ -195,18 +193,13 @@
   @include font($fw: 700);
 
   &-img {
-  @include size($w: 32px, $h: 32px);
-}
+    @include size($w: 32px, $h: 32px);
+  }
 
-  &:hover{
+  &:hover {
     background-color: #354355;
   }
 }
-
-
-
-
-
 
 .btn--priority .urgent-icon {
   background-image: url("./../../../assets/icons/urgent.svg");
@@ -252,11 +245,8 @@
   background-image: url("./../../../assets/icons/low_white.svg");
 }
 
-
-
 @media screen and (max-width: 1260px) {
-
-.btn--add-contact-new {
+  .btn--add-contact-new {
     display: none;
   }
 }

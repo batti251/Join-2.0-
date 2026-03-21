@@ -111,11 +111,6 @@ strong[class*="hover"] {
 }
 
 .join-logo-index {
-  /*   position: absolute;
-  top: 4%;
-  left: 4%;
-  width: 10%;
-  height: 10%; */
   a {
     position: absolute;
     width: 34px;
@@ -205,8 +200,6 @@ select {
       "header"
       "main"
       "footer";
-    /* grid-template-rows: 8% calc(100dvh - 20%) 10%; */
-   /*  max-height: 560px; */
   }
 
   .header-index {
@@ -261,12 +254,6 @@ select {
     margin-top: 0;
     padding: 8px 16px;
   }
-}
-
-@media screen and (max-height: 766px) {
-  /* .grid {
-    grid-template-rows: 10dvh 85dvh 5dvh;
-  } */
 }
 
 @media screen and (max-width: 380px) {

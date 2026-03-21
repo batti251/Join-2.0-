@@ -42,8 +42,6 @@ function clearAddTaskForm() {
   renderSubtasks();
 }
 
-
-
 /**
  * Inserts optional scalar task information into new Task object
  *
@@ -55,8 +53,6 @@ function insertOptionalScalarTaskInfo(newTaskObj) {
   }
 }
 
-
-
 /**
  * Resets all priority buttons to inactive
  */
@@ -66,8 +62,6 @@ function resetAllPriorityBtns() {
     buttons[i].classList.remove("active-urgent", "active-medium", "active-low");
   }
 }
-
-
 
 /**
  * Closes Task Category Dropdown

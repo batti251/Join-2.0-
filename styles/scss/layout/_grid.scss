@@ -46,7 +46,6 @@ header {
   z-index: 2;
 }
 
-
 .header-main {
   grid-area: nav;
   @include mx.dFlex($fd: row, $jc: space-between);
@@ -169,7 +168,6 @@ nav {
 
 main {
   grid-area: main;
-  /* @include mx.size($h: calc(100vh - 96px)); */
   max-width: 1920px;
 }
 
@@ -177,7 +175,7 @@ main {
   @include mx.size($h: calc(100vh - 96px));
 }
 
-.landscape-orientation{
+.landscape-orientation {
   opacity: 0;
   display: none;
 }
@@ -191,7 +189,6 @@ main {
       "aside";
     grid-template-rows: 80px auto 80px;
   }
-
 
   .header-container {
     @include mx.padding($p: 16px 20px);
@@ -248,7 +245,6 @@ main {
   }
 }
 
-
 @media screen and (max-height: 800px) {
   .main-page {
     overflow: scroll;
@@ -257,10 +253,7 @@ main {
   ::-webkit-scrollbar {
     display: none;
   }
-
-
 }
-
 
 @media screen and (max-height: 620px) {
   .landscape-orientation {
