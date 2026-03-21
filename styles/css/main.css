@@ -1668,6 +1668,9 @@ form > .input-container {
   .add-contact-input-wrap {
     width: 100%;
   }
+  .form-contact-input-wrap {
+    width: 100%;
+  }
   .add-contact-btn-cancel {
     display: none;
   }
@@ -2861,6 +2864,10 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+
+input:disabled {
+  background-color: transparent;
 }
 
 textarea {

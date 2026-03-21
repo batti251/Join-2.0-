@@ -97,12 +97,10 @@ async function getNewUserInformation(inputMail) {
 async function showMessage() {
   let messageBox = document.querySelector(".signup-message");
   let blur = document.querySelector(".background-fade");
-  /* let signup = document.querySelector(".login-container"); */
   messageBox.classList.remove("d-none");
   messageBox.classList.add("d-flex");
   blur.style.backgroundColor = "rgb(0, 0, 0, 0.10)";
   blur.style.zIndex = 2;
-  /* signup.classList.add('index-1') */
   setTimeout(() => {
     location.href = "./login.html";
   }, 1800);

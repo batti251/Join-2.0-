@@ -187,7 +187,6 @@ function getAddContactsScreenTemplate() {
 
                </div>
             <div class="input-container ">
-            <div class=""> 
             <div class="add-contact-input-wrap">
               <input
                 type="email"
@@ -206,7 +205,6 @@ function getAddContactsScreenTemplate() {
               /> 
              </div>  
               <div id="email-error" class="opacity-0 validation email">Please enter a valid, unused e-mail address</div>
-            </div>  
  </div>
             <div class="input-container ">
             <div class="add-contact-input-wrap">
