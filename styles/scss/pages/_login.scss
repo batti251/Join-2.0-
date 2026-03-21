@@ -44,6 +44,7 @@ body {
   @include dFlex($fd: row, $jc: space-between);
   @include padding($p: 24px);
   height: auto;
+  margin: 40px 0 0 0 ;
 }
 
 .headline-container-login {
@@ -99,10 +100,13 @@ body {
 }
 
 .background-fade-dark {
-  height: 100%;
-  width: 100%;
-  background-color: #2a3647 !important;
-  position: absolute;
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #2a3647;
+    z-index: -1;
 }
 
 @media screen and (max-width: 992px) {
@@ -130,6 +134,7 @@ body {
 
   .header-index {
     padding: 0 24px;
+    margin: unset;
     justify-content: center;
   }
 

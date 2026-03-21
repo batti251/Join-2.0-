@@ -7,7 +7,7 @@
 
   &--text-gray {
     @include text($c: #a8a8a8);
-    min-width: 109px;
+    min-width: 200px;
     > a {
       &:hover {
         color: $color-highlight !important;
