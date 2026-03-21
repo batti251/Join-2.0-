@@ -215,7 +215,7 @@ function editTaskTemplate(indexTask, currentTask) {
                     id="task-title"
                     name="title"
                     value="${currentTask.title}"
-                    pattern="\\p{L}+(?:[ \\-']\\p{L}+)*"
+                    pattern="([\\s\\S]*\\S){2,}[\\s\\S]*"
                     required
                   />
                   <div class="opacity-0 validation">This field is required!</div>
