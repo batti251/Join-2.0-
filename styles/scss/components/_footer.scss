@@ -1,0 +1,26 @@
+@use "./../abstracts/" as *;
+
+.policy-notice-list {
+  @include dFlex($fd: row, $g: 8px);
+  margin-block-start: 0.5rem;
+  @include size($h: -webkit-fill-available);
+
+  &--text-gray {
+    @include text($c: #a8a8a8);
+    min-width: 109px;
+    > a {
+      &:hover {
+        color: $color-highlight !important;
+        font-weight: 600;
+        font-style: bold;
+      }
+      &:visited {
+        color: #a8a8a8;
+      }
+    }
+  }
+}
+
+ul {
+  list-style: disc;
+}

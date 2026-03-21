@@ -100,28 +100,6 @@ body {
   }
 }
 
-.policy-notice-list {
-  @include dFlex($fd: row, $g: 8px);
-  @include font();
-  margin-block-start: 0.5rem;
-  @include size($h: -webkit-fill-available);
-  > li {
-    min-width: 109px;
-
-    > a {
-      @include text($c: #a8a8a8);
-      &:hover {
-        color: $color-highlight !important;
-        font-weight: 600;
-        font-style: bold;
-      }
-      &:visited {
-        color: #a8a8a8;
-      }
-    }
-  }
-}
-
 .background-fade {
   height: 100%;
   width: 100%;
