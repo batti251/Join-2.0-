@@ -134,9 +134,6 @@ async function updateDatabaseObject(path = "", object = {}) {
  * @param {*} object the object according to the path
  */
 async function patchDatabaseObject(path = "", object = {}) {
-  console.log(path);
-  console.log(database);
-  
   let response = await fetch(database + path + ".json", {
     method: "PATCH",
     headers: {
@@ -302,14 +299,11 @@ function resetErrorMessage(x) {
  * @returns either true (all required fields are valid) or false (at least 1 required field is invalid)
  */
 function checkValidation() {
-  console.log("hier");
   let toValidate = document.querySelectorAll(".validate");
   let error = document.querySelectorAll(".validation");
   let valid;
   [...toValidate].every((e,i) => {
       valid = e.checkValidity();
-      console.log(e.parentElement);
-      
       valid ? error[i].classList.add("opacity-0") : error[i].classList.remove("opacity-0");
       valid ? e.classList.remove('error-border') : e.classList.add('error-border') ;
       valid ? e.parentElement.classList.remove('error-border') : e.parentElement.classList.add('error-border') ;
@@ -365,7 +359,6 @@ function sendMail(e) {
     }
   })
   .catch(error => {
-    console.error("Fetch error:", error);
     showMessageBox("error");
   })
   .finally(() => {

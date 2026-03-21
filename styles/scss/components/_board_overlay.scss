@@ -154,7 +154,6 @@ input[type="checkbox"] {
 .task-overlay-wrap > .scroll-overlay {
   height: 72vh;
   @include dFlex($ai: unset, $jc: unset, $g: 24px);
-  /* height: 100vh; */
 }
 
 .task-overlay-title {
@@ -299,9 +298,4 @@ input[type="checkbox"] {
     padding: 24px 0;
     height: unset;
   }
-}
-
-
-@media screen and (max-width: 620px) {
-
 }

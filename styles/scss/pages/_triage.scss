@@ -4,12 +4,6 @@ body {
   overflow: unset;
 }
 
-/* main {
-  top: 50%;
-  width: 70%;
-  transform: translate(-50%, -50%);
-} */
-
 .aside-index {
   align-items: flex-start;
   width: 100%;
@@ -52,42 +46,26 @@ body {
 }
 
 .paragraph {
-  /* @include font($fs: 19px); */
   max-width: 500px;
   text-align: justify;
 }
-
-/* h1 {
-  font-size: 40px;
-}
-
-h2 {
-  margin-top: 24px;
-
-  @include font($fs: 28px, $fw: 400);
-  margin: 0.25rem;
-} */
 
 .triage-headline {
   @include dFlex($g: 24px);
   max-width: unset;
   max-height: unset;
-/*   > span {
-    @include font($fs: 23px);
-  } */
 }
 
- .stakeholder-headline {
+.stakeholder-headline {
   @include dFlex($g: 42px);
   @include size($w: 100%);
-} 
+}
 
 .headline-navigate {
   @include dFlex($fd: row, $jc: space-between);
   @include size($w: 100%);
   > span {
     @include text($c: $color-highlight);
-    /* @include font($fs: 19px); */
   }
 }
 
@@ -103,16 +81,6 @@ h2 {
     width: 80%;
   }
 }
-/* 
-.signup-container {
-  @include dFlex($d: none, $fd: row);
-  > .text-to-signup {
-    @include text($c: white);
-  }
-  > a {
-    @include text($c: white);
-  }
-} */
 
 .btn-group {
   @include dFlex($fd: row, $g: 16px, $ai: unset);
@@ -123,9 +91,6 @@ h2 {
   z-index: 1;
   padding: 5% 20px !important;
 }
-
-
-
 
 textarea {
   @include size($h: 100%, $w: 100%);
@@ -143,22 +108,22 @@ strong[class*="hover"] {
   color: $color-highlight;
 }
 
-.join-logo-index{
+.join-logo-index {
   position: absolute;
-    top: 4%;
-    left: 4%;
-    width: 10%;
-    height: 10%;
-    a{
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      z-index: 2;
-    }
+  top: 4%;
+  left: 4%;
+  width: 10%;
+  height: 10%;
+  a {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
 }
 
-select{
-  &:hover{
+select {
+  &:hover {
     cursor: pointer;
   }
 }
@@ -169,7 +134,7 @@ select{
   transform: translate(-50%, -50%);
   background-color: #2a3647;
   color: white;
-  border: solid 2px  ;
+  border: solid 2px;
   border-radius: 10px;
   padding: 8px;
   @include dFlex();
@@ -181,7 +146,6 @@ select{
   padding: 16px 24px;
   border-radius: 8px;
   background-color: #ffd2d2;
-  /* @include font($fw: 500, $fs: 20px); */
 }
 
 #ai-requests {
@@ -199,16 +163,7 @@ select{
 
   .triage-headline {
     max-width: 72%;
-    /* > span {
-      font-size: 1.25rem;
-    } */
   }
-
-/*   .stakeholder-headline {
-    > h1 {
-      font-size: 40px;
-    }
-  } */
 
   .stakeholder-wrap {
     align-items: center;
@@ -223,18 +178,12 @@ select{
     }
   }
 
-/*   h2 {
-    font-size: 22px;
-  } */
-
   .paragraph {
     max-width: unset;
-    /* font-size: 16px; */
   }
 
   .btn-stakeholder {
     width: 212px;
-    /* font-size: 16px; */
     padding: 15px 24px;
   }
 
@@ -249,8 +198,6 @@ select{
       "header"
       "main"
       "footer";
-    /* grid-template-rows: 30% calc(100dvh - 40%) 10%; */
-    /* grid-template-rows: 20% 100dvh 10%; */
     grid-template-rows: 8% calc(100dvh - 20%) 10%;
     max-height: 560px;
   }
@@ -268,21 +215,6 @@ select{
     padding: 8px;
   }
 
- /*  h1 {
-    font-size: 32px;
-  } */
-  .triage-headline {
-   /*  > span {
-      font-size: 1.175rem;
-    } */
-  }
-
-  .role-check {
-   /*  > span {
-      font-size: 14px;
-    } */
-  }
-
   .container-wrap {
     gap: 16px;
   }
@@ -296,11 +228,6 @@ select{
     gap: 16px;
     width: 100%;
   }
-/* 
-  .btn-triage {
-    font-size: 16px;
-    padding: 8px 16px;
-  } */
 
   .signup-container {
     display: flex;
@@ -338,24 +265,9 @@ select{
   .grid {
     grid-template-rows: 10dvh 85dvh 5dvh;
   }
-
-  /* .paragraph{
-    font-size: 14px;
-  } */
-/*   h2{
-    font-size: 15px;
-  }
-  h1{
-    font-size: 32px !important;
-  }
- */
 }
 
 @media screen and (max-width: 380px) {
-  /*   .grid{
-    grid-template-rows: 20% 100dvh 10%;
-  } */
-
   .triage-container {
     padding: 12px 20px !important;
   }

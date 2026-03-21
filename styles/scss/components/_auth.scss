@@ -3,7 +3,7 @@
 
 
 
-.auth-container{ /* login-container */
+.auth-container{
     grid-area: main;
     @include dFlex($g: 8px);
     @include size($h: 100%, $w: 100%);

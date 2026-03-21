@@ -1,32 +1,27 @@
 @use "./../abstracts/" as *;
 
-
-
-.join-span{
-    color: #29ABE2;
-    font-weight: bold;
-    cursor: pointer;
+.join-span {
+  color: #29abe2;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.join-span > a:visited{
-    color: #29ABE2;
+.join-span > a:visited {
+  color: #29abe2;
 }
 
-.main-policy{
-    overflow-y: scroll;
+.main-policy {
+  overflow-y: scroll;
 }
 
-
-
-.help-legal-policy-wrap{
-    padding: 80px 64px;
-    @include dFlex();
+.help-legal-policy-wrap {
+  padding: 80px 64px;
+  @include dFlex();
 }
 
-.article-page{
-    @include dFlex()
+.article-page {
+  @include dFlex();
 }
-
 
 .text-paragraph {
   width: 100%;

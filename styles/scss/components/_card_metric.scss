@@ -61,7 +61,6 @@
 .count-figure {
   @include font($fw: 600);
   font-size: clamp(1rem, 3rem, 6vw);
-  /* height: 50%; */
 }
 
 .edit {
@@ -80,11 +79,6 @@
 .urgent-right {
   @include dFlex($fd: row, $g: 8px);
   flex: 1;
-  /* padding: 0 20px; */
-  > .figure-wrap {
-    > .card-title {
-    }
-  }
 }
 
 .divider-vertical {

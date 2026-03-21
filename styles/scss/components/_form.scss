@@ -1,15 +1,12 @@
 @use "../abstracts/variables" as *;
 @use "../abstracts/mixin" as *;
 
-
-
 form {
   @include dFlex($g: 20px);
   > .input-container {
     @include dFlex($jc: space-between, $g: 8px);
     @include size($w: 100%);
     min-height: 78.19px;
-    /* max-width: 90%; */
     &:nth-of-type(5) {
       min-height: 0;
     }
@@ -34,26 +31,25 @@ form {
       > span {
         gap: 10px;
       }
-      }
-    }
-    > .login-error {
-      @include text($c: #ff8190);
-      @include font($fs: 12px, $fw: 400);
-      @include size($h: 16px);
-      margin: 2px 0;
-      position: relative;
-      top: 5%;
     }
   }
+  > .login-error {
+    @include text($c: #ff8190);
+    @include font($fs: 12px, $fw: 400);
+    @include size($h: 16px);
+    margin: 2px 0;
+    position: relative;
+    top: 5%;
+  }
+}
 
-  .accept-policy {
-    color: $color-highlight !important;
-        &:hover {
-          text-decoration: underline;
-          text-decoration-style: solid;
-        }
-      }
-
+.accept-policy {
+  color: $color-highlight !important;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-style: solid;
+  }
+}
 
 input[type="checkbox"] {
   background: url("./../../../assets/icons/checkbox.svg") no-repeat;
@@ -87,12 +83,12 @@ input[type="checkbox"] {
   }
 }
 
-.reset-join{
+.reset-join {
   @include dFlex($g: 8px);
   @include font($fs: 13px);
 }
 
-.error-border{
+.error-border {
   border-color: $color-error !important;
 }
 
@@ -105,19 +101,12 @@ input[type="checkbox"] {
   .reset-join {
     display: none;
   }
-
 }
-
-
 
 @media screen and (max-width: 480px) {
   form {
     gap: 14px !important;
   }
-
- /*  h1 {
-    font-size: 52px;
-  } */
 
   input {
     font-size: 1rem !important;
@@ -132,19 +121,16 @@ input[type="checkbox"] {
     }
   }
 
-  .input-checkbox{
+  .input-checkbox {
     font-size: 1rem;
   }
 }
 
-
 @media screen and (max-width: 400px) {
-
   .input-content {
     height: 16px;
   }
 }
-
 
 @media screen and (max-height: 700px) {
   .input-content {

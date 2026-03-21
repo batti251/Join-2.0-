@@ -41,7 +41,6 @@ h1 {
 
 .summary-content {
   @include dFlex($fd: row, $g: 40px);
- /*  max-width: -webkit-fill-available; */
   height: 100%;
   max-height: 1920px;
   width: 80%
@@ -84,10 +83,6 @@ h1 {
 }
 
 @media screen and (max-width: 1440px) {
-  /* .summary {
-    padding: 16px 96px;
-  } */
-
   .greeting-container {
     opacity: 0;
     position: absolute;

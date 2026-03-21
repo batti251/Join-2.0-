@@ -1,7 +1,5 @@
 @use "./../abstracts/" as *;
 
-
-
 .add-task-container {
   @include dFlex($ai: flex-start, $g: 48px);
   @include padding($p: 16px 96px 0 96px);
@@ -63,7 +61,7 @@
 }
 
 .task-subtask-icon {
-  @include dFlex($fd: unset, $ai: unset, $jc: unset,$g: 8px);
+  @include dFlex($fd: unset, $ai: unset, $jc: unset, $g: 8px);
   position: absolute;
   top: 56px;
   right: 16px;
@@ -114,14 +112,14 @@
 
 .subtask-list-element {
   @include dFlex($jc: space-between, $fd: unset, $g: 8px);
-   @include font($fs: 13px);
-   @include padding(8px);
-   @include size($w: 100%);
+  @include font($fs: 13px);
+  @include padding(8px);
+  @include size($w: 100%);
   list-style-position: inside;
   border-radius: 10px;
   &:hover {
-  background-color: #d1d1d1;
-}
+    background-color: #d1d1d1;
+  }
 }
 
 .subtask-list-element:hover .edit-subtask {
@@ -129,7 +127,7 @@
 }
 
 .task-subtask-control-icon-wrap {
-  @include dFlex($d:none, $g: 4px, $fd: row);
+  @include dFlex($d: none, $g: 4px, $fd: row);
 }
 
 .edit-task-subtask-control-icon-wrap {
@@ -180,10 +178,10 @@
 .task-assigned-contact-wrap {
   border-radius: 10px;
   padding: 8px 16px;
-@include dFlex($jc: space-between, $fd: unset);
+  @include dFlex($jc: space-between, $fd: unset);
 }
 
-.user-badge-wrap{
+.user-badge-wrap {
   @include dFlex($jc: flex-start, $g: 16px, $fd: unset);
 }
 
@@ -205,27 +203,12 @@
   .task-input-text-field {
     max-width: 100%;
   }
-
-/*   .d-flex-row-end-sb {
-    display: flex;
-    align-items: flex-end;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 8px;
-  } */
 }
 
 @media screen and (max-width: 820px) {
-
-  .join-logo{
+  .join-logo {
     display: none;
   }
-
-/* 
-  span {
-    font-size: 16px;
-  } */
-
   .task-button-mobile {
     flex-direction: column;
     gap: 16px;
@@ -233,9 +216,8 @@
   }
 }
 
-
 @media screen and (max-width: 720px) {
-.add-task-container {
-  @include padding($p: 24px 12px 24px 12px);
-}
+  .add-task-container {
+    @include padding($p: 24px 12px 24px 12px);
+  }
 }
