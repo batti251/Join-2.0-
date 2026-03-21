@@ -214,6 +214,7 @@ form {
   align-items: center;
   flex-direction: unset;
   gap: 0;
+  background-color: transparent;
 }
 
 .close-icon-add-task-overlay-wrap:hover {
@@ -4466,7 +4467,7 @@ body {
   align-items: center;
   flex-direction: column;
   gap: 24px;
-  height: auto;
+  height: 100%;
   width: 277px;
 }
 .choice-container > .role-check {
@@ -4475,7 +4476,8 @@ body {
   align-items: center;
   flex-direction: row;
   gap: 8px;
-  width: 80%;
+  height: 100%;
+  width: 100%;
 }
 
 .btn-group {
@@ -4559,6 +4561,10 @@ select:hover {
 
 #ai-requests {
   color: #ff8190;
+}
+
+.arrow-left {
+  background-color: transparent;
 }
 
 @media screen and (max-width: 992px) {

@@ -118,6 +118,7 @@ form {
 
 .close-icon-overlay {
   @include dFlex($fd: unset);
+  background-color: transparent;
 }
 
 .close-icon-add-task-overlay-wrap:hover {

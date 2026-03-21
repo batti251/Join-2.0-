@@ -75,10 +75,10 @@ body {
 
 .choice-container {
   @include dFlex($ai: center, $g: 24px);
-  @include size($w: 277px);
+  @include size($w: 277px, $h: 100%);
   > .role-check {
     @include dFlex($fd: row, $g: 8px);
-    width: 80%;
+    @include size($w: 100%, $h: 100%);
   }
 }
 
@@ -150,6 +150,10 @@ select {
 
 #ai-requests {
   @include text($c: #ff8190);
+}
+
+.arrow-left{
+  background-color: transparent;
 }
 
 @media screen and (max-width: 992px) {

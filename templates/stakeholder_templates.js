@@ -118,14 +118,14 @@ function openDialogTemplate() {
         <h1>Request Form</h1>
         <div class="input-container">
               <div class="input-content">
-                <input class="validate" placeholder="Your Name" type="text" name="name" required pattern="([\\s\\S]*\\S){2,}[\\s\\S]*" />
+                <input class="validate" placeholder="Your Name" type="text" name="name" autocomplete="name" required pattern="([\\s\\S]*\\S){2,}[\\s\\S]*" />
               </div> 
               <div id="user-existance-error" class="login-error validation opacity-0"> This Field is required!</div>
             </div>
 
             <div class="input-container">
               <div class="input-content">
-                <input class="validate" placeholder="Your Mail" type="email" name="email" required pattern="^[a-zA-Z0-9._%+\\-]+@([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}$"  />
+                <input class="validate" placeholder="Your Mail" type="email" name="email" autocomplete="mail" required pattern="^[a-zA-Z0-9._%+\\-]+@([a-zA-Z0-9\\-]+\\.)+[a-zA-Z]{2,}$"  />
               </div> 
               <div id="user-existance-error" class="login-error validation opacity-0"> Please enter a valid email!</div>
             </div>
@@ -149,7 +149,7 @@ function openDialogTemplate() {
                 <div id="user-existance-error" class="login-error validation opacity-0"> This Field is required!</div>
                 </div>
 
-                <button class="btn-primary" type="submit">Send</button>
+                <button class="btn btn--primary" type="submit">Send</button>
               </form>
             </dialog>
   `
