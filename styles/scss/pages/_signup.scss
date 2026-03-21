@@ -59,10 +59,12 @@ form {
     top: -40%;
   }
 }
+
+
 }
 
-@media screen and (max-width: 380px) {
-  main {
+@media screen and (max-width: 420px) {
+  .card-landing__signup {
     max-height: 530px;
   }
   .signup-container {
