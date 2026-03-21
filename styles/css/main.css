@@ -809,7 +809,7 @@ input[type=checkbox] {
     opacity: 0;
   }
 }
-.card-wrap {
+.card-landing {
   background-color: white !important;
   border-radius: 30px;
   display: flex;
@@ -822,23 +822,23 @@ input[type=checkbox] {
   width: min(700px, 90%);
 }
 
-.card-wrap__login {
+.card-landing__login {
   gap: 32px;
   max-width: 652px;
   transition: ease-in-out 0.5s;
 }
-.card-wrap__signup {
+.card-landing__signup {
   justify-content: space-between;
   height: min(700px, 90%);
 }
 
 @media (max-width: 480px) {
-  .card-wrap {
+  .card-landing {
     gap: 24px !important;
   }
 }
 @media screen and (max-width: 380px) {
-  .card-wrap__signup {
+  .card-landing__signup {
     padding: 12px 20px !important;
   }
 }
@@ -3780,7 +3780,7 @@ h1 {
   grid-template-rows: 15% 75% 10%;
 }
 
-.card-wrap__signup {
+.card-landing__signup {
   max-height: max(50%, 660px);
   height: 100%;
   justify-content: unset;

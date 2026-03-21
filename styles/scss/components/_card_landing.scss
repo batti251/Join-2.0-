@@ -1,6 +1,6 @@
 @use "./../abstracts/" as *;
 
-.card-wrap {
+.card-landing {
   background-color: white !important;
   border-radius: 30px;
   @include dFlex($fd: column, $g: 8px);
@@ -8,7 +8,7 @@
   @include size($h:min(500px, 100%) , $w: min(700px, 90%))
 }
 
-.card-wrap {
+.card-landing {
   &__login {
     gap: 32px;
     max-width: 652px;
@@ -22,13 +22,13 @@
 
 
 @media (max-width: 480px) {
-  .card-wrap {
+  .card-landing {
     gap: 24px !important;
   }
 }
 
 @media screen and (max-width: 380px) {
-  .card-wrap {
+  .card-landing {
     &__signup {
       padding: 12px 20px !important;
     }
