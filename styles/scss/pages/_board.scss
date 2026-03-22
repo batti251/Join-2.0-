@@ -182,29 +182,6 @@
   border-radius: 8px;
 }
 
-.task-description-wrap {
-  @include dFlex($g: 8px, $ai: unset, $jc: unset);
-  border-radius: 10px;
-  overflow-x: clip;
-}
-
-.task-headline {
-  @include font($fs: 1rem, $fw: 700);
-  color: #2a3647;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.task-description {
-  @include font($fs: 1rem);
-  @include size($h: 20px);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  color: #a8a8a8;
-}
-
 [id^="subtasks-progress-"] {
   @include dFlex($g: 8px, $ai: unset, $jc: space-between);
   height: 30px;
@@ -229,12 +206,6 @@
   border-radius: 16px;
   height: 8px;
   background-color: #4589ff;
-}
-
-.progress-text {
-  display: flex;
-  @include font($fs: 12px);
-  color: black;
 }
 
 .no-task-found {

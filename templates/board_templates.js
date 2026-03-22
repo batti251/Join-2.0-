@@ -2,6 +2,7 @@ function getBoardCardTemplate(indexTask) {
   return `
     <div class="task-card-wrap"  onclick="handleTaskClick(${indexTask})"  >
           <div class="task-card" >
+          <div class="drag-handler " onpointerdown="pointerDown(event, ${indexTask})">_</div>
             <div>
               <div class="task-category ${getTaskCategoryClass(
                 tasksArray[indexTask][1].category
@@ -25,7 +26,7 @@ function getBoardCardTemplate(indexTask) {
                       tasksArray[indexTask][1].priority
                     )} >
             </div>
-              <div class="drag-handler " onpointerdown="pointerDown(event, ${indexTask})">_</div>
+              
         </div> 
 
 

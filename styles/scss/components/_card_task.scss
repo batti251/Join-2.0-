@@ -43,7 +43,7 @@
 }
 
 .task-headline {
-  @include font($fs: 1rem, $fw: 700);
+  @include font($fs: 1.25rem, $fw: 700);
   color: #2a3647;
   white-space: nowrap;
   overflow: hidden;
@@ -87,7 +87,7 @@
 
 .progress-text {
   display: flex;
-  @include font($fs: 12px);
+  @include font();
   color: black;
 }
 
@@ -104,6 +104,9 @@
 }
 
 .drag-handler {
+  position: absolute;
+  right: 10px;
+  top: 10px;
   width: 20%;
   height: 20%;
   background-image: url("../../assets/icons/drag-indicator.svg");
