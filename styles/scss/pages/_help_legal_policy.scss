@@ -15,7 +15,7 @@
 }
 
 .help-legal-policy-wrap {
-  padding: 80px 64px;
+  padding: min(40px, 6%);
   @include dFlex();
 }
 

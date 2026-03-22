@@ -2471,8 +2471,8 @@ input[type=checkbox]:checked:hover {
 
 .page {
   display: grid;
-  grid-template-columns: 232px auto;
-  grid-template-rows: 96px auto;
+  grid-template-columns: 232px 1fr;
+  grid-template-rows: 96px 1fr;
   grid-template-areas: "aside nav" "aside main";
 }
 
@@ -2497,6 +2497,7 @@ header {
   gap: 0;
   height: 96px;
   width: 100%;
+  max-width: 1920px;
   background-color: #ffffff;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
   position: fixed;
@@ -2512,6 +2513,7 @@ header {
   height: auto;
   width: 100%;
   max-width: 1920px;
+  margin: 0 0 0 232px;
 }
 .header-container > .join-logo {
   display: flex;
@@ -2605,10 +2607,10 @@ header {
   font-size: 1rem;
   font-weight: 400;
   line-height: 120%;
-  z-index: 1;
-  top: 0;
+  z-index: 2;
   box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.1);
   position: fixed;
+  bottom: 0;
 }
 
 nav {
@@ -2708,9 +2710,10 @@ main {
     padding: 16px 20px;
     height: 80px;
     justify-content: space-between;
+    margin: unset;
   }
   .header-main {
-    position: unset;
+    margin: unset;
   }
   .main-page {
     height: calc(100vh - 160px);
@@ -2724,7 +2727,6 @@ main {
     flex-direction: column;
     gap: 0;
     padding: 0;
-    position: unset;
   }
   .policy-legal {
     display: none;
@@ -3924,7 +3926,7 @@ form > select {
 }
 
 .help-legal-policy-wrap {
-  padding: 80px 64px;
+  padding: min(40px, 6%);
   display: flex;
   justify-content: center;
   align-items: center;

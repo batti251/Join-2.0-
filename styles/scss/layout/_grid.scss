@@ -34,8 +34,8 @@
 
 .page {
   display: grid;
-  grid-template-columns: 232px auto;
-  grid-template-rows: 96px auto;
+  grid-template-columns: 232px 1fr;
+  grid-template-rows: 96px 1fr;
   grid-template-areas:
     "aside nav"
     "aside main";
@@ -52,6 +52,7 @@ header {
   grid-area: nav;
   @include mx.dFlex($fd: row, $jc: space-between);
   @include mx.size($h: 96px, $w: 100%);
+  max-width: 1920px;
   background-color: #ffffff;
   box-shadow: 0 4px 4px 0 rgb(0, 0, 0, 0.1);
   position: fixed;
@@ -62,6 +63,7 @@ header {
   @include mx.dFlex($fd: row, $jc: space-between);
   @include mx.size($w: 100%);
   max-width: 1920px;
+  margin: 0 0 0 232px;
   > .join-logo {
     @include mx.dFlex($fd: row);
     > img {
@@ -122,10 +124,10 @@ header {
   @include mx.size($w: 232px, $h: 100dvh);
   @include mx.padding($p: 64px 0);
   @include mx.font($fs: 1rem);
-  z-index: 1;
-  top: 0;
+  z-index: 2;
   box-shadow: 0 0 4px 0 rgb(0, 0, 0, 0.1);
   position: fixed;
+  bottom: 0;
 }
 
 nav {
@@ -207,10 +209,11 @@ main {
     @include mx.padding($p: 16px 20px);
     height: 80px;
     justify-content: space-between;
+    margin: unset;
   }
 
   .header-main {
-    position: unset;
+    margin: unset;
   }
 
   .main-page {
@@ -221,7 +224,6 @@ main {
     @include mx.size($w: 100vw, $h: 80px);
     @include mx.dFlex($jc: space-between);
     padding: 0;
-    position: unset;
   }
 
   .policy-legal {
