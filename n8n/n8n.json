@@ -2,31 +2,16 @@
   "nodes": [
     {
       "parameters": {
-        "promptType": "define",
-        "text": "=You are analyzing incoming ticket data from a webhook.\n\nINPUT DATA:\nsubject: {{ $('Webhook - Incoming Form').item.json.body.subject }}\nbody: {{ $('Webhook - Incoming Form').item.json.body.body }}\n\nOUTPUT REQUIREMENT:\nGenerate a valid JSON object with exactly these fields:\n{\n  \"category\": \"{{ $('Webhook - Incoming Form').item.json.body['request-type'] }}\",\n  \"status\": \"triage\",\n  \"title\": \"{{ $('Webhook - Incoming Form').item.json.body.subject }}\",\n  \"dueDate\": \"yyyy-mm-dd\",\n  \"description\": \"string\",\n  \"priority\": \"low | medium | urgent\",\n  \"source\" : \"ai\",\n  \"creator\" : \"external\",\n  \"name\": {{ $('Webhook - Incoming Form').item.json.body.name }},\n  \"mail\": {{ $('Webhook - Incoming Form').item.json.body.email }},\n  \"subtasks\": see \"5. subtasks\" below,\n  \"assignedTo\": see \"6.assignedTo\" below\n}\n\nLANGUAGE RULE:\n- Detect the language of the input (subject/body)\n- If input is in German → write description in German\n- If input is in English → write description in English\n- Keep field values like priority and status in English (low/medium/high, triage)\n\nFIELD RULES:\n\n1. DEFAULT VALUE:\n   - If no information is available → use \"No summarize possible! Please contact the creator of the ticket\"\n\n2. dueDate:\n   - Extract deadline from subject or body if mentioned\n   - Recognize keywords: \"morgen\" (tomorrow), \"übermorgen\" (day after tomorrow), \"nächste Woche\" (next week), \"bis\" (by), \"deadline\", etc.\n   - Calculate actual date based on today's date: {{ $today }}\n   - Format: ALWAYS yyyy-mm-dd\n   - If \"not analysed\": today's date + 5 business days (skip weekends)\n\n3. description:\n   - Brief neutral summary in 2-3 sentences\n   - Focus primarily on body content\n   - Keep it factual and concise\n   - Write in the same language as the input (German or English)\n\n4. priority:\n   - urgent = critical, blocker, system outage, urgent, immediate action required\n   - medium = important but not critical, normal priority, standard request\n   - low = minor priority, can wait, nice-to-have\n   - If you used \"No summarize possible! Please contact the creator of the ticket\" \n     for other fields → set priority to \"low\"\n\n5. subtasks\n\n     If the email contains a list of tasks or hints like \"Einkaufsliste\", \"list\", \n     \"Liste\", \"Subtask\", \"Nebenaufgabe\", \"side-quest\" or similar words, extract the \n     individual list items as subtasks.\n    - The field subtasks must always be a JSON array of objects.\n    - Each object must have exactly this structure:\n    - { \"name\": \"short description\", \"done\": false }\n    - Rules for each subtask:\n      - name must contain a short description of the task.\n      - Maximum length: 50 characters.\n      - If needed, trim the text but do not change the original meaning.\n      - done must always be the boolean false.\n      - Do NOT create nested arrays.\n      - Do NOT use numeric keys or tuple-like structures.\n      - Do NOT return arrays inside arrays.\n      - Correct example:\n        subtasks: [\n          { \"name\": \"Analyze login error\", \"done\": false },\n          { \"name\": \"Check server logs\", \"done\": false },\n          { \"name\": \"Deploy fix\", \"done\": false }\n        ]\n      \n    - If no subtasks are detected, return: \"subtasks\": []\n\n6. assigendTo\n  The contacts array is:\n{{ $json.assignedTo }}\n\nEach entry: { \"Id\": \"...\", \"name\": \"...\" }\n\nYour task:\n1. Scan the email for person names or fragments.\n2. For each found name/fragment: push it to an Array \n\nIf no matches: []\n\n\n\nCRITICAL OUTPUT FORMAT:\n- Return ONLY pure JSON\n- NO markdown code blocks\n- NO backticks (`)\n- NO additional text, explanations, or commentary\n- Response must start with `{` and end with `}`\n- Ensure valid JSON syntax (proper quotes, commas, no trailing commas)",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 3.1,
-      "position": [
-        1440,
-        -432
-      ],
-      "id": "9f4f677c-0fec-4f22-b860-ca05912fcf00",
-      "name": "AI Agent"
-    },
-    {
-      "parameters": {
         "options": {}
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
       "typeVersion": 1,
       "position": [
-        1424,
-        -240
+        1808,
+        -624
       ],
-      "id": "85ca68f6-69fe-49e9-9fbb-8ceb1539e477",
-      "name": "Google Gemini Chat Model",
+      "id": "a3045f0c-4e6e-44f0-bf28-7fab72536d36",
+      "name": "Google Gemini Chat Model2",
       "credentials": {}
     },
     {
@@ -34,111 +19,25 @@
       "type": "@n8n/n8n-nodes-langchain.toolCode",
       "typeVersion": 1.3,
       "position": [
-        1632,
-        -224
+        2016,
+        -608
       ],
-      "id": "719698fa-987f-431a-bfd6-48fa66b53c62",
-      "name": "Code Tool"
+      "id": "b888474e-4ae3-41b1-9efb-5af61981c0b4",
+      "name": "Code Tool2"
     },
     {
       "parameters": {
-        "fromEmail": "noreply@gmail.com",
-        "toEmail": "joincollector.buenz@gmail.com",
-        "subject": "Join Issue Collector: Neue Anfrage [KI-Limit]",
-        "html": "=\n<strong>Von: </strong> {{ $('Webhook - Incoming Form').item.json.body.name }}<br>\n<strong>Email: </strong>{{ $('Webhook - Incoming Form').item.json.body.email }}<br>\n<strong>Type: </strong> {{ $('Webhook - Incoming Form').item.json.body['request-type'] }}<br>\n<strong>Betreff: </strong> {{ $('Webhook - Incoming Form').item.json.body.subject }}<br>\n<strong>Body: </strong>{{ $('Webhook - Incoming Form').item.json.body.body }}",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.emailSend",
-      "typeVersion": 2.1,
-      "position": [
-        944,
-        -32
-      ],
-      "id": "905c1391-7425-4dc3-a88b-f7f7077a2a39",
-      "name": "Send email",
-      "webhookId": "ab7ad339-87d0-43e5-b597-5b4df3f31f6a",
-      "retryOnFail": true,
-      "alwaysOutputData": true,
-      "notesInFlow": false,
-      "credentials": {}
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "firebase/tasks.json",
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "category",
-              "value": "={{ $('restructure JSON').item.json.category }}"
-            },
-            {
-              "name": "status",
-              "value": "={{ $('restructure JSON').item.json.status }}"
-            },
-            {
-              "name": "title",
-              "value": "={{ $('restructure JSON').item.json.title }}"
-            },
-            {
-              "name": "dueDate",
-              "value": "={{ $('restructure JSON').item.json.dueDate }}"
-            },
-            {
-              "name": "description",
-              "value": "={{ $('restructure JSON').item.json.description }}"
-            },
-            {
-              "name": "priority",
-              "value": "={{ $('restructure JSON').item.json.priority }}"
-            },
-            {
-              "name": "creator",
-              "value": "={{ $('restructure JSON').item.json.creator }}"
-            },
-            {
-              "name": "name",
-              "value": "={{ $('Webhook - Incoming Form').item.json.body.name }}"
-            },
-            {
-              "name": "mail",
-              "value": "={{ $('Webhook - Incoming Form').item.json.body.email }}"
-            },
-            {
-              "name": "=subtasks",
-              "value": "={{ $('restructure JSON').item.json.subtasks }}"
-            },
-            {
-              "name": "assignedTo",
-              "value": "={{ $('matchAssignedToID').item.json.assignedTo }}"
-            }
-          ]
-        },
+        "url": ".../aicounter/-Ol74VTj318bdX3TYVo-.json",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        2464,
-        -432
+        496,
+        -656
       ],
-      "id": "5bff482c-ee1a-4808-b8a7-ed489be541f2",
-      "name": "POST AI-JSON",
-      "alwaysOutputData": true
-    },
-    {
-      "parameters": {
-        "jsCode": "const today = new Date().toISOString().split('T')[0];\n\nlet newCount = $input.first().json.count\nnewCount ++\n\nreturn [\n  {\n    json: {\n      today,\n      count: newCount\n    },\n  }, \n];\n"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        400,
-        -128
-      ],
-      "id": "bf3c24db-9aa3-44b9-9692-d9f86a316e64",
-      "name": "Count Inputs"
+      "id": "8b34e4cb-22f3-4e64-97f2-3ec102f0caf6",
+      "name": "getCurrentAiCount"
     },
     {
       "parameters": {
@@ -151,12 +50,12 @@
           },
           "conditions": [
             {
-              "id": "3eca3c46-fdac-45a3-9c4d-8dce5a9405dd",
-              "leftValue": "={{ $json.count }}",
-              "rightValue": 10,
+              "id": "0680cb0d-0bdd-47cb-933b-4936aacedaff",
+              "leftValue": "={{ $('mergeMapResult').item.json.source }}",
+              "rightValue": "=webhook",
               "operator": {
-                "type": "number",
-                "operation": "lte"
+                "type": "string",
+                "operation": "equals"
               }
             }
           ],
@@ -167,54 +66,53 @@
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.3,
       "position": [
-        736,
-        -128
+        896,
+        -368
       ],
-      "id": "db377f06-8128-4d20-8ee7-c42139daa07b",
-      "name": "Count Handler",
+      "id": "173456cb-1816-4409-a96c-1b400abd0423",
+      "name": "isFromWebhook",
       "alwaysOutputData": false
     },
     {
       "parameters": {
-        "jsCode": "const raw = $('AI Agent').first().json.output\n  .replace(/```json/g, \"\")\n  .replace(/```/g, \"\")\n  .trim();\n\nreturn [{ json: JSON.parse(raw) }];\n"
+        "fromEmail": "noreply@gmail.com",
+        "toEmail": "joincollector.buenz@gmail.com",
+        "subject": "Join Issue Collector: Neue Anfrage [KI-Limit]",
+        "html": "=\n<strong>Von: </strong> {{ $('Trigger - Webhook').item.json.body.name }}<br>\n<strong>Email: </strong>{{ $('Trigger - Webhook').item.json.body.email }}<br>\n<strong>Type: </strong> {{ $('Trigger - Webhook').item.json.body['request-type'] }}<br>\n<strong>Betreff: </strong> {{ $('Trigger - Webhook').item.json.body.subject }}<br>\n<strong>Body: </strong>{{ $('Trigger - Webhook').item.json.body.body }}",
+        "options": {}
       },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
       "position": [
-        2048,
-        -432
+        1168,
+        -480
       ],
-      "id": "ae2a3044-d3f5-43b5-8ecb-30e2b7a4c421",
-      "name": "restructure JSON"
+      "id": "2ac10f26-5fb3-4985-9569-20bbffb88f48",
+      "name": "sendTicketAsMail",
+      "webhookId": "ab7ad339-87d0-43e5-b597-5b4df3f31f6a",
+      "retryOnFail": true,
+      "alwaysOutputData": true,
+      "notesInFlow": false,
+      "credentials": {}
     },
     {
       "parameters": {
-        "method": "PUT",
-        "url": "firebase/-Ol74VTj318bdX3TYVo-.json",
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "count",
-              "value": "={{ $('Count Inputs').item.json.count }}"
-            }
-          ]
-        },
+        "url": ".../aicounter/-Ol74VTj318bdX3TYVo-.json",
         "options": {}
       },
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        2256,
-        -432
+        48,
+        -1408
       ],
-      "id": "2fb2924c-3032-4ce7-989a-4823bc68e44e",
-      "name": "send newCounter to Firebase"
+      "id": "3db2be96-de3c-4b36-9003-54004f9ed39b",
+      "name": "getAiCount"
     },
     {
       "parameters": {
         "method": "PUT",
-        "url": "firebase/-Ol74VTj318bdX3TYVo-.json",
+        "url": ".../aicounter/-Ol74VTj318bdX3TYVo-.json",
         "sendBody": true,
         "bodyParameters": {
           "parameters": [
@@ -229,81 +127,11 @@
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.3,
       "position": [
-        272,
-        -1120
+        288,
+        -1408
       ],
       "id": "be6688c6-ad75-443e-b7e8-1076a20917cf",
-      "name": "HTTP Request1"
-    },
-    {
-      "parameters": {
-        "url": "firebase/-Ol74VTj318bdX3TYVo-.json",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.3,
-      "position": [
-        32,
-        -1120
-      ],
-      "id": "3db2be96-de3c-4b36-9003-54004f9ed39b",
-      "name": "HTTP Request2"
-    },
-    {
-      "parameters": {
-        "fromEmail": "joincollector.buenz@gmail.com",
-        "toEmail": "={{ $json.body.mail }}",
-        "subject": "=Task [{{ $json.body.title }}] has been updated",
-        "emailFormat": "text",
-        "text": "=Hello {{ $json.body.name }},\n\nThe task-status of your Task [ {{ $json.body.title }} ] has been changed!\n\nThe status is now: {{ $json.body.newStatus }}\n\nFor more Details have a look at the Board:\n\nhttps://join-issue.sebastian-buenz.de/html/login.html\n\nYour Join Team",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.emailSend",
-      "typeVersion": 2.1,
-      "position": [
-        32,
-        -944
-      ],
-      "id": "61305418-36aa-4c93-a547-3857c435afd6",
-      "name": "Send an Email",
-      "webhookId": "ba4121f6-29c2-48fe-b55d-483a58d42c2c",
-      "credentials": {}
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "08e90c98-d86e-4972-b134-d7e0e834b550",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -176,
-        -944
-      ],
-      "id": "c729213d-6d68-4afe-b04f-cdf641e6c04d",
-      "name": "Webhook - Status change",
-      "webhookId": "08e90c98-d86e-4972-b134-d7e0e834b550"
-    },
-    {
-      "parameters": {
-        "httpMethod": "POST",
-        "path": "b733bc62-d1cd-4647-b732-d33b763cbb43",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.webhook",
-      "typeVersion": 2.1,
-      "position": [
-        -208,
-        -128
-      ],
-      "id": "99b1ddbe-f811-4906-a697-2af18a3bdfb1",
-      "name": "Webhook - Incoming Form",
-      "webhookId": "b733bc62-d1cd-4647-b732-d33b763cbb43",
-      "notesInFlow": false,
-      "alwaysOutputData": false,
-      "executeOnce": false,
-      "retryOnFail": false
+      "name": "resetAiCount"
     },
     {
       "parameters": {
@@ -318,214 +146,11 @@
       "type": "n8n-nodes-base.scheduleTrigger",
       "typeVersion": 1.3,
       "position": [
-        -176,
-        -1120
+        -160,
+        -1408
       ],
       "id": "e9b267ab-3ab0-4122-b7aa-6a3f7562e030",
-      "name": "AI Counter reset"
-    },
-    {
-      "parameters": {
-        "promptType": "define",
-        "text": "=You are analyzing incoming ticket data from an email.\n\nINPUT DATA:\nsubject: {{ $('Gmail Trigger').item.json.Subject }}\nbody: {{ $('Gmail Trigger').item.json.snippet }}\n\nOUTPUT REQUIREMENT:\nGenerate a valid JSON object with exactly these fields:\n{\n  \"category\": depending on the bodies content either 'technical-task' or 'user-story',\n  \"status\": \"triage\",\n  \"title\": \"{{ $('Gmail Trigger').item.json.Subject }}\",\n  \"dueDate\": \"yyyy-mm-dd\",\n  \"description\": \"string\",\n  \"priority\": \"low | medium | urgent\",\n  \"name\": \"{{ $('Gmail Trigger').item.json.From }}\",\n  \"subtasks\" : see \"7. subtasks\" below,\n  \"assignedTo\" : see \"8. assignedTo\" below\n}\n\nLANGUAGE RULE:\n- Detect the language of the input (subject/body)\n- If input is in German → write description in German\n- If input is in English → write description in English\n- Keep field values like priority and status in English (low/medium/high, triage)\n\nFIELD RULES:\n\n1. DEFAULT VALUE:\n   - If no information is available → use \"not analysed\"\n\n2. dueDate:\n   - Extract deadline from subject or body if mentioned\n   - Recognize keywords: \"morgen\" (tomorrow), \"übermorgen\" (day after tomorrow), \"nächste Woche\" (next week), \"bis\" (by), \"deadline\", etc.\n   - Calculate actual date based on {{ $today }}\n   - Format: ALWAYS yyyy-mm-dd\n   - if you find nothing take todays's date + 5 business days (skip weekends)\n\n3. name:\n   - analyse the from-field: {{ $('Gmail Trigger').item.json.From }}\n   - set a short but meaningful Real Name, according the from field\n   - if no realistic name can be set, take the email-address\n\n4. description:\n   - Brief neutral summary in 2-3 sentences\n   - Focus primarily on body content\n   - Keep it factual and concise\n   - Write in the same language as the input (German or English)\n\n5. priority:\n   - urgent = critical, blocker, system outage, urgent, immediate action required\n   - medium = important but not critical, normal priority, standard request\n   - low = minor priority, can wait, nice-to-have\n   - If you used \"not analysed\" for other fields → set priority to \"low\"\n\n6. CAUTION:\n   - if the requests topic is not related to a business-use-case just return a             neutral descirption \n   - mark it in the subject as a potential \"spam-mail?\"\n\n7. subtasks\n\n     If the email contains a list of tasks or hints like \"Einkaufsliste\", \"list\", \n     \"Liste\", \"Subtask\", \"Nebenaufgabe\", \"side-quest\" or similar words, extract the \n     individual list items as subtasks.\n    - The field subtasks must always be a JSON array of objects.\n    - Each object must have exactly this structure:\n    - { \"name\": \"short description\", \"done\": false }\n    - Rules for each subtask:\n    - name must contain a short description of the task.\n    - Maximum length: 50 characters.\n    - If needed, trim the text but do not change the original meaning.\n    - done must always be the boolean false.\n    - Do NOT create nested arrays.\n    - DO NOT CREATE, ADD, EDIT or MAP names and Id's from {{ $json.assignedTo }} \n    - Do NOT use numeric keys or tuple-like structures.\n    - Do NOT return arrays inside arrays.\n    - Correct example:\n      subtasks: [\n        { \"name\": \"Analyze login error\", \"done\": false },\n        { \"name\": \"Check server logs\", \"done\": false },\n        { \"name\": \"Deploy fix\", \"done\": false }\n      ]\n    \n    - If no subtasks are detected, return: \"subtasks\": []\n\n8. assignedTo\n\nThe contacts array is:\n{{ $json.assignedTo }}\n\nEach entry: { \"Id\": \"...\", \"name\": \"...\" }\n\nYour task:\n1. Scan the email for person names or fragments.\n2. For each found name/fragment: push it to an Array \n\nIf no matches: []\n\n\nCRITICAL OUTPUT FORMAT:\n- Return ONLY pure JSON\n- NO markdown code blocks\n- NO backticks (`)\n- NO additional text, explanations, or commentary\n- Response must start with `{` and end with `}`\n- Ensure valid JSON syntax (proper quotes, commas, no trailing commas)",
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.agent",
-      "typeVersion": 3.1,
-      "position": [
-        1392,
-        -960
-      ],
-      "id": "084a0b82-7c6c-43e4-b7db-9da37cc41308",
-      "name": "AI Agent1"
-    },
-    {
-      "parameters": {
-        "options": {}
-      },
-      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "typeVersion": 1,
-      "position": [
-        1392,
-        -736
-      ],
-      "id": "7604d529-59bc-4fac-b427-b09177544894",
-      "name": "Google Gemini Chat Model1",
-      "credentials": {}
-    },
-    {
-      "parameters": {},
-      "type": "@n8n/n8n-nodes-langchain.toolCode",
-      "typeVersion": 1.3,
-      "position": [
-        1552,
-        -736
-      ],
-      "id": "875e2487-9aa8-4249-abc2-f45fbbfb527b",
-      "name": "Code Tool1"
-    },
-    {
-      "parameters": {
-        "method": "POST",
-        "url": "firebase/tasks.json",
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "category",
-              "value": "={{ $('restructure JSON1').item.json.category }}"
-            },
-            {
-              "name": "status",
-              "value": "={{ $('restructure JSON1').item.json.status }}"
-            },
-            {
-              "name": "title",
-              "value": "={{ $('restructure JSON1').item.json.title }}"
-            },
-            {
-              "name": "dueDate",
-              "value": "={{ $('restructure JSON1').item.json.dueDate }}"
-            },
-            {
-              "name": "description",
-              "value": "={{ $('restructure JSON1').item.json.description }}"
-            },
-            {
-              "name": "priority",
-              "value": "={{ $('restructure JSON1').item.json.priority }}"
-            },
-            {
-              "name": "name",
-              "value": "={{ $('restructure JSON1').item.json.name }}"
-            },
-            {
-              "name": "creator",
-              "value": "external"
-            },
-            {
-              "name": "mail",
-              "value": "={{ $('Gmail Trigger').item.json.From.split(\"<\")[1].split(\">\")[0]}}\n"
-            },
-            {
-              "name": "=subtasks",
-              "value": "={{ $('restructure JSON1').item.json.subtasks }}"
-            },
-            {
-              "name": "assignedTo",
-              "value": "={{ $('matchAssignedToID1').item.json.assignedTo }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.3,
-      "position": [
-        2432,
-        -960
-      ],
-      "id": "fa2ab79f-99e7-44ec-842d-7c2dd8bba8cc",
-      "name": "POST AI-JSON1",
-      "alwaysOutputData": true
-    },
-    {
-      "parameters": {
-        "jsCode": "const today = new Date().toISOString().split('T')[0];\n\nlet newCount = $input.first().json.count\nnewCount ++\n\nreturn [\n  {\n    json: {\n      today,\n      count: newCount\n    },\n  }, \n];\n"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        384,
-        -656
-      ],
-      "id": "07fc4045-b323-47f3-a651-610e2f570649",
-      "name": "Count Inputs1"
-    },
-    {
-      "parameters": {
-        "conditions": {
-          "options": {
-            "caseSensitive": true,
-            "leftValue": "",
-            "typeValidation": "strict",
-            "version": 3
-          },
-          "conditions": [
-            {
-              "id": "3eca3c46-fdac-45a3-9c4d-8dce5a9405dd",
-              "leftValue": "={{ $json.count }}",
-              "rightValue": 10,
-              "operator": {
-                "type": "number",
-                "operation": "lte"
-              }
-            }
-          ],
-          "combinator": "and"
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.if",
-      "typeVersion": 2.3,
-      "position": [
-        720,
-        -656
-      ],
-      "id": "e916b63a-1a8f-4281-af5c-55e391a81ffd",
-      "name": "Count Handler1",
-      "alwaysOutputData": false
-    },
-    {
-      "parameters": {
-        "jsCode": "const raw = $('AI Agent1').first().json.output\n  .replace(/```json/g, \"\")\n  .replace(/```/g, \"\")\n  .trim();\n\nreturn [{ json: JSON.parse(raw) }];\n"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1984,
-        -960
-      ],
-      "id": "94e2329f-029d-4653-901f-a0b7211647cc",
-      "name": "restructure JSON1"
-    },
-    {
-      "parameters": {
-        "method": "PUT",
-        "url": "firebase/-Ol74VTj318bdX3TYVo-.json",
-        "sendBody": true,
-        "bodyParameters": {
-          "parameters": [
-            {
-              "name": "count",
-              "value": "={{ $('Count Inputs1').item.json.count }}"
-            }
-          ]
-        },
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.3,
-      "position": [
-        2224,
-        -960
-      ],
-      "id": "1d21c961-74f7-4f00-8252-16cd86c89721",
-      "name": "send newCounter to Firebase1"
-    },
-    {
-      "parameters": {
-        "errorMessage": "KI-Limit reached!"
-      },
-      "type": "n8n-nodes-base.stopAndError",
-      "typeVersion": 1,
-      "position": [
-        928,
-        -560
-      ],
-      "id": "095cfcff-dc0e-482e-9f2e-97e708490f72",
-      "name": "Stop and Error",
-      "alwaysOutputData": false
+      "name": "Trigger - resetAi"
     },
     {
       "parameters": {
@@ -541,428 +166,619 @@
       "type": "n8n-nodes-base.gmailTrigger",
       "typeVersion": 1.3,
       "position": [
-        -160,
-        -656
+        -336,
+        -768
       ],
-      "id": "3c3bd2e8-f155-4ed4-88ce-c290de84078f",
-      "name": "Gmail Trigger",
+      "id": "d7628ea8-51c6-4047-a4b9-5e8c2d3ba0a3",
+      "name": "Trigger - Email",
       "credentials": {}
     },
     {
       "parameters": {
-        "jsCode": "const input = $input.first().json;\n\nconst result = Object.entries(input).map(([id, value]) => {\n  return {\n    Id: id,\n    name: value.name\n  };\n});\n\nreturn [\n  {\n    json: {\n      assignedTo: result\n    }\n  }\n];"
+        "jsCode": "const today = new Date().toISOString().split('T')[0];\n\nlet newCount = $input.first().json.count\nnewCount ++\n\nreturn [\n  {\n    json: {\n      today,\n      count: newCount\n    },\n  }, \n];\n"
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        1104,
-        -848
-      ],
-      "id": "0ce11b59-49a3-4534-acd2-38ca397d1c8d",
-      "name": "mapAssignedToFetch"
-    },
-    {
-      "parameters": {
-        "jsCode": "const input = $input.first().json;\n\nconst result = Object.entries(input).map(([id, value]) => {\n  return {\n    Id: id,\n    name: value.name\n  };\n});\n\nreturn [\n  {\n    json: {\n      assignedTo: result\n    }\n  }\n];"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1120,
-        -304
-      ],
-      "id": "d2b76854-ca76-4160-9c47-c6b8a11c1215",
-      "name": "mapAssignedToFetch1"
-    },
-    {
-      "parameters": {
-        "url": "firebase/-Ol74VTj318bdX3TYVo-.json",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.3,
-      "position": [
-        80,
-        -128
-      ],
-      "id": "7ef4aaef-b953-40d8-8977-6dccdaa81605",
-      "name": "getAICounter"
-    },
-    {
-      "parameters": {
-        "url": "firebase/-Ol74VTj318bdX3TYVo-.json",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.3,
-      "position": [
-        64,
-        -656
-      ],
-      "id": "f3bcafcc-9545-42fa-99dd-90cd1cb0630b",
-      "name": "getAICounter1"
-    },
-    {
-      "parameters": {
-        "jsCode": "const output = $input.first().json.output;\n\nconst jsonMatch = output.match(/\\{[\\s\\S]*\\}/);\nconst parsed = JSON.parse(jsonMatch[0]);\n\nconst detectedNames = parsed.assignedTo;\nconst contacts = $('mapAssignedToFetch').first().json.assignedTo;\n\nconst matched = contacts.filter(contact =>\n  detectedNames.some(name => \n    contact.name.toLowerCase().startsWith(name.toLowerCase())\n  )\n);\n\nreturn [{ json: { assignedTo: matched } }];"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1760,
-        -960
-      ],
-      "id": "d919d681-0e0e-44a9-a5b6-50cff9ba722f",
-      "name": "matchAssignedToID1"
-    },
-    {
-      "parameters": {
-        "jsCode": "const output = $input.first().json.output;\n\nconst jsonMatch = output.match(/\\{[\\s\\S]*\\}/);\nconst parsed = JSON.parse(jsonMatch[0]);\n\nconst detectedNames = parsed.assignedTo;\nconst contacts = $('mapAssignedToFetch1').first().json.assignedTo;\n\nconst matched = contacts.filter(contact =>\n  detectedNames.some(name => \n    contact.name.toLowerCase().startsWith(name.toLowerCase())\n  )\n);\n\nreturn [{ json: { assignedTo: matched } }];"
-      },
-      "type": "n8n-nodes-base.code",
-      "typeVersion": 2,
-      "position": [
-        1840,
-        -432
-      ],
-      "id": "1e1e9575-b2b0-4a12-afb5-060c2e5f9115",
-      "name": "matchAssignedToID"
-    },
-    {
-      "parameters": {
-        "url": "firebase/contacts.json",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.4,
-      "position": [
-        944,
-        -304
-      ],
-      "id": "6a7d8dab-bc72-4f2e-b02e-2c8d0e9148ef",
-      "name": "getContactsDB"
-    },
-    {
-      "parameters": {
-        "url": "firebase/contacts.json",
-        "options": {}
-      },
-      "type": "n8n-nodes-base.httpRequest",
-      "typeVersion": 4.4,
       "position": [
         928,
-        -848
+        -816
       ],
-      "id": "393b2132-8a0e-4991-a896-18549e2ad09d",
-      "name": "getContactsDB1"
+      "id": "8378c0cf-30b5-4645-8968-1033ac85ef09",
+      "name": "increaseAiCount"
+    },
+    {
+      "parameters": {
+        "jsCode": "const mappedWebhook = [{\n  name: $input.first().json.body.name,\n  mail: $input.first().json.body.email,\n  subject: $input.first().json.body.subject,\n  \"request-type\": $input.first().json.body[\"request-type\"],\n  \"body\": $input.first().json.body.body,\n  \"source\": \"webhook\"\n}]\n\nreturn mappedWebhook"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        80,
+        -512
+      ],
+      "id": "9d058c2e-04c9-4f22-b05a-ef5d9e37a312",
+      "name": "mapWebhook"
+    },
+    {
+      "parameters": {
+        "jsCode": "const mappedWebhook = [{\n  name: \"\",\n  mail: $input.first().json.From,\n  subject: $input.first().json.Subject,\n  \"request-type\": \"\",\n  \"body\": $input.first().json.snippet,\n  \"source\": \"email\"\n}]\n\nreturn mappedWebhook"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        80,
+        -752
+      ],
+      "id": "32355722-ef9b-4c23-8271-8f136a2b516f",
+      "name": "mapEmail"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "3eca3c46-fdac-45a3-9c4d-8dce5a9405dd",
+              "leftValue": "={{ $json.count }}",
+              "rightValue": 10,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        704,
+        -656
+      ],
+      "id": "90047c2f-cc70-4924-9d67-c4edd807b82f",
+      "name": "hasAIFreeToken",
+      "alwaysOutputData": false
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        304,
+        -656
+      ],
+      "id": "bd1bcd0b-bf01-4884-be3f-abaea6ac4d55",
+      "name": "mergeMapResult"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "b733bc62-d1cd-4647-b732-d33b763cbb43",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -128,
+        -512
+      ],
+      "id": "bcc7bfa2-f360-48d2-b587-6d8fde5cf8df",
+      "name": "Trigger - Webhook",
+      "webhookId": "b733bc62-d1cd-4647-b732-d33b763cbb43",
+      "notesInFlow": false,
+      "alwaysOutputData": false,
+      "executeOnce": false,
+      "retryOnFail": false
+    },
+    {
+      "parameters": {
+        "url": ".../contacts.json",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        1376,
+        -816
+      ],
+      "id": "afdb8bc9-82da-41ee-a38a-a4d9f895c943",
+      "name": "getFirebaseContacts",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "fromEmail": "joincollector.buenz@gmail.com",
+        "toEmail": "={{ $json.body.mail }}",
+        "subject": "=Task [{{ $json.body.title }}] has been updated",
+        "emailFormat": "text",
+        "text": "=Hello {{ $json.body.name }},\n\nThe task-status of your Task [ {{ $json.body.title }} ] has been changed!\n\nThe status is now: {{ $json.body.newStatus }}\n\nFor more Details have a look at the Board:\n\nhttps://join-issue.sebastian-buenz.de/html/login.html\n\nYour Join Team",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        48,
+        -1200
+      ],
+      "id": "61305418-36aa-4c93-a547-3857c435afd6",
+      "name": "sendUpdateEmail",
+      "webhookId": "ba4121f6-29c2-48fe-b55d-483a58d42c2c",
+      "credentials": {}
+    },
+    {
+      "parameters": {
+        "jsCode": "const output = $input.first().json.output;\n\nconst jsonMatch = output.match(/\\{[\\s\\S]*\\}/);\nconst parsed = JSON.parse(jsonMatch[0]);\n\nconst detectedNames = parsed.assignedTo;\nconst contacts = $('mapContacts').first().json.assignedTo;\n\nconst matched = contacts.filter(contact =>\n  detectedNames.some(name => \n    contact.name.toLowerCase().startsWith(name.toLowerCase())\n  )\n);\n\nreturn [{ json: { assignedTo: matched } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2144,
+        -816
+      ],
+      "id": "29a91678-774e-4052-9350-e41d2146d966",
+      "name": "mapNewAssignedTo"
+    },
+    {
+      "parameters": {
+        "jsCode": "const input = $input.first().json;\n\nconst result = Object.entries(input).map(([id, value]) => {\n  return {\n    Id: id,\n    name: value.name\n  };\n});\n\nreturn [\n  {\n    json: {\n      assignedTo: result\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        -816
+      ],
+      "id": "a4c8531a-4f43-4deb-a08d-9cf55c3f3127",
+      "name": "mapContacts"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are analyzing incoming ticket data.\n\n\nINPUT DATA:\nsubject: {{ $('mergeMapResult').item.json.subject }}\nbody: {{ $('mergeMapResult').item.json.body }}\n\nOUTPUT REQUIREMENT:\nGenerate a valid JSON object with exactly these fields:\n{\n  \"category\": \" depending on the bodies content either 'technical-task' or 'user-story' OR \n    {{ $('mergeMapResult').item.json['request-type'] }} \",\n  \"status\": \"triage\",\n  \"title\": \"{{ $('mergeMapResult').item.json.subject }}\",\n  \"dueDate\": \"yyyy-mm-dd\",\n  \"description\": \"string\",\n  \"priority\": \"low | medium | urgent\",\n  \"source\" : \"ai\",\n  \"creator\" : \"external\",\n  \"name\": {{ $('mergeMapResult').item.json.name }},\n  \"mail\": {{ $('mergeMapResult').item.json.mail }},\n  \"subtasks\": see \"5. subtasks\" below,\n  \"assignedTo\": see \"6.assignedTo\" below\n}\n\nLANGUAGE RULE:\n- Detect the language of the input (subject/body)\n- i.e. if input is in German → write description in German\n- i.e. if input is in English → write description in English\n- Keep field values like priority and status in English (low/medium/high, triage)\n\nFIELD RULES:\n\n0. DEFAULT VALUE:\n   - If no information is available → use \"No summarize possible! Please contact the creator of the ticket\"\n\n1. name: \n    - if {{ $('mergeMapResult').item.json.name }} is empty search in  {{ \n      $('mergeMapResult').item.json.mail }} for a realistic name, additionally \n      in the {{ $('mergeMapResult').item.json.body }} closing line there might be \n      hints to a name as well. Prioritise  {{ $('mergeMapResult').item.json.name }}\n      over {{ $('mergeMapResult').item.json.body }} or \n      {{$('mergeMapResult').item.json.mail }}\n    - if no realistic name can be set, take the email-address\n\n\n2. dueDate:\n   - Extract deadline from subject or body if mentioned\n   - Recognize keywords: \"morgen\" (tomorrow), \"übermorgen\" (day after tomorrow), \n     \"nächste Woche\" (next week), \"bis\" (by), \"deadline\", etc.\n   - Calculate actual date based on today's date: {{ $today }}\n   - Format: ALWAYS yyyy-mm-dd\n   - If \"not analysed\": today's date + 5 business days (skip weekends)\n\n3. description:\n   - Brief neutral summary in 2-3 sentences\n   - Focus primarily on body content\n   - Keep it factual and concise\n   - Write in the same language as the input (German or English)\n\n4. priority:\n   - urgent = critical, blocker, system outage, urgent, immediate action required\n   - medium = important but not critical, normal priority, standard request\n   - low = minor priority, can wait, nice-to-have\n   - If you used \"No summarize possible! Please contact the creator of the ticket\" \n     for other fields → set priority to \"low\"\n\n5. subtasks\n\n     If the email contains a list of tasks or hints like \"Einkaufsliste\", \"list\", \n     \"Liste\", \"Subtask\", \"Nebenaufgabe\", \"side-quest\" or similar words, extract the \n     individual list items as subtasks.\n    - The field subtasks must always be a JSON array of objects.\n    - Each object must have exactly this structure:\n    - { \"name\": \"short description\", \"done\": false }\n    - Rules for each subtask:\n      - name must contain a short description of the task.\n      - Maximum length: 50 characters.\n      - If needed, trim the text but do not change the original meaning.\n      - done must always be the boolean false.\n      - Do NOT create nested arrays.\n      - Do NOT use numeric keys or tuple-like structures.\n      - Do NOT return arrays inside arrays.\n      - Correct example:\n        subtasks: [\n          { \"name\": \"Analyze login error\", \"done\": false },\n          { \"name\": \"Check server logs\", \"done\": false },\n          { \"name\": \"Deploy fix\", \"done\": false }\n        ]\n      \n    - If no subtasks are detected, return: \"subtasks\": []\n\n6. assigendTo\n  The contacts array is:\n{{ $json.assignedTo }}\n\nEach entry: { \"Id\": \"...\", \"name\": \"...\" }\n\nYour task:\n1. Scan the email for person names or fragments.\n2. For each found name/fragment: push it to an Array \n\nIf no matches: []\n\n\n\nCRITICAL OUTPUT FORMAT:\n- Return ONLY pure JSON\n- NO markdown code blocks\n- NO backticks (`)\n- NO additional text, explanations, or commentary\n- Response must start with `{` and end with `}`\n- Ensure valid JSON syntax (proper quotes, commas, no trailing commas)",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1824,
+        -816
+      ],
+      "id": "2ebda014-a993-4415-a052-447c400b2b1f",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": ".../tasks.json",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "category",
+              "value": "={{ $('formatAiOutput').item.json.category }}"
+            },
+            {
+              "name": "status",
+              "value": "={{ $('formatAiOutput').item.json.status }}"
+            },
+            {
+              "name": "title",
+              "value": "={{ $('formatAiOutput').item.json.title }}"
+            },
+            {
+              "name": "dueDate",
+              "value": "={{ $('formatAiOutput').item.json.dueDate }}"
+            },
+            {
+              "name": "description",
+              "value": "={{ $('formatAiOutput').item.json.description }}"
+            },
+            {
+              "name": "priority",
+              "value": "={{ $('formatAiOutput').item.json.priority }}"
+            },
+            {
+              "name": "creator",
+              "value": "={{ $('formatAiOutput').item.json.creator }}"
+            },
+            {
+              "name": "name",
+              "value": "={{ $json.name }}"
+            },
+            {
+              "name": "mail",
+              "value": "={{ $json.mail?.split(\"<\")[1]?.split(\">\")[0]}}\n"
+            },
+            {
+              "name": "=subtasks",
+              "value": "={{ $('formatAiOutput').item.json.subtasks }}"
+            },
+            {
+              "name": "assignedTo",
+              "value": "={{ $('mapNewAssignedTo').item.json.assignedTo }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        2544,
+        -816
+      ],
+      "id": "563e9ba5-9635-4d4b-8d66-a49724890739",
+      "name": "sendTaskToFirebase",
+      "alwaysOutputData": true
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $('AI Agent').first().json.output\n  .replace(/```json/g, \"\")\n  .replace(/```/g, \"\")\n  .trim();\n\nreturn [{ json: JSON.parse(raw) }];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2352,
+        -816
+      ],
+      "id": "72991eef-b412-4bc3-b9d9-4c4896cafb62",
+      "name": "formatAiOutput"
+    },
+    {
+      "parameters": {
+        "method": "PUT",
+        "url": ".../aicounter/-Ol74VTj318bdX3TYVo-.json",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "count",
+              "value": "={{ $('increaseAiCount').item.json.count }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        1136,
+        -816
+      ],
+      "id": "428c3cd7-9729-4065-bdad-3a9b674e8731",
+      "name": "updateAICounter"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "08e90c98-d86e-4972-b134-d7e0e834b550",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -160,
+        -1200
+      ],
+      "id": "c729213d-6d68-4afe-b04f-cdf641e6c04d",
+      "name": "Trigger - Webhook Status",
+      "webhookId": "08e90c98-d86e-4972-b134-d7e0e834b550"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "737653d6-aa6a-417e-9df7-676aed0aef1a",
+              "leftValue": "={{ $json.Subject }}",
+              "rightValue": "Join Issue Collector: Neue Anfrage [KI-Limit]",
+              "operator": {
+                "type": "string",
+                "operation": "startsWith"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        -128,
+        -768
+      ],
+      "id": "c921cfd9-0a4b-4894-a4c0-60d61e33df53",
+      "name": "isMailFromn8n"
+    },
+    {
+      "parameters": {
+        "errorMessage": "AI Limit! Stopped to prevent Loop"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        80,
+        -928
+      ],
+      "id": "13bc5c09-907e-4572-87d7-cf6c94723b50",
+      "name": "stopMailProcess"
+    },
+    {
+      "parameters": {
+        "errorMessage": "KI-Limit reached!"
+      },
+      "type": "n8n-nodes-base.stopAndError",
+      "typeVersion": 1,
+      "position": [
+        1168,
+        -256
+      ],
+      "id": "a6f9c052-3437-429c-9706-6ad14309ccb9",
+      "name": "stopProcess",
+      "alwaysOutputData": false
     }
   ],
   "connections": {
+    "Google Gemini Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code Tool2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getCurrentAiCount": {
+      "main": [
+        [
+          {
+            "node": "hasAIFreeToken",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "isFromWebhook": {
+      "main": [
+        [
+          {
+            "node": "sendTicketAsMail",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "stopProcess",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getAiCount": {
+      "main": [
+        [
+          {
+            "node": "resetAiCount",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger - resetAi": {
+      "main": [
+        [
+          {
+            "node": "getAiCount",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger - Email": {
+      "main": [
+        [
+          {
+            "node": "isMailFromn8n",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "increaseAiCount": {
+      "main": [
+        [
+          {
+            "node": "updateAICounter",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mapWebhook": {
+      "main": [
+        [
+          {
+            "node": "mergeMapResult",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "mapEmail": {
+      "main": [
+        [
+          {
+            "node": "mergeMapResult",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "hasAIFreeToken": {
+      "main": [
+        [
+          {
+            "node": "increaseAiCount",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "isFromWebhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mergeMapResult": {
+      "main": [
+        [
+          {
+            "node": "getCurrentAiCount",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger - Webhook": {
+      "main": [
+        [
+          {
+            "node": "mapWebhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "getFirebaseContacts": {
+      "main": [
+        [
+          {
+            "node": "mapContacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mapNewAssignedTo": {
+      "main": [
+        [
+          {
+            "node": "formatAiOutput",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "mapContacts": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
     "AI Agent": {
       "main": [
         [
           {
-            "node": "matchAssignedToID",
+            "node": "mapNewAssignedTo",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Google Gemini Chat Model": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code Tool": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Count Inputs": {
+    "formatAiOutput": {
       "main": [
         [
           {
-            "node": "Count Handler",
+            "node": "sendTaskToFirebase",
             "type": "main",
             "index": 0
           }
         ]
       ]
     },
-    "Count Handler": {
+    "updateAICounter": {
       "main": [
         [
           {
-            "node": "getContactsDB",
+            "node": "getFirebaseContacts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Trigger - Webhook Status": {
+      "main": [
+        [
+          {
+            "node": "sendUpdateEmail",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "isMailFromn8n": {
+      "main": [
+        [
+          {
+            "node": "stopMailProcess",
             "type": "main",
             "index": 0
           }
         ],
         [
           {
-            "node": "Send email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "restructure JSON": {
-      "main": [
-        [
-          {
-            "node": "send newCounter to Firebase",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "send newCounter to Firebase": {
-      "main": [
-        [
-          {
-            "node": "POST AI-JSON",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "HTTP Request2": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Webhook - Status change": {
-      "main": [
-        [
-          {
-            "node": "Send an Email",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Webhook - Incoming Form": {
-      "main": [
-        [
-          {
-            "node": "getAICounter",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Counter reset": {
-      "main": [
-        [
-          {
-            "node": "HTTP Request2",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "AI Agent1": {
-      "main": [
-        [
-          {
-            "node": "matchAssignedToID1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Google Gemini Chat Model1": {
-      "ai_languageModel": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_languageModel",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Code Tool1": {
-      "ai_tool": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "ai_tool",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Count Inputs1": {
-      "main": [
-        [
-          {
-            "node": "Count Handler1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Count Handler1": {
-      "main": [
-        [
-          {
-            "node": "getContactsDB1",
-            "type": "main",
-            "index": 0
-          }
-        ],
-        [
-          {
-            "node": "Stop and Error",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "restructure JSON1": {
-      "main": [
-        [
-          {
-            "node": "send newCounter to Firebase1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "send newCounter to Firebase1": {
-      "main": [
-        [
-          {
-            "node": "POST AI-JSON1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "Gmail Trigger": {
-      "main": [
-        [
-          {
-            "node": "getAICounter1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "mapAssignedToFetch": {
-      "main": [
-        [
-          {
-            "node": "AI Agent1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "mapAssignedToFetch1": {
-      "main": [
-        [
-          {
-            "node": "AI Agent",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "getAICounter": {
-      "main": [
-        [
-          {
-            "node": "Count Inputs",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "getAICounter1": {
-      "main": [
-        [
-          {
-            "node": "Count Inputs1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "matchAssignedToID1": {
-      "main": [
-        [
-          {
-            "node": "restructure JSON1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "matchAssignedToID": {
-      "main": [
-        [
-          {
-            "node": "restructure JSON",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "getContactsDB": {
-      "main": [
-        [
-          {
-            "node": "mapAssignedToFetch1",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
-    "getContactsDB1": {
-      "main": [
-        [
-          {
-            "node": "mapAssignedToFetch",
+            "node": "mapEmail",
             "type": "main",
             "index": 0
           }
