@@ -88,7 +88,7 @@ form {
 }
 
 .validation {
-  @include font($fs: 13px);
+  @include font($fs: 1rem);
   color: $color-error;
   text-align: center;
 }

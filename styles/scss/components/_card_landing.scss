@@ -4,7 +4,7 @@
   background-color: white !important;
   border-radius: 30px;
   @include dFlex($fd: column, $g: 8px);
-  padding: 1% 1%;
+  padding: 2% 1%;
   @include size( $w: min(700px, 90%))
 }
 
@@ -17,13 +17,12 @@
   }
   &__signup {
     justify-content: space-between;
-    height: min(700px, 90%);
   }
 }
 
 @media screen and (max-width: 992px) {
-  .card-landing{
-    margin: 10% 0 10% 0;
+  .card-landing__login{
+    margin: 10% 0 5% 0;
     height: min(420px, 90%);
   }
 }

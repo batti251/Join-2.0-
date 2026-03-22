@@ -253,7 +253,7 @@ async function validContact(canLogin, indexContact) {
   let state = true;
   let errorRef = document.getElementById(`email-error`);
   if ( !await isMailUsable(indexContact) && !canLogin) {
-   errorRef.innerHTML = "Mail already exist. Please take an unused email";
+   errorRef.innerHTML = "This E-Mail is already in use";
     return
   }  
   if (!await isValidUser()) {
@@ -356,7 +356,7 @@ async function validSignup() {
   let state = true
   let errorRef = document.getElementById(`email-error`);
   if (!await isMailUsable()) {
-   errorRef.innerHTML = "Mail already exist. Please take an unused email";
+   errorRef.innerHTML = "This E-Mail is already in use";
     return
   } 
    if (!checkValidation()) {

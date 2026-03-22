@@ -4,9 +4,8 @@
 form {
   @include dFlex($g: 20px);
   > .input-container {
-    @include dFlex($jc: space-between, $g: 8px);
+    @include dFlex($jc: space-between, $g: 4px);
     @include size($w: 100%);
-    min-height: 78.19px;
     &:nth-of-type(5) {
       min-height: 0;
     }
@@ -105,7 +104,7 @@ input[type="checkbox"] {
 
 @media screen and (max-width: 480px) {
   form {
-    gap: 14px !important;
+    gap: 8px !important;
   }
 
   input {

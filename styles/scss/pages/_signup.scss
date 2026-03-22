@@ -1,14 +1,7 @@
 @use "./../abstracts/" as *;
 
-/*   .grid {
-    grid-template-rows: 15% 75% 10%;
-  } */
-
 
 .card-landing__signup {
-    margin: 8% 0 0 0 ;
-  max-height: max(50%, 660px);
-  height: 100%;
   justify-content: unset;
   align-items: unset;
 }
@@ -44,10 +37,6 @@ form {
 }
 
 @media screen and (max-width: 600px) {
-/*   .grid {
-    grid-template-rows: 10% 75% 10%;
-  } */
-
   .join-logo-signup {
   > img {
     top: -40%;
@@ -70,7 +59,6 @@ form {
       justify-content: unset;
 
       > .login-error {
-        font-size: 11px;
         height: 6px;
         margin: unset;
       }
