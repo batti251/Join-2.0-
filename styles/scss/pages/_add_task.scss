@@ -42,7 +42,6 @@
 
 .task-input-date {
   @include font($fs: 20px);
-  @include size($h: 48px);
   @include padding($p: 12px 21px);
 }
 
@@ -112,7 +111,7 @@
 
 .subtask-list-element {
   @include dFlex($jc: space-between, $fd: unset, $g: 8px);
-  @include font($fs: 13px);
+  @include font();
   @include padding(8px);
   @include size($w: 100%);
   list-style-position: inside;
@@ -193,7 +192,11 @@
 @media screen and (max-width: 1200px) {
   .form-sub-wraps {
     flex-direction: column;
-    gap: 24px;
+    gap: 0;
+  }
+
+  .task-meta{
+    gap: 8px;
   }
 
   .scrollable-y {
