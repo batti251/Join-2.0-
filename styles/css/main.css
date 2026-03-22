@@ -1830,19 +1830,20 @@ form > .input-container {
   justify-content: center;
   align-items: center;
   flex-direction: row;
-  gap: 8px;
+  gap: 16px;
   margin-block-start: 0.5rem;
   height: -webkit-fill-available;
   width: auto;
 }
 .policy-notice-list--text-gray {
   color: #a8a8a8;
-  min-width: 200px;
+}
+.policy-notice-list--text-gray > a {
+  font-weight: 500;
 }
 .policy-notice-list--text-gray > a:hover {
   color: #29abe2 !important;
-  font-weight: 600;
-  font-style: bold;
+  text-decoration: underline;
 }
 .policy-notice-list--text-gray > a:visited {
   color: #a8a8a8;
