@@ -2,7 +2,6 @@
 
 .policy-notice-list {
   @include dFlex($fd: row, $g: 16px);
-  margin-block-start: 0.5rem;
   @include size($h: -webkit-fill-available);
 
   &--text-gray {
@@ -23,4 +22,7 @@
 
 ul {
   list-style: disc;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }

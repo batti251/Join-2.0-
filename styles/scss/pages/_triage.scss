@@ -29,7 +29,6 @@ body {
 
 .stakeholder-wrap {
   @include dFlex($ai: flex-start, $g: 8px);
-  margin: 0 0 10% 0;
   width: 100%;
 }
 
