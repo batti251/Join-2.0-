@@ -1,7 +1,7 @@
 @use "./../abstracts/" as *;
 
 .card {
-  font-size: clamp(1rem, 2rem, 2vw);
+  font-size: clamp(1rem, 3rem, 2vw);
   @include dFlex($fd: row, $g: 16px);
   background-color: #ffffff;
   color: #2a3647;
@@ -60,7 +60,7 @@
 
 .count-figure {
   @include font($fw: 600);
-  font-size: clamp(1rem, 3rem, 6vw);
+  font-size: clamp(1rem, 5rem, 6vw);
 }
 
 .edit {
@@ -82,7 +82,7 @@
 }
 
 .divider-vertical {
-  @include size($w: 2px, $h: 60px);
+  @include size($w: 1%, $h: 50%);
   background-color: #e0e0e0;
   margin: 0 8px;
 }
