@@ -18,6 +18,9 @@
   &__signup {
     justify-content: space-between;
   }
+  &__triage{
+    @include size( $w: min(700px, 80%));
+  }
 }
 
 @media screen and (max-width: 992px) {

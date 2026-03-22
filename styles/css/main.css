@@ -830,6 +830,10 @@ input[type=checkbox] {
 .card-landing__signup {
   justify-content: space-between;
 }
+.card-landing__triage {
+  height: auto;
+  width: min(700px, 80%);
+}
 
 @media screen and (max-width: 992px) {
   .card-landing__login {
