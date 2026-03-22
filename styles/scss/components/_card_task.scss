@@ -87,7 +87,7 @@
 
 .progress-text {
   display: flex;
-  @include font();
+  @include font($fs:clamp(1rem, 1.25rem, 1vw));
   color: black;
 }
 

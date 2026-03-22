@@ -151,7 +151,7 @@
 }
 
 .badge-text{
-  @include font();
+  @include font($fs: clamp(1rem, 1.25rem, 1vw));
   color: white;
 }
 
