@@ -8,7 +8,7 @@
   padding: 0;
   background-color: transparent;
   @include size($h: 48px, $w: min(220px, 100%));
-  font-size: clamp(1.125rem, 1.375rem, 1vw);
+  font-size: clamp(1rem, 1.375rem, 1vw);
   &:hover {
     cursor: pointer;
   }
