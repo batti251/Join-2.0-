@@ -150,11 +150,6 @@ function openDialogTemplate() {
                 <button class="btn btn--primary" type="submit">Send</button>
               </form>
             </dialog>
-
-
-             <div class="message">
-  <span>Ooops, something went wrong.. Please try again</span>
-</div>
   `
 }
 
