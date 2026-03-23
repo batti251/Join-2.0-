@@ -124,15 +124,16 @@ select {
 
 .message {
   @include position($p: absolute, $t: 50%, $l: 50%);
-  @include size($w: 50%, $h: 5%);
+  @include size($w: 90%);
   transform: translate(-50%, -50%);
   background-color: #2a3647;
   color: white;
   border: solid 2px;
   border-radius: 10px;
-  padding: 8px;
+  padding: 2%;
   @include dFlex();
   z-index: 99;
+  text-align: center;
 }
 
 .ai-limit {

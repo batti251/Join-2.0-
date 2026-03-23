@@ -1789,6 +1789,8 @@ form > .input-container {
   left: 50%;
   width: min(600px, 90%);
   transform: translate(-50%, -50%);
+  border-radius: 5%;
+  border-style: none;
 }
 
 .closebar {
@@ -2836,6 +2838,10 @@ body {
 
 h1 {
   font-size: clamp(1.8rem, 7vw + 1rem, 4rem);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 5vw + 1rem, 3rem);
 }
 
 a {
@@ -4539,20 +4545,21 @@ select:hover {
   right: unset;
   bottom: unset;
   left: 50%;
-  height: 5%;
-  width: 50%;
+  height: auto;
+  width: 90%;
   transform: translate(-50%, -50%);
   background-color: #2a3647;
   color: white;
   border: solid 2px;
   border-radius: 10px;
-  padding: 8px;
+  padding: 2%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 0;
   z-index: 99;
+  text-align: center;
 }
 
 .ai-limit {

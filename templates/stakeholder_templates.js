@@ -113,7 +113,7 @@ function openDialogTemplate() {
           </button>
         </div>
         <form onsubmit='sendMail(event)' novalidate action="/sendMail.php" class="mail-request">
-        <h1>Request Form</h1>
+        <h2>Request Form</h2>
         <div class="input-container">
               <div class="input-content">
                 <input class="validate" placeholder="Your Name" type="text" name="name" autocomplete="name" required pattern="([\\s\\S]*\\S){2,}[\\s\\S]*" />
@@ -150,6 +150,11 @@ function openDialogTemplate() {
                 <button class="btn btn--primary" type="submit">Send</button>
               </form>
             </dialog>
+
+
+             <div class="message">
+  <span>Ooops, something went wrong.. Please try again</span>
+</div>
   `
 }
 
