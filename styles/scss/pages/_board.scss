@@ -242,7 +242,7 @@
   }
 
   .no-task-feedback {
-    @include size($h: 272px, $w: 100px);
+    @include size($h: 50px, $w: 272px);
   }
 
   .task-card {

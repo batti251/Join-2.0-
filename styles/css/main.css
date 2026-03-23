@@ -3560,8 +3560,8 @@ form > select {
     width: 204px;
   }
   .no-task-feedback {
-    height: 272px;
-    width: 100px;
+    height: 50px;
+    width: 272px;
   }
   .task-card {
     width: 100%;
